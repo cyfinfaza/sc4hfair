@@ -1,6 +1,6 @@
 import React from "react"
 import * as headerStyle from "./header.module.scss"
-import { StaticImage } from "gatsby-plugin-image"
+import Logo from '../assets/logo.inline.svg'
 import { graphql, useStaticQuery } from "gatsby"
 import { useState } from "react"
 
@@ -28,11 +28,7 @@ const Header = ({ offsetContent = true }) => {
         style={{ height: menuOpen ? "100vh" : null }}
       >
         <div className={headerStyle.topBar}>
-          <img
-            className={headerStyle.headerLogo}
-            src="4h-fair_plain.svg"
-            alt="4H Fair"
-          />
+          <Logo className={headerStyle.headerLogo} />
           <button className={headerStyle.menuButton} onClick={toggleMenu}>
             <div className={headerStyle.menuIconContainer}>
               <span

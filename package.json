@@ -4,6 +4,9 @@
   "description": "The Somerset County 4-H Fair App/Website",
   "version": "0.1.0",
   "author": "Cy Westbrook <cyfinfaza@gmail.com>",
+  "contributors": [
+    "Calum Dingwall (https://github.com/caburum)"
+  ],
   "dependencies": {
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
