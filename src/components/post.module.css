@@ -1,0 +1,33 @@
+.container {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #eee;
+  padding: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px 0 #0004;
+  box-sizing: border-box;
+  animation: zoomin 0.5s backwards ease;
+}
+.container img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.container > *:last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  margin: 0;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+@keyframes zoomin {
+  0% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
