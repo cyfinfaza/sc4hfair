@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "sc4hfair",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "The Somerset County 4-H Fair App/Website",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Cy Westbrook <cyfinfaza@gmail.com>",
   "dependencies": {
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/cyfinfaza/sc4hfair"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
