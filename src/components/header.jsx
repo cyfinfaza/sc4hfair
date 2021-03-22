@@ -37,13 +37,13 @@ const Header = ({ offsetContent = true }) => {
             <div className={headerStyle.menuIconContainer}>
               <span
                 className="material-icons"
-                style={!menuOpen ? {} : { transform: "scale(0)", opacity: 0 }}
+                style={!menuOpen ? {} : { transform: "scale(0.5)", opacity: 0 }}
               >
                 menu
               </span>
               <span
                 className="material-icons"
-                style={menuOpen ? {} : { transform: "scale(0)", opacity: 0 }}
+                style={menuOpen ? {} : { transform: "scale(0.5)", opacity: 0 }}
               >
                 close
               </span>
