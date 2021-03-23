@@ -35,7 +35,7 @@ $height: 64px;
 
 .headerLogo {
   height: 100%;
-	fill: var(--accent);
+	fill: var(--navbar-text);
 }
 
 .menuButton {
@@ -46,13 +46,15 @@ $height: 64px;
   align-items: center;
   border: none;
   border-radius: 4px;
-  color: var(--accent);
+  color: var(--navbar-text);
 	background-color: var(--navbar);
 	cursor: pointer;
+  user-select: none;
 }
 
 .menuButton:active {
-  background-color: var(--navbar-btn-active);
+  filter: brightness(0.8);
+  --webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .menuButton:focus {
