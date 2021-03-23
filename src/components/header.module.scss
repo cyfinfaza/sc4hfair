@@ -1,108 +1,108 @@
 $height: 64px;
 
 .visible {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: $height;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  backdrop-filter: blur(12px);
-  background-color: var(--navbar);
-  z-index: 100;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	height: $height;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+	backdrop-filter: blur(12px);
+	background-color: var(--navbar);
+	z-index: 100;
 }
 
 .invisible {
-  width: 100%;
-  height: $height;
+	width: 100%;
+	height: $height;
 }
 
 .topBar {
-  height: $height;
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
-  box-sizing: border-box;
+	height: $height;
+	display: flex;
+	justify-content: space-between;
+	padding: 16px;
+	box-sizing: border-box;
 }
 
 .menuArea {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
 }
 
 .menuArea::-webkit-scrollbar {
-  width: 0; // Prevents text being shifted during the transition when the height gets too small
+	width: 0; // Prevents text being shifted during the transition when the height gets too small
 }
 
 .menuGrid {
-  width: 100%;
-  color: var(--navbar-text);
-  display: flex;
-  flex: row;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
+	width: 100%;
+	color: var(--navbar-text);
+	display: flex;
+	flex: row;
+	align-items: flex-start;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .menuBottom {
-  margin-top: auto;
-  margin-bottom: 16px;
-  color: var(--navbar-text);
+	// margin-top: auto;
+	margin-block: 16px;
+	color: var(--navbar-text);
 }
 
 .headerLogo {
-  height: 100%;
-  fill: var(--navbar-text);
+	height: 100%;
+	fill: var(--navbar-text);
 }
 
 .menuButton {
-  justify-self: flex-end;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 4px;
-  color: var(--navbar-text);
-  background-color: var(--navbar);
-  cursor: pointer;
-  user-select: none;
+	justify-self: flex-end;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	border-radius: 4px;
+	color: var(--navbar-text);
+	background-color: var(--navbar);
+	cursor: pointer;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .menuButton:active {
-  filter: brightness(0.8);
-  --webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	filter: brightness(0.8);
 }
 
 .menuButton:focus {
-  outline: none;
+	outline: none;
 }
 
 .menuIconContainer {
-  width: 24px;
-  height: 24px;
-  position: relative;
+	width: 24px;
+	height: 24px;
+	position: relative;
 }
 
 .menuIconContainer * {
-  position: absolute;
-  height: 24px;
-  width: 24px;
-  margin: 0;
-  top: 0;
-  left: 0;
-  transition: 240ms ease;
+	position: absolute;
+	height: 24px;
+	width: 24px;
+	margin: 0;
+	top: 0;
+	left: 0;
+	transition: 240ms ease;
 }
 
 .menuButtonLabel {
-  margin-left: 6px;
-  font-weight: bold;
-  font-size: 18px;
+	margin-left: 6px;
+	font-weight: bold;
+	font-size: 18px;
 }
