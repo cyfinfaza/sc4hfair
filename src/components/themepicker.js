@@ -22,7 +22,7 @@ export default function ThemePicker() {
 				const nextTheme = myThemes.length -1 === index ? myThemes[0].id : myThemes[index + 1].id;
 			
 				return item.id === theme ? (
-					<span className="material-icons" style={{cursor: 'pointer'}} key={item.id} aria-label={`${item.name}`} onClick={() => switchTheme(nextTheme)}>
+					<span className="material-icons" style={{'cursor': 'pointer', 'user-select': 'none'}} key={item.id} aria-label={`${item.name}`} onClick={() => switchTheme(nextTheme)}>
 						{item.icon}
 					</span>
 				) : null;
