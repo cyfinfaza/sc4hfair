@@ -28,7 +28,9 @@ const IndexPage = ({ data }) => {
         headers: {
           "Content-Type": "application/json",
           // Authenticate the request
-          Authorization: "Bearer TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk",
+          Authorization: `Bearer ${atob(
+            "VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=="
+          )}`,
         },
         // send the GraphQL query
         body: JSON.stringify({ query: contentfulQuery }),
