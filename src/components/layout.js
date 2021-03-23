@@ -8,7 +8,6 @@
 import * as React from "react"
 
 import Header from "./header"
-import ThemePicker from "./themepicker"
 import * as layoutStyle from "./layout.module.css"
 
 const Layout = ({ children }) => {
@@ -16,7 +15,6 @@ const Layout = ({ children }) => {
     <>
       <Header />
       <div className={layoutStyle.content}>{children}</div>
-      <ThemePicker />
     </>
   )
 }

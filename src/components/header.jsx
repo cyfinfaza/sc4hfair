@@ -3,6 +3,7 @@ import * as headerStyle from "./header.module.scss"
 import Logo from '../assets/logo.inline.svg'
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { useState } from "react"
+import ThemePicker from "./themepicker"
 
 const Header = ({ offsetContent = true }) => {
   const data = useStaticQuery(graphql`
@@ -51,6 +52,9 @@ const Header = ({ offsetContent = true }) => {
           <Link to="/">Home</Link>
           <Link to="/">Link 2</Link>
           <a href="https://4hcomputers.club">4H Computers</a>
+          <div className={headerStyle.menuBottom}>
+            <ThemePicker />
+          </div>
         </div>
       </div>
     </div>
