@@ -2,10 +2,9 @@
   max-width: 600px;
   width: 100%;
   border-radius: 8px;
-  background-color: #eee;
+  background-color: var(--light);
   padding: 12px;
   margin-bottom: 16px;
-  box-shadow: 0 0 10px 0 #0004;
   box-sizing: border-box;
   animation: zoomin 0.5s backwards ease;
 }
@@ -20,9 +19,8 @@
 
 .title {
   margin: 0;
-  padding: 4px;
-  border-radius: 4px;
-  background-color: #ddd;
+  text-align: center;
+  font-size: 1.25em;
 }
 
 @keyframes zoomin {

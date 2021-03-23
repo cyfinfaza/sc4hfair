@@ -4,10 +4,10 @@
 :root {
 	--accent: #009959;
 	--text: #111;
-	--bg: #EDEDED;
+	--bg: #EAEAEA;
 	--navbar: #009959DF;
   --navbar-text: #FAFAFA;
-	--light: #FCFCFC;
+	--light: #FDFDFD;
 }
 
 body {
