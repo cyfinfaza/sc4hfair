@@ -5,10 +5,12 @@ const myThemes = [
 	{
 		id: 'theme-light',
 		name: 'Light',
+		icon: 'light_mode'
 	},
 	{
 		id: 'theme-dark',
 		name: 'Dark',
+		icon: 'dark_mode'
 	}
 ]
 
@@ -21,9 +23,9 @@ export default function ThemePicker() {
 			
 				return item.id === theme ? (
 					<div key={item.id} className={item.id}>
-						<button aria-label={`${item.name} Theme`} onClick={() => switchTheme(nextTheme)}>
-							{item.name}
-						</button>
+						<span className="material-icons" aria-label={`${item.name} Theme`} onClick={() => switchTheme(nextTheme)}>
+							{item.icon}
+						</span>
 					</div>
 				) : null;
 			})}
