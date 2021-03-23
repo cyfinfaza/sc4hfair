@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Somerset County 4-H Fair`,
+    description: `The Somerset County 4-H Fair App/Website`,
+    author: `Somerset County 4-H`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -19,12 +19,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Somerset County 4-H Fair`,
+        short_name: `SC 4-H Fair`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#EDEDED`,
+        theme_color: `#009959`,
+        display: `standalone`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
@@ -40,5 +40,20 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+		{
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-theme-switcher',
+      options: {
+        defaultDarkTheme: 'theme-dark',
+        defaultLightTheme: 'theme-light',
+      },
+    },
   ],
 }
