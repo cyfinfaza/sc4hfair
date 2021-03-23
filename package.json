@@ -17,6 +17,7 @@
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sass": "^4.1.0",
     "gatsby-plugin-sharp": "^3.0.0",
+    "gatsby-plugin-theme-switcher": "^1.0.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "google-maps-react": "^2.0.6",
