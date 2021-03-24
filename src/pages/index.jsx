@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { graphql, Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+// import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect, useState } from 'react'
-import ReactMarkdown from 'react-markdown'
+// import ReactMarkdown from 'react-markdown'
 
 import Post from '../components/post'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+// import SEO from '../components/seo'
 
 const contentfulQuery = `
 {

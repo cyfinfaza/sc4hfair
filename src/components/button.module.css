@@ -1,0 +1,11 @@
+.button {
+	cursor: pointer;
+	user-select: none;
+	box-shadow: var(--button-shadow);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transition: 120ms ease;
+}
+.button:active {
+	filter: contrast(0.6);
+	transform: translate(0px, 1px);
+}

@@ -5,15 +5,25 @@ body {
 	--accent: #009959;
 	--text: #111;
 	--bg: #eaeaea;
-	--navbar: #009959df;
-	--navbar-text: #fafafa;
+	--navbar: #009959aa;
+	/* --navbar: #009959dd; */
+	--navbar-text: #050505;
+	--navbar-accent: #fff3;
 	--light: #fdfdfd;
+	--button-shadow: 0 0 6px 0px #0008;
 }
 
 body.theme-dark {
 	--bg: #111;
 	--text: #ddd;
 	--light: #222;
+	--navbar-text: #fafafa;
+	--navbar-accent: #0003;
+	--button-shadow: 0 0 8px 0px #000a;
+}
+
+a {
+	color: var(--text);
 }
 
 body {
@@ -23,13 +33,28 @@ body {
 	overflow-x: hidden;
 	background-color: var(--bg);
 	color: var(--text);
-	transition: background-color 500ms ease;
+	/* transition: background-color 500ms ease; */
 }
 
 * {
 	font-family: 'DM Sans', sans-serif;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/* transition: color 1s;
+	transition: background-color 1s; */
+	/* transition-delay: 0; */
+	/* color: black;
+	fill: black;
+	transition: color 1s fill 1s; */
 }
+
+body,
+div {
+	transition: background-color 0.5s ease;
+}
+
+/* i {
+	transition: color 1s;
+} */
 
 .columnCentered {
 	display: flex;

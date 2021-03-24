@@ -1,0 +1,17 @@
+.themepickerContainer {
+	background-color: var(--navbar-accent);
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	align-items: center;
+	border-radius: 8px;
+}
+.themepickerContainer > i {
+	margin-right: 4px;
+	animation: spinney 650ms ease;
+}
+@keyframes spinney {
+	0% {
+		transform: rotate(-360deg);
+	}
+}

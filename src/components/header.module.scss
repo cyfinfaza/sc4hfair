@@ -13,6 +13,7 @@ $height: 64px;
 	backdrop-filter: blur(12px);
 	background-color: var(--navbar);
 	z-index: 100;
+	box-shadow: var(--button-shadow);
 }
 
 .invisible {
@@ -71,14 +72,12 @@ $height: 64px;
 	border: none;
 	border-radius: 4px;
 	color: var(--navbar-text);
-	background-color: var(--navbar);
-	cursor: pointer;
-	user-select: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.menuButton:active {
-	filter: brightness(0.8);
+	background-color: var(--navbar-accent);
+	// cursor: pointer;
+	// user-select: none;
+	// box-shadow: 0 0 6px 0px #0008;
+	// -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	// transition: (filter, transform) 120ms ease;
 }
 
 .menuButton:focus {
@@ -98,7 +97,7 @@ $height: 64px;
 	margin: 0;
 	top: 0;
 	left: 0;
-	transition: 240ms ease;
+	transition: transform 240ms ease;
 }
 
 .menuButtonLabel {

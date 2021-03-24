@@ -6,6 +6,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby'
 import { useState } from 'react'
 import ThemePicker from './themepicker'
 import LinkButton from './linkbutton'
+import * as buttonStyle from './button.module.css'
 
 const Header = ({ offsetContent = true }) => {
 	const data = useStaticQuery(graphql`
@@ -31,18 +32,23 @@ const Header = ({ offsetContent = true }) => {
 				style={{ height: menuOpen ? '100vh' : null }}
 			>
 				<div className={headerStyle.topBar}>
-					<Link to="/"><Logo className={headerStyle.headerLogo} /></Link>
-					<button className={headerStyle.menuButton} onClick={toggleMenu}>
+					<Link to="/">
+						<Logo className={headerStyle.headerLogo} />
+					</Link>
+					<button
+						className={`${headerStyle.menuButton} ${buttonStyle.button}`}
+						onClick={toggleMenu}
+					>
 						<div className={headerStyle.menuIconContainer}>
 							<span
 								className="material-icons"
-								style={!menuOpen ? {} : { transform: 'scale(0.5)', opacity: 0 }}
+								style={!menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 							>
 								menu
 							</span>
 							<span
 								className="material-icons"
-								style={menuOpen ? {} : { transform: 'scale(0.5)', opacity: 0 }}
+								style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 							>
 								close
 							</span>
@@ -52,11 +58,34 @@ const Header = ({ offsetContent = true }) => {
 				</div>
 				<div className={headerStyle.menuArea}>
 					<div className={headerStyle.menuGrid}>
-					<LinkButton label="Home" icon="home" linksTo="/" />
-					<LinkButton label="Map" icon="room" linksTo="/map" />
-					<LinkButton label="About" icon="groups" linksTo="/about" />
-					<LinkButton label="4-H Info" icon={<FourH style={{height: '100%', fill: 'var(--navbar-text)'}}/>} linksTo="/about" />
-					<LinkButton label="Schedule" icon="schedule" linksTo="/about" />
+						<LinkButton label="Latest" icon="home" linksTo="/" />
+						<LinkButton label="Map" icon="room" linksTo="/map" />
+						<LinkButton label="Schedule" icon="event_note" linksTo="/about" />
+						<LinkButton
+							label="Interest List"
+							icon="list_alt"
+							linksTo="/about"
+						/>
+						<LinkButton label="Queuing" icon="query_builder" linksTo="/about" />
+						<LinkButton
+							label="Live Cams"
+							icon="video_camera_back"
+							linksTo="/about"
+						/>
+						<LinkButton label="Join 4H" icon="groups" linksTo="/about" />
+						<LinkButton
+							label="Donate"
+							icon="monetization_on"
+							linksTo="/about"
+						/>
+						<LinkButton
+							label="About 4H"
+							icon={
+								<FourH style={{ height: '100%', fill: 'var(--navbar-text)' }} />
+							}
+							linksTo="/about"
+						/>
+						<LinkButton label="App Info" icon="info" linksTo="/about" />
 					</div>
 					<div className={headerStyle.menuBottom}>
 						<ThemePicker />
