@@ -59,7 +59,7 @@ const Header = ({ offsetContent = true }) => {
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
-							linksTo="/about"
+							linksTo="/interests"
 						/>
 						<LinkButton
 							label="Queuing"
@@ -71,7 +71,11 @@ const Header = ({ offsetContent = true }) => {
 							icon="video_camera_back"
 							linksTo="/cams"
 						/>
-						<LinkButton label="Join 4H" icon="groups" linksTo="/join" />
+						<LinkButton
+							label="Join 4H"
+							icon="groups"
+							linksTo="https://4histops.org/join-folder"
+						/>
 						<LinkButton
 							label="Donate"
 							icon="monetization_on"
@@ -82,7 +86,7 @@ const Header = ({ offsetContent = true }) => {
 							icon={
 								<FourH style={{ height: '100%', fill: 'var(--navbar-text)' }} />
 							}
-							linksTo="/4h"
+							linksTo="https://4histops.org"
 						/>
 						<LinkButton label="App Info" icon="info" linksTo="/about" />
 					</div>
