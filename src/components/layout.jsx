@@ -75,11 +75,15 @@ const Layout = ({
 					},
 				]}
 			/>
-			<Header offsetContent={!noHeaderPadding || !fixedHeightContent} />
+			<Header offsetContent={!noHeaderPadding && !fixedHeightContent} />
 			<div
 				className={layoutStyle.content}
 				style={{
 					padding: noPadding ? '0' : null,
+					paddingTop:
+						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : null,
+					height: fixedHeightContent ? '100vh' : null,
+					boxSizing: 'border-box',
 				}}
 			>
 				{children}

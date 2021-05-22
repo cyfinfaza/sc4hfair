@@ -4,9 +4,13 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 const MapPage = ({ google }) => {
 	return (
-		<Layout title="Map" noPadding={true}>
+		<Layout title="Map" noPadding fixedHeightContent>
 			<div style={{ height: '100%' }}>
-				<Map google={google} zoom={14}>
+				<Map
+					google={google}
+					zoom={14}
+					containerStyle={{ height: 'calc( 100vh - var(--nav-height) )' }}
+				>
 					{/* <Marker onClick={this.onMarkerClick} name={'Current location'} />
 
 				

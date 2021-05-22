@@ -15,6 +15,7 @@ body {
 		rgba(255, 255, 255, var(--image-dimmer-opacity)),
 		rgba(255, 255, 255, var(--image-dimmer-opacity))
 	);
+	--nav-height: 64px;
 }
 
 body.theme-dark {
