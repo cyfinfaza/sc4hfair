@@ -1,8 +1,9 @@
 module.exports = {
 	siteMetadata: {
-		title: `Somerset County 4-H Fair`,
-		description: `The Somerset County 4-H Fair App/Website`,
-		author: `Somerset County 4-H`,
+		title: `Somerset County 4H Fair`,
+		shortTitle: `SC 4H Fair`,
+		description: `The Somerset County 4H Fair App`,
+		author: `Somerset County 4H`,
 	},
 	plugins: [
 		`gatsby-plugin-react-helmet`,
@@ -19,8 +20,8 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `Somerset County 4-H Fair`,
-				short_name: `SC 4-H Fair`,
+				name: `Somerset County 4H Fair`,
+				short_name: `SC 4H Fair`,
 				start_url: `/`,
 				background_color: `#EDEDED`,
 				theme_color: `#009959`,
@@ -62,5 +63,6 @@ module.exports = {
 				trackingIds: ['G-QYEGYTKG7B'],
 			},
 		},
+		`gatsby-plugin-react-helmet`,
 	],
 }

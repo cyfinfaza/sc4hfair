@@ -1,0 +1,11 @@
+.filterOptions {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 16px;
+	align-items: center;
+	gap: 8px;
+}
+.filterOptions > * {
+	margin-block: 0;
+}

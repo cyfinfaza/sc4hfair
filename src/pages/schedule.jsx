@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
+import * as style from './schedule.module.css'
 
 import EventBox from '../components/event'
+import ToggleButton from '../components/toggleButton'
 import Layout from '../components/layout'
 
 const contentfulQuery = `
@@ -56,32 +58,38 @@ const IndexPage = ({ data }) => {
 				})
 				setCategoryList([...categoryList, ...newCategories])
 			})
-	}, [])
+	})
 	return (
-		<Layout>
+		<Layout title="Schedule">
 			<div style={{ textAlign: 'center' }}>
-				<h2>Events</h2>
+				<h1>Events</h1>
 			</div>
-			<select
-				onChange={e => setSelectedCategory(e.target.value)}
-				name="Category"
-			>
-				{categoryList.map(category => (
-					<option value={category} key={category}>
-						{category}
-					</option>
-				))}
-			</select>
+			<div className={style.filterOptions}>
+				<p>Filter: </p>
+				<select
+					onChange={e => setSelectedCategory(e.target.value)}
+					name="Category"
+				>
+					{categoryList.map(category => (
+						<option value={category} key={category}>
+							{category}
+						</option>
+					))}
+				</select>
+				<ToggleButton>something</ToggleButton>
+			</div>
 			<div className="columnCentered">
 				{pageContent
 					? pageContent.items
 							.filter(
 								element =>
-									selectedCategory === 'All' ||
-									selectedCategory === element.category
+									(selectedCategory === 'All' ||
+										selectedCategory === element.category) &&
+									new Date(element.time).getTime() > Date.now()
 							)
 							.map((event, i) => {
 								console.log(event)
+								console.log(new Date(event.time).getTime() > Date.now())
 								return (
 									<EventBox
 										key={event.title}

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 
 import Post from '../components/post'
 import Layout from '../components/layout'
-// import SEO from '../components/seo'
 
 const contentfulQuery = `
 {

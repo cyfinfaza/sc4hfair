@@ -1,14 +1,13 @@
 import React from 'react'
-// import Layout from '../components/layout'
-import Header from '../components/header'
+import Layout from '../components/layout'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 const MapPage = ({ google }) => {
 	return (
-		<div style={{ height: '100%' }}>
-			<Header offsetContent={false} containerStyle={{ height: '100%' }} />
-			<Map google={google} zoom={14}>
-				{/* <Marker onClick={this.onMarkerClick} name={'Current location'} />
+		<Layout title="Map" noPadding={true}>
+			<div style={{ height: '100%' }}>
+				<Map google={google} zoom={14}>
+					{/* <Marker onClick={this.onMarkerClick} name={'Current location'} />
 
 				
 				<InfoWindow onClose={this.onInfoWindowClose}>
@@ -16,8 +15,9 @@ const MapPage = ({ google }) => {
 						<h1>{this.state.selectedPlace.name}</h1>
 					</div>
 				</InfoWindow> */}
-			</Map>
-		</div>
+				</Map>
+			</div>
+		</Layout>
 	)
 }
 export default GoogleApiWrapper({
