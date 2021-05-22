@@ -24,10 +24,11 @@ const contentfulQuery = `
 }
 `
 
-const IndexPage = ({ data }) => {
+const SchedulePage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	const [selectedCategory, setSelectedCategory] = useState('All')
 	const [categoryList, setCategoryList] = useState(['All'])
+	const [showingPast, setShowingPast] = useState(false)
 	useEffect(() => {
 		window
 			.fetch(`https://graphql.contentful.com/content/v1/spaces/e34g9w63217k/`, {
@@ -56,9 +57,9 @@ const IndexPage = ({ data }) => {
 						newCategories.push(item.category)
 					}
 				})
-				setCategoryList([...categoryList, ...newCategories])
+				setCategoryList(categoryList => [...categoryList, ...newCategories])
 			})
-	})
+	}, [])
 	return (
 		<Layout title="Schedule">
 			<div style={{ textAlign: 'center' }}>
@@ -67,7 +68,10 @@ const IndexPage = ({ data }) => {
 			<div className={style.filterOptions}>
 				<p>Filter: </p>
 				<select
-					onChange={e => setSelectedCategory(e.target.value)}
+					onChange={e => {
+						console.log('that hook')
+						setSelectedCategory(e.target.value)
+					}}
 					name="Category"
 				>
 					{categoryList.map(category => (
@@ -76,7 +80,14 @@ const IndexPage = ({ data }) => {
 						</option>
 					))}
 				</select>
-				<ToggleButton>something</ToggleButton>
+				<ToggleButton
+					on={showingPast}
+					onClick={() => {
+						setShowingPast(!showingPast)
+					}}
+				>
+					Show Past Events
+				</ToggleButton>
 			</div>
 			<div className="columnCentered">
 				{pageContent
@@ -85,7 +96,7 @@ const IndexPage = ({ data }) => {
 								element =>
 									(selectedCategory === 'All' ||
 										selectedCategory === element.category) &&
-									new Date(element.time).getTime() > Date.now()
+									(new Date(element.time).getTime() > Date.now() || showingPast)
 							)
 							.map((event, i) => {
 								console.log(event)
@@ -118,4 +129,4 @@ export const query = graphql`
 	}
 `
 
-export default IndexPage
+export default SchedulePage

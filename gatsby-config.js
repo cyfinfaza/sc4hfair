@@ -27,6 +27,10 @@ module.exports = {
 				theme_color: `#009959`,
 				display: `standalone`,
 				icon: `src/images/favicon.svg`, // This path is relative to the root of the site.
+				icon_options: {
+					purpose: `any maskable`,
+				},
+				legacy: true, // this will add apple-touch-icon links to <head>
 			},
 		},
 		`gatsby-plugin-gatsby-cloud`,

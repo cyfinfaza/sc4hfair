@@ -5,6 +5,7 @@
 	margin-bottom: 16px;
 	align-items: center;
 	gap: 8px;
+	flex-wrap: wrap;
 }
 .filterOptions > * {
 	margin-block: 0;

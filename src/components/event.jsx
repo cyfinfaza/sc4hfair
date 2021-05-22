@@ -14,7 +14,7 @@ const EventBox = ({
 }) => {
 	var duration = moment.duration(moment(endTime).diff(moment(time))),
 		formattedDuration = formatDuration(duration) + ' long'
-	console.log(imgURL)
+
 	return (
 		<div
 			className={style.container}

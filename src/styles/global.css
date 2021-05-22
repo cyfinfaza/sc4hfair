@@ -74,7 +74,8 @@ div {
 	align-items: center;
 }
 
-select {
+select,
+button {
 	color: var(--text);
 	background-color: var(--light);
 	border: none;
@@ -82,4 +83,9 @@ select {
 	padding: 0.2em;
 	border-radius: 8px;
 	outline: none;
+}
+
+button {
+	font-size: 1em;
+	padding: 0.3em;
 }
