@@ -1,19 +1,18 @@
 import * as React from 'react'
-import { graphql, Link } from 'gatsby'
-// import { StaticImage } from 'gatsby-plugin-image'
+import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
-// import ReactMarkdown from 'react-markdown'
 
-import Post from '../components/post'
+import Event from '../components/event'
 import Layout from '../components/layout'
-// import SEO from '../components/seo'
 
 const contentfulQuery = `
 {
-  postCollection {
+  scheduledEventCollection (order: time_ASC) {
     items {
       title
-      contentText
+      time
+			endTime
+			description
     }
   }
 }
@@ -42,24 +41,25 @@ const IndexPage = ({ data }) => {
 				}
 
 				// rerender the entire component with new data
-				setPageContent(data.postCollection)
+				setPageContent(data.scheduledEventCollection)
 			})
 	}, [])
 	return (
 		<Layout>
 			<div style={{ textAlign: 'center' }}>
-				<h1>Welcome to the Somerset County 4H Fair.</h1>
-				<h2>Latest Updates</h2>
+				<h2>Events</h2>
 			</div>
 			<div className="columnCentered">
 				{pageContent
-					? pageContent.items.map((post, i) => {
-							console.log(post)
+					? pageContent.items.map((event, i) => {
+							console.log(event)
 							return (
-								<Post
-									key={post.title}
-									title={post.title}
-									content={post.contentText}
+								<Event
+									key={event.title}
+									title={event.title}
+									time={event.time}
+									endTime={event.endTime}
+									content={event.description}
 									index={i}
 								/>
 							)

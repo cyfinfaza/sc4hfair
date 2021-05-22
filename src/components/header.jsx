@@ -60,30 +60,30 @@ const Header = ({ offsetContent = true }) => {
 					<div className={headerStyle.menuGrid}>
 						<LinkButton label="Latest" icon="home" linksTo="/" />
 						<LinkButton label="Map" icon="room" linksTo="/map" />
-						<LinkButton label="Schedule" icon="event_note" linksTo="/about" />
+						<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
 							linksTo="/about"
 						/>
-						<LinkButton label="Queuing" icon="query_builder" linksTo="/about" />
+						<LinkButton label="Queuing" icon="query_builder" linksTo="/queuing" />
 						<LinkButton
 							label="Live Cams"
 							icon="video_camera_back"
-							linksTo="/about"
+							linksTo="/cams"
 						/>
-						<LinkButton label="Join 4H" icon="groups" linksTo="/about" />
+						<LinkButton label="Join 4H" icon="groups" linksTo="/join" />
 						<LinkButton
 							label="Donate"
 							icon="monetization_on"
-							linksTo="/about"
+							linksTo="/donate"
 						/>
 						<LinkButton
 							label="About 4H"
 							icon={
 								<FourH style={{ height: '100%', fill: 'var(--navbar-text)' }} />
 							}
-							linksTo="/about"
+							linksTo="/4h"
 						/>
 						<LinkButton label="App Info" icon="info" linksTo="/about" />
 					</div>

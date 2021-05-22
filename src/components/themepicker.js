@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ThemeContext } from 'gatsby-plugin-theme-switcher'
 import * as themePickerStyle from './themepicker.module.css'
 import * as buttonStyle from './button.module.css'
@@ -32,17 +32,30 @@ export default function ThemePicker() {
 			}
 			return false
 		})[0] || myThemes[0]
-	console.log(currentTheme, nextThemeID, currentThemeIndex)
+	// console.log(currentTheme, nextThemeID, currentThemeIndex)
+	const [clickCounter, setClickCounter] = useState(0)
+	useEffect(() => {
+		if (clickCounter == 30) {
+			console.log('ur dedicated, have some comic sans :)')
+			document.styleSheets[0].addRule(
+				'*:not(.material-icons)',
+				'font-family: "Comic Sans MS" !important'
+			)
+		}
+	}, [clickCounter])
 	return (
 		<div
 			className={`${themePickerStyle.themepickerContainer} ${buttonStyle.button}`}
-			onClick={() => switchTheme(nextThemeID)}
+			onClick={() => {
+				switchTheme(nextThemeID)
+				setClickCounter(clickCounter + 1)
+			}}
 		>
 			<i
 				className="material-icons"
 				style={{
 					cursor: 'pointer',
-					'user-select': 'none',
+					userSelect: 'none',
 					transform: 'rotate(' + currentThemeIndex * 360 + 'deg)',
 				}}
 				key={currentTheme.id}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 body {
@@ -6,7 +6,6 @@ body {
 	--text: #111;
 	--bg: #eaeaea;
 	--navbar: #009959aa;
-	/* --navbar: #009959dd; */
 	--navbar-text: #050505;
 	--navbar-accent: #fff3;
 	--light: #fdfdfd;
@@ -38,6 +37,9 @@ body {
 
 * {
 	font-family: 'DM Sans', sans-serif;
+	/* font-family: 'Inter', sans-serif; */
+	/* font-feature-settings: 'ss01'; */
+	/* letter-spacing: -0.5px; */
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	/* transition: color 1s;
 	transition: background-color 1s; */
