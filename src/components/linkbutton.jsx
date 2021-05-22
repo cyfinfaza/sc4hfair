@@ -1,7 +1,6 @@
 import * as React from 'react'
-import ReactMarkdown from 'react-markdown'
 import * as linkButtonStyle from './linkbutton.module.css'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
 import * as buttonStyle from './button.module.css'
 
 const LinkButton = ({ label, linksTo, icon, iconStyle = {}, index = 0 }) => {

@@ -2,22 +2,13 @@ import React from 'react'
 import * as headerStyle from './header.module.scss'
 import Logo from '../assets/logo.inline.svg'
 import FourH from '../assets/fourh.inline.svg'
-import { graphql, useStaticQuery, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import { useState } from 'react'
 import ThemePicker from './themepicker'
 import LinkButton from './linkbutton'
 import * as buttonStyle from './button.module.css'
 
 const Header = ({ offsetContent = true }) => {
-	const data = useStaticQuery(graphql`
-		query {
-			site {
-				siteMetadata {
-					title
-				}
-			}
-		}
-	`)
 	const [menuOpen, setMenuOpen] = useState(false)
 	function toggleMenu() {
 		setMenuOpen(!menuOpen)
@@ -60,13 +51,21 @@ const Header = ({ offsetContent = true }) => {
 					<div className={headerStyle.menuGrid}>
 						<LinkButton label="Latest" icon="home" linksTo="/" />
 						<LinkButton label="Map" icon="room" linksTo="/map" />
-						<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
+						<LinkButton
+							label="Schedule"
+							icon="event_note"
+							linksTo="/schedule"
+						/>
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
 							linksTo="/about"
 						/>
-						<LinkButton label="Queuing" icon="query_builder" linksTo="/queuing" />
+						<LinkButton
+							label="Queuing"
+							icon="query_builder"
+							linksTo="/queuing"
+						/>
 						<LinkButton
 							label="Live Cams"
 							icon="video_camera_back"

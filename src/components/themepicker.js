@@ -35,7 +35,7 @@ export default function ThemePicker() {
 	// console.log(currentTheme, nextThemeID, currentThemeIndex)
 	const [clickCounter, setClickCounter] = useState(0)
 	useEffect(() => {
-		if (clickCounter == 30) {
+		if (clickCounter === 30) {
 			console.log('ur dedicated, have some comic sans :)')
 			document.styleSheets[0].addRule(
 				'*:not(.material-icons)',
@@ -43,13 +43,17 @@ export default function ThemePicker() {
 			)
 		}
 	}, [clickCounter])
+	function handleClick(e) {
+		switchTheme(nextThemeID)
+		setClickCounter(clickCounter + 1)
+	}
 	return (
 		<div
 			className={`${themePickerStyle.themepickerContainer} ${buttonStyle.button}`}
-			onClick={() => {
-				switchTheme(nextThemeID)
-				setClickCounter(clickCounter + 1)
-			}}
+			onClick={handleClick}
+			onKeyDown={handleClick}
+			role="button"
+			tabIndex="0"
 		>
 			<i
 				className="material-icons"

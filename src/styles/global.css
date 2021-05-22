@@ -10,15 +10,24 @@ body {
 	--navbar-accent: #fff3;
 	--light: #fdfdfd;
 	--button-shadow: 0 0 6px 0px #0008;
+	--image-dimmer-opacity: 0.6;
+	--image-dimmer: linear-gradient(
+		rgba(255, 255, 255, var(--image-dimmer-opacity)),
+		rgba(255, 255, 255, var(--image-dimmer-opacity))
+	);
 }
 
 body.theme-dark {
 	--bg: #111;
-	--text: #ddd;
+	--text: #eee;
 	--light: #222;
 	--navbar-text: #fafafa;
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px 0px #000a;
+	--image-dimmer: linear-gradient(
+		rgba(0, 0, 0, var(--image-dimmer-opacity)),
+		rgba(0, 0, 0, var(--image-dimmer-opacity))
+	);
 }
 
 a {

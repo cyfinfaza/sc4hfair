@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
