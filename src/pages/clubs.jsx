@@ -18,6 +18,13 @@ const ClubsPage = ({ data }) => {
 			<p>{club.description}</p>
 			<div className={style.actionButtonsPanel}>
 				<LinkButton
+					label="Locate"
+					icon="place"
+					linksTo={`/map?locate=${club.slug}`}
+					inline
+					opaque
+				/>
+				<LinkButton
 					label="Add"
 					icon="add"
 					linksTo={`/interests?add=${club.slug}`}
