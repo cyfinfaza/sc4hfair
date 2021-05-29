@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as headerStyle from './header.module.scss'
 import Logo from '../assets/logo.inline.svg'
 import FourH from '../assets/fourh.inline.svg'
@@ -13,7 +13,9 @@ const Header = ({ offsetContent = true }) => {
 	function toggleMenu() {
 		setMenuOpen(!menuOpen)
 	}
-	window.setMenuOpen = setMenuOpen
+	useEffect(() => {
+		window.setMenuOpen = setMenuOpen
+	}, [])
 	return (
 		<div
 			className={headerStyle.invisible}
