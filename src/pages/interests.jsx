@@ -60,9 +60,13 @@ const InterestsPage = ({ data }) => {
 				<h1>Interest List</h1>
 				<p>Keep a list of clubs you are interested in.</p>
 				<p>
-					{session
-						? `Signed in as ${session.user.email}`
-						: 'You are not signed in.'}
+					{session ? (
+						<>
+							Signed in as <strong>{session.user.email}</strong>
+						</>
+					) : (
+						'You are not signed in.'
+					)}
 				</p>
 				{reqLoginMessage && (
 					<p style={{ color: 'red' }}>
