@@ -1,0 +1,62 @@
+.clubEntry{
+	max-width: 600px;
+	width: 100%;
+	border-radius: 8px;
+	background-color: var(--light);
+	--entry-padding: 12px;
+	padding: var(--entry-padding);
+	margin-bottom: 16px;
+	overflow: hidden;
+	position: relative;
+	box-sizing: border-box;
+}
+.clubEntry>*{
+	margin: 0;
+}
+
+.clubEntry>h2{
+	text-transform: uppercase;
+}
+
+.clubEntry>p{
+	/* height: 64px; */
+	width: calc(100% - var(--entry-padding)*2);
+	position: absolute;
+}
+
+.clubEntry>p:before {
+	content:'';
+	width:100%;
+	height:100%;    
+	position:absolute;
+	left:0;
+	top:0;
+	background:linear-gradient(transparent 20px, var(--light) 150px);
+  }
+
+.actionButtonsPanel{
+	margin-top: 48px;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	z-index: 20;
+	position: relative;
+	gap: 8px;
+}
+
+.filterOptions {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 16px;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+.filterOptions > * {
+	margin-block: 0;
+}
+.filterOptions input{
+	width: 250px;
+	text-indent: 4px;
+}

@@ -56,6 +56,7 @@ const Header = ({ offsetContent = true }) => {
 							icon="event_note"
 							linksTo="/schedule"
 						/>
+						<LinkButton label="Clubs" icon="groups" linksTo="/clubs" />
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
@@ -73,7 +74,7 @@ const Header = ({ offsetContent = true }) => {
 						/>
 						<LinkButton
 							label="Join 4H"
-							icon="groups"
+							icon="person_add"
 							linksTo="https://4histops.org/join-folder"
 						/>
 						<LinkButton

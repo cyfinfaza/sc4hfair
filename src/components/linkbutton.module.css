@@ -12,6 +12,20 @@
 	margin: 8px;
 }
 
+.containerInline{
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 4px;
+	height: unset;
+	padding: 8px;
+	width: auto;
+	flex: 0;
+	margin: 0;
+	/* margin-inline-end: 8px; */
+	/* margin-block-end: 8px; */
+}
+
 a.container {
 	text-decoration: none;
 	color: unset;
@@ -26,11 +40,25 @@ a.container {
 	/* flex: 1; */
 }
 
+.containerInline i{
+	--linkbutton-icon-size: 26px;
+	width: var(--linkbutton-icon-size);
+	height: var(--linkbutton-icon-size);
+	font-size: var(--linkbutton-icon-size);
+}
+
 .container p {
 	margin: 0;
 	font-size: 18px;
 	font-weight: bold;
-	letter-spacing: -0.5px;
+	letter-spacing: -0.7px;
 	padding-inline: 8px;
 	line-height: 1em;
+	display: flex;
+}
+
+.containerInline p{
+	padding: 0;
+	font-size: 17px;
+	transform: translateY(0.5px);
 }

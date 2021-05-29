@@ -25,7 +25,7 @@ body.theme-dark {
 	--light: #222;
 	--navbar-text: #fafafa;
 	--navbar-accent: #0003;
-	--button-shadow: 0 0 8px -3px #000a;
+	--button-shadow: 0 0 8px -2px #000;
 	--image-dimmer: linear-gradient(
 		rgba(0, 0, 0, var(--image-dimmer-opacity)),
 		rgba(0, 0, 0, var(--image-dimmer-opacity))
@@ -76,7 +76,7 @@ div {
 }
 
 select,
-button {
+button, input {
 	color: var(--text);
 	background-color: var(--light);
 	border: none;
@@ -86,7 +86,7 @@ button {
 	outline: none;
 }
 
-button {
+button, input {
 	font-size: 1em;
 	padding: 0.3em;
 }
