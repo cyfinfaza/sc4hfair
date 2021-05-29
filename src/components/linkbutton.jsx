@@ -5,7 +5,8 @@ import * as buttonStyle from './button.module.css'
 
 const LinkButton = ({
 	label,
-	linksTo,
+	linksTo = null,
+	onClick = null,
 	icon,
 	iconStyle = {},
 	index = 0,
@@ -23,6 +24,7 @@ const LinkButton = ({
 				backgroundColor: opaque ? 'var(--light)' : null,
 			}}
 			href={linksTo}
+			onClick={onClick}
 		>
 			<i className="material-icons" style={iconStyle}>
 				{icon}

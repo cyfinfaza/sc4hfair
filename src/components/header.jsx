@@ -13,6 +13,7 @@ const Header = ({ offsetContent = true }) => {
 	function toggleMenu() {
 		setMenuOpen(!menuOpen)
 	}
+	window.setMenuOpen = setMenuOpen
 	return (
 		<div
 			className={headerStyle.invisible}

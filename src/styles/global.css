@@ -90,3 +90,9 @@ button, input {
 	font-size: 1em;
 	padding: 0.3em;
 }
+
+.horizPanel{
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+}

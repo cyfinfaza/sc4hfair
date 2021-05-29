@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import Post from '../components/post'
 import Layout from '../components/layout'
+import LinkButton from '../components/linkbutton'
 
 const contentfulQuery = `
 {
@@ -48,6 +49,23 @@ const IndexPage = ({ data }) => {
 		<Layout>
 			<div style={{ textAlign: 'center' }}>
 				<h1>Welcome to the Somerset County 4H Fair.</h1>
+				<div className="horizPanel">
+					<LinkButton
+						label="Schedule"
+						icon="event_note"
+						linksTo="/schedule"
+						inline
+						opaque
+					/>
+					<LinkButton label="Map" icon="room" linksTo="/map" inline opaque />
+					<LinkButton
+						label="More"
+						icon="add"
+						onClick={() => window.setMenuOpen(true)}
+						inline
+						opaque
+					/>
+				</div>
 				<h2>Latest Updates</h2>
 			</div>
 			<div className="columnCentered">
