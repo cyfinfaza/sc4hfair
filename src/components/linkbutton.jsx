@@ -29,7 +29,7 @@ const LinkButton = ({
 			<i className="material-icons" style={iconStyle}>
 				{icon}
 			</i>
-			<p style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</p>
+			<span style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</span>
 		</a>
 	)
 }

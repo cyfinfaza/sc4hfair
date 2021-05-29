@@ -1,36 +1,61 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import * as style from './clubs.module.css'
 
 import EventBox from '../components/event'
 import ToggleButton from '../components/toggleButton'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
+import CloudInterestManager from '../logic/CloudInterestManager'
 
 const clubData = require('../../static/clubData.json')
 
 const ClubsPage = ({ data }) => {
 	const [searchQuery, setSearchQuery] = useState('')
+	const [session, setSession] = useState(null)
+	const [slugList, setSlugList] = useState([])
+	const im = useRef()
+	useEffect(async function () {
+		let lastQuery = localStorage.getItem('clubs_search_query')
+		if (lastQuery) setSearchQuery(lastQuery)
+		im.current = new CloudInterestManager(setSession, setSlugList)
+		await im.current.init()
+	}, [])
+	useEffect(() => {
+		localStorage.setItem('clubs_search_query', searchQuery)
+	}, [searchQuery])
 	const ClubEntry = ({ club }) => (
 		<div className={style.clubEntry}>
 			<h2>{club.name}</h2>
 			<p>{club.description}</p>
 			<div className={style.actionButtonsPanel}>
 				<LinkButton
-					label="Locate"
+					label="Map"
 					icon="place"
 					linksTo={`/map?locate=${club.slug}`}
 					inline
 					opaque
 				/>
-				<LinkButton
-					label="Add"
-					icon="add"
-					linksTo={`/interests?add=${club.slug}`}
-					inline
-					opaque
-				/>
+				{slugList.indexOf(club.slug) > -1 ? (
+					<LinkButton
+						label="Remove"
+						icon="remove"
+						onClick={() => im.current.removeInterest(club.slug)}
+						inline
+						opaque
+						lightFont
+					/>
+				) : (
+					<LinkButton
+						label="Add"
+						icon="add"
+						linksTo={`/interests?add=${club.slug}`}
+						inline
+						opaque
+						lightFont
+					/>
+				)}
 				<LinkButton
 					label="View"
 					icon="open_in_new"
@@ -57,6 +82,12 @@ const ClubsPage = ({ data }) => {
 					value={searchQuery}
 					onChange={event => setSearchQuery(event.target.value)}
 				/>
+				<button
+					style={{ display: searchQuery === '' ? 'none' : null }}
+					onClick={() => setSearchQuery('')}
+				>
+					Clear
+				</button>
 			</div>
 			<div className="columnCentered">
 				{clubData.map(club => {

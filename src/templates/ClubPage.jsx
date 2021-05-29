@@ -1,37 +1,67 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
+import { useEffect, useState, useRef } from 'react'
 // import { StaticImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import * as pageStyle from './ClubPage.module.css'
+import CloudInterestManager from '../logic/CloudInterestManager'
 
-export default function page({ data }) {
+export default function ClubPage({ data }) {
 	var thisClub = data.allSitePage.edges[0].node.context
+	const [linkBack, setLinkBack] = useState('/clubs')
+	const [session, setSession] = useState(null)
+	const [slugList, setSlugList] = useState([])
+	const im = useRef()
+	useEffect(async function () {
+		im.current = new CloudInterestManager(setSession, setSlugList)
+		await im.current.init()
+	}, [])
 	return (
 		<Layout title={thisClub.name}>
 			<div className={pageStyle.container}>
 				<div>
-					<LinkButton
-						label="See all clubs"
-						icon="arrow_back_ios_new"
-						linksTo="/clubs"
-						inline
-						opaque
-					/>
-					<h1>{thisClub.name}</h1>
-					<div className={pageStyle.optionsButtonsPanel}>
+					<div className="horizPanel" style={{ whiteSpace: 'nowrap' }}>
 						<LinkButton
-							label="Add to interest list"
-							icon="add"
-							linksTo="/clubs"
+							label="See all clubs"
+							icon="groups"
+							linksTo={linkBack}
 							inline
 							opaque
-							lightFont
 						/>
+						<LinkButton
+							label="View interest list"
+							icon="list"
+							linksTo="/interests"
+							inline
+							opaque
+						/>
+					</div>
+					<h1>{thisClub.name}</h1>
+					<div className={pageStyle.optionsButtonsPanel}>
+						{slugList.indexOf(thisClub.slug) > -1 ? (
+							<LinkButton
+								label="Remove from interest list"
+								icon="remove"
+								onClick={() => im.current.removeInterest(thisClub.slug)}
+								inline
+								opaque
+								lightFont
+							/>
+						) : (
+							<LinkButton
+								label="Add to interest list"
+								icon="add"
+								onClick={() => im.current.addInterest(thisClub.slug)}
+								inline
+								opaque
+								lightFont
+							/>
+						)}
 						<LinkButton
 							label="Locate at fair"
 							icon="place"
-							linksTo="/clubs"
+							linksTo={'/map/?locate=' + thisClub.slug}
 							inline
 							opaque
 							lightFont

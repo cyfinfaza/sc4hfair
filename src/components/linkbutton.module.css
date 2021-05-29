@@ -47,7 +47,7 @@ a.container {
 	font-size: var(--linkbutton-icon-size);
 }
 
-.container p {
+.container span {
 	margin: 0;
 	font-size: 18px;
 	font-weight: bold;
@@ -57,7 +57,7 @@ a.container {
 	display: flex;
 }
 
-.containerInline p{
+.containerInline span{
 	padding: 0;
 	font-size: 17px;
 	transform: translateY(0.5px);
