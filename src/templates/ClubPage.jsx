@@ -16,6 +16,7 @@ export default function page({ data }) {
 						icon="arrow_back_ios_new"
 						linksTo="/clubs"
 						inline
+						opaque
 					/>
 					<h1>{thisClub.name}</h1>
 					<div className={pageStyle.optionsButtonsPanel}>
@@ -24,6 +25,7 @@ export default function page({ data }) {
 							icon="add"
 							linksTo="/clubs"
 							inline
+							opaque
 							lightFont
 						/>
 						<LinkButton
@@ -31,6 +33,7 @@ export default function page({ data }) {
 							icon="place"
 							linksTo="/clubs"
 							inline
+							opaque
 							lightFont
 						/>
 					</div>
