@@ -8,7 +8,8 @@
     "Calum Dingwall (https://github.com/caburum)"
   ],
   "dependencies": {
-    "gatsby": "^3.0.1",
+    "@supabase/supabase-js": "^1.11.17",
+    "gatsby": "^3.6.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
     "gatsby-plugin-google-gtag": "^3.1.0",
     "gatsby-plugin-image": "^1.0.0",
