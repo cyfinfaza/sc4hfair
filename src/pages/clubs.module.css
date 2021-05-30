@@ -30,7 +30,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	background: linear-gradient(transparent 20px, var(--light) 98px);
+	background: linear-gradient(var(--light-transparent) 20px, var(--light) 98px);
 }
 
 .actionButtonsPanel {

@@ -52,7 +52,9 @@
 
 .menuBottom {
 	// margin-top: auto;
-	margin-block: 16px;
+	margin-block: 16px; //not work on safari lol
+	margin-top: 16px;
+	margin-bottom: 16px;
 	color: var(--navbar-text);
 }
 

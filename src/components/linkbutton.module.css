@@ -12,7 +12,7 @@
 	margin: 8px;
 }
 
-.containerInline{
+.containerInline {
 	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
@@ -40,7 +40,7 @@ a.container {
 	/* flex: 1; */
 }
 
-.containerInline i{
+.containerInline i {
 	--linkbutton-icon-size: 26px;
 	width: var(--linkbutton-icon-size);
 	height: var(--linkbutton-icon-size);
@@ -53,11 +53,13 @@ a.container {
 	font-weight: bold;
 	letter-spacing: -0.7px;
 	padding-inline: 8px;
+	padding-right: 8px;
+	padding-left: 8px;
 	line-height: 1em;
 	display: flex;
 }
 
-.containerInline span{
+.containerInline span {
 	padding: 0;
 	font-size: 17px;
 	/* transform: translateY(0.5px); */

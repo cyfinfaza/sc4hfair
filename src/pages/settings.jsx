@@ -107,10 +107,7 @@ function subscribeUser() {
 export default function SettingsPage({ data }) {
 	return (
 		<Layout title="Settings">
-			<div
-				className="horizPanel"
-				style={{ display: 'inline-flex', flexDirection: 'column' }}
-			>
+			<div className="horizPanel" style={{ marginTop: '16px' }}>
 				<ThemePicker />
 				<FancyButton
 					name="Request notification"
