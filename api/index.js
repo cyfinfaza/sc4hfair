@@ -66,3 +66,4 @@ app.get('/api', (req, res) => {
 })
 
 module.exports = app
+app.listen(5000, '0.0.0.0')
