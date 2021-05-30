@@ -1,34 +1,39 @@
 const express = require('express')
-const { GoogleSpreadsheet } = require('google-spreadsheet')
+const { google } = require('googleapis')
 require('dotenv').config()
 
-const doc = new GoogleSpreadsheet(process.env.RESPONSES_SPREADSHEET_ID)
-
-doc.useServiceAccountAuth(
-	{
-		client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-		private_key: process.env.GOOGLE_PRIVATE_KEY,
-	},
-	err => {
-		console.log(err)
-	}
+const jwtClient = new google.auth.JWT(
+	process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+	null,
+	process.env.GOOGLE_PRIVATE_KEY,
+	['https://www.googleapis.com/auth/spreadsheets'],
+	null
 )
 
-doc.loadInfo().then(() => {
-	sheet = doc.sheetsByIndex[0]
+const sheets = google.sheets({
+	version: 'v4',
+	auth: jwtClient,
 })
 
 function addRow({ name, email, message }) {
-	sheet
-		.addRow({
-			Timestamp: new Date(Date.now()).toISOString(),
-			Name: name,
-			Email: email,
-			Message: message,
-		})
-		.then(rows => {
-			console.log(rows)
-		})
+	sheets.spreadsheets.values.append({
+		// The ID of the spreadsheet to update.
+		spreadsheetId: process.env.RESPONSES_SPREADSHEET_ID,
+
+		// The A1 notation of a range to search for a logical table of data.
+		// Values are appended after the last row of the table.
+		range: 'A:D',
+
+		// How the input data should be interpreted.
+		valueInputOption: 'RAW',
+
+		// How the input data should be inserted.
+		insertDataOption: 'INSERT_ROWS',
+
+		resource: {
+			values: [[new Date(Date.now()).toISOString(), name, email, message]],
+		},
+	})
 }
 
 const app = express()
