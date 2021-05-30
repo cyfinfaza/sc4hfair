@@ -1,0 +1,13 @@
+{
+	"name": "sc4hfair-contact",
+	"version": "1.0.0",
+	"description": "Stores contact form messages in a Google Spreadsheet",
+	"main": "index.js",
+	"author": "Calum Dingwall (https://github.com/caburum)",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"google-spreadsheet": "^3.1.15"
+	}
+}
