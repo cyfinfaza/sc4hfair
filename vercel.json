@@ -1,8 +1,0 @@
-{
-	"rewrites": [
-		{
-			"source": "/api/:request*",
-			"destination": "/api/app.py"
-		}
-	]
-}
