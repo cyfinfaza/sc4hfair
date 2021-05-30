@@ -44,12 +44,12 @@ const Header = ({ offsetContent = true }) => {
 							>
 								menu
 							</i>
-							<span
+							<i
 								className="material-icons"
 								style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 							>
 								close
-							</span>
+							</i>
 						</div>
 						<span className={headerStyle.menuButtonLabel}>Menu</span>
 					</button>

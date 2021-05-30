@@ -50,6 +50,7 @@ body {
 
 *:not(i *, code) {
 	font-family: 'DM Sans', sans-serif;
+	word-wrap: break-word;
 	/* font-family: 'Inter', sans-serif; */
 	/* font-feature-settings: 'ss01'; */
 	/* letter-spacing: -0.5px; */
