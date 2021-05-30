@@ -1,11 +1,8 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
-import { createClient } from '@supabase/supabase-js'
 
 import * as clubsStyle from './clubs.module.css'
-import EventBox from '../components/event'
-import ToggleButton from '../components/toggleButton'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import CloudInterestManager from '../logic/CloudInterestManager'
@@ -39,20 +36,23 @@ const InterestsPage = ({ data }) => {
 	const [session, setSession] = useState(null)
 	const [slugList, setSlugList] = useState([])
 	const im = useRef()
-	useEffect(async function () {
-		im.current = new CloudInterestManager(setSession, setSlugList)
-		await im.current.init()
-		var searcher = new URLSearchParams(window.location.search)
-		const [add, remove] = [searcher.get('add'), searcher.get('remove')]
-		if (add) {
-			im.current.addInterest(add)
+	useEffect(function () {
+		async function startCIM() {
+			im.current = new CloudInterestManager(setSession, setSlugList)
+			await im.current.init()
+			var searcher = new URLSearchParams(window.location.search)
+			const [add, remove] = [searcher.get('add'), searcher.get('remove')]
+			if (add) {
+				im.current.addInterest(add)
+			}
+			if (remove) {
+				im.current.removeInterest(remove)
+			}
+			if (searcher.get('reqLoginMessage')) {
+				setReqLoginMessage(true)
+			}
 		}
-		if (remove) {
-			im.current.removeInterest(remove)
-		}
-		if (searcher.get('reqLoginMessage')) {
-			setReqLoginMessage(true)
-		}
+		startCIM()
 	}, [])
 	return (
 		<Layout title="Interest List">
@@ -109,7 +109,7 @@ const InterestsPage = ({ data }) => {
 					// console.log(club.slug, slugList.indexOf(club.slug))
 					if (slugList.indexOf(club.slug) > -1) {
 						return <ClubEntry key={club.slug} club={club} />
-					}
+					} else return null
 				})}
 			</div>
 		</Layout>

@@ -67,6 +67,7 @@ const SchedulePage = ({ data }) => {
 			</div>
 			<div className={style.filterOptions}>
 				<p>Filter: </p>
+				{/* eslint-disable-next-line jsx-a11y/no-onchange */}
 				<select
 					onChange={e => {
 						console.log('that hook')

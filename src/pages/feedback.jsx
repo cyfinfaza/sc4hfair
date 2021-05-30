@@ -5,11 +5,6 @@ import { useState, useRef } from 'react'
 import LinkButton from '../components/linkbutton'
 
 export default function Feedback() {
-	const [fields, setFields] = useState({
-		name: '',
-		email: '',
-		comment: '',
-	})
 	const refs = {
 		name: useRef(),
 		email: useRef(),

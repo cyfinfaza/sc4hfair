@@ -3,8 +3,6 @@ import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
 import * as style from './clubs.module.css'
 
-import EventBox from '../components/event'
-import ToggleButton from '../components/toggleButton'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import CloudInterestManager from '../logic/CloudInterestManager'
@@ -13,14 +11,17 @@ const clubData = require('../../static/clubData.json')
 
 const ClubsPage = ({ data }) => {
 	const [searchQuery, setSearchQuery] = useState('')
-	const [session, setSession] = useState(null)
+	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const [slugList, setSlugList] = useState([])
 	const im = useRef()
-	useEffect(async function () {
+	useEffect(function () {
 		let lastQuery = localStorage.getItem('clubs_search_query')
 		if (lastQuery) setSearchQuery(lastQuery)
-		im.current = new CloudInterestManager(setSession, setSlugList)
-		await im.current.init()
+		async function startCIM() {
+			im.current = new CloudInterestManager(setSession, setSlugList)
+			await im.current.init()
+		}
+		startCIM()
 	}, [])
 	useEffect(() => {
 		localStorage.setItem('clubs_search_query', searchQuery)
@@ -92,30 +93,30 @@ const ClubsPage = ({ data }) => {
 			<div className="columnCentered">
 				{clubData.map(club => {
 					if (
-						searchQuery == '' ||
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1
+						searchQuery === '' ||
+						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
 					) {
 						return <ClubEntry key={club.slug} club={club} />
-					}
+					} else return null
 				})}
 				{clubData.map(club => {
 					if (
-						searchQuery != '' &&
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) == -1 &&
+						searchQuery !== '' &&
+						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
 						(club.description
 							.toLowerCase()
-							.indexOf(searchQuery.toLowerCase()) != -1 ||
+							.indexOf(searchQuery.toLowerCase()) !== -1 ||
 							club.meeting_when
 								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) != -1 ||
+								.indexOf(searchQuery.toLowerCase()) !== -1 ||
 							club.meeting_where
 								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) != -1 ||
-							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !=
+								.indexOf(searchQuery.toLowerCase()) !== -1 ||
+							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !==
 								-1)
 					) {
 						return <ClubEntry key={club.slug} club={club} />
-					}
+					} else return null
 				})}
 			</div>
 		</Layout>

@@ -45,7 +45,8 @@ export default class CloudInterestManager {
 		}
 	}
 	async login(provider, redirect = '/interests') {
-		const { user, session, error } = await this.supabase.auth.signIn(
+		// const { user, session, error } = await this.supabase.auth.signIn(
+		await this.supabase.auth.signIn(
 			{
 				provider: provider,
 			},
@@ -68,7 +69,7 @@ export default class CloudInterestManager {
 	}
 	async removeInterest(slug) {
 		if (!this.verifySession({ action: 'remove', slug: slug })) return
-		let { data: results, error } = await this.supabase
+		let { error } = await this.supabase
 			.from('interests')
 			.delete()
 			.match({ interest_slug: slug })
@@ -77,7 +78,7 @@ export default class CloudInterestManager {
 	}
 	async addInterest(slug) {
 		if (!this.verifySession({ action: 'add', slug: slug })) return
-		let { data, error } = await this.supabase.from('interests').insert({
+		let { error } = await this.supabase.from('interests').insert({
 			interest_slug: slug,
 			owner: this.supabase.auth.session().user.id,
 		})

@@ -9,13 +9,16 @@ import CloudInterestManager from '../logic/CloudInterestManager'
 
 export default function ClubPage({ data }) {
 	var thisClub = data.allSitePage.edges[0].node.context
-	const [linkBack, setLinkBack] = useState('/clubs')
-	const [session, setSession] = useState(null)
+	// const [linkBack, setLinkBack] = useState('/clubs')
+	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const [slugList, setSlugList] = useState([])
 	const im = useRef()
-	useEffect(async function () {
-		im.current = new CloudInterestManager(setSession, setSlugList)
-		await im.current.init()
+	useEffect(function () {
+		async function startCIM() {
+			im.current = new CloudInterestManager(setSession, setSlugList)
+			await im.current.init()
+		}
+		startCIM()
 	}, [])
 	return (
 		<Layout title={thisClub.name}>
@@ -30,7 +33,7 @@ export default function ClubPage({ data }) {
 				<LinkButton
 					label="See all clubs"
 					icon="groups"
-					linksTo={linkBack}
+					linksTo="/clubs"
 					inline
 					opaque
 				/>

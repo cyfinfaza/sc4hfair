@@ -51,6 +51,7 @@ export default function ThemePicker({ navbar = false }) {
 		<div
 			className={`${themePickerStyle.themepickerContainer} ${buttonStyle.button}`}
 			onClick={handleClick}
+			onKeyPress={handleClick}
 			role="button"
 			tabIndex="0"
 			style={{

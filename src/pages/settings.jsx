@@ -4,13 +4,14 @@ import Layout from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import ThemePicker from '../components/themepicker'
 import * as buttonStyle from '../components/button.module.css'
-import { repository } from '../../package.json'
+// import { repository } from '../../package.json'
 
 const FancyButton = ({ name, currentName = name, icon, handleClick }) => {
 	return (
 		<div
 			className={`${buttonStyle.fancyButtonContainer} ${buttonStyle.button}`}
 			onClick={handleClick}
+			onKeyPress={handleClick}
 			role="button"
 			tabIndex="0"
 		>
@@ -37,27 +38,27 @@ function requestNoti() {
 }
 
 function testNotification() {
-	var options = {
-		body: 'This is a test notification',
-		icon: 'images/cy2.png',
-		vibrate: [100, 50, 100, 50, 100],
-		data: {
-			dateOfArrival: Date.now(),
-			primaryKey: '2',
-		},
-		actions: [
-			{
-				action: 'explore',
-				title: 'Explore this new world',
-				icon: 'images/sc1.jpg',
-			},
-			{
-				action: 'close',
-				title: 'Close',
-				icon: 'images/sc2.jpg',
-			},
-		],
-	}
+	// var options = {
+	// 	body: 'This is a test notification',
+	// 	icon: 'images/cy2.png',
+	// 	vibrate: [100, 50, 100, 50, 100],
+	// 	data: {
+	// 		dateOfArrival: Date.now(),
+	// 		primaryKey: '2',
+	// 	},
+	// 	actions: [
+	// 		{
+	// 			action: 'explore',
+	// 			title: 'Explore this new world',
+	// 			icon: 'images/sc1.jpg',
+	// 		},
+	// 		{
+	// 			action: 'close',
+	// 			title: 'Close',
+	// 			icon: 'images/sc2.jpg',
+	// 		},
+	// 	],
+	// }
 	console.log('sending test notif')
 	// self.registration.showNotification('Hello world!', options)
 	// Notification.showNotification('Hello world!', options)
@@ -73,7 +74,7 @@ function testNotification() {
 	// new Notification('Hello world!', options)
 	var img = '/to-do-notifications/img/icon-128.png'
 	var text = 'HEY! Your task is now overdue.'
-	var notification = new Notification('To do list', { body: text, icon: img })
+	new Notification('To do list', { body: text, icon: img })
 }
 
 function subscribeUser() {
@@ -131,7 +132,7 @@ export default function SettingsPage({ data }) {
 			You can leave feedback on the app <Link to="/feedback">here</Link>.
 			<div style={{ opacity: 0.5 }}>
 				<h2>Build info</h2>
-				Commit: <code>{data.gitCommit.hash}</code>
+				Commit: <code>{data.gitBranch.commit}</code>
 				<br />
 				Branch: <code>{data.gitBranch.name}</code>
 				<br />
@@ -148,9 +149,9 @@ export default function SettingsPage({ data }) {
 }
 export const query = graphql`
 	query MyQuery {
-		gitCommit {
-			hash
-		}
+		# gitCommit {
+		# 	hash
+		# }
 		site {
 			siteMetadata {
 				buildLocation

@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout'
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { Map, GoogleApiWrapper } from 'google-maps-react'
 
 const MapPage = ({ google }) => {
 	return (
