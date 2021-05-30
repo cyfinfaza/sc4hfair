@@ -34,12 +34,12 @@ const Header = ({ offsetContent = true }) => {
 						onClick={toggleMenu}
 					>
 						<div className={headerStyle.menuIconContainer}>
-							<span
+							<i
 								className="material-icons"
 								style={!menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 							>
 								menu
-							</span>
+							</i>
 							<span
 								className="material-icons"
 								style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}

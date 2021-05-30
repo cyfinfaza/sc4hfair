@@ -1,7 +1,7 @@
 import * as React from 'react'
 // import { StaticImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
-import { Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import ThemePicker from '../components/themepicker'
 import * as buttonStyle from '../components/button.module.css'
 
@@ -103,7 +103,7 @@ function subscribeUser() {
 	}
 }
 
-export default function SettingsPage() {
+export default function SettingsPage({ data }) {
 	return (
 		<Layout title="About">
 			<div
@@ -131,6 +131,30 @@ export default function SettingsPage() {
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4H Computers Club</a>.
 			You can leave feedback on the app <Link to="/feedback">here</Link>.
+			<h2>Version debug info</h2>
+			<p>
+				<code>{data.gitCommit.hash}</code>
+				<br /> <code>{data.siteBuildMetadata.buildTime}</code>
+				<br />
+				<code>{data.gitBranch.name}</code>
+				<br />
+				<code>{data.gitBranch.commit}</code>
+				<br />
+			</p>
 		</Layout>
 	)
 }
+export const query = graphql`
+	query MyQuery {
+		gitCommit {
+			hash
+		}
+		siteBuildMetadata {
+			buildTime
+		}
+		gitBranch {
+			name
+			commit
+		}
+	}
+`
