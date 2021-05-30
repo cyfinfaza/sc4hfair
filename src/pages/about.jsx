@@ -2,6 +2,7 @@ import * as React from 'react'
 // import { StaticImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 
+// @todo: add contact form
 export default function page() {
 	return (
 		<Layout title="About">
