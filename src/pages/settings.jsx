@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import ThemePicker from '../components/themepicker'
 import * as buttonStyle from '../components/button.module.css'
+import { repository } from '../../package.json'
 
 const FancyButton = ({ name, currentName = name, icon, handleClick }) => {
 	return (
@@ -131,15 +132,19 @@ export default function SettingsPage({ data }) {
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4H Computers Club</a>.
 			You can leave feedback on the app <Link to="/feedback">here</Link>.
-			<h2>Version debug info</h2>
+			<h2>Build info</h2>
 			<p>
-				<code>{data.gitCommit.hash}</code>
-				<br /> <code>{data.siteBuildMetadata.buildTime}</code>
+				Commit: <code>{data.gitCommit.hash}</code>
 				<br />
-				<code>{data.gitBranch.name}</code>
+				Branch: <code>{data.gitBranch.name}</code>
 				<br />
-				<code>{data.gitBranch.commit}</code>
+				Built at: <code>{data.siteBuildMetadata.buildTime}</code>
 				<br />
+				Build location:{' '}
+				<code>
+					{process.env.BUILD_LOCATION_NAME ||
+						data.site.siteMetadata.buildLocation}
+				</code>
 			</p>
 		</Layout>
 	)
@@ -149,10 +154,15 @@ export const query = graphql`
 		gitCommit {
 			hash
 		}
+		site {
+			siteMetadata {
+				buildLocation
+			}
+		}
 		siteBuildMetadata {
 			buildTime
 		}
-		gitBranch {
+		gitBranch(current: { eq: true }) {
 			name
 			commit
 		}

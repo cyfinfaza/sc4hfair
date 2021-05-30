@@ -1,9 +1,12 @@
+const os = require('os')
+
 module.exports = {
 	siteMetadata: {
 		title: `Somerset County 4H Fair`,
 		shortTitle: `SC 4H Fair`,
 		description: `The Somerset County 4H Fair App`,
 		author: `Somerset County 4H`,
+		buildLocation: os.hostname(),
 	},
 	plugins: [
 		`gatsby-plugin-react-helmet`,
