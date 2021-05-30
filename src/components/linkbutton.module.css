@@ -60,5 +60,5 @@ a.container {
 .containerInline span{
 	padding: 0;
 	font-size: 17px;
-	transform: translateY(0.5px);
+	/* transform: translateY(0.5px); */
 }

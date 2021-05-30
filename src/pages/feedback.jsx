@@ -55,33 +55,29 @@ export default function Feedback() {
 	}
 	return (
 		<Layout title="Feedback">
-			<div className={pageStyle.container}>
-				<div>
-					<h1>Send Feedback</h1>
-					{formSubmitted ? (
-						<>
-							<p>Form submitted.</p>
-						</>
-					) : (
-						<>
-							<h2>Name</h2>
-							<EditField name="name" />
-							<h2>Email</h2>
-							<EditField name="email" />
-							<h2>Comment</h2>
-							<EditField name="comment" />
-							<p style={{ color: 'red' }}>{errorText}</p>
-							<LinkButton
-								label="Submit"
-								icon="send"
-								onClick={submit}
-								inline
-								opaque
-							/>
-						</>
-					)}
-				</div>
-			</div>
+			<h1>Send Feedback</h1>
+			{formSubmitted ? (
+				<>
+					<p>Form submitted.</p>
+				</>
+			) : (
+				<>
+					<h2>Name</h2>
+					<EditField name="name" />
+					<h2>Email</h2>
+					<EditField name="email" />
+					<h2>Comment</h2>
+					<EditField name="comment" />
+					<p style={{ color: 'red' }}>{errorText}</p>
+					<LinkButton
+						label="Submit"
+						icon="send"
+						onClick={submit}
+						inline
+						opaque
+					/>
+				</>
+			)}
 			<style>
 				{`#name:empty::before {
 					content: "Type your name here"

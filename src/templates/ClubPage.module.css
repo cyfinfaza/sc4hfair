@@ -1,22 +1,10 @@
-.container{
-	display: flex;
-	justify-content: center;
-	width: 100%;
-}
-.container > div{
-	max-width: 56ch;
-	margin-top: 16px;
-}
-.container h1{
-	text-transform: uppercase;
-}
-.optionsButtonsPanel{
+.optionsButtonsPanel {
 	/* display: flex;
 	gap: 8px;
 	width: 100%; */
 	/* justify-content:auto; */
 }
-.optionsButtonsPanel>*{
+.optionsButtonsPanel > * {
 	margin-right: 8px;
 	margin-bottom: 8px;
 }

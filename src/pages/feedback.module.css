@@ -13,14 +13,3 @@ p.edit {
 	border-bottom-style: solid;
 	/* transition: 120ms; */
 }
-
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.container > div {
-	width: 100%;
-	max-width: 600px;
-}

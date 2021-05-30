@@ -3,4 +3,10 @@
   width: 100%;
   box-sizing: border-box;
   pointer-events: painted;
+  display: flex;
+  justify-content: center;
+}
+.content>div{
+  width: 100%;
+  max-width: 800px;
 }

@@ -106,7 +106,7 @@ function subscribeUser() {
 
 export default function SettingsPage({ data }) {
 	return (
-		<Layout title="About">
+		<Layout title="Settings">
 			<div
 				className="horizPanel"
 				style={{ display: 'inline-flex', flexDirection: 'column' }}
@@ -132,8 +132,8 @@ export default function SettingsPage({ data }) {
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4H Computers Club</a>.
 			You can leave feedback on the app <Link to="/feedback">here</Link>.
-			<h2>Build info</h2>
-			<p>
+			<div style={{ opacity: 0.5 }}>
+				<h2>Build info</h2>
 				Commit: <code>{data.gitCommit.hash}</code>
 				<br />
 				Branch: <code>{data.gitBranch.name}</code>
@@ -145,7 +145,7 @@ export default function SettingsPage({ data }) {
 					{process.env.BUILD_LOCATION_NAME ||
 						data.site.siteMetadata.buildLocation}
 				</code>
-			</p>
+			</div>
 		</Layout>
 	)
 }

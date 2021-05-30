@@ -78,12 +78,12 @@ const Header = ({ offsetContent = true }) => {
 						<LinkButton
 							label="Join 4H"
 							icon="person_add"
-							linksTo="https://4histops.org/join-folder"
+							linksTo="https://4histops.org/membership"
 						/>
 						<LinkButton
 							label="Donate"
 							icon="monetization_on"
-							linksTo="/donate"
+							linksTo="https://4histops.org/donate"
 						/>
 						<LinkButton
 							label="About 4H"

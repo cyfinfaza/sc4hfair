@@ -4,7 +4,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 const MapPage = ({ google }) => {
 	return (
-		<Layout title="Map" noPadding fixedHeightContent>
+		<Layout title="Map" noPadding fixedHeightContent fullWidth>
 			<div style={{ height: '100%' }}>
 				<Map
 					google={google}

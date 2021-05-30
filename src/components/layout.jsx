@@ -20,6 +20,7 @@ const Layout = ({
 	noPadding = false,
 	noHeaderPadding = false,
 	fixedHeightContent = false,
+	fullWidth = false,
 }) => {
 	const metadata = useStaticQuery(
 		graphql`
@@ -86,7 +87,7 @@ const Layout = ({
 					boxSizing: 'border-box',
 				}}
 			>
-				{children}
+				<div style={{ maxWidth: fullWidth ? 'unset' : null }}>{children}</div>
 			</div>
 		</>
 	)
