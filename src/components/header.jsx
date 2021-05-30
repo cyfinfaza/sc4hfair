@@ -26,9 +26,13 @@ const Header = ({ offsetContent = true }) => {
 				style={{ height: menuOpen ? '100vh' : null }}
 			>
 				<div className={headerStyle.topBar}>
-					<Link to="/">
-						<Logo className={headerStyle.headerLogo} />
-					</Link>
+					<Logo
+						className={headerStyle.headerLogo}
+						onClick={() => {
+							window.location.href = '/'
+						}}
+						style={{ cursor: 'pointer' }}
+					/>
 					<button
 						className={`${headerStyle.menuButton} ${buttonStyle.button}`}
 						onClick={toggleMenu}

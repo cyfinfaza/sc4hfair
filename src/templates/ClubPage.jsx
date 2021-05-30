@@ -21,7 +21,11 @@ export default function ClubPage({ data }) {
 		<Layout title={thisClub.name}>
 			<div
 				className="horizPanel"
-				style={{ whiteSpace: 'nowrap', justifyContent: 'flex-start' }}
+				style={{
+					whiteSpace: 'nowrap',
+					justifyContent: 'flex-start',
+					marginTop: '16px',
+				}}
 			>
 				<LinkButton
 					label="See all clubs"
