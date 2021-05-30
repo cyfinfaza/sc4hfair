@@ -16,7 +16,7 @@ const myThemes = [
 	},
 ]
 
-export default function ThemePicker() {
+export default function ThemePicker({ navbar = false }) {
 	const { theme, switchTheme } = useContext(ThemeContext)
 	var nextThemeID
 	var currentThemeIndex
@@ -51,9 +51,11 @@ export default function ThemePicker() {
 		<div
 			className={`${themePickerStyle.themepickerContainer} ${buttonStyle.button}`}
 			onClick={handleClick}
-			onKeyDown={handleClick}
 			role="button"
 			tabIndex="0"
+			style={{
+				backgroundColor: navbar ? 'var(--navbar-accent)' : null,
+			}}
 		>
 			<i
 				className="material-icons"
@@ -61,13 +63,14 @@ export default function ThemePicker() {
 					cursor: 'pointer',
 					userSelect: 'none',
 					transform: 'rotate(' + currentThemeIndex * 360 + 'deg)',
+					animation: navbar ? null : 'none',
 				}}
 				key={currentTheme.id}
 				aria-label={`${currentTheme.name}`}
 			>
 				{currentTheme.icon}
 			</i>
-			Switch Theme
+			Switch theme
 		</div>
 	)
 }

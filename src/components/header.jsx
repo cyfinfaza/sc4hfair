@@ -92,10 +92,10 @@ const Header = ({ offsetContent = true }) => {
 							}
 							linksTo="https://4histops.org"
 						/>
-						<LinkButton label="App Info" icon="info" linksTo="/about" />
+						<LinkButton label="Settings" icon="settings" linksTo="/settings" />
 					</div>
 					<div className={headerStyle.menuBottom}>
-						<ThemePicker />
+						<ThemePicker navbar />
 					</div>
 				</div>
 			</div>
