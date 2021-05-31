@@ -56,7 +56,7 @@ const Header = ({ offsetContent = true }) => {
 				<div className={headerStyle.menuArea}>
 					<div className={headerStyle.menuGrid}>
 						<LinkButton label="Latest" icon="home" linksTo="/" />
-						<LinkButton label="Map" icon="room" linksTo="/map" />
+						<LinkButton label="Map" icon="map" linksTo="/map" />
 						<LinkButton
 							label="Schedule"
 							icon="event_note"

@@ -16,7 +16,6 @@
 	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 4px;
 	height: unset;
 	padding: 8px;
 	width: auto;
@@ -24,6 +23,10 @@
 	margin: 0;
 	/* margin-inline-end: 8px; */
 	/* margin-block-end: 8px; */
+}
+
+.containerInline > * + * {
+	margin-left: 4px !important;
 }
 
 a.container {

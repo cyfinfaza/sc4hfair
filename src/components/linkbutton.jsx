@@ -13,6 +13,7 @@ const LinkButton = ({
 	inline = false,
 	lightFont = false,
 	opaque = false,
+	acrylic = false,
 }) => {
 	return (
 		<a
@@ -21,7 +22,12 @@ const LinkButton = ({
 			}`}
 			style={{
 				animationDelay: index * 0.1 + 's',
-				backgroundColor: opaque ? 'var(--light)' : null,
+				background: acrylic
+					? 'var(--light-blur)'
+					: opaque
+					? 'var(--light)'
+					: null,
+				backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
 			}}
 			href={linksTo}
 			onClick={onClick}

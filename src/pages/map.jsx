@@ -1,29 +1,70 @@
 import React from 'react'
 import Layout from '../components/layout'
-import { Map, GoogleApiWrapper } from 'google-maps-react'
+import mapboxgl from '!mapbox-gl'
+import { useRef, useEffect, useState, useContext } from 'react'
+import { ThemeContext } from 'gatsby-plugin-theme-switcher'
+import * as pageStyle from './map.module.css'
+import LinkButton from '../components/linkbutton'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
-const MapPage = ({ google }) => {
+mapboxgl.accessToken =
+	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
+
+const MapPage = () => {
+	const mapContainer = useRef(null)
+	const map = useRef(null)
+	const geolocate = useRef(null)
+	const [lng, setLng] = useState(-74.677043)
+	const [lat, setLat] = useState(40.577636)
+	const [zoom, setZoom] = useState(16)
+	const { theme } = useContext(ThemeContext)
+	useEffect(() => {
+		if (map.current) return // initialize map only once
+		map.current = new mapboxgl.Map({
+			container: mapContainer.current,
+			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
+			center: [lng, lat],
+			zoom: zoom,
+		})
+		geolocate.current = new mapboxgl.GeolocateControl({
+			positionOptions: {
+				enableHighAccuracy: true,
+			},
+			trackUserLocation: true,
+		})
+		// Add the control to the map.
+		map.current.addControl(geolocate.current)
+	})
 	return (
-		<Layout title="Map" noPadding fixedHeightContent fullWidth>
-			<div style={{ height: '100%' }}>
-				<Map
-					google={google}
-					zoom={14}
-					containerStyle={{ height: 'calc( 100vh - var(--nav-height) )' }}
-				>
-					{/* <Marker onClick={this.onMarkerClick} name={'Current location'} />
-
-				
-				<InfoWindow onClose={this.onInfoWindowClose}>
-					<div>
-						<h1>{this.state.selectedPlace.name}</h1>
-					</div>
-				</InfoWindow> */}
-				</Map>
+		<Layout title="Map" noPadding noHeaderPadding fixedHeightContent fullWidth>
+			<div className={pageStyle.controlsContainer}>
+				<LinkButton
+					label="Center on fair"
+					icon="place"
+					onClick={() => {
+						map.current.flyTo({
+							center: [lng, lat],
+							zoom: zoom,
+						})
+					}}
+					lightFont
+					inline
+					acrylic
+				/>
+				<LinkButton
+					label="Locate me"
+					icon="my_location"
+					onClick={() => {
+						geolocate.current.trigger()
+					}}
+					lightFont
+					inline
+					acrylic
+				/>
 			</div>
+			<div className={pageStyle.mapContainer} ref={mapContainer} />
 		</Layout>
 	)
 }
-export default GoogleApiWrapper({
-	apiKey: 'AIzaSyCMSL0SaWn10CCGkILYDmFLz-DntlTvWus',
-})(MapPage)
+
+export default MapPage

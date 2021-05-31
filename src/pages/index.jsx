@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => {
 						inline
 						opaque
 					/>
-					<LinkButton label="Map" icon="room" linksTo="/map" inline opaque />
+					<LinkButton label="Map" icon="map" linksTo="/map" inline opaque />
 					<LinkButton
 						label="More"
 						icon="add"

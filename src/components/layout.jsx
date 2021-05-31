@@ -82,7 +82,7 @@ const Layout = ({
 				style={{
 					padding: noPadding ? '0' : null,
 					paddingTop:
-						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : null,
+						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
 					height: fixedHeightContent ? '100vh' : null,
 					boxSizing: 'border-box',
 				}}
