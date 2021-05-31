@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.app",
+  "appName": "Somerset County 4H Fair",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}

@@ -8,6 +8,9 @@
     "Calum Dingwall (https://github.com/caburum)"
   ],
   "dependencies": {
+    "@capacitor/android": "^3.0.0",
+    "@capacitor/cli": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
     "@supabase/supabase-js": "^1.11.17",
     "gatsby": "^3.6.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
