@@ -1,0 +1,3 @@
+[submodule "api/pvt"]
+	path = api/pvt
+	url = https://github.com/cyfinfaza/web-analytics.git
