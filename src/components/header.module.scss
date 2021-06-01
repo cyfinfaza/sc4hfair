@@ -42,7 +42,7 @@
 
 .menuGrid {
 	width: 100%;
-	color: var(--navbar-text);
+	// color: var(--navbar-text);
 	display: flex;
 	flex: row;
 	align-items: flex-start;
@@ -55,12 +55,14 @@
 	margin-block: 16px; //not work on safari lol
 	margin-top: 16px;
 	margin-bottom: 16px;
-	color: var(--navbar-text);
+	// color: var(--navbar-text);
 }
 
 .headerLogo {
 	height: 100%;
-	fill: var(--navbar-text);
+	// fill: var(--navbar-text);
+	fill: var(--text);
+	transition: fill var(--theme-transition);
 }
 
 .menuButton {
@@ -71,7 +73,7 @@
 	align-items: center;
 	border: none;
 	border-radius: 4px;
-	color: var(--navbar-text);
+	// color: var(--navbar-text);
 	background-color: var(--navbar-accent);
 	// cursor: pointer;
 	// user-select: none;

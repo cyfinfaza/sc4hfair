@@ -21,6 +21,8 @@ const EventBox = ({
 			style={{
 				animationDelay: index * 0.1 + 's',
 				backgroundImage: imgURL ? `var(--image-dimmer), url(${imgURL})` : null,
+				// TODO make this have nice transition, below code does not work
+				// transition: '--image-dimmer var(--theme-transition)',
 			}}
 		>
 			<div className={style.left}>

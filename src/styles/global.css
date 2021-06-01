@@ -11,7 +11,7 @@ body {
 		var(--status-bar) 0%,
 		#4eb489
 	);
-	--navbar-text: #050505;
+	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
 	--light-blur: var(--light);
@@ -24,6 +24,7 @@ body {
 	);
 	--nav-height: 64px;
 	--backdrop-blur: blur(12px);
+	--theme-transition: 0.5s ease;
 }
 
 body.theme-dark {
@@ -36,7 +37,7 @@ body.theme-dark {
 	--light: #161616;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
-	--navbar-text: #fafafa;
+	/* --navbar-text: #fafafa; */
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px -2px #000;
 	--image-dimmer: linear-gradient(
@@ -44,6 +45,10 @@ body.theme-dark {
 		rgba(0, 0, 0, var(--image-dimmer-opacity))
 	);
 }
+
+/* *{
+	transition: color var(--theme-transition);
+} */
 
 @supports (backdrop-filter: var(--backdrop-blur)){
 	body {
@@ -61,6 +66,7 @@ body.theme-dark {
 
 a {
 	color: var(--text);
+	transition: color var(--theme-transition), background-color var(--theme-transition);
 }
 
 body {
@@ -70,6 +76,7 @@ body {
 	overflow-x: hidden;
 	background-color: var(--bg);
 	color: var(--text);
+	transition: background-color var(--theme-transition), color var(--theme-transition);
 	/* transition: background-color 500ms ease; */
 }
 
@@ -94,9 +101,8 @@ body, input, button, select{
 	outline: none;
 }
 
-body,
 div {
-	transition: background-color 0.5s ease;
+	transition: background-color var(--theme-transition);
 }
 
 /* i {
@@ -112,7 +118,8 @@ div {
 select,
 button,
 input {
-	color: var(--text);
+	color: inherit;
+	transition: color var(--theme-transition);
 	background-color: var(--light);
 	border: none;
 	font-size: 1.1em;

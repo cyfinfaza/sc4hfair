@@ -3,7 +3,7 @@
 	user-select: none;
 	box-shadow: var(--button-shadow);
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	transition: 120ms ease;
+	transition: filter 120ms ease, transform 120ms ease, background-color var(--theme-transition), box-shadow var(--theme-transition);
 	/* margin: 5px 0; */
 }
 .button:active {

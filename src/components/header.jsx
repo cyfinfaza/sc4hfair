@@ -91,7 +91,14 @@ const Header = ({ offsetContent = true }) => {
 						<LinkButton
 							label="About 4H"
 							icon={
-								<FourH style={{ height: '100%', fill: 'var(--navbar-text)' }} />
+								<FourH
+									style={{
+										height: '100%',
+										// fill: 'var(--navbar-text)',
+										fill: 'var(--text)',
+										transition: 'fill var(--theme-transition)',
+									}}
+								/>
 							}
 							linksTo="https://4histops.org"
 						/>

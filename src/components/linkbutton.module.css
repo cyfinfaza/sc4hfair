@@ -38,7 +38,7 @@ a.container {
 	font-size: 50px;
 	width: 50px;
 	height: 50px;
-	color: var(--navbar-text);
+	/* color: var(--navbar-text); */
 	/* transition: 1s; */
 	/* flex: 1; */
 }
