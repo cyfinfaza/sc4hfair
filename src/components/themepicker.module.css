@@ -5,6 +5,8 @@
 	align-items: center;
 	border-radius: 8px;
 	background-color: var(--light);
+	letter-spacing: -0.7px;
+	font-size: 17px;
 }
 .themepickerContainer > i {
 	margin-right: 4px;

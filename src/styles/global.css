@@ -8,10 +8,10 @@ body {
 	--bg: #ededed;
 	--status-bar: #009959ff;
 	--navbar: #009959ff;
-	/* --navbar: linear-gradient(
+	--navbar: linear-gradient(
 		var(--status-bar) 0%,
 		#4eb489
-	); */
+	);
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
@@ -30,12 +30,12 @@ body {
 
 body.theme-dark {
 	--bg: #080808;
-	/* --navbar: linear-gradient(
+	--navbar: linear-gradient(
 		var(--status-bar) 0%,
 		#00643a
-	); */
+	);
 	--text: #eee;
-	--light: #161616;
+	--light: #181818;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
 	/* --navbar-text: #fafafa; */
@@ -53,10 +53,11 @@ body.theme-dark {
 
 @supports (backdrop-filter: var(--backdrop-blur)){
 	body {
-		/* --navbar: linear-gradient(
+		--navbar: linear-gradient(
 			var(--status-bar) 0%,
-			#00995988
-		) !important; */
+			#009959aa 64px,
+			#00995988 128px
+		) !important;
 		--light-blur: #fdfdfd33;
 	}
 	
