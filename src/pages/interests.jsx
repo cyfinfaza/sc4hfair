@@ -25,7 +25,7 @@ const InterestsPage = ({ data }) => {
 				<LinkButton
 					label="View"
 					icon="open_in_new"
-					linksTo={`/club/${club.slug}?from=interests`}
+					linksTo={`/club/${club.slug}`}
 					inline
 					opaque
 				/>
@@ -35,11 +35,13 @@ const InterestsPage = ({ data }) => {
 	const [reqLoginMessage, setReqLoginMessage] = useState(false)
 	const [session, setSession] = useState(null)
 	const [slugList, setSlugList] = useState([])
+	const [ready, setReady] = useState(false)
 	const im = useRef()
 	useEffect(function () {
 		async function startCIM() {
 			im.current = new CloudInterestManager(setSession, setSlugList)
 			await im.current.init()
+			setReady(true)
 			var searcher = new URLSearchParams(window.location.search)
 			const [add, remove] = [searcher.get('add'), searcher.get('remove')]
 			if (add) {
@@ -60,13 +62,13 @@ const InterestsPage = ({ data }) => {
 				<h1>Interest List</h1>
 				<p>Keep a list of clubs you are interested in.</p>
 				<p>
-					{session ? (
+					{ready && (session ? (
 						<>
 							Signed in as <strong>{session.user.email}</strong>
 						</>
 					) : (
 						'You are not signed in.'
-					)}
+					))}
 				</p>
 				{reqLoginMessage && (
 					<p style={{ color: 'red' }}>
