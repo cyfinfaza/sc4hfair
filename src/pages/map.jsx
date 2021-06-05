@@ -26,6 +26,7 @@ const MapPage = () => {
 			center: [lng, lat],
 			zoom: zoom,
 		})
+		window.map = map.current
 		geolocate.current = new mapboxgl.GeolocateControl({
 			positionOptions: {
 				enableHighAccuracy: true,
@@ -34,6 +35,21 @@ const MapPage = () => {
 		})
 		// Add the control to the map.
 		map.current.addControl(geolocate.current)
+		map.current.on('click', 'fair-tileset-test-1', function (e) {
+			let feature = e.features[0]
+			console.log(feature)
+			map.current.setFeatureState(
+				{
+					source: feature.source,
+					id: feature.id,
+					sourceLayer: feature.source,
+				},
+				{
+					click: true,
+					hover: true,
+				}
+			)
+		})
 	})
 	return (
 		<Layout title="Map" noPadding noHeaderPadding fixedHeightContent fullWidth>
