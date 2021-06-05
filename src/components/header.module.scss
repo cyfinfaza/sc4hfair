@@ -58,6 +58,10 @@
 	// color: var(--navbar-text);
 }
 
+.menuBottom > * + * {
+	margin-left: 8px !important;
+}
+
 .headerLogo {
 	height: 100%;
 	// fill: var(--navbar-text);

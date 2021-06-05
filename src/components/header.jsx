@@ -68,7 +68,7 @@ const Header = ({ offsetContent = true }) => {
 							icon="list_alt"
 							linksTo="/interests"
 						/>
-						<LinkButton
+						{/* <LinkButton
 							label="Queuing"
 							icon="query_builder"
 							linksTo="/queuing"
@@ -77,8 +77,8 @@ const Header = ({ offsetContent = true }) => {
 							label="Live Cams"
 							icon="video_camera_back"
 							linksTo="/cams"
-						/>
-						<LinkButton
+						/> */}
+						{/* <LinkButton
 							label="Join 4H"
 							icon="person_add"
 							linksTo="https://4histops.org/membership"
@@ -87,7 +87,7 @@ const Header = ({ offsetContent = true }) => {
 							label="Donate"
 							icon="monetization_on"
 							linksTo="https://4histops.org/donate"
-						/>
+						/> */}
 						<LinkButton
 							label="About 4H"
 							icon={
@@ -102,10 +102,10 @@ const Header = ({ offsetContent = true }) => {
 							}
 							linksTo="https://4histops.org"
 						/>
-						<LinkButton label="Settings" icon="settings" linksTo="/settings" />
 					</div>
 					<div className={headerStyle.menuBottom}>
 						<ThemePicker navbar />
+						<LinkButton label="Settings" icon="settings" linksTo="/settings" inline />
 					</div>
 				</div>
 			</div>

@@ -44,7 +44,7 @@ a.container {
 }
 
 .containerInline i {
-	--linkbutton-icon-size: 26px;
+	--linkbutton-icon-size: 24px;
 	width: var(--linkbutton-icon-size);
 	height: var(--linkbutton-icon-size);
 	font-size: var(--linkbutton-icon-size);
