@@ -7,6 +7,8 @@ import * as pageStyle from './map.module.css'
 import LinkButton from '../components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
+const clubData = require('../../static/clubData.json')
+
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
 
@@ -50,7 +52,28 @@ const MapPage = () => {
 				}
 			)
 		})
+		// Locator
+		var searcher = new URLSearchParams(window.location.search)
+		var toLocate = searcher.get('locate')
+		if (toLocate && clubData.filter((item) => item.slug === toLocate).length > 0) {
+			const thisClubData = clubData.filter((item) => item.slug === toLocate)[0]
+			if (!thisClubData.location) return console.warn('No location data for', toLocate)
+			console.log('Locating', toLocate)
+			var marker = new mapboxgl.Marker()
+				.setLngLat(thisClubData.location)
+				.setPopup(new mapboxgl.Popup()
+					.setHTML(`<p>look it's ${thisClubData.name}</p>`))
+				.addTo(map.current)
+				.togglePopup() // Open popup by default
+
+			map.current.flyTo({ // Center on club
+				center: thisClubData.location,
+				zoom: zoom,
+			})
+		}
 	})
+
+	const [clickCounter, setClickCounter] = useState(0)
 	return (
 		<Layout title="Map" noPadding noHeaderPadding fixedHeightContent fullWidth>
 			<div className={pageStyle.controlsContainer}>
@@ -58,6 +81,7 @@ const MapPage = () => {
 					label="Center on fair"
 					icon="place"
 					onClick={() => {
+						setClickCounter(clickCounter + 1)
 						map.current.flyTo({
 							center: [lng, lat],
 							zoom: zoom,
@@ -79,6 +103,20 @@ const MapPage = () => {
 				/>
 			</div>
 			<div className={pageStyle.mapContainer} ref={mapContainer} />
+			<style>
+				{clickCounter >= 50 ? `.${pageStyle.mapContainer} .mapboxgl-canvas {
+					background-color: red;
+					animation: hue_rotate 3s infinite;
+				}
+				@keyframes hue_rotate {
+					0% {
+						filter: hue-rotate(0deg);
+					}
+					100% {
+						filter: hue-rotate(360deg);
+					}
+				}`: null}
+			</style>
 		</Layout>
 	)
 }

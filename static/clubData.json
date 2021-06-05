@@ -5,7 +5,8 @@
 		"description": "Members use the art forms of anime & manga to learn about Japanese culture, fashion, food & lifestyle. They also explore other related pop cultures such as video games & cosplay at their annual fundraising convention, CloverCon.",
 		"meeting_where": "Ted Blum 4-H Center",
 		"meeting_when": "The 2nd Monday and 4th Tuesday of every month at 7pm",
-		"grades": "6 - 13"
+		"grades": "6 - 13",
+		"location": [-74.67725, 40.5778]
 	},
 	{
 		"slug": "4h-bananabots-robotics-club",
@@ -149,7 +150,8 @@
 		"description": "Are you curious about computers? In the 4-H computer club we share our knowledge and excitement about computers, learn more by doing projects, and share what we learn with the community. We take computers apart, repair broken computers, build computers from parts, install and experiment with different operating systems, create a computer network, or automate hardware using Raspberry Pi and Arduino. We also do web design and coding. We also suggest having a computer, but it is not a requirement in the beginning.",
 		"meeting_where": "Ted Blum 4-H Center",
 		"meeting_when": "The 1st and 3rd Friday of every month at 7pm",
-		"grades": "4 - 10"
+		"grades": "4 - 10",
+		"location": [-74.67705, 40.57765]
 	},
 	{
 		"slug": "crafty-clovers",
