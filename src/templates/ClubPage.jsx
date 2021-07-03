@@ -66,14 +66,16 @@ export default function ClubPage({ data }) {
 						lightFont
 					/>
 				)}
-				{thisClub.location && <LinkButton
-					label="Locate at fair"
-					icon="place"
-					linksTo={'/map/?locate=' + thisClub.slug}
-					inline
-					opaque
-					lightFont
-				/>}
+				{thisClub.location && (
+					<LinkButton
+						label="Locate at fair"
+						icon="place"
+						linksTo={'/map/?locate=' + thisClub.slug}
+						inline
+						opaque
+						lightFont
+					/>
+				)}
 			</div>
 			<p>{thisClub.description}</p>
 			<p>

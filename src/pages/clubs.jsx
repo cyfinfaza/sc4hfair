@@ -31,14 +31,16 @@ const ClubsPage = ({ data }) => {
 			<h2>{club.name}</h2>
 			<p>{club.description}</p>
 			<div className={style.actionButtonsPanel}>
-				{club.location && <LinkButton
-					label="Map"
-					icon="place"
-					linksTo={`/map?locate=${club.slug}`}
-					inline
-					opaque
-					lightFont
-				/>}
+				{club.location && (
+					<LinkButton
+						label="Map"
+						icon="place"
+						linksTo={`/map?locate=${club.slug}`}
+						inline
+						opaque
+						lightFont
+					/>
+				)}
 				{slugList.indexOf(club.slug) > -1 ? (
 					<LinkButton
 						label="Remove"

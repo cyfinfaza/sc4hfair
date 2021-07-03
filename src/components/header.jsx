@@ -105,7 +105,13 @@ const Header = ({ offsetContent = true }) => {
 					</div>
 					<div className={headerStyle.menuBottom}>
 						<ThemePicker navbar />
-						<LinkButton label="Settings" icon="settings" linksTo="/settings" inline lightFont />
+						<LinkButton
+							label="Settings"
+							icon="settings"
+							linksTo="/settings"
+							inline
+							lightFont
+						/>
 					</div>
 				</div>
 			</div>

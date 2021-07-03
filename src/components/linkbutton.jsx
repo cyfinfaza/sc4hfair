@@ -34,7 +34,9 @@ const LinkButton = ({
 			onClick={onClick}
 		>
 			{iconElement ? (
-				<div className={linkButtonStyle.iconElementContainer}>{iconElement}</div>
+				<div className={linkButtonStyle.iconElementContainer}>
+					{iconElement}
+				</div>
 			) : (
 				<i className="material-icons" style={iconStyle}>
 					{icon}
