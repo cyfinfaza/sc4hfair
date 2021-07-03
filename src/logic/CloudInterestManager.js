@@ -10,6 +10,7 @@ export default class CloudInterestManager {
 			'https://gahyqgeshbvyajzukktr.supabase.co',
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyMjIzMjcyMywiZXhwIjoxOTM3ODA4NzIzfQ.qeJRUDnHvCdSTo6LQUCbwe6XQFSLsi2l4_3oD9189u8'
 		)
+		window.supabase = this.supabase
 		let sess = await this.supabase.auth.session()
 		console.log(sess)
 		this.onSessionChange(sess)
