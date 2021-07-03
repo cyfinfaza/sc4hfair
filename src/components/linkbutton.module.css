@@ -21,6 +21,7 @@
 	width: auto;
 	flex: 0;
 	margin: 0;
+	--linkbutton-icon-size: 24px;
 	/* margin-inline-end: 8px; */
 	/* margin-block-end: 8px; */
 }
@@ -44,7 +45,6 @@ a.container {
 }
 
 .containerInline i {
-	--linkbutton-icon-size: 24px;
 	width: var(--linkbutton-icon-size);
 	height: var(--linkbutton-icon-size);
 	font-size: var(--linkbutton-icon-size);
@@ -66,4 +66,16 @@ a.container {
 	padding: 0;
 	font-size: 17px;
 	/* transform: translateY(0.5px); */
+}
+
+.containerInline .iconElementContainer > * {
+	fill: var(--text);
+	width: var(--linkbutton-icon-size);
+	height: var(--linkbutton-icon-size);
+}
+
+.iconElementContainer {
+	display: flex;
+	align-items: center;
+	margin-right: 4px;
 }

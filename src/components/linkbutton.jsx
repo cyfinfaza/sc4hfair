@@ -8,6 +8,7 @@ const LinkButton = ({
 	linksTo = null,
 	onClick = null,
 	icon,
+	iconElement = null,
 	iconStyle = {},
 	index = 0,
 	inline = false,
@@ -32,9 +33,13 @@ const LinkButton = ({
 			href={linksTo}
 			onClick={onClick}
 		>
-			<i className="material-icons" style={iconStyle}>
-				{icon}
-			</i>
+			{iconElement ? (
+				<div className={linkButtonStyle.iconElementContainer}>{iconElement}</div>
+			) : (
+				<i className="material-icons" style={iconStyle}>
+					{icon}
+				</i>
+			)}
 			<span style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</span>
 		</a>
 	)
