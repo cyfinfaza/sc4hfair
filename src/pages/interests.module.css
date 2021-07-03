@@ -1,0 +1,6 @@
+.signInButtonsContainer>*{
+	display: flex;
+}
+.signInButtonsContainer>*+*{
+	margin-top: 8px;
+}

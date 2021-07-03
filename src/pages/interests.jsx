@@ -6,6 +6,7 @@ import * as clubsStyle from './clubs.module.css'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import CloudInterestManager from '../logic/CloudInterestManager'
+import * as pageStyle from './interests.module.css'
 
 const clubData = require('../../static/clubData.json')
 
@@ -94,7 +95,7 @@ const InterestsPage = ({ data }) => {
 							/>
 						</>
 					) : (
-						<>
+						<div className={pageStyle.signInButtonsContainer}>
 							<LinkButton
 								label="Sign in with Google"
 								icon="login"
@@ -102,7 +103,42 @@ const InterestsPage = ({ data }) => {
 								inline
 								opaque
 							/>
-						</>
+							<LinkButton
+								label="Sign in with Twitter"
+								icon="login"
+								onClick={() => im.current.login('twitter')}
+								inline
+								opaque
+							/>
+							<LinkButton
+								label="Sign in with Facebook"
+								icon="login"
+								onClick={() => im.current.login('facebook')}
+								inline
+								opaque
+							/>
+							<LinkButton
+								label="Sign in with Discord"
+								icon="login"
+								onClick={() => im.current.login('discord')}
+								inline
+								opaque
+							/>
+							<LinkButton
+								label="Sign in with GitHub"
+								icon="login"
+								onClick={() => im.current.login('github')}
+								inline
+								opaque
+							/>
+							<LinkButton
+								label="Sign in with GitLab"
+								icon="login"
+								onClick={() => im.current.login('gitlab')}
+								inline
+								opaque
+							/>
+						</div>
 					)}
 				</p>
 			</div>
