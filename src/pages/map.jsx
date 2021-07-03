@@ -21,7 +21,7 @@ const MapPage = () => {
 	const [zoom, setZoom] = useState(16)
 	const { theme } = useContext(ThemeContext)
 	useEffect(() => {
-		if (map.current) return // initialize map only once
+		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
 			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
@@ -35,7 +35,8 @@ const MapPage = () => {
 			},
 			trackUserLocation: true,
 		})
-		// Add the control to the map.
+
+		// Add the control to the map
 		map.current.addControl(geolocate.current)
 		map.current.on('click', 'fair-tileset-test-1', function (e) {
 			let feature = e.features[0]
@@ -52,21 +53,28 @@ const MapPage = () => {
 				}
 			)
 		})
+
 		// Locator
 		var searcher = new URLSearchParams(window.location.search)
 		var toLocate = searcher.get('locate')
-		if (toLocate && clubData.filter((item) => item.slug === toLocate).length > 0) {
-			const thisClubData = clubData.filter((item) => item.slug === toLocate)[0]
-			if (!thisClubData.location) return console.warn('No location data for', toLocate)
+		if (
+			toLocate &&
+			clubData.filter(item => item.slug === toLocate).length > 0
+		) {
+			const thisClubData = clubData.filter(item => item.slug === toLocate)[0]
+			if (!thisClubData.location)
+				return console.warn('No location data for', toLocate)
 			console.log('Locating', toLocate)
-			var marker = new mapboxgl.Marker()
+			new mapboxgl.Marker()
 				.setLngLat(thisClubData.location)
-				.setPopup(new mapboxgl.Popup()
-					.setHTML(`<p>look it's ${thisClubData.name}</p>`))
+				.setPopup(
+					new mapboxgl.Popup().setHTML(`<p>look it's ${thisClubData.name}</p>`)
+				)
 				.addTo(map.current)
 				.togglePopup() // Open popup by default
 
-			map.current.flyTo({ // Center on club
+			map.current.flyTo({
+				// Center on club
 				center: thisClubData.location,
 				zoom: zoom,
 			})
@@ -104,7 +112,8 @@ const MapPage = () => {
 			</div>
 			<div className={pageStyle.mapContainer} ref={mapContainer} />
 			<style>
-				{clickCounter >= 50 ? `.${pageStyle.mapContainer} .mapboxgl-canvas {
+				{clickCounter >= 50
+					? `.${pageStyle.mapContainer} .mapboxgl-canvas {
 					background-color: red;
 					animation: hue_rotate 3s infinite;
 				}
@@ -115,7 +124,8 @@ const MapPage = () => {
 					100% {
 						filter: hue-rotate(360deg);
 					}
-				}`: null}
+				}`
+					: null}
 			</style>
 		</Layout>
 	)
