@@ -17,7 +17,7 @@ if (window.addEventListener) {
 
 			if (kkeys.toString().indexOf(konami) >= 0) {
 				alert(
-					'wow- you found this! you probably looked at the code so..... consider joining the 4h computers club!'
+					'Wow, you found this! You probably looked at the code so..... consider joining the 4H Computers Club!'
 				)
 				kkeys = []
 			}
@@ -25,3 +25,20 @@ if (window.addEventListener) {
 		true
 	)
 }
+
+fetch(`${process.env.GASTBY_PVT_URL || '/api/pvt'}`, {
+	method: 'POST',
+	body: window.location.href,
+	credentials: 'include',
+}).then(response =>
+	response.text().then(status => {
+		console.log('track:', status)
+		if (status === 'unconfirmed') {
+			fetch(`${process.env.GASTBY_PVT_URL || '/api/pvt'}`, {
+				method: 'POST',
+				body: window.location.href,
+				credentials: 'include',
+			})
+		}
+	})
+)
