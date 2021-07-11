@@ -1,10 +1,16 @@
 import * as React from 'react'
-// import { StaticImage } from 'gatsby-plugin-image'
-import Layout from '../components/layout'
+import { useState, useRef, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
+// import { StaticImage } from 'gatsby-plugin-image'
+
+import Layout from '../components/layout'
+import LinkButton from '../components/linkbutton'
+import SignInButtons from '../components/signInButtons'
 import ThemePicker from '../components/themepicker'
+
 import * as buttonStyle from '../components/button.module.css'
-// import { repository } from '../../package.json'
+
+import CloudInterestManager from '../logic/CloudInterestManager'
 
 const FancyButton = ({ name, currentName = name, icon, handleClick }) => {
 	return (
@@ -105,6 +111,41 @@ function subscribeUser() {
 	}
 }
 
+function AccountManager() {
+	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
+	const im = useRef()
+	useEffect(function () {
+		async function startCIM() {
+			im.current = new CloudInterestManager(setSession, _ => {})
+			await im.current.init()
+		}
+		startCIM()
+	}, [])
+
+	const LabeledInput = ({
+		name,
+		type = 'text',
+		label,
+		...props
+	}) => <p>
+		<label for={name}>{label}</label>
+		<input type={type} name={name} {...props} />
+	</p>
+
+	return session ? (
+		<>
+			You are signed in as {session?.user.email}
+			<LabeledInput name="fullName" label="Full name" />
+			<LabeledInput name="gradYear" label="Graduation year" type="number" min="1900" max="2099" step="1" />
+		</>
+	) : (
+		<>
+			You are not signed in.
+			<SignInButtons im={im.current} />
+		</>
+	)
+}
+
 export default function SettingsPage({ data }) {
 	return (
 		<Layout title="Settings">
@@ -126,10 +167,20 @@ export default function SettingsPage({ data }) {
 					handleClick={testNotification}
 				/>
 			</div>
+			<h1>Account</h1>
+			<AccountManager />
 			<h1>About</h1>
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4H Computers Club</a>.
-			You can leave feedback on the app <Link to="/feedback">here</Link>.
+			<p>
+				<LinkButton
+					label="Send feedback"
+					linksTo="/feedback"
+					icon="message"
+					inline
+					opaque
+				/>
+			</p>
 			<div style={{ opacity: 0.5 }}>
 				<h2>Build info</h2>
 				Commit: <code>{data.gitBranch.commit}</code>
