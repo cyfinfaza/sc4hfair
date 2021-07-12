@@ -40,7 +40,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "0BSD",
+  "license": "SEE LICENSE IN LICENSE.MD",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
