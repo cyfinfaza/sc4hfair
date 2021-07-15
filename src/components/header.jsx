@@ -68,6 +68,11 @@ const Header = ({ offsetContent = true }) => {
 							icon="list_alt"
 							linksTo="/interests"
 						/>
+						<LinkButton
+							label="Scavenger Hunt"
+							icon="travel_explore"
+							linksTo="/scavenger-hunt"
+						/>
 						{/* <LinkButton
 							label="Queuing"
 							icon="query_builder"

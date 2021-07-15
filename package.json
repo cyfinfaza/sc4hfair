@@ -25,10 +25,10 @@
     "gatsby-source-local-git": "^1.2.2",
     "gatsby-transformer-sharp": "^3.0.0",
     "google-maps-react": "^2.0.6",
-    "html5-qrcode": "^2.0.11",
     "mapbox-gl": "^2.3.0",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
+    "qr-scanner": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
@@ -37,7 +37,9 @@
   },
   "devDependencies": {
     "cypress": "^7.7.0",
+    "file-loader": "^6.2.0",
     "prettier": "2.2.1",
+    "raw-loader": "^4.0.2",
     "start-server-and-test": "^1.12.6"
   },
   "keywords": [
