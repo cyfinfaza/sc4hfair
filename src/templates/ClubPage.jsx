@@ -6,9 +6,10 @@ import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import * as pageStyle from './ClubPage.module.css'
 import CloudInterestManager from '../logic/CloudInterestManager'
-import {share, canWebShare} from "../logic/webshare"
+import { share, canWebShare } from '../logic/webshare'
 
 export default function ClubPage({ data }) {
+	const isBrowser = typeof window !== 'undefined'
 	var thisClub = data.allSitePage.edges[0].node.context
 	// const [linkBack, setLinkBack] = useState('/clubs')
 	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
@@ -77,11 +78,11 @@ export default function ClubPage({ data }) {
 						lightFont
 					/>
 				)}
-				{canWebShare() && (
+				{isBrowser && canWebShare() && (
 					<LinkButton
 						label="Share"
 						icon="share"
-						onClick={()=>share(`${thisClub.name}`, window.location.href)}
+						onClick={() => share(`${thisClub.name}`, window.location.href)}
 						inline
 						opaque
 						lightFont
