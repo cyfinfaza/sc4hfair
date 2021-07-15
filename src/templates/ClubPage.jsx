@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import * as pageStyle from './ClubPage.module.css'
 import CloudInterestManager from '../logic/CloudInterestManager'
+import {share, canWebShare} from "../logic/webshare"
 
 export default function ClubPage({ data }) {
 	var thisClub = data.allSitePage.edges[0].node.context
@@ -71,6 +72,16 @@ export default function ClubPage({ data }) {
 						label="Locate at fair"
 						icon="place"
 						linksTo={'/map/?locate=' + thisClub.slug}
+						inline
+						opaque
+						lightFont
+					/>
+				)}
+				{canWebShare() && (
+					<LinkButton
+						label="Share"
+						icon="share"
+						onClick={()=>share(`${thisClub.name}`, window.location.href)}
 						inline
 						opaque
 						lightFont
