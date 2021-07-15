@@ -35,7 +35,9 @@
     "sass": "^1.32.8"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "cypress": "^7.7.0",
+    "prettier": "2.2.1",
+    "start-server-and-test": "^1.12.6"
   },
   "keywords": [
     "gatsby"
@@ -43,12 +45,16 @@
   "license": "SEE LICENSE IN LICENSE.MD",
   "scripts": {
     "build": "gatsby build",
+    "build-serve": "gatsby build && gatsby serve",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:run": "start-server-and-test build-serve http://localhost:9000 cy:run",
+    "test:open": "start-server-and-test serve http://localhost:9000 cy:open"
   },
   "repository": {
     "type": "git",

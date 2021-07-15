@@ -72,3 +72,7 @@ yarn-error.log
 #api
 credz.json
 .vercel
+
+#cypress
+cypress/videos
+cypress/screenshots
