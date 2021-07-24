@@ -6,7 +6,4 @@ describe("A test for testing the testing software's test capability for testing 
 	it('is not python', ()=>{
 		expect([1, 2, 3]).not.to.equal([1, 2, 3])
 	})
-	it('fails', ()=>{
-		expect(true).to.equal(false)
-	})
 })

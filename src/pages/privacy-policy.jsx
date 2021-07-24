@@ -10,7 +10,7 @@ export default function privaceePolicee() {
 			<p>
 				Your privacy is important to us. It is Somerset County 4H Fair's policy
 				to respect your privacy regarding any information we may collect from
-				you across our website, <Link to="/">example.com</Link>.
+				you across our website, <Link to="/">sc4hfair</Link>.
 			</p>
 			<p>
 				We only ask for personal information when we truly need it to provide a
@@ -43,7 +43,7 @@ export default function privaceePolicee() {
 				Your continued use of our website will be regarded as acceptance of our
 				practices around privacy and personal information. If you have any
 				questions about how we handle user data and personal information, feel
-				free to <Link to="/about">contact us</Link>.
+				free to <Link to="/feedback">contact us</Link>.
 			</p>
 			<p>This policy is effective as of 29 May 2021.</p>
 		</Layout>

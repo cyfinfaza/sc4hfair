@@ -122,21 +122,25 @@ function AccountManager() {
 		startCIM()
 	}, [])
 
-	const LabeledInput = ({
-		name,
-		type = 'text',
-		label,
-		...props
-	}) => <p>
-		<label for={name}>{label}</label>
-		<input type={type} name={name} {...props} />
-	</p>
+	const LabeledInput = ({ name, type = 'text', label, ...props }) => (
+		<p>
+			<label for={name}>{label}</label>
+			<input type={type} name={name} {...props} />
+		</p>
+	)
 
 	return session ? (
 		<>
 			You are signed in as {session?.user.email}
 			<LabeledInput name="fullName" label="Full name" />
-			<LabeledInput name="gradYear" label="Graduation year" type="number" min="1900" max="2099" step="1" />
+			<LabeledInput
+				name="gradYear"
+				label="Graduation year"
+				type="number"
+				min="1900"
+				max="2099"
+				step="1"
+			/>
 		</>
 	) : (
 		<>
@@ -180,6 +184,9 @@ export default function SettingsPage({ data }) {
 					inline
 					opaque
 				/>
+			</p>
+			<p>
+				<Link to="/privacy-policy">Privacy Policy</Link>
 			</p>
 			<div style={{ opacity: 0.5 }}>
 				<h2>Build info</h2>
