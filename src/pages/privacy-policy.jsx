@@ -25,12 +25,13 @@ export default function privaceePolicee() {
 				<Link to="/settings">user settings</Link>.
 			</p>
 			<p>
-				Viewing any pages on the website will automatically collect analytical
-				data. This data consists of the timestamp, URL of the page, browser user
-				agent, when user first viewed a page, and how many pages the user has
-				viewed, all stored under a tracking ID. The tracking ID is unique to
-				your browser session and does not contain any traceable information like
-				your IP address.
+				Each page contains a client-side script that keeps track of your
+				navigation through our site. We collect data about the time of viewing,
+				the device you viewed the page on, and how many pages you have viewed,
+				as well as your progression from page to page. We identify who you are
+				through an anonymous tracking ID (generated the first time you view our
+				site), and we do not collect your IP address or track you across other
+				websites.
 			</p>
 			<p>
 				We’ll protect any data we store within commercially acceptable means to
