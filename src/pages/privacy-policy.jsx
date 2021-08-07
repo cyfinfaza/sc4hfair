@@ -18,9 +18,10 @@ export default function privaceePolicee() {
 			</p>
 			<p>
 				If you create an account, your name, email address, and profile picture
-				(from the external account you use to create it) will be stored. Using
-				multiple external accounts with the same email address will only use one
-				account. Additional information may be managed in the{' '}
+				(from the external account you use to create it) will be stored.
+				Accounts are managed by email address. Different providers that share
+				the same email address will always sign you in to the same account.
+				Additional account information may be managed in the{' '}
 				<Link to="/settings">user settings</Link>.
 			</p>
 			<p>
@@ -60,7 +61,7 @@ export default function privaceePolicee() {
 				questions about how we handle user data and personal information, feel
 				free to <Link to="/feedback">contact us</Link>.
 			</p>
-			<p>This policy was last updated and effective as of July 24, 2021.</p>
+			<p>This policy was last updated and effective as of August 6, 2021.</p>
 		</Layout>
 	)
 }
