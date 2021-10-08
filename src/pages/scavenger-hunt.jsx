@@ -21,14 +21,22 @@ export default function ScavengerHuntPage() {
 		c5: true,
 	}
 	const codes = Object.keys(clues)
+	const checkCode = result => {
+		if (!codes.includes(result)) {
+			setStatus('Invalid code')
+		} else if (codes.indexOf(result) < codes.indexOf(code)) {
+			setStatus("You've already scanned that code")
+		} else if (codes.indexOf(result) > codes.indexOf(code) + 1) {
+			setStatus("This isn't the right code, make sure to follow the clues")
+		} else {
+			setCode(result)
+		}
+	}
 	useEffect(() => {
 		let lastCode = localStorage.getItem('scavenger-hunt')
 		if (lastCode) setCode(lastCode) // Load previously scanned code
 
-		let passedCode = new URLSearchParams(window.location.search).get('code')
-		// We don't want the user to scan an older code and then lose progress
-		if (codes.indexOf(passedCode) > codes.indexOf(code)) setCode(passedCode)
-		else setStatus("You've already scanned that code")
+		checkCode(new URLSearchParams(window.location.search).get('code')) // Code from a scanned URL bringing them here
 
 		const qrScanner = new QrScanner(videoElement.current, result => {
 			// Extract the code from a URL
@@ -37,15 +45,7 @@ export default function ScavengerHuntPage() {
 				if (typeof tempCode === 'string') result = tempCode
 			} catch (_) {} // If it fails, it isn't a URL with a code
 
-			if (!codes.includes(result)) {
-				setStatus('Invalid code')
-			} else if (codes.indexOf(result) < codes.indexOf(code)) {
-				setStatus("You've already scanned that code")
-			} else if (codes.indexOf(result) > codes.indexOf(code) + 1) {
-				setStatus("This isn't the right code, make sure to follow the clues")
-			} else {
-				setCode(result)
-			}
+			checkCode(result)
 		})
 		qrScanner.start()
 	}, [])
