@@ -56,7 +56,7 @@ export default function ScavengerHuntPage() {
 	return (
 		<Layout title="Scavenger Hunt">
 			<h1>Scavenger Hunt</h1>
-			{QrScanner.hasCamera() ? (
+			{typeof navigator === 'object' && QrScanner.hasCamera() ? (
 				<div>
 					{status}
 					<video ref={videoElement} style={{ width: '100%' }}></video>
