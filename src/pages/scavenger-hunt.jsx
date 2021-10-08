@@ -22,7 +22,10 @@ export default function ScavengerHuntPage() {
 	}
 	const codes = Object.keys(clues)
 	const checkCode = result => {
-		if (typeof code !== 'string' || (typeof code === 'string' && code.length < 1)) {
+		if (
+			typeof result !== 'string' ||
+			(typeof result === 'string' && result.length < 1)
+		) {
 		} else if (!codes.includes(result)) {
 			setStatus('Invalid code')
 		} else if (codes.indexOf(result) < codes.indexOf(code)) {
