@@ -22,13 +22,15 @@ export default function ScavengerHuntPage() {
 	}
 	const codes = Object.keys(clues)
 	const checkCode = result => {
-		if (!codes.includes(result)) {
+		if (typeof code !== 'string' || (typeof code === 'string' && code.length < 1)) {
+		} else if (!codes.includes(result)) {
 			setStatus('Invalid code')
 		} else if (codes.indexOf(result) < codes.indexOf(code)) {
 			setStatus("You've already scanned that code")
 		} else if (codes.indexOf(result) > codes.indexOf(code) + 1) {
 			setStatus("This isn't the right code, make sure to follow the clues")
 		} else {
+			setStatus(clues[codes.indexOf(result)])
 			setCode(result)
 		}
 	}
