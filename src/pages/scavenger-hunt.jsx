@@ -1,56 +1,63 @@
 import React from 'react'
+import * as pageStyle from './scavenger-hunt.module.css'
 import Layout from '../components/layout'
 import { useState, useRef, useEffect } from 'react'
-import LinkButton from '../components/linkbutton'
 import QrScanner from 'qr-scanner'
 import QrScannerWorkerPath from '!!file-loader!../../node_modules/qr-scanner/qr-scanner-worker.min.js'
 QrScanner.WORKER_PATH = QrScannerWorkerPath
 
+// If you look at the source code to cheat and get to the end, then congrats
 // I'm not going to try and do a fancy thing or whatever to prevent it
 // You win, come join the 4H Computers club
-// You win, come join the 4H Computers club
+
+const clues = {
+	initial: 'Go to 1',
+	c1: 'Go to 2',
+	c2: 'Go to 3',
+	c3: 'Go to 4',
+	c4: 'Go to 5',
+	c5: true,
+}
+const codes = Object.keys(clues)
 
 export default function ScavengerHuntPage() {
 	const videoElement = useRef(null)
-	var code = null // Last "good" code
+	const [currentCodeState, setCurrentCodeState] = useState(
+		localStorage.getItem('scavenger-hunt') || 'initial'
+	)
+	var currentCode = currentCodeState
 	const [status, setStatus] = useState('')
-	const clues = {
-		c1: 'Go to 2',
-		c2: 'Go to 3',
-		c3: 'Go to 4',
-		c4: 'Go to 5',
-		c5: true,
-	}
-	const codes = Object.keys(clues)
-	const checkCode = result => {
+	const [clue, setClue] = useState(clues[currentCode])
+	function checkCode(result) {
 		if (
 			typeof result !== 'string' ||
 			(typeof result === 'string' && result.length < 1)
 		) {
 		} else if (!codes.includes(result)) {
 			setStatus('Invalid code')
-		} else if (codes.indexOf(result) < codes.indexOf(code)) {
+		} else if (codes.indexOf(result) < codes.indexOf(currentCode)) {
 			setStatus("You've already scanned that code")
-		} else if (codes.indexOf(result) > codes.indexOf(code) + 1) {
+		} else if (codes.indexOf(result) > codes.indexOf(currentCode) + 1) {
 			setStatus("This isn't the right code, make sure to follow the clues")
 		} else {
-			setStatus(clues[result])
-			code = result
-			localStorage.setItem('scavenger-hunt', code)
+			setStatus('')
+			setCurrentCodeState(result)
+			currentCode = result
+			localStorage.setItem('scavenger-hunt', result)
 		}
 		console.table({
 			result,
 			'result index': codes.indexOf(result),
-			code,
-			'code index': codes.indexOf(code),
+			currentCode,
+			'code index': codes.indexOf(currentCode),
 			hint: clues[result],
 		})
 	}
 	useEffect(() => {
 		let lastCode = localStorage.getItem('scavenger-hunt')
 		if (lastCode) {
-			code = lastCode
-			setStatus(clues[code])
+			setCurrentCodeState(lastCode)
+			currentCode = lastCode
 		} // Load previously scanned code
 
 		checkCode(new URLSearchParams(window.location.search).get('code')) // Code from a scanned URL bringing them here
@@ -66,19 +73,28 @@ export default function ScavengerHuntPage() {
 		})
 		qrScanner.start()
 	}, [])
-
+	useEffect(() => {
+		setClue(clues[currentCodeState])
+		currentCode = currentCodeState
+	}, [currentCodeState])
+	const compatible = typeof navigator === 'object' && QrScanner.hasCamera()
 	return (
-		<Layout title="Scavenger Hunt">
-			<h1>Scavenger Hunt</h1>
-			{typeof navigator === 'object' && QrScanner.hasCamera() ? (
-				clues[code] === true ? (
-					<div>You win!</div>
-				) : (
-					<div>
-						{status}
-						<video ref={videoElement} style={{ width: '100%' }}></video>
+		<Layout
+			title="Scavenger Hunt"
+			noPadding
+			noHeaderPadding
+			fixedHeightContent
+			fullWidth
+		>
+			{compatible ? (
+				<div className={pageStyle.container}>
+					<video ref={videoElement} className={pageStyle.video} />
+					<h1>Scavenger Hunt</h1>
+					<div className={pageStyle.clue}>
+						{clues[currentCode] === true ? 'You won!' : clue}
 					</div>
-				)
+					<div className={pageStyle.status}>{status}</div>
+				</div>
 			) : (
 				<p>The scavenger hunt requires a camera.</p>
 			)}
