@@ -6,12 +6,13 @@ import QrScanner from 'qr-scanner'
 import QrScannerWorkerPath from '!!file-loader!../../node_modules/qr-scanner/qr-scanner-worker.min.js'
 QrScanner.WORKER_PATH = QrScannerWorkerPath
 
-// If you look at the source code to cheat and get to the end, then congrats
 // I'm not going to try and do a fancy thing or whatever to prevent it
+// You win, come join the 4H Computers club
+// You win, come join the 4H Computers club
 
 export default function ScavengerHuntPage() {
 	const videoElement = useRef(null)
-	const [code, setCode] = useState(null) // Last "good" code
+	var code = null // Last "good" code
 	const [status, setStatus] = useState('')
 	const clues = {
 		c1: 'Go to 2',
@@ -33,13 +34,24 @@ export default function ScavengerHuntPage() {
 		} else if (codes.indexOf(result) > codes.indexOf(code) + 1) {
 			setStatus("This isn't the right code, make sure to follow the clues")
 		} else {
-			setStatus(clues[codes.indexOf(result)])
-			setCode(result)
+			setStatus(clues[result])
+			code = result
+			localStorage.setItem('scavenger-hunt', code)
 		}
+		console.table({
+			result,
+			'result index': codes.indexOf(result),
+			code,
+			'code index': codes.indexOf(code),
+			hint: clues[result],
+		})
 	}
 	useEffect(() => {
 		let lastCode = localStorage.getItem('scavenger-hunt')
-		if (lastCode) setCode(lastCode) // Load previously scanned code
+		if (lastCode) {
+			code = lastCode
+			setStatus(clues[code])
+		} // Load previously scanned code
 
 		checkCode(new URLSearchParams(window.location.search).get('code')) // Code from a scanned URL bringing them here
 
@@ -54,18 +66,19 @@ export default function ScavengerHuntPage() {
 		})
 		qrScanner.start()
 	}, [])
-	useEffect(() => {
-		localStorage.setItem('scavenger-hunt', code)
-	}, [code])
 
 	return (
 		<Layout title="Scavenger Hunt">
 			<h1>Scavenger Hunt</h1>
 			{typeof navigator === 'object' && QrScanner.hasCamera() ? (
-				<div>
-					{status}
-					<video ref={videoElement} style={{ width: '100%' }}></video>
-				</div>
+				clues[code] === true ? (
+					<div>You win!</div>
+				) : (
+					<div>
+						{status}
+						<video ref={videoElement} style={{ width: '100%' }}></video>
+					</div>
+				)
 			) : (
 				<p>The scavenger hunt requires a camera.</p>
 			)}
