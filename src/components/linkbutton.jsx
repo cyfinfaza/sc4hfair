@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as linkButtonStyle from './linkbutton.module.css'
-// import { Link } from 'gatsby'
+import { Link } from 'gatsby'
 import * as buttonStyle from './button.module.css'
 
 const LinkButton = ({
@@ -16,23 +16,22 @@ const LinkButton = ({
 	opaque = false,
 	acrylic = false,
 }) => {
-	return (
-		<a
-			className={`${linkButtonStyle.container} ${buttonStyle.button} ${
-				inline ? linkButtonStyle.containerInline : null
-			}`}
-			style={{
-				animationDelay: index * 0.1 + 's',
-				background: acrylic
-					? 'var(--light-blur)'
-					: opaque
-					? 'var(--light)'
-					: null,
-				backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
-			}}
-			href={linksTo}
-			onClick={onClick}
-		>
+	const sharedProps = {
+		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
+			inline ? linkButtonStyle.containerInline : null
+		}`,
+		style: {
+			animationDelay: index * 0.1 + 's',
+			background: acrylic
+				? 'var(--light-blur)'
+				: opaque
+				? 'var(--light)'
+				: null,
+			backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
+		},
+	}
+	const sharedContent = (
+		<>
 			{iconElement ? (
 				<div className={linkButtonStyle.iconElementContainer}>
 					{iconElement}
@@ -43,8 +42,21 @@ const LinkButton = ({
 				</i>
 			)}
 			<span style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</span>
-		</a>
+		</>
 	)
+	if (linksTo) {
+		return (
+			<Link to={linksTo} {...sharedProps}>
+				{sharedContent}
+			</Link>
+		)
+	} else {
+		return (
+			<button onClick={onClick} {...sharedProps}>
+				{sharedContent}
+			</button>
+		)
+	}
 }
 
 export default LinkButton
