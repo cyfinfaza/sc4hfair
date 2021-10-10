@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as linkButtonStyle from './linkbutton.module.css'
 import { Link } from 'gatsby'
 import * as buttonStyle from './button.module.css'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const LinkButton = ({
 	label,
@@ -46,9 +47,18 @@ const LinkButton = ({
 	)
 	if (linksTo) {
 		return (
-			<Link to={linksTo} {...sharedProps}>
+			// <Link to={linksTo} {...sharedProps}>
+			// 	{sharedContent}
+			// </Link>
+			<AniLink
+				paintDrip
+				to={linksTo}
+				hex="#009959"
+				duration={0.75}
+				{...sharedProps}
+			>
 				{sharedContent}
-			</Link>
+			</AniLink>
 		)
 	} else {
 		return (

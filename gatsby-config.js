@@ -71,5 +71,6 @@ module.exports = {
 		},
 		`gatsby-plugin-react-helmet`,
 		`gatsby-source-local-git`,
+		'gatsby-plugin-transition-link',
 	],
 }
