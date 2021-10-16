@@ -23,7 +23,7 @@ const codes = Object.keys(clues)
 export default function ScavengerHuntPage() {
 	const videoElement = useRef(null)
 	const [currentCodeState, setCurrentCodeState] = useState(
-		localStorage.getItem('scavenger-hunt') || 'initial'
+		(typeof window !== 'undefined' && localStorage.getItem('scavenger-hunt')) || 'initial'
 	)
 	var currentCode = currentCodeState
 	const [status, setStatus] = useState('')
