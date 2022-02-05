@@ -5,10 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { ThemeContext } from 'gatsby-plugin-theme-switcher'
 
 import Header from './header'
 import * as layoutStyle from './layout.module.css'
@@ -38,13 +39,8 @@ const Layout = ({
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
 	const isBrowser = typeof window !== 'undefined'
-	if (isBrowser) {
-		if (fixedHeightContent) {
-			document.body.style.overflow = 'hidden'
-		} else {
-			document.body.style.overflow = 'auto'
-		}
-	}
+	const { theme } = useContext(ThemeContext)
+
 	return (
 		<>
 			<Helmet
@@ -83,10 +79,24 @@ const Layout = ({
 						content: metaDescription,
 					},
 				]}
-			/>
+			>
+				<html
+					lang="en"
+					style={
+						isBrowser && theme === 'theme-dark' ? 'color-scheme: dark' : null
+					}
+				/>
+				{isBrowser && (
+					<body style={fixedHeightContent ? 'overflow: hidden' : null} />
+				)}
+			</Helmet>
+			<a href="#content" className={layoutStyle.skipToContentButton}>
+				Skip to content
+			</a>
 			<Header offsetContent={!noHeaderPadding && !fixedHeightContent} />
 			<div
 				className={layoutStyle.content}
+				id="content"
 				style={{
 					padding: noPadding ? '0' : null,
 					paddingTop:

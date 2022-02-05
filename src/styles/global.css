@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 body {
@@ -89,10 +88,8 @@ button,
 select {
 	font-family: 'DM Sans', sans-serif;
 	word-wrap: break-word;
-	/* font-family: 'Inter', sans-serif; */
-	/* font-feature-settings: 'ss01'; */
-	/* letter-spacing: -0.5px; */
 }
+
 /* :not(i *, code) */
 * {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -103,6 +100,7 @@ select {
 	fill: black;
 	transition: color 1s fill 1s; */
 }
+
 *:focus {
 	outline: none;
 }

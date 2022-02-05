@@ -5,8 +5,25 @@
 	pointer-events: painted;
 	display: flex;
 	justify-content: center;
+	scroll-margin-top: calc(var(--navbar-height) + 16px);
 }
 .content>div{
 	width: 100%;
 	max-width: 800px;
+}
+.skipToContentButton {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	text-align: center;
+	z-index: 200;
+	padding: 8px;
+	background-color: var(--light);
+	color: var(--text);
+	transform: translateY(-100%);
+	transition: 240ms ease;
+}
+
+.skipToContentButton:focus {
+	transform: none;
 }
