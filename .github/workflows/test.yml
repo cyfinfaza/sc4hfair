@@ -8,10 +8,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: |
+          npm ci --quiet
+          ./node_modules/.bin/cypress install
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          install: false
           build: npm run build
           start: npm run serve
