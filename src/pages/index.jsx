@@ -10,15 +10,14 @@ import LinkButton from '../components/linkbutton'
 
 const contentfulQuery = `
 {
-  postCollection {
-    items {
-      title
-      contentText
-    }
-  }
+	postCollection {
+		items {
+			title
+			contentText
+		}
+	}
 }
 `
-
 const IndexPage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	useEffect(() => {

@@ -69,13 +69,13 @@ function testNotification() {
 	// self.registration.showNotification('Hello world!', options)
 	// Notification.showNotification('Hello world!', options)
 	// navigator.serviceWorker.getRegistration().then(function(reg) {
-	//     reg.showNotification('Hello world!', options);
+	// 	reg.showNotification('Hello world!', options);
 	// });
 	// navigator.serviceWorker.ready.then(registration => {
-	//     registration.showNotification('Vibration Sample', {
-	//         body: 'Buzz! Buzz!',
-	//         tag: 'vibration-sample'
-	//     });
+	// 	registration.showNotification('Vibration Sample', {
+	// 		body: 'Buzz! Buzz!',
+	// 		tag: 'vibration-sample'
+	// 	});
 	// });
 	// new Notification('Hello world!', options)
 	var img = '/to-do-notifications/img/icon-128.png'

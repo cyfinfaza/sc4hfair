@@ -1,0 +1,12 @@
+.mapboxgl-map {
+	font-family: inherit;
+}
+
+.mapboxgl-ctrl-scale {
+	background-color: var(--light-blur);
+	backdrop-filter: var(--backdrop-blur);
+	border-radius: 5px 5px 0 0;
+	color: var(--text);
+	border: none;
+	border-bottom: 2px solid var(--text);
+}

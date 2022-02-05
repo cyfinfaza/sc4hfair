@@ -36,7 +36,6 @@ module.exports = {
 				legacy: true, // this will add apple-touch-icon links to <head>
 			},
 		},
-		`gatsby-plugin-gatsby-cloud`,
 		`gatsby-plugin-sass`,
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
@@ -46,7 +45,7 @@ module.exports = {
 		// 		appendScript: require.resolve(`./src/logic/sw_append.js`),
 		// 	},
 		// },
-		`gatsby-plugin-remove-serviceworker`,
+		// `gatsby-plugin-remove-serviceworker`,
 		{
 			resolve: 'gatsby-plugin-react-svg',
 			options: {

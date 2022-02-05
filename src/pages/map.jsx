@@ -3,9 +3,10 @@ import Layout from '../components/layout'
 import mapboxgl from '!mapbox-gl'
 import { useRef, useEffect, useState, useContext } from 'react'
 import { ThemeContext } from 'gatsby-plugin-theme-switcher'
-import * as pageStyle from './map.module.css'
+import * as pageStyle from './map.module.scss'
 import LinkButton from '../components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import './map.addon.css'
 
 const clubData = require('../../static/clubData.json')
 
@@ -20,6 +21,8 @@ const MapPage = () => {
 	const [lat, setLat] = useState(40.577636)
 	const [zoom, setZoom] = useState(16)
 	const { theme } = useContext(ThemeContext)
+	const [viewingTent, setViewingTent] = useState('')
+
 	useEffect(() => {
 		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
@@ -27,20 +30,40 @@ const MapPage = () => {
 			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
 			center: [lng, lat],
 			zoom: zoom,
+			attributionControl: false,
 		})
+
 		window.map = map.current
+
 		geolocate.current = new mapboxgl.GeolocateControl({
 			positionOptions: {
 				enableHighAccuracy: true,
 			},
 			trackUserLocation: true,
 		})
-
-		// Add the control to the map
 		map.current.addControl(geolocate.current)
+
+		const scale = new mapboxgl.ScaleControl({
+			unit: 'imperial',
+		})
+		map.current.addControl(scale)
+
 		map.current.on('click', 'fair-tileset-test-1', function (e) {
 			let feature = e.features[0]
+			let tent = feature.properties.slug
 			console.log(feature)
+
+			// new mapboxgl.Popup()
+			// 	.setLngLat(e.lngLat) // (feature.geometry.coordinates)
+			// 	.setHTML(
+			// 		`Clubs in ${tent}: <ul>${clubData
+			// 			.filter(club => club.tent === tent)
+			// 			.map(club => `<li>${club.name}</li>`)}</ul>`
+			// 	)
+			// 	.addTo(map.current)
+
+			setViewingTent(tent)
+
 			map.current.setFeatureState(
 				{
 					source: feature.source,
@@ -55,27 +78,26 @@ const MapPage = () => {
 		})
 
 		// Locator
-		var searcher = new URLSearchParams(window.location.search)
-		var toLocate = searcher.get('locate')
-		if (
-			toLocate &&
-			clubData.filter(item => item.slug === toLocate).length > 0
-		) {
-			const thisClubData = clubData.filter(item => item.slug === toLocate)[0]
-			if (!thisClubData.location)
-				return console.warn('No location data for', toLocate)
-			console.log('Locating', toLocate)
-			new mapboxgl.Marker()
-				.setLngLat(thisClubData.location)
-				.setPopup(
-					new mapboxgl.Popup().setHTML(`<p>look it's ${thisClubData.name}</p>`)
-				)
-				.addTo(map.current)
-				.togglePopup() // Open popup by default
+		var toLocate = new URLSearchParams(window.location.search).get('locate')
+		var club = clubData.find(club => club.slug === toLocate)
+		if (club) {
+			if (!club.location) return console.warn('No location data for', toLocate)
+
+			// new mapboxgl.Marker()
+			// 	.setLngLat(club.location)
+			// 	.setPopup(new mapboxgl.Popup().setHTML(`<p>look it's ${club.name}</p>`))
+			// 	.addTo(map.current)
+			// 	.togglePopup() // Open popup by default
+
+			// find item in map
+			let features = map.current.querySourceFeatures(
+				'cyfinfaza.ckpe2ul0t1vfg21p6lhii0p4x-97748'
+			)
+			console.log(features)
 
 			map.current.flyTo({
 				// Center on club
-				center: thisClubData.location,
+				center: club.location,
 				zoom: zoom,
 			})
 		}
@@ -83,7 +105,14 @@ const MapPage = () => {
 
 	const [clickCounter, setClickCounter] = useState(0)
 	return (
-		<Layout title="Map" noPadding noHeaderPadding fixedHeightContent fullWidth>
+		<Layout
+			title="Map"
+			noPadding
+			noHeaderPadding
+			fixedHeightContent
+			fullWidth
+			style={{ overflow: 'hidden' }}
+		>
 			<div className={pageStyle.controlsContainer}>
 				<LinkButton
 					label="Center on fair"
@@ -110,23 +139,32 @@ const MapPage = () => {
 					acrylic
 				/>
 			</div>
-			<div className={pageStyle.mapContainer} ref={mapContainer} />
-			<style>
-				{clickCounter >= 50
-					? `.${pageStyle.mapContainer} .mapboxgl-canvas {
-					background-color: red;
-					animation: hue_rotate 3s infinite;
-				}
-				@keyframes hue_rotate {
-					0% {
-						filter: hue-rotate(0deg);
-					}
-					100% {
-						filter: hue-rotate(360deg);
-					}
-				}`
-					: null}
-			</style>
+			<div
+				className={`${pageStyle.mapContainer} ${
+					clickCounter >= 50 && pageStyle.easterEgg
+				}`}
+				ref={mapContainer}
+			/>
+
+			<div
+				className={`${pageStyle.tentInfo} ${!viewingTent && pageStyle.hidden}`}
+			>
+				<div>
+					<h1>
+						Tent info{' '}
+						<LinkButton
+							label="Close"
+							icon="close"
+							onClick={() => {
+								setViewingTent('')
+							}}
+							inline
+							acrylic
+						/>
+					</h1>
+					{viewingTent}
+				</div>
+			</div>
 		</Layout>
 	)
 }

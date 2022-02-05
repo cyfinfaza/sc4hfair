@@ -8,10 +8,7 @@ body {
 	--bg: #ededed;
 	--status-bar: #009959ff;
 	--navbar: #009959ff;
-	--navbar: linear-gradient(
-		var(--status-bar) 0%,
-		#4eb489
-	);
+	--navbar: linear-gradient(var(--status-bar) 0%, #4eb489);
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
@@ -29,11 +26,9 @@ body {
 }
 
 body.theme-dark {
+	color-scheme: dark;
 	--bg: #080808;
-	--navbar: linear-gradient(
-		var(--status-bar) 0%,
-		#00643a
-	);
+	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
 	--text: #eee;
 	--light: #181818;
 	--light-blur: var(--light);
@@ -47,11 +42,11 @@ body.theme-dark {
 	);
 }
 
-/* *{
+/* * {
 	transition: color var(--theme-transition);
 } */
 
-@supports (backdrop-filter: var(--backdrop-blur)){
+@supports (backdrop-filter: var(--backdrop-blur)) {
 	body {
 		--navbar: linear-gradient(
 			var(--status-bar) 0%,
@@ -60,7 +55,7 @@ body.theme-dark {
 		) !important;
 		--light-blur: #fdfdfd33;
 	}
-	
+
 	body.theme-dark {
 		--light-blur: #2226;
 	}
@@ -68,7 +63,8 @@ body.theme-dark {
 
 a {
 	color: var(--text);
-	transition: color var(--theme-transition), background-color var(--theme-transition);
+	transition: color var(--theme-transition),
+		background-color var(--theme-transition);
 }
 
 body {
@@ -78,23 +74,27 @@ body {
 	overflow-x: hidden;
 	background-color: var(--bg);
 	color: var(--text);
-	transition: background-color var(--theme-transition), color var(--theme-transition);
+	transition: background-color var(--theme-transition),
+		color var(--theme-transition);
 	/* transition: background-color 500ms ease; */
 }
 
-::selection{
+::selection {
 	background-color: var(--status-bar);
 }
 
-body, input, button, select{
+body,
+input,
+button,
+select {
 	font-family: 'DM Sans', sans-serif;
 	word-wrap: break-word;
 	/* font-family: 'Inter', sans-serif; */
 	/* font-feature-settings: 'ss01'; */
 	/* letter-spacing: -0.5px; */
 }
-/* :not(i *, code)  */
-*{
+/* :not(i *, code) */
+* {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	/* transition: color 1s;
 	transition: background-color 1s; */
@@ -103,7 +103,7 @@ body, input, button, select{
 	fill: black;
 	transition: color 1s fill 1s; */
 }
-*:focus{
+*:focus {
 	outline: none;
 }
 
@@ -156,9 +156,4 @@ input {
 
 .horizPanel > * + * {
 	margin-left: 8px !important;
-}
-
-.mapboxgl-popup-content{
-	font-family: 'DM Sans';
-	color: black;
 }

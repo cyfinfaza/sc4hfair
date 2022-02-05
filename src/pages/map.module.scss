@@ -1,0 +1,84 @@
+.mapContainer {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.controlsContainer {
+	position: absolute;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px;
+	margin-top: var(--nav-height);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	/* pointer-events: none; */
+
+	> * {
+		margin-bottom: 8px;
+		z-index: 50;
+	}
+}
+
+.tentInfo {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	// padding: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+	z-index: 100;
+	transition: transform 240ms cubic-bezier(0, 0.45, 0.03, 1.21);
+	padding: 8px;
+
+	&.hidden {
+		transform: translateY(calc(100% + 16px));
+	}
+
+	> * {
+		background-color: var(--light-blur);
+		backdrop-filter: var(--backdrop-blur);
+		// background: var(--light);
+		border-radius: 8px;
+		width: 100%;
+		max-width: 500px;
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		height: 200px;
+		max-height: 100%;
+		box-sizing: border-box;
+		overflow: auto;
+		> * {
+			margin: 0;
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.tentInfo {
+		padding: 0px;
+		> * {
+			max-width: 100%;
+			border-radius: 0;
+		}
+	}
+}
+
+.mapContainer.easterEgg .mapboxgl-canvas {
+	background-color: red;
+	animation: hue_rotate 3s infinite;
+}
+
+@keyframes hue_rotate {
+	0% {
+		filter: hue-rotate(0deg);
+	}
+	100% {
+		filter: hue-rotate(360deg);
+	}
+}

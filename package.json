@@ -1,66 +1,64 @@
 {
-  "name": "sc4hfair",
-  "private": true,
-  "description": "The Somerset County 4H Fair App",
-  "version": "0.1.0",
-  "author": "Cy Westbrook <cyfinfaza@gmail.com>",
-  "contributors": [
-    "Calum Dingwall (https://github.com/caburum)"
-  ],
-  "dependencies": {
-    "@supabase/supabase-js": "^1.11.17",
-    "gatsby": "^3.6.1",
-    "gatsby-plugin-gatsby-cloud": "^2.0.0",
-    "gatsby-plugin-google-gtag": "^3.1.0",
-    "gatsby-plugin-image": "^1.0.0",
-    "gatsby-plugin-manifest": "^3.0.0",
-    "gatsby-plugin-offline": "^4.0.0",
-    "gatsby-plugin-react-helmet": "^4.5.0",
-    "gatsby-plugin-react-svg": "^3.0.0",
-    "gatsby-plugin-remove-serviceworker": "^1.0.0",
-    "gatsby-plugin-sass": "^4.1.0",
-    "gatsby-plugin-sharp": "^3.0.0",
-    "gatsby-plugin-theme-switcher": "^1.0.0",
-    "gatsby-source-filesystem": "^3.0.0",
-    "gatsby-source-local-git": "^1.2.2",
-    "gatsby-transformer-sharp": "^3.0.0",
-    "google-maps-react": "^2.0.6",
-    "mapbox-gl": "^2.3.0",
-    "moment": "^2.29.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "react-markdown": "^5.0.3",
-    "sass": "^1.32.8"
-  },
-  "devDependencies": {
-    "cypress": "^7.7.0",
-    "prettier": "2.2.1",
-    "start-server-and-test": "^1.12.6"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "SEE LICENSE IN LICENSE.MD",
-  "scripts": {
-    "build": "gatsby build",
-    "build-serve": "gatsby build && gatsby serve",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "test:run": "start-server-and-test build-serve http://localhost:9000 cy:run",
-    "test:open": "start-server-and-test serve http://localhost:9000 cy:open"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cyfinfaza/sc4hfair"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+	"name": "sc4hfair",
+	"private": true,
+	"description": "The Somerset County 4H Fair App",
+	"version": "0.1.0",
+	"author": "Cy Westbrook <cyfinfaza@gmail.com>",
+	"contributors": [
+		"Calum Dingwall (https://github.com/caburum)"
+	],
+	"dependencies": {
+		"@supabase/supabase-js": "^1.30.0",
+		"gatsby": "^3.14.6",
+		"gatsby-plugin-google-gtag": "^3.14.0",
+		"gatsby-plugin-image": "^1.14.2",
+		"gatsby-plugin-manifest": "^3.14.0",
+		"gatsby-plugin-offline": "^4.14.0",
+		"gatsby-plugin-react-helmet": "^4.14.0",
+		"gatsby-plugin-react-svg": "^3.1.0",
+		"gatsby-plugin-remove-serviceworker": "^1.0.0",
+		"gatsby-plugin-sass": "^4.14.0",
+		"gatsby-plugin-sharp": "^3.14.3",
+		"gatsby-plugin-theme-switcher": "^1.0.0",
+		"gatsby-source-filesystem": "^3.14.0",
+		"gatsby-source-local-git": "^1.2.2",
+		"gatsby-transformer-sharp": "^3.14.0",
+		"mapbox-gl": "^2.7.0",
+		"moment": "^2.29.1",
+		"prop-types": "^15.8.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-helmet": "^6.1.0",
+		"react-markdown": "^5.0.3",
+		"sass": "^1.49.7"
+	},
+	"devDependencies": {
+		"cypress": "^7.7.0",
+		"prettier": "2.2.1",
+		"start-server-and-test": "^1.14.0"
+	},
+	"keywords": [
+		"gatsby"
+	],
+	"license": "SEE LICENSE IN LICENSE.MD",
+	"scripts": {
+		"build": "gatsby build",
+		"build-serve": "gatsby build && gatsby serve",
+		"develop": "gatsby develop",
+		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+		"start": "npm run develop",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean",
+		"cy:open": "cypress open",
+		"cy:run": "cypress run",
+		"test:run": "start-server-and-test build-serve http://localhost:9000 cy:run",
+		"test:open": "start-server-and-test serve http://localhost:9000 cy:open"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cyfinfaza/sc4hfair"
+	},
+	"bugs": {
+		"url": "https://github.com/gatsbyjs/gatsby/issues"
+	}
 }

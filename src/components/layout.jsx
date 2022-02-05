@@ -21,6 +21,7 @@ const Layout = ({
 	noHeaderPadding = false,
 	fixedHeightContent = false,
 	fullWidth = false,
+	style,
 }) => {
 	const metadata = useStaticQuery(
 		graphql`
@@ -36,7 +37,11 @@ const Layout = ({
 		`
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
-
+	if (fixedHeightContent) {
+		document.body.style.overflow = 'hidden'
+	} else {
+		document.body.style.overflow = 'auto'
+	}
 	return (
 		<>
 			<Helmet
@@ -85,9 +90,12 @@ const Layout = ({
 						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
 					height: fixedHeightContent ? '100vh' : null,
 					boxSizing: 'border-box',
+					overflow: fixedHeightContent ? 'hidden' : null,
 				}}
 			>
-				<div style={{ maxWidth: fullWidth ? 'unset' : null }}>{children}</div>
+				<div style={{ maxWidth: fullWidth ? 'unset' : null, ...style }}>
+					{children}
+				</div>
 			</div>
 		</>
 	)

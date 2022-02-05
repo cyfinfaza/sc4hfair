@@ -9,8 +9,8 @@ import Layout from '../components/layout'
 
 const contentfulQuery = `
 {
-  scheduledEventCollection (order: time_ASC) {
-    items {
+	scheduledEventCollection (order: time_ASC) {
+		items {
 			title
 			time
 			endTime
@@ -19,8 +19,8 @@ const contentfulQuery = `
 				url
 			}
 			category
-    }
-  }
+		}
+	}
 }
 `
 

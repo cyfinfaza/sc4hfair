@@ -6,7 +6,8 @@
 		"meeting_where": "Ted Blum 4-H Center",
 		"meeting_when": "The 2nd Monday and 4th Tuesday of every month at 7pm",
 		"grades": "6 - 13",
-		"location": [-74.67725, 40.5778]
+		"location": [-74.67725, 40.5778],
+		"tent": "4h-dogs"
 	},
 	{
 		"slug": "4h-bananabots-robotics-club",
