@@ -37,10 +37,13 @@ const Layout = ({
 		`
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
-	if (fixedHeightContent) {
-		document.body.style.overflow = 'hidden'
-	} else {
-		document.body.style.overflow = 'auto'
+	const isBrowser = typeof window !== 'undefined'
+	if (isBrowser) {
+		if (fixedHeightContent) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = 'auto'
+		}
 	}
 	return (
 		<>
