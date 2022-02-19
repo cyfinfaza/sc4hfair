@@ -69,12 +69,12 @@
 	}
 }
 
-.mapContainer.easterEgg .mapboxgl-canvas {
+.mapContainer.easterEgg canvas {
 	background-color: red;
-	animation: hue_rotate 3s infinite;
+	animation: hueRotate 3s infinite;
 }
 
-@keyframes hue_rotate {
+@keyframes hueRotate {
 	0% {
 		filter: hue-rotate(0deg);
 	}
