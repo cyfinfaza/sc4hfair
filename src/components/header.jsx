@@ -5,6 +5,7 @@ import FourH from '../assets/fourh.inline.svg'
 import { useState } from 'react'
 import ThemePicker from './themepicker'
 import LinkButton from './linkbutton'
+import SponsorSpot from './sponsorSpot'
 import * as buttonStyle from './button.module.css'
 
 const Header = ({ offsetContent = true }) => {
@@ -140,6 +141,9 @@ const Header = ({ offsetContent = true }) => {
 							opaque={false}
 							lightFont
 						/>
+					</div>
+					<div className={headerStyle.sponsorArea}>
+						<SponsorSpot />
 					</div>
 				</div>
 			</div>

@@ -111,3 +111,12 @@
 	font-weight: bold;
 	font-size: 18px;
 }
+
+.sponsorArea {
+	width: 100%;
+	max-width: 500px;
+	margin-top: 8px;
+	padding: 0 16px;
+	box-sizing: border-box;
+	--spsp-bg: var(--navbar-accent);
+}

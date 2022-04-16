@@ -11,6 +11,7 @@ body {
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
+	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #fdfdfd00;
 	--button-shadow: 0 0 8px -3px #0008;
@@ -30,6 +31,7 @@ body.theme-dark {
 	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
 	--text: #eee;
 	--light: #181818;
+	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
 	/* --navbar-text: #fafafa; */
