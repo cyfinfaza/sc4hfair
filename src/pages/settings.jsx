@@ -39,9 +39,12 @@ const LabeledInput = ({
 		</td>
 	</tr>
 )
-function isEqual(a, b) {
-	// we could use lodash but these are small enough to not be that big of an issue
-	return JSON.stringify(a) === JSON.stringify(b)
+function isInfoFormDisabled(a, b) {
+	// only check certain properties
+	return ['fullName', 'preferredEmail', 'phone', 'graduation'].every(
+		key => a[key] === b[key]
+	)
+	// return JSON.stringify(a) === JSON.stringify(b)
 }
 
 export default function SettingsPage({ data }) {
@@ -93,12 +96,12 @@ export default function SettingsPage({ data }) {
 						<tbody>
 							<LabeledInput
 								form={[form, setForm]}
-								name="name"
+								name="fullName"
 								label="Full name"
 							/>
 							<LabeledInput
 								form={[form, setForm]}
-								name="email"
+								name="preferredEmail"
 								label="Preferred email"
 								type="email"
 							/>
@@ -126,7 +129,7 @@ export default function SettingsPage({ data }) {
 							im.current.supabase.auth.update({ data: form })
 							setCloudForm(form)
 						}}
-						disabled={isEqual(form, cloudForm)}
+						disabled={isInfoFormDisabled(form, cloudForm)}
 					/>
 				</>
 			) : (
