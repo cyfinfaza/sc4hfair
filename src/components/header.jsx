@@ -55,38 +55,64 @@ const Header = ({ offsetContent = true }) => {
 				</div>
 				<div className={headerStyle.menuArea}>
 					<div className={headerStyle.menuGrid}>
-						<LinkButton label="Latest" icon="home" linksTo="/" />
-						<LinkButton label="Map" icon="map" linksTo="/map" />
+						<LinkButton
+							label="Latest"
+							icon="home"
+							linksTo="/"
+							big
+							opaque={false}
+						/>
+						<LinkButton
+							label="Map"
+							icon="map"
+							linksTo="/map"
+							big
+							opaque={false}
+						/>
 						<LinkButton
 							label="Schedule"
 							icon="event_note"
 							linksTo="/schedule"
+							big
+							opaque={false}
 						/>
-						<LinkButton label="Clubs" icon="groups" linksTo="/clubs" />
+						<LinkButton
+							label="Clubs"
+							icon="groups"
+							linksTo="/clubs"
+							big
+							opaque={false}
+						/>
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
 							linksTo="/interests"
+							big
+							opaque={false}
 						/>
 						{/* <LinkButton
 							label="Queuing"
 							icon="query_builder"
 							linksTo="/queuing"
+							big opaque={false}
 						/>
 						<LinkButton
 							label="Live Cams"
 							icon="video_camera_back"
 							linksTo="/cams"
+							big opaque={false}
 						/> */}
 						{/* <LinkButton
 							label="Join 4H"
 							icon="person_add"
 							linksTo="https://4histops.org/membership"
+							big opaque={false}
 						/>
 						<LinkButton
 							label="Donate"
 							icon="monetization_on"
 							linksTo="https://4histops.org/donate"
+							big opaque={false}
 						/> */}
 						<LinkButton
 							label="About 4H"
@@ -101,6 +127,8 @@ const Header = ({ offsetContent = true }) => {
 								/>
 							}
 							linksTo="https://4histops.org"
+							big
+							opaque={false}
 						/>
 					</div>
 					<div className={headerStyle.menuBottom}>
@@ -109,7 +137,7 @@ const Header = ({ offsetContent = true }) => {
 							label="Settings"
 							icon="settings"
 							linksTo="/settings"
-							inline
+							opaque={false}
 							lightFont
 						/>
 					</div>

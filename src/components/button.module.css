@@ -6,9 +6,13 @@
 	transition: filter 120ms ease, transform 120ms ease, background-color var(--theme-transition), box-shadow var(--theme-transition);
 	/* margin: 5px 0; */
 }
-.button:active {
+.button:not([disabled]):active {
 	filter: contrast(0.6);
-	transform: translate(0px, 1px);
+	transform: translate(0, 1px);
+}
+.button[disabled] {
+	filter: brightness(0.7);
+	cursor: not-allowed;
 }
 .fancyButtonContainer {
 	display: inline-flex;

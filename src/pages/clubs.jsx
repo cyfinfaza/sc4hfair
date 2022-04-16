@@ -36,8 +36,6 @@ const ClubsPage = ({ data }) => {
 						label="Map"
 						icon="place"
 						linksTo={`/map?locate=${club.slug}`}
-						inline
-						opaque
 						lightFont
 					/>
 				)}
@@ -46,8 +44,6 @@ const ClubsPage = ({ data }) => {
 						label="Remove"
 						icon="remove"
 						onClick={() => im.current.removeInterest(club.slug)}
-						inline
-						opaque
 						lightFont
 					/>
 				) : (
@@ -55,8 +51,6 @@ const ClubsPage = ({ data }) => {
 						label="Add"
 						icon="add"
 						linksTo={`/interests?add=${club.slug}`}
-						inline
-						opaque
 						lightFont
 					/>
 				)}
@@ -64,8 +58,6 @@ const ClubsPage = ({ data }) => {
 					label="View"
 					icon="open_in_new"
 					linksTo={`/club/${club.slug}`}
-					inline
-					opaque
 					lightFont
 				/>
 			</div>

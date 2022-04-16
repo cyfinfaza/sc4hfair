@@ -54,8 +54,6 @@ export default function ClubPage({ data }) {
 						label="Remove from interest list"
 						icon="remove"
 						onClick={() => im.current.removeInterest(thisClub.slug)}
-						inline
-						opaque
 						lightFont
 					/>
 				) : (
@@ -63,8 +61,6 @@ export default function ClubPage({ data }) {
 						label="Add to interest list"
 						icon="add"
 						onClick={() => im.current.addInterest(thisClub.slug)}
-						inline
-						opaque
 						lightFont
 					/>
 				)}
@@ -73,8 +69,6 @@ export default function ClubPage({ data }) {
 						label="Locate at fair"
 						icon="place"
 						linksTo={'/map/?locate=' + thisClub.slug}
-						inline
-						opaque
 						lightFont
 					/>
 				)}
@@ -83,8 +77,6 @@ export default function ClubPage({ data }) {
 						label="Share"
 						icon="share"
 						onClick={() => share(`${thisClub.name}`, window.location.href)}
-						inline
-						opaque
 						lightFont
 					/>
 				)}

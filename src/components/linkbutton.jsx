@@ -5,20 +5,21 @@ import * as buttonStyle from './button.module.css'
 
 const LinkButton = ({
 	label,
-	linksTo = null,
-	onClick = null,
-	icon,
-	iconElement = null,
+	linksTo = null, // use gatsby link
+	onClick = null, // use js
+	icon, // material icon id
+	iconElement = null, // svg icon
 	iconStyle = {},
-	index = 0,
-	inline = false,
-	lightFont = false,
-	opaque = false,
-	acrylic = false,
+	index = 0, // used for animating in after a delay
+	big = false, // not inline
+	opaque = true, // set to false for no background
+	acrylic = false, // overrides opaque
+	lightFont = false, // light font weight
+	disabled = false, // prevent click
 }) => {
 	const sharedProps = {
 		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
-			inline ? linkButtonStyle.containerInline : null
+			big ? null : linkButtonStyle.containerInline
 		}`,
 		style: {
 			animationDelay: index * 0.1 + 's',
@@ -29,6 +30,7 @@ const LinkButton = ({
 				: null,
 			backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
 		},
+		disabled: disabled,
 	}
 	const sharedContent = (
 		<>
@@ -44,7 +46,7 @@ const LinkButton = ({
 			<span style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</span>
 		</>
 	)
-	if (linksTo) {
+	if (linksTo && !disabled) {
 		return (
 			<Link to={linksTo} {...sharedProps}>
 				{sharedContent}

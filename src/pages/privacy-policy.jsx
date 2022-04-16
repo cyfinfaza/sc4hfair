@@ -13,7 +13,7 @@ export default function privaceePolicee() {
 			<p>
 				We only ask for personal information when we need it to provide services
 				to you. We collect it by fair and lawful means, with your knowledge and
-				consent. We also let you know why we’re collecting it and how it will be
+				consent. We also let you know why we're collecting it and how it will be
 				used.
 			</p>
 			<p>
@@ -34,16 +34,18 @@ export default function privaceePolicee() {
 				websites.
 			</p>
 			<p>
-				We’ll protect any data we store within commercially acceptable means to
+				We'll protect any data we store within commercially acceptable means to
 				prevent loss and theft, as well as unauthorized access, disclosure,
 				copying, use or modification.
 			</p>
 			<p>
-				We don’t share any personally identifying information publicly or with
-				third-parties besides Somerset County 4H, except when required to by
-				law. If you use the <Link to="/interests">club interest manager</Link>,
-				your name, email address, and other relavent information will be shared
-				with leaders of the clubs you are interested in.
+				We don't share any personally identifying information publicly or with
+				third-parties besides{' '}
+				<a href="https://4histops.org/">Somerset County 4H</a>, except when
+				required to by law. If you use the{' '}
+				<Link to="/interests">club interest manager</Link>, your provided name,
+				email address, phone number, and other relavent information will be
+				shared with leaders of the clubs you marked as interested in.
 			</p>
 			<p>
 				Our website may link to external sites that are not operated by us.
@@ -62,7 +64,7 @@ export default function privaceePolicee() {
 				questions about how we handle user data and personal information, feel
 				free to <Link to="/feedback">contact us</Link>.
 			</p>
-			<p>This policy was last updated and effective as of August 6, 2021.</p>
+			<p>This policy was last updated and effective as of April 16, 2022.</p>
 		</Layout>
 	)
 }

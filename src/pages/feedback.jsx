@@ -64,13 +64,7 @@ export default function Feedback() {
 					<h2>Comment</h2>
 					<EditField name="comment" />
 					<p style={{ color: 'red' }}>{errorText}</p>
-					<LinkButton
-						label="Submit"
-						icon="send"
-						onClick={submit}
-						inline
-						opaque
-					/>
+					<LinkButton label="Submit" icon="send" onClick={submit} />
 				</>
 			)}
 			<style>

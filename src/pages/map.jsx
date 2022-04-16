@@ -125,7 +125,6 @@ const MapPage = () => {
 						})
 					}}
 					lightFont
-					inline
 					acrylic
 				/>
 				<LinkButton
@@ -135,7 +134,6 @@ const MapPage = () => {
 						geolocate.current.trigger()
 					}}
 					lightFont
-					inline
 					acrylic
 				/>
 			</div>
@@ -158,7 +156,6 @@ const MapPage = () => {
 							onClick={() => {
 								setViewingTent('')
 							}}
-							inline
 							acrylic
 						/>
 					</h1>

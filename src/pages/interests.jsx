@@ -20,15 +20,11 @@ const InterestsPage = ({ data }) => {
 					label="Remove"
 					icon="remove"
 					onClick={() => im.current.removeInterest(club.slug)}
-					inline
-					opaque
 				/>
 				<LinkButton
 					label="View"
 					icon="open_in_new"
 					linksTo={`/club/${club.slug}`}
-					inline
-					opaque
 				/>
 			</div>
 		</div>
@@ -84,15 +80,11 @@ const InterestsPage = ({ data }) => {
 								label="Add Clubs to List"
 								icon="open_in_new"
 								linksTo="/clubs"
-								inline
-								opaque
 							/>
 							<LinkButton
 								label="Sign out"
 								icon="logout"
 								onClick={() => im.current.logout()}
-								inline
-								opaque
 							/>
 						</>
 					) : (

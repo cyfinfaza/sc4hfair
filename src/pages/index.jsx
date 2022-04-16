@@ -49,20 +49,12 @@ const IndexPage = ({ data }) => {
 			<div style={{ textAlign: 'center' }}>
 				<h1>Welcome to the Somerset County 4H Fair.</h1>
 				<div className="horizPanel">
-					<LinkButton
-						label="Schedule"
-						icon="event_note"
-						linksTo="/schedule"
-						inline
-						opaque
-					/>
-					<LinkButton label="Map" icon="map" linksTo="/map" inline opaque />
+					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
+					<LinkButton label="Map" icon="map" linksTo="/map" />
 					<LinkButton
 						label="More"
 						icon="add"
 						onClick={() => window.setMenuOpen(true)}
-						inline
-						opaque
 					/>
 				</div>
 				<h2>Latest Updates</h2>

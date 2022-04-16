@@ -13,8 +13,6 @@ export default function SignInButtons({ im, redirect = '/interests' }) {
 					</svg>
 				}
 				onClick={() => im.login('google', redirect)}
-				inline
-				opaque
 			/>
 			<LinkButton
 				label="Sign in with Twitter"
@@ -24,8 +22,6 @@ export default function SignInButtons({ im, redirect = '/interests' }) {
 					</svg>
 				}
 				onClick={() => im.login('twitter', redirect)}
-				inline
-				opaque
 			/>
 			<LinkButton
 				label="Sign in with Facebook"
@@ -35,8 +31,6 @@ export default function SignInButtons({ im, redirect = '/interests' }) {
 					</svg>
 				}
 				onClick={() => im.login('facebook', redirect)}
-				inline
-				opaque
 			/>
 			<LinkButton
 				label="Sign in with Discord"
@@ -53,8 +47,6 @@ export default function SignInButtons({ im, redirect = '/interests' }) {
 					</svg>
 				}
 				onClick={() => im.login('discord', redirect)}
-				inline
-				opaque
 			/>
 			<LinkButton
 				label="Sign in with GitHub"
@@ -68,8 +60,6 @@ export default function SignInButtons({ im, redirect = '/interests' }) {
 					</svg>
 				}
 				onClick={() => im.login('github', redirect)}
-				inline
-				opaque
 			/>
 		</div>
 	)
