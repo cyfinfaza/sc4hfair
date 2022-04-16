@@ -6,43 +6,14 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import SignInButtons from '../components/signInButtons'
-import ThemePicker from '../components/themepicker'
-
-import * as buttonStyle from '../components/button.module.css'
 
 import CloudInterestManager from '../logic/CloudInterestManager'
-
-const FancyButton = ({ name, currentName = name, icon, handleClick }) => {
-	return (
-		<div
-			className={`${buttonStyle.fancyButtonContainer} ${buttonStyle.button}`}
-			onClick={handleClick}
-			onKeyPress={handleClick}
-			role="button"
-			tabIndex="0"
-		>
-			<i
-				className="material-icons"
-				style={{
-					cursor: 'pointer',
-					userSelect: 'none',
-				}}
-				key={currentName}
-				aria-label={`${currentName}`}
-			>
-				{icon}
-			</i>
-			{name}
-		</div>
-	)
-}
 
 function requestNoti() {
 	Notification.requestPermission(function (status) {
 		console.log('Notification permission status:', status)
 	})
 }
-
 function testNotification() {
 	// var options = {
 	// 	body: 'This is a test notification',
@@ -82,7 +53,6 @@ function testNotification() {
 	var text = 'HEY! Your task is now overdue.'
 	new Notification('To do list', { body: text, icon: img })
 }
-
 function subscribeUser() {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.ready.then(function (reg) {
@@ -111,68 +81,115 @@ function subscribeUser() {
 	}
 }
 
-function AccountManager() {
+export default function SettingsPage({ data }) {
+	const [ready, setReady] = useState(false)
 	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const im = useRef()
+	const [form, setForm] = useState({})
+
 	useEffect(function () {
 		async function startCIM() {
 			im.current = new CloudInterestManager(setSession, _ => {})
 			await im.current.init()
+			setReady(true) // make the ui refresh or something idk it makes it work
 		}
 		startCIM()
 	}, [])
 
+	function handleInput(event) {
+		let { name, value } = event.target
+		setForm({
+			...form,
+			[name]: value,
+		})
+		console.log(form)
+	}
 	const LabeledInput = ({ name, type = 'text', label, ...props }) => (
-		<p>
-			<label for={name}>{label}</label>
-			<input type={type} name={name} {...props} />
-		</p>
+		<tr>
+			<td>
+				<label htmlFor={name}>{label}</label>
+			</td>
+			<td>
+				<input
+					type={type}
+					name={name}
+					value={form[name]}
+					onChange={handleInput}
+					{...props}
+				/>
+			</td>
+		</tr>
 	)
 
-	return session ? (
-		<>
-			You are signed in as {session?.user.email}
-			<LabeledInput name="fullName" label="Full name" />
-			<LabeledInput
-				name="gradYear"
-				label="Graduation year"
-				type="number"
-				min="1900"
-				max="2099"
-				step="1"
-			/>
-		</>
-	) : (
-		<>
-			You are not signed in.
-			<SignInButtons im={im.current} />
-		</>
-	)
-}
-
-export default function SettingsPage({ data }) {
 	return (
 		<Layout title="Settings">
-			<div className="horizPanel" style={{ marginTop: '16px' }}>
+			{/* <div className="horizPanel" style={{ marginTop: '16px' }}>
 				<ThemePicker />
-				<FancyButton
-					name="Request notification"
+				<LinkButton
+					label="Request notification"
 					icon="notifications"
-					handleClick={requestNoti}
+					onClick={requestNoti}
+					inline
+					opaque
 				/>
-				<FancyButton
-					name="Subscribe"
+				<LinkButton
+					label="Subscribe"
 					icon="subscriptions"
-					handleClick={subscribeUser}
+					onClick={subscribeUser}
+					inline
+					opaque
 				/>
-				<FancyButton
-					name="Test notification"
+				<LinkButton
+					label="Test notification"
 					icon="notifications_active"
-					handleClick={testNotification}
+					onClick={testNotification}
+					inline
+					opaque
 				/>
-			</div>
+			</div> */}
 			<h1>Account</h1>
-			<AccountManager />
+			{ready && session ? (
+				<>
+					You are signed in as {session?.user.email}
+					<p>
+						<LinkButton
+							label="Sign out"
+							icon="logout"
+							onClick={() => im.current.logout()}
+							inline
+							opaque
+						/>
+					</p>
+					<h2>
+						Additional information <small>(optional)</small>
+					</h2>
+					<table style={{ width: '100%', margin: '1rem 0' }}>
+						<LabeledInput name="name" label="Full name" />
+						<LabeledInput name="email" label="Preferred email" type="email" />
+						<LabeledInput name="phone" label="Phone number" type="tel" />
+						<LabeledInput
+							name="graduation"
+							label="Graduation year"
+							type="number"
+							min="1900"
+							max="2099"
+							step="1"
+						/>
+					</table>
+					<LinkButton
+						label="Save"
+						icon="save"
+						onClick={() => im.current.supabase.auth.update({ data: form })}
+						inline
+						opaque
+					/>
+				</>
+			) : (
+				<>
+					You are not signed in.
+					<SignInButtons im={im.current} redirect="/settings" />
+				</>
+			)}
 			<h1>About</h1>
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4H Computers Club</a>.
