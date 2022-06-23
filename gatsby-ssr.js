@@ -1,7 +1,10 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/ssr-apis/
- */
+import React from 'react'
+import { refreshTheme } from './src/logic/theming'
 
-// You can delete this file if you're not using it
+export function onRenderBody({ setPreBodyComponents }) {
+	setPreBodyComponents([
+		<script
+			dangerouslySetInnerHTML={{ __html: `${refreshTheme} refreshTheme()` }}
+		/>,
+	])
+}

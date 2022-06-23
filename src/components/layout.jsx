@@ -5,11 +5,10 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React, { useContext } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
-import { ThemeContext } from 'gatsby-plugin-theme-switcher'
 
 import Header from './header'
 import * as layoutStyle from './layout.module.css'
@@ -39,7 +38,6 @@ const Layout = ({
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
 	const isBrowser = typeof window !== 'undefined'
-	const { theme } = useContext(ThemeContext)
 
 	return (
 		<>
@@ -80,12 +78,6 @@ const Layout = ({
 					},
 				]}
 			>
-				<html
-					lang="en"
-					style={
-						isBrowser && theme === 'theme-dark' ? 'color-scheme: dark' : null
-					}
-				/>
 				{isBrowser && (
 					<body style={fixedHeightContent ? 'overflow: hidden' : null} />
 				)}

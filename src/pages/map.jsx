@@ -1,8 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import mapboxgl from '!mapbox-gl'
-import { useRef, useEffect, useState, useContext } from 'react'
-import { ThemeContext } from 'gatsby-plugin-theme-switcher'
+import { useRef, useEffect, useState } from 'react'
 import * as pageStyle from './map.module.scss'
 import LinkButton from '../components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -20,7 +19,6 @@ const MapPage = () => {
 	const [lng, setLng] = useState(-74.677043)
 	const [lat, setLat] = useState(40.577636)
 	const [zoom, setZoom] = useState(16)
-	const { theme } = useContext(ThemeContext)
 	const [viewingTent, setViewingTent] = useState('')
 
 	useEffect(() => {
