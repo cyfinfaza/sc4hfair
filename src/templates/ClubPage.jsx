@@ -10,7 +10,7 @@ import { share, canWebShare } from '../logic/webshare'
 
 export default function ClubPage({ data }) {
 	const isBrowser = typeof window !== 'undefined'
-	var thisClub = data.allSitePage.edges[0].node.context
+	var thisClub = data.allSitePage.nodes[0].pageContext
 	// const [linkBack, setLinkBack] = useState('/clubs')
 	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const [slugList, setSlugList] = useState([])
@@ -106,18 +106,8 @@ export default function ClubPage({ data }) {
 export const query = graphql`
 	query($path: String!) {
 		allSitePage(filter: { path: { eq: $path } }) {
-			edges {
-				node {
-					context {
-						name
-						description
-						meeting_where
-						meeting_when
-						grades
-						slug
-						location
-					}
-				}
+			nodes {
+				pageContext
 			}
 		}
 	}
