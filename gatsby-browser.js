@@ -5,6 +5,7 @@
  */
 
 import './src/styles/global.css'
+import { setTheme } from './src/logic/theming'
 
 if (window.addEventListener) {
 	var kkeys = [],
@@ -42,3 +43,7 @@ fetch(`${process.env.GASTBY_PVT_URL || '/api/pvt'}`, {
 		}
 	})
 )
+
+if (localStorage.getItem('theme').startsWith('"')) {
+	setTheme(JSON.parse(localStorage.getItem('theme')))
+}
