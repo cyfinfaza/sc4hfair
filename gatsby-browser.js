@@ -44,6 +44,9 @@ fetch(`${process.env.GASTBY_PVT_URL || '/api/pvt'}`, {
 	})
 )
 
-if (localStorage.getItem('theme').startsWith('"')) {
+if (
+	typeof localStorage.getItem('theme') == 'string' &&
+	localStorage.getItem('theme').startsWith('"')
+) {
 	setTheme(JSON.parse(localStorage.getItem('theme')))
 }
