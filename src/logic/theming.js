@@ -1,3 +1,7 @@
+import { Observable, Subject } from 'rxjs'
+
+export const onThemeChange = new Subject(sub => sub.next(getTheme()))
+
 export function getTheme() {
 	return (
 		localStorage.getItem('theme') ||
@@ -10,7 +14,7 @@ export function getTheme() {
 export function setTheme(newTheme) {
 	if (newTheme && newTheme != getTheme()) {
 		window.localStorage.setItem('theme', newTheme)
-		refreshTheme()
+		onThemeChange.next(refreshTheme())
 	}
 }
 
@@ -25,4 +29,5 @@ export function refreshTheme() {
 			document.body.classList.remove(className)
 	})
 	document.body.classList.add(selectedThemeId)
+	return selectedThemeId
 }

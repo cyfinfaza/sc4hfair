@@ -6,8 +6,13 @@ import * as pageStyle from './map.module.scss'
 import LinkButton from '../components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
+import { getTheme, onThemeChange } from '../logic/theming'
 
 const clubData = require('../../static/clubData.json')
+const mapboxColorThemes = {
+	light: require('../../static/mapbox-color-themes/theme-light.json'),
+	dark: require('../../static/mapbox-color-themes/theme-dark.json'),
+}
 
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
@@ -21,6 +26,14 @@ const MapPage = () => {
 	const [zoom, setZoom] = useState(16)
 	const [viewingTent, setViewingTent] = useState('')
 
+	function changeTheme(theme) {
+		const themeData =
+			mapboxColorThemes[{ 'theme-light': 'light', 'theme-dark': 'dark' }[theme]]
+		themeData.forEach(property => {
+			map.current.setPaintProperty(...property)
+		})
+	}
+
 	useEffect(() => {
 		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
@@ -31,7 +44,16 @@ const MapPage = () => {
 			attributionControl: false,
 		})
 
+		map.current.on('load', _ => {
+			changeTheme(getTheme())
+			onThemeChange.subscribe(next => {
+				changeTheme(next)
+			})
+		})
+
 		window.map = map.current
+		window.changeTheme = changeTheme
+		window.mapboxColorThemes = mapboxColorThemes
 
 		geolocate.current = new mapboxgl.GeolocateControl({
 			positionOptions: {
