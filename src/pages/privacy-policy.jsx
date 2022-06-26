@@ -6,7 +6,7 @@ export default function privaceePolicee() {
 	return (
 		<Layout title="Privacy Policy">
 			<p>
-				Your privacy is important to us. It is Somerset County 4H Fair App's
+				Your privacy is important to us. It is Somerset County 4-H Fair App's
 				policy to respect your privacy regarding any information we may collect
 				from you across our website, <Link to="/">sc4hfair</Link>.
 			</p>
@@ -41,7 +41,7 @@ export default function privaceePolicee() {
 			<p>
 				We don't share any personally identifying information publicly or with
 				third-parties besides{' '}
-				<a href="https://4histops.org/">Somerset County 4H</a>, except when
+				<a href="https://4histops.org/">Somerset County 4-H</a>, except when
 				required to by law. If you use the{' '}
 				<Link to="/interests">club interest manager</Link>, your provided name,
 				email address, phone number, and other relavent information will be

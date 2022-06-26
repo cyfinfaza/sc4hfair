@@ -47,7 +47,7 @@ const IndexPage = ({ data }) => {
 	return (
 		<Layout>
 			<div style={{ textAlign: 'center' }}>
-				<h1>Welcome to the Somerset County 4H Fair.</h1>
+				<h1>Welcome to the Somerset County 4-H Fair.</h1>
 				<div className="horizPanel">
 					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
 					<LinkButton label="Map" icon="map" linksTo="/map" />

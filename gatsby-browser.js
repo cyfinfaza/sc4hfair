@@ -18,7 +18,7 @@ if (window.addEventListener) {
 
 			if (kkeys.toString().indexOf(konami) >= 0) {
 				alert(
-					'Wow, you found this! You probably looked at the code so..... consider joining the 4H Computers Club!'
+					'Wow, you found this! You probably looked at the code so..... consider joining the 4-H Computer Club!'
 				)
 				kkeys = []
 			}

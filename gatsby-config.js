@@ -2,10 +2,10 @@ const os = require('os')
 
 module.exports = {
 	siteMetadata: {
-		title: `Somerset County 4H Fair`,
+		title: `Somerset County 4-H Fair`,
 		shortTitle: `SC 4H Fair`,
-		description: `The Somerset County 4H Fair App`,
-		author: `Somerset County 4H`,
+		description: `The Somerset County 4-H Fair App`,
+		author: `Somerset County 4-H`,
 		buildLocation: os.hostname(),
 	},
 	plugins: [
@@ -21,7 +21,7 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `Somerset County 4H Fair`,
+				name: `Somerset County 4-H Fair`,
 				short_name: `SC 4H Fair`,
 				start_url: `/`,
 				background_color: `#EDEDED`,

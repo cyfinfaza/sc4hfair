@@ -111,7 +111,7 @@ const Header = ({ offsetContent = true }) => {
 							lightFont
 						/>
 						<LinkButton
-							label="About 4H"
+							label="About 4-H"
 							icon={
 								<FourH
 									style={{
