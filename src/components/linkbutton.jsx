@@ -6,6 +6,7 @@ import * as buttonStyle from './button.module.css'
 const LinkButton = ({
 	label,
 	linksTo = null, // use gatsby link
+	href = null,
 	onClick = null, // use js
 	icon, // material icon id
 	iconElement = null, // svg icon
@@ -51,6 +52,12 @@ const LinkButton = ({
 			<Link to={linksTo} {...sharedProps}>
 				{sharedContent}
 			</Link>
+		)
+	} else if (href && !disabled) {
+		return (
+			<a href={href} {...sharedProps}>
+				{sharedContent}
+			</a>
 		)
 	} else {
 		return (

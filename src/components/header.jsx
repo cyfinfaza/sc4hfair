@@ -7,6 +7,7 @@ import ThemePicker from './themepicker'
 import LinkButton from './linkbutton'
 import SponsorSpot from './sponsorSpot'
 import * as buttonStyle from './button.module.css'
+// import { graphql, useStaticQuery } from 'gatsby'
 
 const Header = ({ offsetContent = true }) => {
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -16,6 +17,14 @@ const Header = ({ offsetContent = true }) => {
 	useEffect(() => {
 		window.setMenuOpen = setMenuOpen
 	}, [])
+	// const metadata = useStaticQuery(graphql`
+	// 	query {
+	// 		gitBranch(current: { eq: true }) {
+	// 			commit
+	// 			name
+	// 		}
+	// 	}
+	// `)
 	return (
 		<div
 			className={headerStyle.invisible}
@@ -91,30 +100,16 @@ const Header = ({ offsetContent = true }) => {
 							big
 							opaque={false}
 						/>
-						{/* <LinkButton
-							label="Queuing"
-							icon="query_builder"
-							linksTo="/queuing"
-							big opaque={false}
-						/>
+					</div>
+					<div className={headerStyle.menuBottom}>
+						<ThemePicker navbar />
 						<LinkButton
-							label="Live Cams"
-							icon="video_camera_back"
-							linksTo="/cams"
-							big opaque={false}
-						/> */}
-						{/* <LinkButton
-							label="Join 4H"
-							icon="person_add"
-							linksTo="https://4histops.org/membership"
-							big opaque={false}
+							label="Settings"
+							icon="settings"
+							linksTo="/settings"
+							opaque={false}
+							lightFont
 						/>
-						<LinkButton
-							label="Donate"
-							icon="monetization_on"
-							linksTo="https://4histops.org/donate"
-							big opaque={false}
-						/> */}
 						<LinkButton
 							label="About 4H"
 							icon={
@@ -127,17 +122,7 @@ const Header = ({ offsetContent = true }) => {
 									}}
 								/>
 							}
-							linksTo="https://4histops.org"
-							big
-							opaque={false}
-						/>
-					</div>
-					<div className={headerStyle.menuBottom}>
-						<ThemePicker navbar />
-						<LinkButton
-							label="Settings"
-							icon="settings"
-							linksTo="/settings"
+							href="https://4histops.org"
 							opaque={false}
 							lightFont
 						/>
@@ -145,6 +130,9 @@ const Header = ({ offsetContent = true }) => {
 					<div className={headerStyle.sponsorArea}>
 						<SponsorSpot />
 					</div>
+					{/* <code className={headerStyle.quickBuildInfo}>
+						{metadata.gitBranch.name}/{metadata.gitBranch.commit}
+					</code> */}
 				</div>
 			</div>
 		</div>

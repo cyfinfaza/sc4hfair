@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 
 body {
 	--accent: #009959;
@@ -138,6 +139,10 @@ button,
 input {
 	font-size: 1em;
 	padding: 0.3em;
+}
+
+code {
+	font-family: 'DM Mono', monospace;
 }
 
 .horizPanel {
