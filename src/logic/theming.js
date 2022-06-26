@@ -12,7 +12,7 @@ export function getTheme() {
 }
 
 export function setTheme(newTheme) {
-	if (newTheme && newTheme != getTheme()) {
+	if (newTheme && newTheme !== getTheme()) {
 		window.localStorage.setItem('theme', newTheme)
 		onThemeChange.next(refreshTheme())
 	}
@@ -25,7 +25,7 @@ export function refreshTheme() {
 			? 'theme-light'
 			: 'theme-dark')
 	document.body.classList.forEach(className => {
-		if (className.startsWith('theme-') && className != selectedThemeId)
+		if (className.startsWith('theme-') && className !== selectedThemeId)
 			document.body.classList.remove(className)
 	})
 	document.body.classList.add(selectedThemeId)
