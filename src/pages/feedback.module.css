@@ -1,7 +1,8 @@
 p.edit:empty::before {
 	opacity: 0.5;
 }
-p.edit:focus, p.edit:active {
+p.edit:focus,
+p.edit:active {
 	outline: none;
 	border-bottom-width: 2px;
 }
@@ -11,5 +12,5 @@ p.edit {
 	border-bottom-width: 0px;
 	border-bottom-color: var(--accent);
 	border-bottom-style: solid;
-	/* transition: 120ms; */
+	transition: 60ms;
 }

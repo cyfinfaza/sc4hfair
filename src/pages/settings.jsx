@@ -53,6 +53,8 @@ export default function SettingsPage({ data }) {
 	const im = useRef()
 	const [form, setForm] = useState({}) // current form user input
 	const [cloudForm, setCloudForm] = useState({}) // supabase form data
+	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] =
+		useState(false)
 
 	useEffect(function () {
 		function setFormSession(s) {
@@ -142,24 +144,28 @@ export default function SettingsPage({ data }) {
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4-H Computer Club</a>.
 			<p>
-				<LinkButton label="Send feedback" linksTo="/feedback" icon="message" />
-			</p>
-			<p>
-				<Link to="/privacy-policy">Privacy Policy</Link>
+				<LinkButton label="Send feedback" linksTo="/feedback" icon="message" />{' '}
+				<LinkButton
+					label="Privacy Policy"
+					linksTo="/privacy-policy"
+					icon="policy"
+				/>
 			</p>
 			<div style={{ opacity: 0.5 }}>
-				<h2>Build info</h2>
-				Commit: <code>{data.gitBranch.commit}</code>
-				<br />
-				Branch: <code>{data.gitBranch.name}</code>
-				<br />
-				Built at: <code>{data.siteBuildMetadata.buildTime}</code>
-				<br />
-				Build location:{' '}
-				<code>
-					{process.env.BUILD_LOCATION_NAME ||
-						data.site.siteMetadata.buildLocation}
+				<code onClick={_ => setShowingAdditionalBuildInfo(true)}>
+					{data.gitBranch.name}/{data.gitBranch.commit}
 				</code>
+				{showingAdditionalBuildInfo && (
+					<>
+						<br />
+						<code>{data.siteBuildMetadata.buildTime}</code>
+						<br />
+						<code>
+							{process.env.BUILD_LOCATION_NAME ||
+								data.site.siteMetadata.buildLocation}
+						</code>
+					</>
+				)}
 			</div>
 			{/* <div className="horizPanel" style={{ marginTop: '16px' }}>
 				<ThemePicker />

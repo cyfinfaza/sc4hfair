@@ -5,6 +5,7 @@ import { Link } from 'gatsby'
 export default function privaceePolicee() {
 	return (
 		<Layout title="Privacy Policy">
+			<h1>Privacy Policy</h1>
 			<p>
 				Your privacy is important to us. It is Somerset County 4-H Fair App's
 				policy to respect your privacy regarding any information we may collect
@@ -30,8 +31,7 @@ export default function privaceePolicee() {
 				the device you viewed the page on, and how many pages you have viewed,
 				as well as your progression from page to page. We identify who you are
 				through an anonymous tracking ID (generated the first time you view our
-				site), and we do not collect your IP address or track you across other
-				websites.
+				site), and we do not track you across other websites.
 			</p>
 			<p>
 				We'll protect any data we store within commercially acceptable means to
@@ -44,7 +44,7 @@ export default function privaceePolicee() {
 				<a href="https://4histops.org/">Somerset County 4-H</a>, except when
 				required to by law. If you use the{' '}
 				<Link to="/interests">club interest manager</Link>, your provided name,
-				email address, phone number, and other relavent information will be
+				email address, phone number, and other relavent information may be
 				shared with leaders of the clubs you marked as interested in.
 			</p>
 			<p>
@@ -54,17 +54,12 @@ export default function privaceePolicee() {
 				respective privacy policies.
 			</p>
 			<p>
-				You are free to refuse our request for your personal information, with
-				the understanding that we may be unable to provide you with some of your
-				desired services.
-			</p>
-			<p>
 				Your continued use of our website will be regarded as acceptance of our
 				practices around privacy and personal information. If you have any
 				questions about how we handle user data and personal information, feel
 				free to <Link to="/feedback">contact us</Link>.
 			</p>
-			<p>This policy was last updated and effective as of April 16, 2022.</p>
+			<p>This policy was last updated and effective as of June 27, 2022.</p>
 		</Layout>
 	)
 }
