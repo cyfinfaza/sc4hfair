@@ -153,7 +153,7 @@ export default function SettingsPage({ data }) {
 			</p>
 			<div style={{ opacity: 0.5 }}>
 				<code onClick={_ => setShowingAdditionalBuildInfo(true)}>
-					{process.env.VERCEL_GIT_COMMIT_REF || data.gitBranch.name}/
+					{process.env.GATSBY_VERCEL_GIT_COMMIT_REF || data.gitBranch.name}/
 					{data.gitBranch.commit}
 				</code>
 				{showingAdditionalBuildInfo && (
