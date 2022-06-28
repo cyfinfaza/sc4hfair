@@ -17,11 +17,12 @@ const LinkButton = ({
 	acrylic = false, // overrides opaque
 	lightFont = false, // light font weight
 	disabled = false, // prevent click
+	alert = false,
 }) => {
 	const sharedProps = {
 		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
-			big ? null : linkButtonStyle.containerInline
-		}`,
+			alert && buttonStyle.alert
+		} ${big ? null : linkButtonStyle.containerInline}`,
 		style: {
 			animationDelay: index * 0.1 + 's',
 			background: acrylic

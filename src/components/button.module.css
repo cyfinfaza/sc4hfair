@@ -3,17 +3,27 @@
 	user-select: none;
 	box-shadow: var(--button-shadow);
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	transition: filter 120ms ease, transform 120ms ease, background-color var(--theme-transition), box-shadow var(--theme-transition);
+	transition: filter 120ms ease, transform 120ms ease, background-color var(--theme-transition), box-shadow var(--theme-transition), border-width 120ms;
+	border: none;
 	/* margin: 5px 0; */
 }
+
 .button:not([disabled]):active {
 	filter: contrast(0.6);
 	transform: translate(0, 1px);
 }
+
 .button[disabled] {
-	filter: brightness(0.7);
+	filter: contrast(0.7);
 	cursor: not-allowed;
+	box-shadow: none;
 }
+
+.button.alert {
+	border-left: 8px solid #FD0;
+	animation: flashBorder 1s alternate infinite;
+}
+
 .fancyButtonContainer {
 	display: inline-flex;
 	align-items: center;
@@ -22,7 +32,14 @@
 	border-radius: 8px;
 	background-color: var(--light);
 }
-.fancyButtonContainer > i {
+
+.fancyButtonContainer>i {
 	margin-right: 4px;
 	animation: spinney 650ms ease;
+}
+
+@keyframes flashBorder {
+	from {
+		border-color: transparent;
+	}
 }

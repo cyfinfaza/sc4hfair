@@ -132,6 +132,7 @@ export default function SettingsPage({ data }) {
 							setCloudForm(form)
 						}}
 						disabled={isInfoFormDisabled(form, cloudForm)}
+						alert={!isInfoFormDisabled(form, cloudForm)}
 					/>
 				</>
 			) : (

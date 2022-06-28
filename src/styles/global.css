@@ -8,6 +8,7 @@ body {
 	--bg: #ededed;
 	--status-bar: #009959ff;
 	--navbar: #009959ff;
+	--selection: #00995988;
 	--navbar: linear-gradient(var(--status-bar) 0%, #4eb489);
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
@@ -76,7 +77,7 @@ body {
 }
 
 ::selection {
-	background-color: var(--status-bar);
+	background-color: var(--selection);
 }
 
 body,
