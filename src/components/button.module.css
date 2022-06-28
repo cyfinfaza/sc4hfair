@@ -14,7 +14,7 @@
 }
 
 .button[disabled] {
-	filter: contrast(0.7);
+	filter: contrast(0.7) brightness(0.7);
 	cursor: not-allowed;
 	box-shadow: none;
 }
