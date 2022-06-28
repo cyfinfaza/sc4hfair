@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 
 body {
@@ -17,10 +17,8 @@ body {
 	--light-transparent: #fdfdfd00;
 	--button-shadow: 0 0 8px -3px #0008;
 	--image-dimmer-opacity: 0.6;
-	--image-dimmer: linear-gradient(
-		rgba(255, 255, 255, var(--image-dimmer-opacity)),
-		rgba(255, 255, 255, var(--image-dimmer-opacity))
-	);
+	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)),
+			rgba(255, 255, 255, var(--image-dimmer-opacity)));
 	--nav-height: 64px;
 	--backdrop-blur: blur(12px);
 	--theme-transition: 0.5s ease;
@@ -38,10 +36,8 @@ body.theme-dark {
 	/* --navbar-text: #fafafa; */
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px -2px #000;
-	--image-dimmer: linear-gradient(
-		rgba(0, 0, 0, var(--image-dimmer-opacity)),
-		rgba(0, 0, 0, var(--image-dimmer-opacity))
-	);
+	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)),
+			rgba(0, 0, 0, var(--image-dimmer-opacity)));
 }
 
 /* * {
@@ -50,11 +46,9 @@ body.theme-dark {
 
 @supports (backdrop-filter: var(--backdrop-blur)) {
 	body {
-		--navbar: linear-gradient(
-			var(--status-bar) 0%,
-			#009959aa 64px,
-			#00995988 128px
-		) !important;
+		--navbar: linear-gradient(var(--status-bar) 0%,
+				#009959aa 64px,
+				#00995988 128px) !important;
 		--light-blur: #fdfdfd33;
 	}
 
@@ -155,10 +149,10 @@ code {
 	justify-content: center;
 }
 
-.horizPanel > * {
+.horizPanel>* {
 	margin-bottom: 8px !important;
 }
 
-.horizPanel > * + * {
+.horizPanel>*+* {
 	margin-left: 8px !important;
 }

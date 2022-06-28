@@ -5,6 +5,7 @@
  */
 
 import './src/styles/global.css'
+import './src/styles/material-icons.css'
 import { setTheme } from './src/logic/theming'
 
 if (window.addEventListener) {
