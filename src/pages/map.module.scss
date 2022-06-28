@@ -2,6 +2,12 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.mapContainer.mapLoaded {
+	opacity: 1;
 }
 
 .controlsContainer {
@@ -13,9 +19,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
+	top: 0;
 	/* pointer-events: none; */
 
-	> * {
+	>* {
 		margin-bottom: 8px;
 		z-index: 10;
 	}
@@ -38,7 +45,7 @@
 		transform: translateY(calc(100% + 16px));
 	}
 
-	> * {
+	>* {
 		background-color: var(--light-blur);
 		backdrop-filter: var(--backdrop-blur);
 		// background: var(--light);
@@ -53,16 +60,30 @@
 		max-height: 100%;
 		box-sizing: border-box;
 		overflow: auto;
-		> * {
+
+		>* {
 			margin: 0;
 		}
 	}
 }
 
+.mapLoadingMessage {
+	position: absolute;
+	// font-family: 'DM Mono', monospace;
+	font-weight: bold;
+	background: linear-gradient(-60deg, #8888 0%, 25%, var(--text) 26%, #8888);
+	background-size: 200%;
+	background-clip: text;
+	color: transparent;
+	animation: loadingBackground 1.2s infinite linear;
+	margin-top: var(--nav-height);
+}
+
 @media screen and (max-width: 700px) {
 	.tentInfo {
 		padding: 0px;
-		> * {
+
+		>* {
 			max-width: 100%;
 			border-radius: 0;
 		}
@@ -78,7 +99,18 @@
 	0% {
 		filter: hue-rotate(0deg);
 	}
+
 	100% {
 		filter: hue-rotate(360deg);
+	}
+}
+
+@keyframes loadingBackground {
+	0% {
+		background-position: 200%;
+	}
+
+	100% {
+		background-position: 0%;
 	}
 }

@@ -25,6 +25,7 @@ const MapPage = () => {
 	const [lat, setLat] = useState(40.577636)
 	const [zoom, setZoom] = useState(16)
 	const [viewingTent, setViewingTent] = useState('')
+	const [mapLoaded, setMapLoaded] = useState(false)
 
 	function changeTheme(theme) {
 		const themeData =
@@ -46,6 +47,9 @@ const MapPage = () => {
 
 		map.current.on('load', _ => {
 			changeTheme(getTheme())
+			setInterval(() => {
+				setMapLoaded(true)
+			}, 500);
 			onThemeChange.subscribe(next => {
 				changeTheme(next)
 			})
@@ -131,8 +135,11 @@ const MapPage = () => {
 			noHeaderPadding
 			fixedHeightContent
 			fullWidth
-			style={{ overflow: 'hidden' }}
+			style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 		>
+			<p className={pageStyle.mapLoadingMessage}>
+				loading
+			</p>
 			<div className={pageStyle.controlsContainer}>
 				<LinkButton
 					label="Center on fair"
@@ -160,6 +167,8 @@ const MapPage = () => {
 			<div
 				className={`${pageStyle.mapContainer} ${
 					clickCounter >= 50 && pageStyle.easterEgg
+				} ${
+					mapLoaded && pageStyle.mapLoaded
 				}`}
 				ref={mapContainer}
 			/>
