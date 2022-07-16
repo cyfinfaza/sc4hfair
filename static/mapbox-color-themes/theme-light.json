@@ -1,1 +1,1021 @@
-[["land", "background-color", "rgb(232, 234, 234)"], ["landcover", "fill-color", "rgb(225, 228, 228)"], ["landcover", "fill-opacity", ["interpolate", ["exponential", 1.5], ["zoom"], 2, 0.3, 7, 0]], ["landcover", "fill-antialias", false], ["national-park", "fill-color", "rgb(220, 223, 223)"], ["national-park", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 5, 0, 6, 0.5, 10, 0.5]], ["landuse", "fill-color", "rgb(220, 223, 223)"], ["landuse", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 5, 0, 6, ["match", ["get", "class"], "glacier", 0.5, 1]]], ["waterway-shadow", "line-color", "rgb(183, 189, 189)"], ["waterway-shadow", "line-width", ["interpolate", ["exponential", 1.3], ["zoom"], 9, ["match", ["get", "class"], ["canal", "river"], 0.1, 0], 20, ["match", ["get", "class"], ["canal", "river"], 8, 3]]], ["waterway-shadow", "line-translate", ["interpolate", ["exponential", 1.2], ["zoom"], 7, ["literal", [0, 0]], 16, ["literal", [-1, -1]]]], ["waterway-shadow", "line-translate-anchor", "viewport"], ["waterway-shadow", "line-opacity", ["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]], ["water-shadow", "fill-color", "rgb(183, 189, 189)"], ["water-shadow", "fill-translate", ["interpolate", ["exponential", 1.2], ["zoom"], 7, ["literal", [0, 0]], 16, ["literal", [-1, -1]]]], ["water-shadow", "fill-translate-anchor", "viewport"], ["waterway", "line-color", "rgb(205, 209, 209)"], ["waterway", "line-width", ["interpolate", ["exponential", 1.3], ["zoom"], 9, ["match", ["get", "class"], ["canal", "river"], 0.1, 0], 20, ["match", ["get", "class"], ["canal", "river"], 8, 3]]], ["waterway", "line-opacity", ["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]], ["water", "fill-color", "rgb(205, 209, 209)"], ["land-structure-polygon", "fill-color", "rgb(232, 234, 234)"], ["land-structure-line", "line-width", ["interpolate", ["exponential", 1.99], ["zoom"], 14, 0.75, 20, 40]], ["land-structure-line", "line-color", "rgb(232, 234, 234)"], ["aeroway-polygon", "fill-color", "rgb(254, 254, 254)"], ["aeroway-polygon", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 11, 0, 11.5, 1]], ["aeroway-line", "line-color", "rgb(254, 254, 254)"], ["aeroway-line", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 9, ["match", ["get", "type"], "runway", 1, 0.5], 18, ["match", ["get", "type"], "runway", 80, 20]]], ["building", "fill-color", ["interpolate", ["linear"], ["zoom"], 15, "rgb(223, 226, 226)", 16, "rgb(224, 224, 224)"]], ["building", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 15, 0, 16, 1]], ["building", "fill-outline-color", "rgb(204, 204, 204)"], ["tunnel-street-minor-low", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["tunnel-street-minor-low", "line-color", "rgb(215, 218, 218)"], ["tunnel-street-minor-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["tunnel-street-minor-case", "line-color", "rgb(255, 255, 255)"], ["tunnel-street-minor-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["tunnel-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["tunnel-street-minor-case", "line-dasharray", [3, 3]], ["tunnel-primary-secondary-tertiary-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, ["match", ["get", "class"], "primary", 1, 0.75], 18, 2]], ["tunnel-primary-secondary-tertiary-case", "line-color", "rgb(255, 255, 255)"], ["tunnel-primary-secondary-tertiary-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, ["match", ["get", "class"], "primary", 0.75, 0.1], 18, ["match", ["get", "class"], "primary", 32, 26]]], ["tunnel-primary-secondary-tertiary-case", "line-dasharray", [3, 3]], ["tunnel-major-link-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["tunnel-major-link-case", "line-color", "rgb(255, 255, 255)"], ["tunnel-major-link-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["tunnel-major-link-case", "line-dasharray", [3, 3]], ["tunnel-motorway-trunk-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]], ["tunnel-motorway-trunk-case", "line-color", "rgb(255, 255, 255)"], ["tunnel-motorway-trunk-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["tunnel-motorway-trunk-case", "line-dasharray", [3, 3]], ["tunnel-construction", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]], ["tunnel-construction", "line-color", "rgb(215, 218, 218)"], ["tunnel-construction", "line-dasharray", ["step", ["zoom"], ["literal", [0.4, 0.8]], 15, ["literal", [0.3, 0.6]], 16, ["literal", [0.2, 0.3]], 17, ["literal", [0.2, 0.25]], 18, ["literal", [0.15, 0.15]]]], ["tunnel-major-link", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["tunnel-major-link", "line-color", "rgb(215, 218, 218)"], ["tunnel-street-minor", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["tunnel-street-minor", "line-color", "rgb(215, 218, 218)"], ["tunnel-street-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["tunnel-primary-secondary-tertiary", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, ["match", ["get", "class"], "primary", 0.75, 0.1], 18, ["match", ["get", "class"], "primary", 32, 26]]], ["tunnel-primary-secondary-tertiary", "line-color", "rgb(215, 218, 218)"], ["tunnel-motorway-trunk", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["tunnel-motorway-trunk", "line-color", "rgb(215, 218, 218)"], ["turning-feature-outline", "circle-radius", ["interpolate", ["linear"], ["zoom"], 15, 4.5, 16, 8, 18, 20]], ["turning-feature-outline", "circle-color", "rgb(255, 255, 255)"], ["turning-feature-outline", "circle-stroke-width", ["interpolate", ["linear"], ["zoom"], 15, 0.8, 16, 1.2, 18, 2]], ["turning-feature-outline", "circle-stroke-color", "rgb(224, 224, 224)"], ["turning-feature-outline", "circle-pitch-alignment", "map"], ["road-minor-low", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, ["match", ["get", "class"], "track", 1, 0.5], 18, 12]], ["road-minor-low", "line-color", "rgb(255, 255, 255)"], ["road-minor-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["road-minor-case", "line-color", "rgb(224, 224, 224)"], ["road-minor-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, ["match", ["get", "class"], "track", 1, 0.5], 18, 12]], ["road-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["road-street-low", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["road-street-low", "line-color", "rgb(255, 255, 255)"], ["road-street-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["road-street-case", "line-color", "rgb(224, 224, 224)"], ["road-street-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["road-street-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["road-secondary-tertiary-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 0.75, 18, 2]], ["road-secondary-tertiary-case", "line-color", "rgb(224, 224, 224)"], ["road-secondary-tertiary-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.1, 18, 26]], ["road-primary-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]], ["road-primary-case", "line-color", "rgb(224, 224, 224)"], ["road-primary-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["road-major-link-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["road-major-link-case", "line-color", "rgb(224, 224, 224)"], ["road-major-link-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["road-major-link-case", "line-opacity", ["step", ["zoom"], 0, 11, 1]], ["road-motorway-trunk-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]], ["road-motorway-trunk-case", "line-color", "rgb(224, 224, 224)"], ["road-motorway-trunk-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["road-motorway-trunk-case", "line-opacity", ["step", ["zoom"], ["match", ["get", "class"], "motorway", 1, 0], 6, 1]], ["road-construction", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]], ["road-construction", "line-color", "rgb(255, 255, 255)"], ["road-construction", "line-dasharray", ["step", ["zoom"], ["literal", [0.4, 0.8]], 15, ["literal", [0.3, 0.6]], 16, ["literal", [0.2, 0.3]], 17, ["literal", [0.2, 0.25]], 18, ["literal", [0.15, 0.15]]]], ["road-major-link", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["road-major-link", "line-color", "rgb(255, 255, 255)"], ["road-minor", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, ["match", ["get", "class"], "track", 1, 0.5], 18, 12]], ["road-minor", "line-color", "rgb(255, 255, 255)"], ["road-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["road-street", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["road-street", "line-color", "rgb(255, 255, 255)"], ["road-street", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["road-secondary-tertiary", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.1, 18, 26]], ["road-secondary-tertiary", "line-color", "rgb(255, 255, 255)"], ["road-primary", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["road-primary", "line-color", "rgb(255, 255, 255)"], ["road-motorway-trunk", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["road-motorway-trunk", "line-color", "rgb(255, 255, 255)"], ["road-rail", "line-color", ["interpolate", ["linear"], ["zoom"], 13, "rgb(224, 224, 224)", 17, "rgb(209, 209, 209)"]], ["road-rail", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]], ["turning-feature", "circle-radius", ["interpolate", ["linear"], ["zoom"], 15, 4.5, 16, 8, 18, 20]], ["turning-feature", "circle-color", "rgb(255, 255, 255)"], ["turning-feature", "circle-pitch-alignment", "map"], ["bridge-street-minor-low", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["bridge-street-minor-low", "line-color", "rgb(255, 255, 255)"], ["bridge-street-minor-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["bridge-street-minor-case", "line-color", "rgb(224, 224, 224)"], ["bridge-street-minor-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["bridge-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["bridge-primary-secondary-tertiary-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, ["match", ["get", "class"], "primary", 1, 0.75], 18, 2]], ["bridge-primary-secondary-tertiary-case", "line-color", "rgb(224, 224, 224)"], ["bridge-primary-secondary-tertiary-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, ["match", ["get", "class"], "primary", 0.75, 0.1], 18, ["match", ["get", "class"], "primary", 32, 26]]], ["bridge-primary-secondary-tertiary-case", "line-opacity", ["step", ["zoom"], 0, 10, 1]], ["bridge-major-link-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["bridge-major-link-case", "line-color", "rgb(224, 224, 224)"], ["bridge-major-link-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["bridge-motorway-trunk-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]], ["bridge-motorway-trunk-case", "line-color", "rgb(224, 224, 224)"], ["bridge-motorway-trunk-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["bridge-construction", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]], ["bridge-construction", "line-color", "rgb(255, 255, 255)"], ["bridge-construction", "line-dasharray", ["step", ["zoom"], ["literal", [0.4, 0.8]], 15, ["literal", [0.3, 0.6]], 16, ["literal", [0.2, 0.3]], 17, ["literal", [0.2, 0.25]], 18, ["literal", [0.15, 0.15]]]], ["bridge-major-link", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["bridge-major-link", "line-color", "rgb(255, 255, 255)"], ["bridge-street-minor", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5], 18, ["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]]], ["bridge-street-minor", "line-color", "rgb(255, 255, 255)"], ["bridge-street-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]], ["bridge-primary-secondary-tertiary", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, ["match", ["get", "class"], "primary", 0.75, 0.1], 18, ["match", ["get", "class"], "primary", 32, 26]]], ["bridge-primary-secondary-tertiary", "line-color", "rgb(255, 255, 255)"], ["bridge-motorway-trunk", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["bridge-motorway-trunk", "line-color", "rgb(255, 255, 255)"], ["bridge-major-link-2-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]], ["bridge-major-link-2-case", "line-color", "rgb(224, 224, 224)"], ["bridge-major-link-2-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["bridge-motorway-trunk-2-case", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]], ["bridge-motorway-trunk-2-case", "line-color", "rgb(224, 224, 224)"], ["bridge-motorway-trunk-2-case", "line-gap-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["bridge-major-link-2", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]], ["bridge-major-link-2", "line-color", "rgb(255, 255, 255)"], ["bridge-motorway-trunk-2", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]], ["bridge-motorway-trunk-2", "line-color", "rgb(255, 255, 255)"], ["bridge-rail", "line-color", "rgb(209, 209, 209)"], ["bridge-rail", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]], ["admin-1-boundary-bg", "line-color", ["interpolate", ["linear"], ["zoom"], 8, "rgb(209, 209, 209)", 16, "rgb(209, 209, 209)"]], ["admin-1-boundary-bg", "line-width", ["interpolate", ["linear"], ["zoom"], 7, 3.75, 12, 5.5]], ["admin-1-boundary-bg", "line-opacity", ["interpolate", ["linear"], ["zoom"], 7, 0, 8, 0.75]], ["admin-1-boundary-bg", "line-dasharray", [1, 0]], ["admin-1-boundary-bg", "line-blur", ["interpolate", ["linear"], ["zoom"], 3, 0, 8, 3]], ["admin-0-boundary-bg", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 3.5, 10, 8]], ["admin-0-boundary-bg", "line-color", "rgb(209, 209, 209)"], ["admin-0-boundary-bg", "line-opacity", ["interpolate", ["linear"], ["zoom"], 3, 0, 4, 0.5]], ["admin-0-boundary-bg", "line-blur", ["interpolate", ["linear"], ["zoom"], 3, 0, 10, 2]], ["admin-1-boundary", "line-dasharray", ["step", ["zoom"], ["literal", [2, 0]], 7, ["literal", [2, 2, 6, 2]]]], ["admin-1-boundary", "line-width", ["interpolate", ["linear"], ["zoom"], 7, 0.75, 12, 1.5]], ["admin-1-boundary", "line-opacity", ["interpolate", ["linear"], ["zoom"], 2, 0, 3, 1]], ["admin-1-boundary", "line-color", ["interpolate", ["linear"], ["zoom"], 3, "rgb(206, 206, 206)", 7, "rgb(163, 171, 171)"]], ["admin-0-boundary", "line-color", "rgb(166, 166, 166)"], ["admin-0-boundary", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]], ["admin-0-boundary", "line-dasharray", [10, 0]], ["admin-0-boundary-disputed", "line-color", "rgb(166, 166, 166)"], ["admin-0-boundary-disputed", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]], ["admin-0-boundary-disputed", "line-dasharray", ["step", ["zoom"], ["literal", [3.25, 3.25]], 6, ["literal", [2.5, 2.5]], 7, ["literal", [2, 2.25]], 8, ["literal", [1.75, 2]]]], ["road-label", "text-color", "rgb(109, 119, 119)"], ["road-label", "text-halo-color", "rgb(255, 255, 255)"], ["road-label", "text-halo-width", 1], ["road-label", "text-halo-blur", 1], ["road-intersection", "text-color", "rgb(130, 140, 140)"], ["waterway-label", "text-color", "rgb(130, 140, 140)"], ["natural-line-label", "text-halo-width", 0.5], ["natural-line-label", "text-halo-color", "rgb(255, 255, 255)"], ["natural-line-label", "text-halo-blur", 0.5], ["natural-line-label", "text-color", "rgb(109, 119, 119)"], ["natural-point-label", "icon-opacity", ["step", ["zoom"], ["step", ["get", "sizerank"], 0, 5, 1], 17, ["step", ["get", "sizerank"], 0, 13, 1]]], ["natural-point-label", "text-halo-color", "rgb(255, 255, 255)"], ["natural-point-label", "text-halo-width", 0.5], ["natural-point-label", "text-halo-blur", 0.5], ["natural-point-label", "text-color", "rgb(109, 119, 119)"], ["water-line-label", "text-color", "rgb(130, 140, 140)"], ["water-point-label", "text-color", "rgb(130, 140, 140)"], ["poi-label", "text-halo-color", "rgb(255, 255, 255)"], ["poi-label", "text-halo-width", 0.5], ["poi-label", "text-halo-blur", 0.5], ["poi-label", "text-color", ["step", ["zoom"], ["step", ["get", "sizerank"], "rgb(163, 171, 171)", 5, "rgb(141, 151, 151)"], 17, ["step", ["get", "sizerank"], "rgb(163, 171, 171)", 13, "rgb(141, 151, 151)"]]], ["airport-label", "text-color", "rgb(109, 119, 119)"], ["airport-label", "text-halo-color", "rgb(255, 255, 255)"], ["airport-label", "text-halo-width", 1], ["settlement-subdivision-label", "text-halo-color", "rgb(255, 255, 255)"], ["settlement-subdivision-label", "text-halo-width", 1], ["settlement-subdivision-label", "text-color", "rgb(159, 167, 167)"], ["settlement-subdivision-label", "text-halo-blur", 0.5], ["settlement-minor-label", "text-color", ["step", ["get", "symbolrank"], "rgb(109, 119, 119)", 11, "rgb(141, 151, 151)", 16, "rgb(163, 171, 171)"]], ["settlement-minor-label", "text-halo-color", "rgb(255, 255, 255)"], ["settlement-minor-label", "text-halo-width", 1], ["settlement-minor-label", "text-halo-blur", 1], ["settlement-major-label", "text-color", ["step", ["get", "symbolrank"], "rgb(109, 119, 119)", 11, "rgb(141, 151, 151)", 16, "rgb(163, 171, 171)"]], ["settlement-major-label", "text-halo-color", "rgb(255, 255, 255)"], ["settlement-major-label", "text-halo-width", 1], ["settlement-major-label", "text-halo-blur", 1], ["state-label", "text-color", "rgb(163, 171, 171)"], ["state-label", "text-halo-color", "rgb(255, 255, 255)"], ["state-label", "text-halo-width", 1], ["country-label", "icon-opacity", ["step", ["zoom"], ["case", ["has", "text_anchor"], 1, 0], 7, 0]], ["country-label", "text-color", "rgb(109, 119, 119)"], ["country-label", "text-halo-color", "rgb(255, 255, 255)"], ["country-label", "text-halo-width", 1.25], ["cyfinfaza-dvdsoopg", "raster-opacity", 0.5], ["fair-tileset-test-1", "fill-extrusion-opacity", 0.75], ["fair-tileset-test-1", "fill-extrusion-height", 5], ["fair-tileset-test-1", "fill-extrusion-color", ["case", ["boolean", ["feature-state", "click"], true], "hsl(155, 100%, 30%)", "hsl(300, 100%, 30%)"]], ["fair-tileset-test-1 labels", "text-color", "hsl(0, 0%, 100%)"], ["fair-tileset-test-1 labels", "text-halo-width", 1], ["fair-tileset-test-1 labels", "text-halo-color", "#009959"], ["fair-tileset-test-1 labels", "text-halo-blur", 1]]
+[
+	["land", "background-color", "rgb(232, 234, 234)"],
+	["landcover", "fill-color", "rgb(225, 228, 228)"],
+	[
+		"landcover",
+		"fill-opacity",
+		["interpolate", ["exponential", 1.5], ["zoom"], 2, 0.3, 7, 0]
+	],
+	["landcover", "fill-antialias", false],
+	["national-park", "fill-color", "rgb(220, 223, 223)"],
+	[
+		"national-park",
+		"fill-opacity",
+		["interpolate", ["linear"], ["zoom"], 5, 0, 6, 0.5, 10, 0.5]
+	],
+	["landuse", "fill-color", "rgb(220, 223, 223)"],
+	[
+		"landuse",
+		"fill-opacity",
+		[
+			"interpolate",
+			["linear"],
+			["zoom"],
+			5,
+			0,
+			6,
+			["match", ["get", "class"], "glacier", 0.5, 1]
+		]
+	],
+	["waterway-shadow", "line-color", "rgb(183, 189, 189)"],
+	[
+		"waterway-shadow",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.3],
+			["zoom"],
+			9,
+			["match", ["get", "class"], ["canal", "river"], 0.1, 0],
+			20,
+			["match", ["get", "class"], ["canal", "river"], 8, 3]
+		]
+	],
+	[
+		"waterway-shadow",
+		"line-translate",
+		[
+			"interpolate",
+			["exponential", 1.2],
+			["zoom"],
+			7,
+			["literal", [0, 0]],
+			16,
+			["literal", [-1, -1]]
+		]
+	],
+	["waterway-shadow", "line-translate-anchor", "viewport"],
+	[
+		"waterway-shadow",
+		"line-opacity",
+		["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]
+	],
+	["water-shadow", "fill-color", "rgb(183, 189, 189)"],
+	[
+		"water-shadow",
+		"fill-translate",
+		[
+			"interpolate",
+			["exponential", 1.2],
+			["zoom"],
+			7,
+			["literal", [0, 0]],
+			16,
+			["literal", [-1, -1]]
+		]
+	],
+	["water-shadow", "fill-translate-anchor", "viewport"],
+	["waterway", "line-color", "rgb(205, 209, 209)"],
+	[
+		"waterway",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.3],
+			["zoom"],
+			9,
+			["match", ["get", "class"], ["canal", "river"], 0.1, 0],
+			20,
+			["match", ["get", "class"], ["canal", "river"], 8, 3]
+		]
+	],
+	[
+		"waterway",
+		"line-opacity",
+		["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]
+	],
+	["water", "fill-color", "rgb(205, 209, 209)"],
+	["land-structure-polygon", "fill-color", "rgb(232, 234, 234)"],
+	[
+		"land-structure-line",
+		"line-width",
+		["interpolate", ["exponential", 1.99], ["zoom"], 14, 0.75, 20, 40]
+	],
+	["land-structure-line", "line-color", "rgb(232, 234, 234)"],
+	["aeroway-polygon", "fill-color", "rgb(254, 254, 254)"],
+	[
+		"aeroway-polygon",
+		"fill-opacity",
+		["interpolate", ["linear"], ["zoom"], 11, 0, 11.5, 1]
+	],
+	["aeroway-line", "line-color", "rgb(254, 254, 254)"],
+	[
+		"aeroway-line",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			9,
+			["match", ["get", "type"], "runway", 1, 0.5],
+			18,
+			["match", ["get", "type"], "runway", 80, 20]
+		]
+	],
+	[
+		"building",
+		"fill-color",
+		[
+			"interpolate",
+			["linear"],
+			["zoom"],
+			15,
+			"rgb(223, 226, 226)",
+			16,
+			"rgb(224, 224, 224)"
+		]
+	],
+	[
+		"building",
+		"fill-opacity",
+		["interpolate", ["linear"], ["zoom"], 15, 0, 16, 1]
+	],
+	["building", "fill-outline-color", "rgb(204, 204, 204)"],
+	[
+		"tunnel-street-minor-low",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["tunnel-street-minor-low", "line-color", "rgb(215, 218, 218)"],
+	[
+		"tunnel-street-minor-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["tunnel-street-minor-case", "line-color", "rgb(255, 255, 255)"],
+	[
+		"tunnel-street-minor-case",
+		"line-gap-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["tunnel-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	["tunnel-street-minor-case", "line-dasharray", [3, 3]],
+	[
+		"tunnel-primary-secondary-tertiary-case",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			10,
+			["match", ["get", "class"], "primary", 1, 0.75],
+			18,
+			2
+		]
+	],
+	[
+		"tunnel-primary-secondary-tertiary-case",
+		"line-color",
+		"rgb(255, 255, 255)"
+	],
+	[
+		"tunnel-primary-secondary-tertiary-case",
+		"line-gap-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			5,
+			["match", ["get", "class"], "primary", 0.75, 0.1],
+			18,
+			["match", ["get", "class"], "primary", 32, 26]
+		]
+	],
+	["tunnel-primary-secondary-tertiary-case", "line-dasharray", [3, 3]],
+	[
+		"tunnel-major-link-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["tunnel-major-link-case", "line-color", "rgb(255, 255, 255)"],
+	[
+		"tunnel-major-link-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["tunnel-major-link-case", "line-dasharray", [3, 3]],
+	[
+		"tunnel-motorway-trunk-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]
+	],
+	["tunnel-motorway-trunk-case", "line-color", "rgb(255, 255, 255)"],
+	[
+		"tunnel-motorway-trunk-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["tunnel-motorway-trunk-case", "line-dasharray", [3, 3]],
+	[
+		"tunnel-construction",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]
+	],
+	["tunnel-construction", "line-color", "rgb(215, 218, 218)"],
+	[
+		"tunnel-construction",
+		"line-dasharray",
+		[
+			"step",
+			["zoom"],
+			["literal", [0.4, 0.8]],
+			15,
+			["literal", [0.3, 0.6]],
+			16,
+			["literal", [0.2, 0.3]],
+			17,
+			["literal", [0.2, 0.25]],
+			18,
+			["literal", [0.15, 0.15]]
+		]
+	],
+	[
+		"tunnel-major-link",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["tunnel-major-link", "line-color", "rgb(215, 218, 218)"],
+	[
+		"tunnel-street-minor",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["tunnel-street-minor", "line-color", "rgb(215, 218, 218)"],
+	["tunnel-street-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"tunnel-primary-secondary-tertiary",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			5,
+			["match", ["get", "class"], "primary", 0.75, 0.1],
+			18,
+			["match", ["get", "class"], "primary", 32, 26]
+		]
+	],
+	["tunnel-primary-secondary-tertiary", "line-color", "rgb(215, 218, 218)"],
+	[
+		"tunnel-motorway-trunk",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["tunnel-motorway-trunk", "line-color", "rgb(215, 218, 218)"],
+	[
+		"turning-feature-outline",
+		"circle-radius",
+		["interpolate", ["linear"], ["zoom"], 15, 4.5, 16, 8, 18, 20]
+	],
+	["turning-feature-outline", "circle-color", "rgb(255, 255, 255)"],
+	[
+		"turning-feature-outline",
+		"circle-stroke-width",
+		["interpolate", ["linear"], ["zoom"], 15, 0.8, 16, 1.2, 18, 2]
+	],
+	["turning-feature-outline", "circle-stroke-color", "rgb(224, 224, 224)"],
+	["turning-feature-outline", "circle-pitch-alignment", "map"],
+	[
+		"road-minor-low",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			14,
+			["match", ["get", "class"], "track", 1, 0.5],
+			18,
+			12
+		]
+	],
+	["road-minor-low", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-minor-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["road-minor-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-minor-case",
+		"line-gap-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			14,
+			["match", ["get", "class"], "track", 1, 0.5],
+			18,
+			12
+		]
+	],
+	["road-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"road-street-low",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["road-street-low", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-street-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["road-street-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-street-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["road-street-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"road-secondary-tertiary-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 0.75, 18, 2]
+	],
+	["road-secondary-tertiary-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-secondary-tertiary-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.1, 18, 26]
+	],
+	[
+		"road-primary-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]
+	],
+	["road-primary-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-primary-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	[
+		"road-major-link-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["road-major-link-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-major-link-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["road-major-link-case", "line-opacity", ["step", ["zoom"], 0, 11, 1]],
+	[
+		"road-motorway-trunk-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]
+	],
+	["road-motorway-trunk-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"road-motorway-trunk-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	[
+		"road-motorway-trunk-case",
+		"line-opacity",
+		["step", ["zoom"], ["match", ["get", "class"], "motorway", 1, 0], 6, 1]
+	],
+	[
+		"road-construction",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]
+	],
+	["road-construction", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-construction",
+		"line-dasharray",
+		[
+			"step",
+			["zoom"],
+			["literal", [0.4, 0.8]],
+			15,
+			["literal", [0.3, 0.6]],
+			16,
+			["literal", [0.2, 0.3]],
+			17,
+			["literal", [0.2, 0.25]],
+			18,
+			["literal", [0.15, 0.15]]
+		]
+	],
+	[
+		"road-major-link",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["road-major-link", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-minor",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			14,
+			["match", ["get", "class"], "track", 1, 0.5],
+			18,
+			12
+		]
+	],
+	["road-minor", "line-color", "rgb(255, 255, 255)"],
+	["road-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"road-street",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["road-street", "line-color", "rgb(255, 255, 255)"],
+	["road-street", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"road-secondary-tertiary",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.1, 18, 26]
+	],
+	["road-secondary-tertiary", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-primary",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["road-primary", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-motorway-trunk",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["road-motorway-trunk", "line-color", "rgb(255, 255, 255)"],
+	[
+		"road-rail",
+		"line-color",
+		[
+			"interpolate",
+			["linear"],
+			["zoom"],
+			13,
+			"rgb(224, 224, 224)",
+			17,
+			"rgb(209, 209, 209)"
+		]
+	],
+	[
+		"road-rail",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]
+	],
+	[
+		"turning-feature",
+		"circle-radius",
+		["interpolate", ["linear"], ["zoom"], 15, 4.5, 16, 8, 18, 20]
+	],
+	["turning-feature", "circle-color", "rgb(255, 255, 255)"],
+	["turning-feature", "circle-pitch-alignment", "map"],
+	[
+		"bridge-street-minor-low",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["bridge-street-minor-low", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-street-minor-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["bridge-street-minor-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"bridge-street-minor-case",
+		"line-gap-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["bridge-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"bridge-primary-secondary-tertiary-case",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			10,
+			["match", ["get", "class"], "primary", 1, 0.75],
+			18,
+			2
+		]
+	],
+	[
+		"bridge-primary-secondary-tertiary-case",
+		"line-color",
+		"rgb(224, 224, 224)"
+	],
+	[
+		"bridge-primary-secondary-tertiary-case",
+		"line-gap-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			5,
+			["match", ["get", "class"], "primary", 0.75, 0.1],
+			18,
+			["match", ["get", "class"], "primary", 32, 26]
+		]
+	],
+	[
+		"bridge-primary-secondary-tertiary-case",
+		"line-opacity",
+		["step", ["zoom"], 0, 10, 1]
+	],
+	[
+		"bridge-major-link-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["bridge-major-link-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"bridge-major-link-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	[
+		"bridge-motorway-trunk-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]
+	],
+	["bridge-motorway-trunk-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"bridge-motorway-trunk-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	[
+		"bridge-construction",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 14, 2, 18, 18]
+	],
+	["bridge-construction", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-construction",
+		"line-dasharray",
+		[
+			"step",
+			["zoom"],
+			["literal", [0.4, 0.8]],
+			15,
+			["literal", [0.3, 0.6]],
+			16,
+			["literal", [0.2, 0.3]],
+			17,
+			["literal", [0.2, 0.25]],
+			18,
+			["literal", [0.15, 0.15]]
+		]
+	],
+	[
+		"bridge-major-link",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["bridge-major-link", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-street-minor",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			12,
+			0.5,
+			14,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				2,
+				"track",
+				1,
+				0.5
+			],
+			18,
+			[
+				"match",
+				["get", "class"],
+				["street", "street_limited", "primary_link"],
+				18,
+				12
+			]
+		]
+	],
+	["bridge-street-minor", "line-color", "rgb(255, 255, 255)"],
+	["bridge-street-minor", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
+	[
+		"bridge-primary-secondary-tertiary",
+		"line-width",
+		[
+			"interpolate",
+			["exponential", 1.5],
+			["zoom"],
+			5,
+			["match", ["get", "class"], "primary", 0.75, 0.1],
+			18,
+			["match", ["get", "class"], "primary", 32, 26]
+		]
+	],
+	["bridge-primary-secondary-tertiary", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-motorway-trunk",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["bridge-motorway-trunk", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-major-link-2-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.75, 20, 2]
+	],
+	["bridge-major-link-2-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"bridge-major-link-2-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	[
+		"bridge-motorway-trunk-2-case",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2]
+	],
+	["bridge-motorway-trunk-2-case", "line-color", "rgb(224, 224, 224)"],
+	[
+		"bridge-motorway-trunk-2-case",
+		"line-gap-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	[
+		"bridge-major-link-2",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 12, 0.5, 14, 2, 18, 18]
+	],
+	["bridge-major-link-2", "line-color", "rgb(255, 255, 255)"],
+	[
+		"bridge-motorway-trunk-2",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
+	],
+	["bridge-motorway-trunk-2", "line-color", "rgb(255, 255, 255)"],
+	["bridge-rail", "line-color", "rgb(209, 209, 209)"],
+	[
+		"bridge-rail",
+		"line-width",
+		["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]
+	],
+	[
+		"admin-1-boundary-bg",
+		"line-color",
+		[
+			"interpolate",
+			["linear"],
+			["zoom"],
+			8,
+			"rgb(209, 209, 209)",
+			16,
+			"rgb(209, 209, 209)"
+		]
+	],
+	[
+		"admin-1-boundary-bg",
+		"line-width",
+		["interpolate", ["linear"], ["zoom"], 7, 3.75, 12, 5.5]
+	],
+	[
+		"admin-1-boundary-bg",
+		"line-opacity",
+		["interpolate", ["linear"], ["zoom"], 7, 0, 8, 0.75]
+	],
+	["admin-1-boundary-bg", "line-dasharray", [1, 0]],
+	[
+		"admin-1-boundary-bg",
+		"line-blur",
+		["interpolate", ["linear"], ["zoom"], 3, 0, 8, 3]
+	],
+	[
+		"admin-0-boundary-bg",
+		"line-width",
+		["interpolate", ["linear"], ["zoom"], 3, 3.5, 10, 8]
+	],
+	["admin-0-boundary-bg", "line-color", "rgb(209, 209, 209)"],
+	[
+		"admin-0-boundary-bg",
+		"line-opacity",
+		["interpolate", ["linear"], ["zoom"], 3, 0, 4, 0.5]
+	],
+	[
+		"admin-0-boundary-bg",
+		"line-blur",
+		["interpolate", ["linear"], ["zoom"], 3, 0, 10, 2]
+	],
+	[
+		"admin-1-boundary",
+		"line-dasharray",
+		["step", ["zoom"], ["literal", [2, 0]], 7, ["literal", [2, 2, 6, 2]]]
+	],
+	[
+		"admin-1-boundary",
+		"line-width",
+		["interpolate", ["linear"], ["zoom"], 7, 0.75, 12, 1.5]
+	],
+	[
+		"admin-1-boundary",
+		"line-opacity",
+		["interpolate", ["linear"], ["zoom"], 2, 0, 3, 1]
+	],
+	[
+		"admin-1-boundary",
+		"line-color",
+		[
+			"interpolate",
+			["linear"],
+			["zoom"],
+			3,
+			"rgb(206, 206, 206)",
+			7,
+			"rgb(163, 171, 171)"
+		]
+	],
+	["admin-0-boundary", "line-color", "rgb(166, 166, 166)"],
+	[
+		"admin-0-boundary",
+		"line-width",
+		["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]
+	],
+	["admin-0-boundary", "line-dasharray", [10, 0]],
+	["admin-0-boundary-disputed", "line-color", "rgb(166, 166, 166)"],
+	[
+		"admin-0-boundary-disputed",
+		"line-width",
+		["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]
+	],
+	[
+		"admin-0-boundary-disputed",
+		"line-dasharray",
+		[
+			"step",
+			["zoom"],
+			["literal", [3.25, 3.25]],
+			6,
+			["literal", [2.5, 2.5]],
+			7,
+			["literal", [2, 2.25]],
+			8,
+			["literal", [1.75, 2]]
+		]
+	],
+	["road-label", "text-color", "rgb(109, 119, 119)"],
+	["road-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["road-label", "text-halo-width", 1],
+	["road-label", "text-halo-blur", 1],
+	["road-intersection", "text-color", "rgb(130, 140, 140)"],
+	["waterway-label", "text-color", "rgb(130, 140, 140)"],
+	["natural-line-label", "text-halo-width", 0.5],
+	["natural-line-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["natural-line-label", "text-halo-blur", 0.5],
+	["natural-line-label", "text-color", "rgb(109, 119, 119)"],
+	[
+		"natural-point-label",
+		"icon-opacity",
+		[
+			"step",
+			["zoom"],
+			["step", ["get", "sizerank"], 0, 5, 1],
+			17,
+			["step", ["get", "sizerank"], 0, 13, 1]
+		]
+	],
+	["natural-point-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["natural-point-label", "text-halo-width", 0.5],
+	["natural-point-label", "text-halo-blur", 0.5],
+	["natural-point-label", "text-color", "rgb(109, 119, 119)"],
+	["water-line-label", "text-color", "rgb(130, 140, 140)"],
+	["water-point-label", "text-color", "rgb(130, 140, 140)"],
+	["poi-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["poi-label", "text-halo-width", 0.5],
+	["poi-label", "text-halo-blur", 0.5],
+	[
+		"poi-label",
+		"text-color",
+		[
+			"step",
+			["zoom"],
+			[
+				"step",
+				["get", "sizerank"],
+				"rgb(163, 171, 171)",
+				5,
+				"rgb(141, 151, 151)"
+			],
+			17,
+			[
+				"step",
+				["get", "sizerank"],
+				"rgb(163, 171, 171)",
+				13,
+				"rgb(141, 151, 151)"
+			]
+		]
+	],
+	["airport-label", "text-color", "rgb(109, 119, 119)"],
+	["airport-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["airport-label", "text-halo-width", 1],
+	["settlement-subdivision-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["settlement-subdivision-label", "text-halo-width", 1],
+	["settlement-subdivision-label", "text-color", "rgb(159, 167, 167)"],
+	["settlement-subdivision-label", "text-halo-blur", 0.5],
+	[
+		"settlement-minor-label",
+		"text-color",
+		[
+			"step",
+			["get", "symbolrank"],
+			"rgb(109, 119, 119)",
+			11,
+			"rgb(141, 151, 151)",
+			16,
+			"rgb(163, 171, 171)"
+		]
+	],
+	["settlement-minor-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["settlement-minor-label", "text-halo-width", 1],
+	["settlement-minor-label", "text-halo-blur", 1],
+	[
+		"settlement-major-label",
+		"text-color",
+		[
+			"step",
+			["get", "symbolrank"],
+			"rgb(109, 119, 119)",
+			11,
+			"rgb(141, 151, 151)",
+			16,
+			"rgb(163, 171, 171)"
+		]
+	],
+	["settlement-major-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["settlement-major-label", "text-halo-width", 1],
+	["settlement-major-label", "text-halo-blur", 1],
+	["state-label", "text-color", "rgb(163, 171, 171)"],
+	["state-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["state-label", "text-halo-width", 1],
+	[
+		"country-label",
+		"icon-opacity",
+		["step", ["zoom"], ["case", ["has", "text_anchor"], 1, 0], 7, 0]
+	],
+	["country-label", "text-color", "rgb(109, 119, 119)"],
+	["country-label", "text-halo-color", "rgb(255, 255, 255)"],
+	["country-label", "text-halo-width", 1.25],
+	["cyfinfaza-dvdsoopg", "raster-opacity", 0.5],
+	["fair-tileset-test-1", "fill-extrusion-opacity", 0.75],
+	["fair-tileset-test-1", "fill-extrusion-height", 5],
+	[
+		"fair-tileset-test-1",
+		"fill-extrusion-color",
+		[
+			"case",
+			["boolean", ["feature-state", "click"], false],
+			"hsl(155, 100%, 40%)",
+			"hsl(155, 50%, 30%)"
+		]
+	],
+	["fair-tileset-test-1 labels", "text-color", "hsl(0, 0%, 100%)"],
+	["fair-tileset-test-1 labels", "text-halo-width", 1],
+	["fair-tileset-test-1 labels", "text-halo-color", "#009959"],
+	["fair-tileset-test-1 labels", "text-halo-blur", 1]
+]

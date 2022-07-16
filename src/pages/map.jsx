@@ -17,6 +17,8 @@ const mapboxColorThemes = {
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
 
+let previouslySelectedFeature = null
+
 const MapPage = () => {
 	const mapContainer = useRef(null)
 	const map = useRef(null)
@@ -25,6 +27,7 @@ const MapPage = () => {
 	const [lat, setLat] = useState(40.577636)
 	const [zoom, setZoom] = useState(16)
 	const [viewingTent, setViewingTent] = useState('')
+	const [selectedFeature, setSelectedFeature] = useState(null)
 
 	function changeTheme(theme) {
 		const themeData =
@@ -69,32 +72,9 @@ const MapPage = () => {
 		map.current.addControl(scale)
 
 		map.current.on('click', 'fair-tileset-test-1', function (e) {
-			let feature = e.features[0]
-			let tent = feature.properties.slug
-			console.log(feature)
-
-			// new mapboxgl.Popup()
-			// 	.setLngLat(e.lngLat) // (feature.geometry.coordinates)
-			// 	.setHTML(
-			// 		`Clubs in ${tent}: <ul>${clubData
-			// 			.filter(club => club.tent === tent)
-			// 			.map(club => `<li>${club.name}</li>`)}</ul>`
-			// 	)
-			// 	.addTo(map.current)
-
-			setViewingTent(tent)
-
-			map.current.setFeatureState(
-				{
-					source: feature.source,
-					id: feature.id,
-					sourceLayer: feature.source,
-				},
-				{
-					click: true,
-					hover: true,
-				}
-			)
+			const feature = e.features[0]
+			console.log(selectedFeature, feature)
+			setSelectedFeature(feature)
 		})
 
 		// Locator
@@ -121,7 +101,39 @@ const MapPage = () => {
 				zoom: zoom,
 			})
 		}
-	})
+	}, [])
+
+	useEffect(
+		_ => {
+			previouslySelectedFeature &&
+				map.current.setFeatureState(
+					{
+						source: previouslySelectedFeature.source,
+						id: previouslySelectedFeature.id,
+						sourceLayer: previouslySelectedFeature.sourceLayer,
+					},
+					{
+						click: false,
+					}
+				)
+			if (selectedFeature) {
+				map.current.setFeatureState(
+					{
+						source: selectedFeature.source,
+						id: selectedFeature.id,
+						sourceLayer: selectedFeature.sourceLayer,
+					},
+					{
+						click: true,
+					}
+				)
+				previouslySelectedFeature = selectedFeature
+			} else {
+				previouslySelectedFeature = null
+			}
+		},
+		[selectedFeature]
+	)
 
 	const [clickCounter, setClickCounter] = useState(0)
 	return (
@@ -165,7 +177,9 @@ const MapPage = () => {
 			/>
 
 			<div
-				className={`${pageStyle.tentInfo} ${!viewingTent && pageStyle.hidden}`}
+				className={`${pageStyle.tentInfo} ${
+					!selectedFeature && pageStyle.hidden
+				}`}
 			>
 				<div>
 					<h1>
@@ -174,12 +188,12 @@ const MapPage = () => {
 							label="Close"
 							icon="close"
 							onClick={() => {
-								setViewingTent('')
+								setSelectedFeature(null)
 							}}
 							acrylic
 						/>
 					</h1>
-					{viewingTent}
+					{selectedFeature?.properties.name}
 				</div>
 			</div>
 		</Layout>
