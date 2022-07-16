@@ -33,6 +33,9 @@
 		"prettier": "^2.7.1",
 		"start-server-and-test": "^1.14.0"
 	},
+	"optionalDependencies": {
+		"fsevents": "*"
+	},
 	"keywords": [
 		"gatsby"
 	],
