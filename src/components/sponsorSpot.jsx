@@ -45,11 +45,7 @@ export default function SponsorSpot() {
 	return (
 		adContent && (
 			<div className={componentStyle.container}>
-				<img
-					src={adContent.image.url}
-					alt=""
-					className={componentStyle.adImage}
-				/>
+				<img src={adContent.image.url} alt="" className={componentStyle.adImage} />
 				<div className={componentStyle.adText}>
 					<h2>
 						<span className={componentStyle.disclosure}>Fair Sponsor</span>
@@ -58,7 +54,7 @@ export default function SponsorSpot() {
 					<p>{adContent.description}</p>
 					{adContent.link && (
 						<LinkButton
-							linksTo={adContent.link}
+							href={adContent.link}
 							label="Visit"
 							icon="open_in_new"
 							inline

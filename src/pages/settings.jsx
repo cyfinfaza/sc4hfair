@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState, useRef, useEffect } from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
@@ -53,8 +53,9 @@ export default function SettingsPage({ data }) {
 	const im = useRef()
 	const [form, setForm] = useState({}) // current form user input
 	const [cloudForm, setCloudForm] = useState({}) // supabase form data
-	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] =
-		useState(false)
+	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] = useState(
+		false
+	)
 
 	useEffect(function () {
 		function setFormSession(s) {

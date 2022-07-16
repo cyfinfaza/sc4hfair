@@ -31,13 +31,8 @@ const ClubsPage = ({ data }) => {
 			<h2>{club.name}</h2>
 			<p>{club.description}</p>
 			<div className={style.actionButtonsPanel}>
-				{club.location && (
-					<LinkButton
-						label="Map"
-						icon="place"
-						linksTo={`/map?locate=${club.slug}`}
-						lightFont
-					/>
+				{club.tent && (
+					<LinkButton label="Map" icon="place" linksTo={`/map?locate=${club.tent}`} lightFont />
 				)}
 				{slugList.indexOf(club.slug) > -1 ? (
 					<LinkButton
@@ -47,19 +42,9 @@ const ClubsPage = ({ data }) => {
 						lightFont
 					/>
 				) : (
-					<LinkButton
-						label="Add"
-						icon="add"
-						linksTo={`/interests?add=${club.slug}`}
-						lightFont
-					/>
+					<LinkButton label="Add" icon="add" linksTo={`/interests?add=${club.slug}`} lightFont />
 				)}
-				<LinkButton
-					label="View"
-					icon="open_in_new"
-					linksTo={`/club/${club.slug}`}
-					lightFont
-				/>
+				<LinkButton label="View" icon="open_in_new" linksTo={`/club/${club.slug}`} lightFont />
 			</div>
 		</div>
 	)
@@ -99,17 +84,10 @@ const ClubsPage = ({ data }) => {
 					if (
 						searchQuery !== '' &&
 						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
-						(club.description
-							.toLowerCase()
-							.indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_when
-								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_where
-								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !==
-								-1)
+						(club.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+							club.meeting_when.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+							club.meeting_where.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
 					) {
 						return <ClubEntry key={club.slug} club={club} />
 					} else return null

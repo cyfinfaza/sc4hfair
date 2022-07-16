@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import mapboxgl from '!mapbox-gl'
+import polylabel from 'polylabel'
 import { useRef, useEffect, useState } from 'react'
 import * as pageStyle from './map.module.scss'
 import LinkButton from '../components/linkbutton'
@@ -8,11 +9,16 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
 import { getTheme, onThemeChange } from '../logic/theming'
 
-const clubData = require('../../static/clubData.json')
+// const clubData = require('../../static/clubData.json')
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
 	dark: require('../../static/mapbox-color-themes/theme-dark.json'),
 }
+
+// the source/layer that contains our features
+const source = 'composite',
+	sourceLayer = 'Fair_Tileset_Test_1',
+	sourceLayerId = 'fair-tileset-test-1'
 
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
@@ -23,15 +29,15 @@ const MapPage = () => {
 	const mapContainer = useRef(null)
 	const map = useRef(null)
 	const geolocate = useRef(null)
+	/* eslint-disable no-unused-vars */
 	const [lng, setLng] = useState(-74.677043)
 	const [lat, setLat] = useState(40.577636)
 	const [zoom, setZoom] = useState(16)
-	const [viewingTent, setViewingTent] = useState('')
+	/* eslint-enable no-unused-vars */
 	const [selectedFeature, setSelectedFeature] = useState(null)
 
 	function changeTheme(theme) {
-		const themeData =
-			mapboxColorThemes[{ 'theme-light': 'light', 'theme-dark': 'dark' }[theme]]
+		const themeData = mapboxColorThemes[{ 'theme-light': 'light', 'theme-dark': 'dark' }[theme]]
 		themeData.forEach(property => {
 			map.current.setPaintProperty(...property)
 		})
@@ -39,6 +45,7 @@ const MapPage = () => {
 
 	useEffect(() => {
 		if (map.current) return // Initialize map only once
+		console.log(mapboxgl)
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
 			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
@@ -52,6 +59,33 @@ const MapPage = () => {
 			onThemeChange.subscribe(next => {
 				changeTheme(next)
 			})
+
+			// Locate a tent by its slug
+			let toLocate = new URLSearchParams(window.location.search).get('locate')
+			let query = map.current.querySourceFeatures(source, {
+				sourceLayer: sourceLayer,
+				filter: ['==', 'slug', toLocate], // check tent slug
+			})
+			if (query.length !== 0) {
+				// assuming that the biggest id is actually the one shown because otherwise i have no idea how to get the correct one
+				let element = query.reduce((a, b) => (a.id > b.id ? a : b))
+				console.log(element, query)
+
+				map.current.flyTo({
+					center: polylabel(element.geometry.coordinates), // use the center of the tent
+					zoom: 18.5,
+					speed: 2.7, // this is done once on page load so make it go fast
+				})
+				map.current.once('moveend', () => {
+					setSelectedFeature({
+						source,
+						sourceLayer,
+						...element,
+					})
+				})
+			} else {
+				console.warn('No tent found for', toLocate)
+			}
 		})
 
 		window.map = map.current
@@ -71,36 +105,11 @@ const MapPage = () => {
 		})
 		map.current.addControl(scale)
 
-		map.current.on('click', 'fair-tileset-test-1', function (e) {
+		map.current.on('click', sourceLayerId, function (e) {
 			const feature = e.features[0]
 			console.log(selectedFeature, feature)
 			setSelectedFeature(feature)
 		})
-
-		// Locator
-		var toLocate = new URLSearchParams(window.location.search).get('locate')
-		var club = clubData.find(club => club.slug === toLocate)
-		if (club) {
-			if (!club.location) return console.warn('No location data for', toLocate)
-
-			// new mapboxgl.Marker()
-			// 	.setLngLat(club.location)
-			// 	.setPopup(new mapboxgl.Popup().setHTML(`<p>look it's ${club.name}</p>`))
-			// 	.addTo(map.current)
-			// 	.togglePopup() // Open popup by default
-
-			// find item in map
-			let features = map.current.querySourceFeatures(
-				'cyfinfaza.ckpe2ul0t1vfg21p6lhii0p4x-97748'
-			)
-			console.log(features)
-
-			map.current.flyTo({
-				// Center on club
-				center: club.location,
-				zoom: zoom,
-			})
-		}
 	}, [])
 
 	useEffect(
@@ -170,17 +179,11 @@ const MapPage = () => {
 				/>
 			</div>
 			<div
-				className={`${pageStyle.mapContainer} ${
-					clickCounter >= 50 && pageStyle.easterEgg
-				}`}
+				className={`${pageStyle.mapContainer} ${clickCounter >= 50 && pageStyle.easterEgg}`}
 				ref={mapContainer}
 			/>
 
-			<div
-				className={`${pageStyle.tentInfo} ${
-					!selectedFeature && pageStyle.hidden
-				}`}
-			>
+			<div className={`${pageStyle.tentInfo} ${!selectedFeature && pageStyle.hidden}`}>
 				<div>
 					<h1>
 						Tent info{' '}

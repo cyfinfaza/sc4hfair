@@ -32,20 +32,8 @@ export default function ClubPage({ data }) {
 					marginTop: '16px',
 				}}
 			>
-				<LinkButton
-					label="See all clubs"
-					icon="groups"
-					linksTo="/clubs"
-					inline
-					opaque
-				/>
-				<LinkButton
-					label="View interest list"
-					icon="list"
-					linksTo="/interests"
-					inline
-					opaque
-				/>
+				<LinkButton label="See all clubs" icon="groups" linksTo="/clubs" inline opaque />
+				<LinkButton label="View interest list" icon="list" linksTo="/interests" inline opaque />
 			</div>
 			<h1 style={{ textTransform: 'uppercase' }}>{thisClub.name}</h1>
 			<div className={pageStyle.optionsButtonsPanel}>
@@ -64,11 +52,11 @@ export default function ClubPage({ data }) {
 						lightFont
 					/>
 				)}
-				{thisClub.location && (
+				{thisClub.tent && (
 					<LinkButton
 						label="Locate at fair"
 						icon="place"
-						linksTo={'/map/?locate=' + thisClub.slug}
+						linksTo={'/map/?locate=' + thisClub.tent}
 						lightFont
 					/>
 				)}
@@ -95,9 +83,7 @@ export default function ClubPage({ data }) {
 				{thisClub.grades}
 			</p>
 			<p>
-				<a href={'https://4histops.org/' + thisClub.slug}>
-					View on 4histops.org
-				</a>
+				<a href={'https://4histops.org/' + thisClub.slug}>View on 4histops.org</a>
 			</p>
 		</Layout>
 	)
