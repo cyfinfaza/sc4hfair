@@ -68,6 +68,9 @@ export default function ClubPage({ data }) {
 						lightFont
 					/>
 				)}
+				{thisClub.website && (
+					<LinkButton label="Website" icon="language" linksTo={thisClub.website} lightFont />
+				)}
 			</div>
 			<p>{thisClub.description}</p>
 			<p>
@@ -90,7 +93,7 @@ export default function ClubPage({ data }) {
 }
 
 export const query = graphql`
-	query($path: String!) {
+	query ($path: String!) {
 		allSitePage(filter: { path: { eq: $path } }) {
 			nodes {
 				pageContext
