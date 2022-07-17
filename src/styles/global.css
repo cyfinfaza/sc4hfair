@@ -7,9 +7,9 @@ body {
 	--text: #111;
 	--bg: #ededed;
 	--status-bar: #009959ff;
-	--navbar: #009959ff;
 	--selection: #00995988;
 	--navbar: linear-gradient(var(--status-bar) 0%, #4eb489);
+	--navbar-grey: linear-gradient(var(--status-bar) 0%, #b8b8b8);
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
@@ -29,6 +29,7 @@ body.theme-dark {
 	color-scheme: dark;
 	--bg: #080808;
 	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
+	--navbar-grey: linear-gradient(var(--status-bar) 0%, #5c5c5c);
 	--text: #eee;
 	--light: #181818;
 	--light-stackable: #ffffff18;
@@ -50,6 +51,9 @@ body.theme-dark {
 		--navbar: linear-gradient(var(--status-bar) 0%,
 				#009959aa 64px,
 				#00995988 128px) !important;
+		--navbar-grey: linear-gradient(var(--status-bar) 0%,
+				#888888aa 64px,
+				#88888888 128px) !important;
 		--light-blur: #fdfdfd33;
 	}
 
@@ -156,4 +160,10 @@ code {
 
 .horizPanel>*+* {
 	margin-left: 8px !important;
+}
+
+.horizPanel2 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }

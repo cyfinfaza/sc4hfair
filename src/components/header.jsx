@@ -14,9 +14,26 @@ const Header = ({ offsetContent = true }) => {
 	function toggleMenu() {
 		setMenuOpen(!menuOpen)
 	}
+	const [isOnline, setIsOnline] = useState(window?.navigator.onLine || true)
 	useEffect(() => {
 		window.setMenuOpen = setMenuOpen
+		window.addEventListener('offline', _ => {
+			setIsOnline(false)
+		})
+		window.addEventListener('online', _ => {
+			setIsOnline(true)
+		})
 	}, [])
+	useEffect(
+		_ => {
+			if (isOnline) {
+				document.body.style.removeProperty('--status-bar')
+			} else {
+				document.body.style.setProperty('--status-bar', '#888888')
+			}
+		},
+		[isOnline]
+	)
 	// const metadata = useStaticQuery(graphql`
 	// 	query {
 	// 		gitBranch(current: { eq: true }) {
@@ -26,13 +43,13 @@ const Header = ({ offsetContent = true }) => {
 	// 	}
 	// `)
 	return (
-		<div
-			className={headerStyle.invisible}
-			style={offsetContent ? {} : { height: 0 }}
-		>
+		<div className={headerStyle.invisible} style={offsetContent ? {} : { height: 0 }}>
 			<div
 				className={headerStyle.visible}
-				style={{ height: menuOpen ? '100vh' : null }}
+				style={{
+					height: menuOpen ? '100vh' : null,
+					background: isOnline ? 'var(--navbar)' : 'var(--navbar-grey)',
+				}}
 			>
 				<div className={headerStyle.topBar}>
 					<Logo
@@ -42,57 +59,36 @@ const Header = ({ offsetContent = true }) => {
 						}}
 						style={{ cursor: 'pointer' }}
 					/>
-					<button
-						className={`${headerStyle.menuButton} ${buttonStyle.button}`}
-						onClick={toggleMenu}
-					>
-						<div className={headerStyle.menuIconContainer}>
-							<i
-								className="material-icons"
-								style={!menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
-							>
-								menu
-							</i>
-							<i
-								className="material-icons"
-								style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
-							>
-								close
-							</i>
-						</div>
-						<span className={headerStyle.menuButtonLabel}>Menu</span>
-					</button>
+					<div className="horizPanel2" style={{ gap: '12px' }}>
+						{!isOnline && <span className="material-icons">cloud_off</span>}
+						<button
+							className={`${headerStyle.menuButton} ${buttonStyle.button}`}
+							onClick={toggleMenu}
+						>
+							<div className={headerStyle.menuIconContainer}>
+								<i
+									className="material-icons"
+									style={!menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
+								>
+									menu
+								</i>
+								<i
+									className="material-icons"
+									style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
+								>
+									close
+								</i>
+							</div>
+							<span className={headerStyle.menuButtonLabel}>Menu</span>
+						</button>
+					</div>
 				</div>
 				<div className={headerStyle.menuArea}>
 					<div className={headerStyle.menuGrid}>
-						<LinkButton
-							label="Latest"
-							icon="home"
-							linksTo="/"
-							big
-							opaque={false}
-						/>
-						<LinkButton
-							label="Map"
-							icon="map"
-							linksTo="/map"
-							big
-							opaque={false}
-						/>
-						<LinkButton
-							label="Schedule"
-							icon="event_note"
-							linksTo="/schedule"
-							big
-							opaque={false}
-						/>
-						<LinkButton
-							label="Clubs"
-							icon="groups"
-							linksTo="/clubs"
-							big
-							opaque={false}
-						/>
+						<LinkButton label="Latest" icon="home" linksTo="/" big opaque={false} />
+						<LinkButton label="Map" icon="map" linksTo="/map" big opaque={false} />
+						<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" big opaque={false} />
+						<LinkButton label="Clubs" icon="groups" linksTo="/clubs" big opaque={false} />
 						<LinkButton
 							label="Interest List"
 							icon="list_alt"
