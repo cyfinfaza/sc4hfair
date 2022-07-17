@@ -45,7 +45,6 @@ const MapPage = () => {
 
 	useEffect(() => {
 		if (map.current) return // Initialize map only once
-		console.log(mapboxgl)
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
 			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',

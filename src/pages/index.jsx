@@ -10,10 +10,13 @@ import LinkButton from '../components/linkbutton'
 
 const contentfulQuery = `
 {
-	postCollection {
+	postCollection(order:sys_firstPublishedAt_DESC) {
 		items {
 			title
 			contentText
+			sys {
+				publishedAt
+			}
 		}
 	}
 }
@@ -51,11 +54,7 @@ const IndexPage = ({ data }) => {
 				<div className="horizPanel">
 					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
 					<LinkButton label="Map" icon="map" linksTo="/map" />
-					<LinkButton
-						label="More"
-						icon="add"
-						onClick={() => window.setMenuOpen(true)}
-					/>
+					<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
 				</div>
 				<h2>Latest Updates</h2>
 			</div>
@@ -63,14 +62,7 @@ const IndexPage = ({ data }) => {
 				{pageContent
 					? pageContent.items.map((post, i) => {
 							console.log(post)
-							return (
-								<Post
-									key={post.title}
-									title={post.title}
-									content={post.contentText}
-									index={i}
-								/>
-							)
+							return <Post key={post.title} data={post} index={i} />
 					  })
 					: null}
 			</div>

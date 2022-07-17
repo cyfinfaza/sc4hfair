@@ -1,20 +1,9 @@
 import * as React from 'react'
 // import ReactMarkdown from 'react-markdown'
 import * as style from './event.module.css'
-import moment from 'moment'
-import formatDuration from '../functions/formatDuration'
+import Moment from 'react-moment'
 
-const EventBox = ({
-	title,
-	content,
-	time,
-	endTime,
-	index = 0,
-	imgURL = null,
-}) => {
-	var duration = moment.duration(moment(endTime).diff(moment(time))),
-		formattedDuration = formatDuration(duration) + ' long'
-
+const EventBox = ({ title, content, time, endTime, index = 0, imgURL = null }) => {
 	return (
 		<div
 			className={style.container}
@@ -31,9 +20,18 @@ const EventBox = ({
 			</div>
 			<div className={style.right}>
 				<h2 className={style.time}>
-					{moment(time).format('MMMM D [at] h:mmA')}
+					<Moment interval={0} date={time} format="MMMM D [at] h:mmA" />
 				</h2>
-				<p>{formattedDuration}</p>
+				<p>
+					<Moment
+						interval={0} // these are static dates
+						duration={time}
+						date={endTime}
+						trim="both"
+						format="y [years]  M [months] d [days] h [hours] m [minutes]"
+					/>
+					{' long'}
+				</p>
 			</div>
 		</div>
 	)
