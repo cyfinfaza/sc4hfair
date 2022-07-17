@@ -19,4 +19,6 @@
     word-wrap: normal;
     direction: ltr;
     -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-user-select: none;
 }
