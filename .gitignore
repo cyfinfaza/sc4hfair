@@ -68,11 +68,13 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-
-#api
+# api
 credz.json
 .vercel
 
-#cypress
+# cypress
 cypress/videos
 cypress/screenshots
+
+# contentful cli stuff
+contentful-*.json
