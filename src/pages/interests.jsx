@@ -3,10 +3,10 @@ import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
 
 import * as clubsStyle from './clubs.module.css'
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
-import CloudInterestManager from '../logic/CloudInterestManager'
-import SignInButtons from '../components/signInButtons'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
+import CloudInterestManager from 'logic/CloudInterestManager'
+import SignInButtons from 'components/signInButtons'
 
 const InterestsPage = ({
 	data: {

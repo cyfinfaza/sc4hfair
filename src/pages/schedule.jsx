@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
 import * as style from './schedule.module.css'
 
-import EventBox from '../components/event'
-import ToggleButton from '../components/toggleButton'
-import Layout from '../components/layout'
+import EventBox from 'components/event'
+import ToggleButton from 'components/toggleButton'
+import Layout from 'components/layout'
 
 const SchedulePage = ({
 	data: {

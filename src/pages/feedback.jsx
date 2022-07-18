@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Layout from '../components/layout'
+import Layout from 'components/layout'
 import * as pageStyle from './feedback.module.css'
 import { useState, useRef } from 'react'
-import LinkButton from '../components/linkbutton'
+import LinkButton from 'components/linkbutton'
 
 export default function Feedback() {
 	const refs = {
@@ -18,11 +18,9 @@ export default function Feedback() {
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [errorText, setErrorText] = useState('')
 	function submit() {
-		const [name, email, comment] = [
-			refs.name,
-			refs.email,
-			refs.comment,
-		].map(elem => elem.current.innerText.trim())
+		const [name, email, comment] = [refs.name, refs.email, refs.comment].map(elem =>
+			elem.current.innerText.trim()
+		)
 		if (!comment) {
 			setErrorText('You must input a comment.')
 			return

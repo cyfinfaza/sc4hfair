@@ -3,11 +3,11 @@ import { useState, useRef, useEffect } from 'react'
 import { graphql } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
-import SignInButtons from '../components/signInButtons'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
+import SignInButtons from 'components/signInButtons'
 
-import CloudInterestManager from '../logic/CloudInterestManager'
+import CloudInterestManager from 'logic/CloudInterestManager'
 
 // since this is a controlled input, it needs to be outside of the layout to not break when the components refresh
 function handleInput(event, form, setForm) {
@@ -17,13 +17,7 @@ function handleInput(event, form, setForm) {
 		[name]: value,
 	})
 }
-const LabeledInput = ({
-	form: [form, setForm],
-	name,
-	type = 'text',
-	label,
-	...props
-}) => (
+const LabeledInput = ({ form: [form, setForm], name, type = 'text', label, ...props }) => (
 	<tr>
 		<td>
 			<label htmlFor={name}>{label}</label>
@@ -41,9 +35,7 @@ const LabeledInput = ({
 )
 function isInfoFormDisabled(a, b) {
 	// only check certain properties
-	return ['fullName', 'preferredEmail', 'phone', 'graduation'].every(
-		key => a[key] === b[key]
-	)
+	return ['fullName', 'preferredEmail', 'phone', 'graduation'].every(key => a[key] === b[key])
 	// return JSON.stringify(a) === JSON.stringify(b)
 }
 
@@ -53,9 +45,7 @@ export default function SettingsPage({ data }) {
 	const im = useRef()
 	const [form, setForm] = useState({}) // current form user input
 	const [cloudForm, setCloudForm] = useState({}) // supabase form data
-	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] = useState(
-		false
-	)
+	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] = useState(false)
 
 	useEffect(function () {
 		function setFormSession(s) {
@@ -86,34 +76,21 @@ export default function SettingsPage({ data }) {
 				<>
 					You are signed in as {session?.user.email}
 					<p>
-						<LinkButton
-							label="Sign out"
-							icon="logout"
-							onClick={() => im.current.logout()}
-						/>
+						<LinkButton label="Sign out" icon="logout" onClick={() => im.current.logout()} />
 					</p>
 					<h2>
 						Additional information <small>(optional)</small>
 					</h2>
 					<table style={{ width: '100%', margin: '1rem 0' }}>
 						<tbody>
-							<LabeledInput
-								form={[form, setForm]}
-								name="fullName"
-								label="Full name"
-							/>
+							<LabeledInput form={[form, setForm]} name="fullName" label="Full name" />
 							<LabeledInput
 								form={[form, setForm]}
 								name="preferredEmail"
 								label="Preferred email"
 								type="email"
 							/>
-							<LabeledInput
-								form={[form, setForm]}
-								name="phone"
-								label="Phone number"
-								type="tel"
-							/>
+							<LabeledInput form={[form, setForm]} name="phone" label="Phone number" type="tel" />
 							<LabeledInput
 								form={[form, setForm]}
 								name="graduation"
@@ -147,26 +124,18 @@ export default function SettingsPage({ data }) {
 			<a href="https://4hcomputers.club">Somerset County 4-H Computer Club</a>.
 			<p>
 				<LinkButton label="Send feedback" linksTo="/feedback" icon="message" />{' '}
-				<LinkButton
-					label="Privacy Policy"
-					linksTo="/privacy-policy"
-					icon="policy"
-				/>
+				<LinkButton label="Privacy Policy" linksTo="/privacy-policy" icon="policy" />
 			</p>
 			<div style={{ opacity: 0.5 }}>
 				<code onClick={_ => setShowingAdditionalBuildInfo(true)}>
-					{process.env.GATSBY_VERCEL_GIT_COMMIT_REF || data.gitBranch.name}/
-					{data.gitBranch.commit}
+					{process.env.GATSBY_VERCEL_GIT_COMMIT_REF || data.gitBranch.name}/{data.gitBranch.commit}
 				</code>
 				{showingAdditionalBuildInfo && (
 					<>
 						<br />
 						<code>{data.siteBuildMetadata.buildTime}</code>
 						<br />
-						<code>
-							{process.env.BUILD_LOCATION_NAME ||
-								data.site.siteMetadata.buildLocation}
-						</code>
+						<code>{process.env.BUILD_LOCATION_NAME || data.site.siteMetadata.buildLocation}</code>
 					</>
 				)}
 			</div>
@@ -262,10 +231,7 @@ function testNotification() {
 function subscribeUser() {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.ready.then(function (reg) {
-			console.log(
-				'CURR SUB INFO: ',
-				JSON.stringify(reg.pushManager.getSubscription())
-			)
+			console.log('CURR SUB INFO: ', JSON.stringify(reg.pushManager.getSubscription()))
 			reg.pushManager
 				.subscribe({
 					userVisibleOnly: true,

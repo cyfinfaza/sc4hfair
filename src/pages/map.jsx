@@ -1,13 +1,13 @@
 import React from 'react'
-import Layout from '../components/layout'
+import Layout from 'components/layout'
 import mapboxgl from '!mapbox-gl'
 import polylabel from 'polylabel'
 import { useRef, useEffect, useState } from 'react'
 import * as pageStyle from './map.module.scss'
-import LinkButton from '../components/linkbutton'
+import LinkButton from 'components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
-import { getTheme, onThemeChange } from '../logic/theming'
+import { getTheme, onThemeChange } from 'logic/theming'
 
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),

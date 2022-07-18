@@ -14,6 +14,7 @@ module.exports = {
 		author: `Somerset County 4-H`,
 		buildLocation: os.hostname(),
 	},
+	trailingSlash: 'never',
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-image`,
@@ -75,5 +76,6 @@ module.exports = {
 			},
 		},
 		`gatsby-source-local-git`,
+		`gatsby-plugin-root-import`,
 	],
 }

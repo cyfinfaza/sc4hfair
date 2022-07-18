@@ -2,11 +2,11 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import { useEffect, useState, useRef } from 'react'
 // import { StaticImage } from 'gatsby-plugin-image'
-import Layout from '../../components/layout'
-import LinkButton from '../../components/linkbutton'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
 import * as pageStyle from './ClubPage.module.css'
-import CloudInterestManager from '../../logic/CloudInterestManager'
-import { share, canWebShare } from '../../logic/webshare'
+import CloudInterestManager from 'logic/CloudInterestManager'
+import { share, canWebShare } from 'logic/webshare'
 
 export default function ClubPage({ data: { contentfulClub: thisClub } }) {
 	const isBrowser = typeof window !== 'undefined'
@@ -66,8 +66,8 @@ export default function ClubPage({ data: { contentfulClub: thisClub } }) {
 						lightFont
 					/>
 				)}
-				{thisClub.website && (
-					<LinkButton label="Website" icon="language" linksTo={thisClub.website} lightFont />
+				{thisClub.clubWebsite && (
+					<LinkButton label="Website" icon="language" linksTo={thisClub.clubWebsite} lightFont />
 				)}
 			</div>
 			<p>{thisClub.description.description}</p>
@@ -91,7 +91,7 @@ export default function ClubPage({ data: { contentfulClub: thisClub } }) {
 }
 
 export const query = graphql`
-	query($id: String!) {
+	query ($id: String!) {
 		contentfulClub(id: { eq: $id }) {
 			slug
 			name

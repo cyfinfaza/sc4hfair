@@ -21,7 +21,7 @@ const Layout = ({
 	noHeaderPadding = false,
 	fixedHeightContent = false,
 	fullWidth = false,
-	style,
+	style = {},
 }) => {
 	const metadata = useStaticQuery(
 		graphql`
@@ -78,9 +78,7 @@ const Layout = ({
 					},
 				]}
 			>
-				{isBrowser && (
-					<body style={fixedHeightContent ? 'overflow: hidden' : null} />
-				)}
+				{isBrowser && <body style={fixedHeightContent ? 'overflow: hidden' : null} />}
 			</Helmet>
 			<a href="#content" className={layoutStyle.skipToContentButton}>
 				Skip to content
@@ -91,16 +89,13 @@ const Layout = ({
 				id="content"
 				style={{
 					padding: noPadding ? '0' : null,
-					paddingTop:
-						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
+					paddingTop: fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
 					height: fixedHeightContent ? '100vh' : null,
 					boxSizing: 'border-box',
 					overflow: fixedHeightContent ? 'hidden' : null,
 				}}
 			>
-				<div style={{ maxWidth: fullWidth ? 'unset' : null, ...style }}>
-					{children}
-				</div>
+				<div style={{ maxWidth: fullWidth ? 'unset' : null, ...style }}>{children}</div>
 			</div>
 		</>
 	)
