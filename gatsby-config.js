@@ -1,6 +1,8 @@
 const os = require('os')
 
-require('dotenv').config({
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({
 	path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -25,9 +27,10 @@ module.exports = {
 		{
 			resolve: `gatsby-source-contentful`,
 			options: {
-				spaceId: process.env.CONTENTFUL_SPACE_ID,
-				// Learn about environment variables: https://gatsby.dev/env-vars
-				accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
+				accessToken:
+					process.env.CONTENTFUL_ACCESS_TOKEN ||
+					atob('VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='),
 			},
 		},
 		{
@@ -71,7 +74,6 @@ module.exports = {
 				trackingIds: ['G-QYEGYTKG7B'],
 			},
 		},
-		`gatsby-plugin-react-helmet`,
 		`gatsby-source-local-git`,
 	],
 }

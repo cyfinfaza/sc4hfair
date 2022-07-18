@@ -76,5 +76,6 @@ credz.json
 cypress/videos
 cypress/screenshots
 
-# contentful cli stuff
+# python dev script stuff
 contentful-*.json
+clubData.json

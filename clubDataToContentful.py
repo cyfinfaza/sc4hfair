@@ -1,6 +1,6 @@
 """
 
-Converts static/clubData.json to Contentful's API export format
+Converts clubData.json to Contentful's API export format
 https://github.com/contentful/contentful-cli/tree/master/docs/space/import
 
 python clubDataToContentful.py
@@ -11,7 +11,7 @@ contentful space import --content-file contentful-export-ready.json --skip-conte
 
 import json
 
-data = json.load(open('./static/clubData.json'))
+data = json.load(open('clubData.json'))
 
 entries = []
 
