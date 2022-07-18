@@ -25,18 +25,20 @@ const IndexPage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	useEffect(() => {
 		window
-			.fetch(`https://graphql.contentful.com/content/v1/spaces/e34g9w63217k/`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					// Authenticate the request
-					Authorization: `Bearer ${atob(
-						'VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='
-					)}`,
-				},
-				// send the GraphQL query
-				body: JSON.stringify({ query: contentfulQuery }),
-			})
+			.fetch(
+				`https://graphql.contentful.com/content/v1/spaces/e34g9w63217k/?query=${encodeURIComponent(
+					contentfulQuery
+				)}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${atob(
+							'VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='
+						)}`,
+					},
+				}
+			)
 			.then(response => response.json())
 			.then(({ data, errors }) => {
 				if (errors) {

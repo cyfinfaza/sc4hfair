@@ -37,12 +37,21 @@ module.exports = {
 		`gatsby-plugin-sass`,
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
-		// {
-		// 	resolve: `gatsby-plugin-offline`,
-		// 	options: {
-		// 		appendScript: require.resolve(`./src/logic/sw_append.js`),
-		// 	},
-		// },
+		{
+			resolve: `gatsby-plugin-offline`,
+			options: {
+				appendScript: require.resolve(`./src/logic/sw_append.js`),
+				// precachePages: ['**/*'],
+				workboxConfig: {
+					// runtimeCaching: [
+					// 	{
+					// 		urlPattern: /^https:\/\/graphql.contentful.com/,
+					// 		handler: 'NetworkFirst',
+					// 	},
+					// ],
+				},
+			},
+		},
 		// `gatsby-plugin-remove-serviceworker`,
 		{
 			resolve: 'gatsby-plugin-react-svg',
