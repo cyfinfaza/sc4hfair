@@ -30,8 +30,7 @@ module.exports = {
 			options: {
 				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
 				accessToken:
-					process.env.CONTENTFUL_ACCESS_TOKEN ||
-					atob('VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='),
+					process.env.CONTENTFUL_ACCESS_TOKEN || 'TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk',
 			},
 		},
 		{
