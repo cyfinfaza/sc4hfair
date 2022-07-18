@@ -7,59 +7,22 @@ import EventBox from '../components/event'
 import ToggleButton from '../components/toggleButton'
 import Layout from '../components/layout'
 
-const contentfulQuery = `
-{
-	scheduledEventCollection (order: time_ASC) {
-		items {
-			title
-			time
-			endTime
-			description
-			coverImage {
-				url
-			}
-			category
-		}
-	}
-}
-`
-
-const SchedulePage = ({ data }) => {
-	const [pageContent, setPageContent] = useState(null)
+const SchedulePage = ({
+	data: {
+		allContentfulScheduledEvent: { nodes: pageContent },
+	},
+}) => {
 	const [selectedCategory, setSelectedCategory] = useState('All')
-	const [categoryList, setCategoryList] = useState(['All'])
 	const [showingPast, setShowingPast] = useState(false)
-	useEffect(() => {
-		window
-			.fetch(`https://graphql.contentful.com/content/v1/spaces/e34g9w63217k/`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					// Authenticate the request
-					Authorization: `Bearer ${atob(
-						'VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='
-					)}`,
-				},
-				// send the GraphQL query
-				body: JSON.stringify({ query: contentfulQuery }),
-			})
-			.then(response => response.json())
-			.then(({ data, errors }) => {
-				if (errors) {
-					console.error(errors)
-				}
-
-				// rerender the entire component with new data
-				setPageContent(data.scheduledEventCollection)
-				var newCategories = []
-				data.scheduledEventCollection.items.forEach(item => {
-					if (newCategories.indexOf(item.category) < 0) {
-						newCategories.push(item.category)
-					}
-				})
-				setCategoryList(categoryList => [...categoryList, ...newCategories])
-			})
-	}, [])
+	const categoryList = pageContent.reduce(
+		(last, current) => {
+			if (last.indexOf(current.category) < 0) {
+				return [...last, current.category]
+			}
+			return last
+		},
+		['All']
+	)
 	return (
 		<Layout title="Schedule">
 			<div style={{ textAlign: 'center' }}>
@@ -92,11 +55,10 @@ const SchedulePage = ({ data }) => {
 			</div>
 			<div className="columnCentered">
 				{pageContent
-					? pageContent.items
+					? pageContent
 							.filter(
 								element =>
-									(selectedCategory === 'All' ||
-										selectedCategory === element.category) &&
+									(selectedCategory === 'All' || selectedCategory === element.category) &&
 									(new Date(element.time).getTime() > Date.now() || showingPast)
 							)
 							.map((event, i) => {
@@ -108,7 +70,7 @@ const SchedulePage = ({ data }) => {
 										title={event.title}
 										time={event.time}
 										endTime={event.endTime}
-										content={event.description}
+										content={event.description.description}
 										imgURL={event.coverImage && event.coverImage.url}
 										index={i}
 									/>
@@ -125,6 +87,20 @@ export const query = graphql`
 		site {
 			siteMetadata {
 				title
+			}
+		}
+		allContentfulScheduledEvent {
+			nodes {
+				title
+				time
+				endTime
+				description {
+					description
+				}
+				coverImage {
+					url
+				}
+				category
 			}
 		}
 	}

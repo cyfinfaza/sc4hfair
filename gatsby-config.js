@@ -19,6 +19,14 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-source-contentful`,
+			options: {
+				spaceId: `e34g9w63217k`,
+				// Learn about environment variables: https://gatsby.dev/env-vars
+				accessToken: atob('VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='),
+			},
+		},
+		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
 				name: `Somerset County 4-H Fair`,
