@@ -1,5 +1,9 @@
 const os = require('os')
 
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
 	siteMetadata: {
 		title: `Somerset County 4-H Fair`,
@@ -21,9 +25,9 @@ module.exports = {
 		{
 			resolve: `gatsby-source-contentful`,
 			options: {
-				spaceId: `e34g9w63217k`,
+				spaceId: process.env.CONTENTFUL_SPACE_ID,
 				// Learn about environment variables: https://gatsby.dev/env-vars
-				accessToken: atob('VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='),
+				accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 			},
 		},
 		{
