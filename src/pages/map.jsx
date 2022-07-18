@@ -9,7 +9,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
 import { getTheme, onThemeChange } from '../logic/theming'
 
-// const clubData = require('../../static/clubData.json')
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
 	dark: require('../../static/mapbox-color-themes/theme-dark.json'),

@@ -7,9 +7,11 @@ import Layout from '../components/layout'
 import LinkButton from '../components/linkbutton'
 import CloudInterestManager from '../logic/CloudInterestManager'
 
-const clubData = require('../../static/clubData.json')
-
-const ClubsPage = ({ data }) => {
+const ClubsPage = ({
+	data: {
+		allContentfulClub: { nodes: clubData },
+	},
+}) => {
 	const [searchQuery, setSearchQuery] = useState('')
 	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const [slugList, setSlugList] = useState([])
@@ -29,7 +31,7 @@ const ClubsPage = ({ data }) => {
 	const ClubEntry = ({ club }) => (
 		<div className={style.clubEntry}>
 			<h2>{club.name}</h2>
-			<p>{club.description}</p>
+			<p>{club.description.description}</p>
 			<div className={style.actionButtonsPanel}>
 				{club.tent && (
 					<LinkButton label="Map" icon="place" linksTo={`/map?locate=${club.tent}`} lightFont />
@@ -84,9 +86,12 @@ const ClubsPage = ({ data }) => {
 					if (
 						searchQuery !== '' &&
 						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
-						(club.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_when.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_where.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+						(club.description.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+							club.meetingWhen.meetingWhen.toLowerCase().indexOf(searchQuery.toLowerCase()) !==
+								-1 ||
+							club.meetingLocation.meetingLocation
+								.toLowerCase()
+								.indexOf(searchQuery.toLowerCase()) !== -1 ||
 							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
 					) {
 						return <ClubEntry key={club.slug} club={club} />
@@ -102,6 +107,24 @@ export const query = graphql`
 		site {
 			siteMetadata {
 				title
+			}
+		}
+		allContentfulClub {
+			nodes {
+				slug
+				name
+				meetingLocation {
+					meetingLocation
+				}
+				clubWebsite
+				description {
+					description
+				}
+				grades
+				meetingWhen {
+					meetingWhen
+				}
+				listingWebsite
 			}
 		}
 	}
