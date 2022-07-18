@@ -17,8 +17,8 @@ const mapboxColorThemes = {
 
 // the source/layer that contains our features
 const source = 'composite',
-	sourceLayer = 'Fair_Tileset_Test_1',
-	sourceLayerId = 'fair-tileset-test-1'
+	sourceLayer = 'fair2022',
+	sourceLayerId = 'tents'
 
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
@@ -47,7 +47,7 @@ const MapPage = () => {
 		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
-			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
+			style: require('../../static/map.json'),
 			center: [lng, lat],
 			zoom: zoom,
 			attributionControl: false,

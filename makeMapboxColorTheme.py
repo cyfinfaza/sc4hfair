@@ -23,4 +23,4 @@ for layer in data["layers"]:
 				modObj[2] = layer["paint"][property]
 				output.append(modObj)
 
-print(json.dumps(output))
+print(json.dumps(output, indent='\t'))

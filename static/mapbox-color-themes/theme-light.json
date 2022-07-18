@@ -1,31 +1,15 @@
 [
 	["land", "background-color", "rgb(232, 234, 234)"],
 	["landcover", "fill-color", "rgb(225, 228, 228)"],
-	[
-		"landcover",
-		"fill-opacity",
-		["interpolate", ["exponential", 1.5], ["zoom"], 2, 0.3, 7, 0]
-	],
+	["landcover", "fill-opacity", ["interpolate", ["exponential", 1.5], ["zoom"], 2, 0.3, 7, 0]],
 	["landcover", "fill-antialias", false],
 	["national-park", "fill-color", "rgb(220, 223, 223)"],
-	[
-		"national-park",
-		"fill-opacity",
-		["interpolate", ["linear"], ["zoom"], 5, 0, 6, 0.5, 10, 0.5]
-	],
+	["national-park", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 5, 0, 6, 0.5, 10, 0.5]],
 	["landuse", "fill-color", "rgb(220, 223, 223)"],
 	[
 		"landuse",
 		"fill-opacity",
-		[
-			"interpolate",
-			["linear"],
-			["zoom"],
-			5,
-			0,
-			6,
-			["match", ["get", "class"], "glacier", 0.5, 1]
-		]
+		["interpolate", ["linear"], ["zoom"], 5, 0, 6, ["match", ["get", "class"], "glacier", 0.5, 1]]
 	],
 	["waterway-shadow", "line-color", "rgb(183, 189, 189)"],
 	[
@@ -55,11 +39,7 @@
 		]
 	],
 	["waterway-shadow", "line-translate-anchor", "viewport"],
-	[
-		"waterway-shadow",
-		"line-opacity",
-		["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]
-	],
+	["waterway-shadow", "line-opacity", ["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]],
 	["water-shadow", "fill-color", "rgb(183, 189, 189)"],
 	[
 		"water-shadow",
@@ -89,11 +69,7 @@
 			["match", ["get", "class"], ["canal", "river"], 8, 3]
 		]
 	],
-	[
-		"waterway",
-		"line-opacity",
-		["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]
-	],
+	["waterway", "line-opacity", ["interpolate", ["linear"], ["zoom"], 8, 0, 8.5, 1]],
 	["water", "fill-color", "rgb(205, 209, 209)"],
 	["land-structure-polygon", "fill-color", "rgb(232, 234, 234)"],
 	[
@@ -103,11 +79,7 @@
 	],
 	["land-structure-line", "line-color", "rgb(232, 234, 234)"],
 	["aeroway-polygon", "fill-color", "rgb(254, 254, 254)"],
-	[
-		"aeroway-polygon",
-		"fill-opacity",
-		["interpolate", ["linear"], ["zoom"], 11, 0, 11.5, 1]
-	],
+	["aeroway-polygon", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 11, 0, 11.5, 1]],
 	["aeroway-line", "line-color", "rgb(254, 254, 254)"],
 	[
 		"aeroway-line",
@@ -125,21 +97,9 @@
 	[
 		"building",
 		"fill-color",
-		[
-			"interpolate",
-			["linear"],
-			["zoom"],
-			15,
-			"rgb(223, 226, 226)",
-			16,
-			"rgb(224, 224, 224)"
-		]
+		["interpolate", ["linear"], ["zoom"], 15, "rgb(223, 226, 226)", 16, "rgb(224, 224, 224)"]
 	],
-	[
-		"building",
-		"fill-opacity",
-		["interpolate", ["linear"], ["zoom"], 15, 0, 16, 1]
-	],
+	["building", "fill-opacity", ["interpolate", ["linear"], ["zoom"], 15, 0, 16, 1]],
 	["building", "fill-outline-color", "rgb(204, 204, 204)"],
 	[
 		"tunnel-street-minor-low",
@@ -151,23 +111,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["tunnel-street-minor-low", "line-color", "rgb(215, 218, 218)"],
@@ -187,23 +133,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["tunnel-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
@@ -221,11 +153,7 @@
 			2
 		]
 	],
-	[
-		"tunnel-primary-secondary-tertiary-case",
-		"line-color",
-		"rgb(255, 255, 255)"
-	],
+	["tunnel-primary-secondary-tertiary-case", "line-color", "rgb(255, 255, 255)"],
 	[
 		"tunnel-primary-secondary-tertiary-case",
 		"line-gap-width",
@@ -303,23 +231,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["tunnel-street-minor", "line-color", "rgb(215, 218, 218)"],
@@ -516,11 +430,7 @@
 		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.1, 18, 26]
 	],
 	["road-secondary-tertiary", "line-color", "rgb(255, 255, 255)"],
-	[
-		"road-primary",
-		"line-width",
-		["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]
-	],
+	["road-primary", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 5, 0.75, 18, 32]],
 	["road-primary", "line-color", "rgb(255, 255, 255)"],
 	[
 		"road-motorway-trunk",
@@ -531,21 +441,9 @@
 	[
 		"road-rail",
 		"line-color",
-		[
-			"interpolate",
-			["linear"],
-			["zoom"],
-			13,
-			"rgb(224, 224, 224)",
-			17,
-			"rgb(209, 209, 209)"
-		]
+		["interpolate", ["linear"], ["zoom"], 13, "rgb(224, 224, 224)", 17, "rgb(209, 209, 209)"]
 	],
-	[
-		"road-rail",
-		"line-width",
-		["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]
-	],
+	["road-rail", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]],
 	[
 		"turning-feature",
 		"circle-radius",
@@ -563,23 +461,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["bridge-street-minor-low", "line-color", "rgb(255, 255, 255)"],
@@ -599,23 +483,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["bridge-street-minor-case", "line-opacity", ["step", ["zoom"], 0, 14, 1]],
@@ -632,11 +502,7 @@
 			2
 		]
 	],
-	[
-		"bridge-primary-secondary-tertiary-case",
-		"line-color",
-		"rgb(224, 224, 224)"
-	],
+	["bridge-primary-secondary-tertiary-case", "line-color", "rgb(224, 224, 224)"],
 	[
 		"bridge-primary-secondary-tertiary-case",
 		"line-gap-width",
@@ -650,11 +516,7 @@
 			["match", ["get", "class"], "primary", 32, 26]
 		]
 	],
-	[
-		"bridge-primary-secondary-tertiary-case",
-		"line-opacity",
-		["step", ["zoom"], 0, 10, 1]
-	],
+	["bridge-primary-secondary-tertiary-case", "line-opacity", ["step", ["zoom"], 0, 10, 1]],
 	[
 		"bridge-major-link-case",
 		"line-width",
@@ -716,23 +578,9 @@
 			12,
 			0.5,
 			14,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				2,
-				"track",
-				1,
-				0.5
-			],
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 2, "track", 1, 0.5],
 			18,
-			[
-				"match",
-				["get", "class"],
-				["street", "street_limited", "primary_link"],
-				18,
-				12
-			]
+			["match", ["get", "class"], ["street", "street_limited", "primary_link"], 18, 12]
 		]
 	],
 	["bridge-street-minor", "line-color", "rgb(255, 255, 255)"],
@@ -792,97 +640,37 @@
 	],
 	["bridge-motorway-trunk-2", "line-color", "rgb(255, 255, 255)"],
 	["bridge-rail", "line-color", "rgb(209, 209, 209)"],
-	[
-		"bridge-rail",
-		"line-width",
-		["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]
-	],
+	["bridge-rail", "line-width", ["interpolate", ["exponential", 1.5], ["zoom"], 14, 0.5, 20, 1]],
 	[
 		"admin-1-boundary-bg",
 		"line-color",
-		[
-			"interpolate",
-			["linear"],
-			["zoom"],
-			8,
-			"rgb(209, 209, 209)",
-			16,
-			"rgb(209, 209, 209)"
-		]
+		["interpolate", ["linear"], ["zoom"], 8, "rgb(209, 209, 209)", 16, "rgb(209, 209, 209)"]
 	],
-	[
-		"admin-1-boundary-bg",
-		"line-width",
-		["interpolate", ["linear"], ["zoom"], 7, 3.75, 12, 5.5]
-	],
-	[
-		"admin-1-boundary-bg",
-		"line-opacity",
-		["interpolate", ["linear"], ["zoom"], 7, 0, 8, 0.75]
-	],
+	["admin-1-boundary-bg", "line-width", ["interpolate", ["linear"], ["zoom"], 7, 3.75, 12, 5.5]],
+	["admin-1-boundary-bg", "line-opacity", ["interpolate", ["linear"], ["zoom"], 7, 0, 8, 0.75]],
 	["admin-1-boundary-bg", "line-dasharray", [1, 0]],
-	[
-		"admin-1-boundary-bg",
-		"line-blur",
-		["interpolate", ["linear"], ["zoom"], 3, 0, 8, 3]
-	],
-	[
-		"admin-0-boundary-bg",
-		"line-width",
-		["interpolate", ["linear"], ["zoom"], 3, 3.5, 10, 8]
-	],
+	["admin-1-boundary-bg", "line-blur", ["interpolate", ["linear"], ["zoom"], 3, 0, 8, 3]],
+	["admin-0-boundary-bg", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 3.5, 10, 8]],
 	["admin-0-boundary-bg", "line-color", "rgb(209, 209, 209)"],
-	[
-		"admin-0-boundary-bg",
-		"line-opacity",
-		["interpolate", ["linear"], ["zoom"], 3, 0, 4, 0.5]
-	],
-	[
-		"admin-0-boundary-bg",
-		"line-blur",
-		["interpolate", ["linear"], ["zoom"], 3, 0, 10, 2]
-	],
+	["admin-0-boundary-bg", "line-opacity", ["interpolate", ["linear"], ["zoom"], 3, 0, 4, 0.5]],
+	["admin-0-boundary-bg", "line-blur", ["interpolate", ["linear"], ["zoom"], 3, 0, 10, 2]],
 	[
 		"admin-1-boundary",
 		"line-dasharray",
 		["step", ["zoom"], ["literal", [2, 0]], 7, ["literal", [2, 2, 6, 2]]]
 	],
-	[
-		"admin-1-boundary",
-		"line-width",
-		["interpolate", ["linear"], ["zoom"], 7, 0.75, 12, 1.5]
-	],
-	[
-		"admin-1-boundary",
-		"line-opacity",
-		["interpolate", ["linear"], ["zoom"], 2, 0, 3, 1]
-	],
+	["admin-1-boundary", "line-width", ["interpolate", ["linear"], ["zoom"], 7, 0.75, 12, 1.5]],
+	["admin-1-boundary", "line-opacity", ["interpolate", ["linear"], ["zoom"], 2, 0, 3, 1]],
 	[
 		"admin-1-boundary",
 		"line-color",
-		[
-			"interpolate",
-			["linear"],
-			["zoom"],
-			3,
-			"rgb(206, 206, 206)",
-			7,
-			"rgb(163, 171, 171)"
-		]
+		["interpolate", ["linear"], ["zoom"], 3, "rgb(206, 206, 206)", 7, "rgb(163, 171, 171)"]
 	],
 	["admin-0-boundary", "line-color", "rgb(166, 166, 166)"],
-	[
-		"admin-0-boundary",
-		"line-width",
-		["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]
-	],
+	["admin-0-boundary", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]],
 	["admin-0-boundary", "line-dasharray", [10, 0]],
 	["admin-0-boundary-disputed", "line-color", "rgb(166, 166, 166)"],
-	[
-		"admin-0-boundary-disputed",
-		"line-width",
-		["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]
-	],
+	["admin-0-boundary-disputed", "line-width", ["interpolate", ["linear"], ["zoom"], 3, 0.5, 10, 2]],
 	[
 		"admin-0-boundary-disputed",
 		"line-dasharray",
@@ -934,21 +722,9 @@
 		[
 			"step",
 			["zoom"],
-			[
-				"step",
-				["get", "sizerank"],
-				"rgb(163, 171, 171)",
-				5,
-				"rgb(141, 151, 151)"
-			],
+			["step", ["get", "sizerank"], "rgb(163, 171, 171)", 5, "rgb(141, 151, 151)"],
 			17,
-			[
-				"step",
-				["get", "sizerank"],
-				"rgb(163, 171, 171)",
-				13,
-				"rgb(141, 151, 151)"
-			]
+			["step", ["get", "sizerank"], "rgb(163, 171, 171)", 13, "rgb(141, 151, 151)"]
 		]
 	],
 	["airport-label", "text-color", "rgb(109, 119, 119)"],
@@ -1002,10 +778,10 @@
 	["country-label", "text-halo-color", "rgb(255, 255, 255)"],
 	["country-label", "text-halo-width", 1.25],
 	["cyfinfaza-dvdsoopg", "raster-opacity", 0.5],
-	["fair-tileset-test-1", "fill-extrusion-opacity", 0.75],
-	["fair-tileset-test-1", "fill-extrusion-height", 5],
+	["tents", "fill-extrusion-opacity", 0.75],
+	["tents", "fill-extrusion-height", 5],
 	[
-		"fair-tileset-test-1",
+		"tents",
 		"fill-extrusion-color",
 		[
 			"case",
@@ -1014,8 +790,8 @@
 			"hsl(155, 50%, 30%)"
 		]
 	],
-	["fair-tileset-test-1 labels", "text-color", "hsl(0, 0%, 100%)"],
-	["fair-tileset-test-1 labels", "text-halo-width", 1],
-	["fair-tileset-test-1 labels", "text-halo-color", "#009959"],
-	["fair-tileset-test-1 labels", "text-halo-blur", 1]
+	["tents labels", "text-color", "hsl(0, 0%, 100%)"],
+	["tents labels", "text-halo-width", 1],
+	["tents labels", "text-halo-color", "#009959"],
+	["tents labels", "text-halo-blur", 1]
 ]
