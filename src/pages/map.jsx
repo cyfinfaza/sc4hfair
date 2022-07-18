@@ -61,29 +61,31 @@ const MapPage = () => {
 
 			// Locate a tent by its slug
 			let toLocate = new URLSearchParams(window.location.search).get('locate')
-			let query = map.current.querySourceFeatures(source, {
-				sourceLayer: sourceLayer,
-				filter: ['==', 'slug', toLocate], // check tent slug
-			})
-			if (query.length !== 0) {
-				// assuming that the biggest id is actually the one shown because otherwise i have no idea how to get the correct one
-				let element = query.reduce((a, b) => (a.id > b.id ? a : b))
-				console.log(element, query)
+			if (toLocate) {
+				let query = map.current.querySourceFeatures(source, {
+					sourceLayer: sourceLayer,
+					filter: ['==', 'slug', toLocate], // check tent slug
+				})
+				if (query.length !== 0) {
+					// assuming that the biggest id is actually the one shown because otherwise i have no idea how to get the correct one
+					let element = query.reduce((a, b) => (a.id > b.id ? a : b))
+					console.log(element, query)
 
-				map.current.flyTo({
-					center: polylabel(element.geometry.coordinates), // use the center of the tent
-					zoom: 18.5,
-					speed: 2.7, // this is done once on page load so make it go fast
-				})
-				map.current.once('moveend', () => {
-					setSelectedFeature({
-						source,
-						sourceLayer,
-						...element,
+					map.current.flyTo({
+						center: polylabel(element.geometry.coordinates), // use the center of the tent
+						zoom: 18.5,
+						speed: 2.7, // this is done once on page load so make it go fast
 					})
-				})
-			} else {
-				console.warn('No tent found for', toLocate)
+					map.current.once('moveend', () => {
+						setSelectedFeature({
+							source,
+							sourceLayer,
+							...element,
+						})
+					})
+				} else {
+					console.warn('No tent found for', toLocate)
+				}
 			}
 		})
 
