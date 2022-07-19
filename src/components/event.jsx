@@ -1,4 +1,3 @@
-import * as React from 'react'
 // import ReactMarkdown from 'react-markdown'
 import * as style from './event.module.css'
 import Moment from 'react-moment'

@@ -1,4 +1,3 @@
-import React from 'react'
 import Layout from 'components/layout'
 import mapboxgl from '!mapbox-gl'
 import polylabel from 'polylabel'

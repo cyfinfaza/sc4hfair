@@ -1,4 +1,3 @@
-import * as React from 'react'
 import * as linkButtonStyle from './linkbutton.module.css'
 import { Link } from 'gatsby'
 import * as buttonStyle from './button.module.css'
@@ -20,16 +19,12 @@ const LinkButton = ({
 	alert = false,
 }) => {
 	const sharedProps = {
-		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
-			alert && buttonStyle.alert
-		} ${big ? null : linkButtonStyle.containerInline}`,
+		className: `${linkButtonStyle.container} ${buttonStyle.button} ${alert && buttonStyle.alert} ${
+			big ? null : linkButtonStyle.containerInline
+		}`,
 		style: {
 			animationDelay: index * 0.1 + 's',
-			background: acrylic
-				? 'var(--light-blur)'
-				: opaque
-				? 'var(--light)'
-				: null,
+			background: acrylic ? 'var(--light-blur)' : opaque ? 'var(--light)' : null,
 			backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
 		},
 		disabled: disabled,
@@ -37,9 +32,7 @@ const LinkButton = ({
 	const sharedContent = (
 		<>
 			{iconElement ? (
-				<div className={linkButtonStyle.iconElementContainer}>
-					{iconElement}
-				</div>
+				<div className={linkButtonStyle.iconElementContainer}>{iconElement}</div>
 			) : (
 				<i className="material-icons" style={iconStyle}>
 					{icon}

@@ -15,6 +15,7 @@ module.exports = {
 		buildLocation: os.hostname(),
 	},
 	trailingSlash: 'never',
+	jsxRuntime: 'automatic',
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-image`,

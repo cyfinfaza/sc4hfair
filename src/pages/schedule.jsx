@@ -1,6 +1,5 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as style from './schedule.module.css'
 
 import EventBox from 'components/event'

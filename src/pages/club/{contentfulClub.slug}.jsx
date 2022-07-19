@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
-import * as React from 'react'
 import { useEffect, useState, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
 // import { StaticImage } from 'gatsby-plugin-image'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
@@ -70,7 +70,7 @@ export default function ClubPage({ data: { contentfulClub: thisClub } }) {
 					<LinkButton label="Website" icon="language" linksTo={thisClub.clubWebsite} lightFont />
 				)}
 			</div>
-			<p>{thisClub.description.description}</p>
+			<ReactMarkdown>{thisClub.description.description}</ReactMarkdown>
 			<p>
 				<strong>Where: </strong>
 				{thisClub.meetingLocation.meetingLocation}

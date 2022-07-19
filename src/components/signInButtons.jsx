@@ -1,4 +1,3 @@
-import * as React from 'react'
 import LinkButton from 'components/linkbutton'
 import * as pageStyle from './signInButtons.module.css'
 

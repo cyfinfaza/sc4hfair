@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as componentStyle from './sponsorSpot.module.scss'
 import LinkButton from './linkbutton'
 import { graphql, useStaticQuery } from 'gatsby'

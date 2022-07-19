@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
 import * as style from './clubs.module.css'
 
 import Layout from 'components/layout'
@@ -31,7 +31,13 @@ const ClubsPage = ({
 	const ClubEntry = ({ club }) => (
 		<div className={style.clubEntry}>
 			<h2>{club.name}</h2>
-			<p>{club.description.description}</p>
+			{/* we only want to allow inline things */}
+			<ReactMarkdown
+				allowedElements={['a', 'br', 'p', 'span', 'b', 'strong', 'i', 'em', 'tt', 'code']}
+			>
+				{club.description.description.substring(0, 400) +
+					(club.description.description.length > 400 ? '…' : '')}
+			</ReactMarkdown>
 			<div className={style.actionButtonsPanel}>
 				{club.tent && (
 					<LinkButton label="Map" icon="place" linksTo={`/map?locate=${club.tent}`} lightFont />

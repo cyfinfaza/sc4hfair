@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as themePickerStyle from './themepicker.module.css'
 import * as buttonStyle from './button.module.css'
 import { getTheme, setTheme } from 'logic/theming'
