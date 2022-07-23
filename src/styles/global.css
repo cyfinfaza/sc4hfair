@@ -5,6 +5,8 @@
 body {
 	--accent: #009959;
 	--text: #111;
+	--text-translucent: #1112;
+	--text-translucent-2: #111a;
 	--bg: #ededed;
 	--status-bar: #009959ff;
 	--selection: #00995988;
@@ -31,6 +33,8 @@ body.theme-dark {
 	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
 	--navbar-grey: linear-gradient(var(--status-bar) 0%, #5c5c5c);
 	--text: #eee;
+	--text-translucent: #eee2;
+	--text-translucent-2: #eeea;
 	--light: #181818;
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);

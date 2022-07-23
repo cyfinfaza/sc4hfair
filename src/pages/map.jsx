@@ -7,6 +7,7 @@ import LinkButton from 'components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
 import { getTheme, onThemeChange } from 'logic/theming'
+import Tabs from 'components/tabs'
 
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
@@ -184,8 +185,8 @@ const MapPage = () => {
 
 			<div className={`${pageStyle.tentInfo} ${!selectedFeature && pageStyle.hidden}`}>
 				<div>
-					<h1>
-						Tent info{' '}
+					<h2 className={pageStyle.tentInfoHeading}>
+						{selectedFeature?.properties.name}
 						<LinkButton
 							label="Close"
 							icon="close"
@@ -194,8 +195,32 @@ const MapPage = () => {
 							}}
 							acrylic
 						/>
-					</h1>
-					{selectedFeature?.properties.name}
+					</h2>
+					<p>Info about {selectedFeature?.properties.name} tent goes here</p>
+					<Tabs
+						tabs={[
+							{
+								name: 'events',
+								content: (
+									<p>
+										Events Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
+										consequatur non enim aliquam esse quibusdam aperiam libero iure modi aut ipsa
+										iusto recusandae, ducimus praesentium quidem commodi atque maiores! Amet?
+									</p>
+								),
+							},
+							{
+								name: 'clubs',
+								content: (
+									<p>
+										Clubs Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequatur
+										non enim aliquam esse quibusdam aperiam libero iure modi aut ipsa iusto
+										recusandae, ducimus praesentium quidem commodi atque maiores! Amet?
+									</p>
+								),
+							},
+						]}
+					/>
 				</div>
 			</div>
 		</Layout>
