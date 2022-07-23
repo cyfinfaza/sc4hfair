@@ -21,6 +21,9 @@
 		transition: 120ms ease;
 		border-bottom: 0px solid transparent;
 		color: var(--text-translucent-2);
+		&:hover {
+			cursor: pointer;
+		}
 	}
 	.tabSelected {
 		border-bottom: 4px solid var(--text);
