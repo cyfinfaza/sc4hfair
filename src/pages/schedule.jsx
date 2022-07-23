@@ -82,9 +82,6 @@ export const query = graphql`
 				description {
 					description
 				}
-				coverImage {
-					url
-				}
 				category
 				tent
 			}
