@@ -8,6 +8,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
 import { getTheme, onThemeChange } from 'logic/theming'
 import Tabs from 'components/tabs'
+import { Link, graphql } from 'gatsby'
+import Moment from 'react-moment'
 
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
@@ -24,7 +26,12 @@ mapboxgl.accessToken =
 
 let previouslySelectedFeature = null
 
-const MapPage = () => {
+const MapPage = ({
+	data: {
+		allContentfulClub: { nodes: clubData },
+		allContentfulScheduledEvent: { nodes: eventData },
+	},
+}) => {
 	const mapContainer = useRef(null)
 	const map = useRef(null)
 	const geolocate = useRef(null)
@@ -144,6 +151,11 @@ const MapPage = () => {
 		[selectedFeature]
 	)
 
+	var filteredEventData = eventData.filter(
+		event => event.tent === selectedFeature?.properties.slug && new Date(event.time) > Date.now()
+	)
+	var filteredClubData = clubData.filter(club => club.tent === selectedFeature?.properties.slug)
+
 	const [clickCounter, setClickCounter] = useState(0)
 	return (
 		<Layout
@@ -201,22 +213,33 @@ const MapPage = () => {
 						tabs={[
 							{
 								name: 'events',
-								content: (
-									<p>
-										Events Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-										consequatur non enim aliquam esse quibusdam aperiam libero iure modi aut ipsa
-										iusto recusandae, ducimus praesentium quidem commodi atque maiores! Amet?
-									</p>
+								content: filteredEventData.length ? (
+									<ul>
+										{filteredEventData.map(event => (
+											<li key={event.title}>
+												<Link to={'/schedule#' + event.id}>{event.title}</Link>{' '}
+												<small>
+													(<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />)
+												</small>
+											</li>
+										))}
+									</ul>
+								) : (
+									<p>No events found</p>
 								),
 							},
 							{
 								name: 'clubs',
-								content: (
-									<p>
-										Clubs Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequatur
-										non enim aliquam esse quibusdam aperiam libero iure modi aut ipsa iusto
-										recusandae, ducimus praesentium quidem commodi atque maiores! Amet?
-									</p>
+								content: filteredClubData.length ? (
+									<ul>
+										{filteredClubData.map(club => (
+											<li key={club.slug}>
+												<Link to={'/' + club.slug}>{club.name}</Link>
+											</li>
+										))}
+									</ul>
+								) : (
+									<p>No clubs found</p>
 								),
 							},
 						]}
@@ -226,5 +249,31 @@ const MapPage = () => {
 		</Layout>
 	)
 }
+
+// filter: { endTime: { gt: ${new Date().toISOString()} } }
+export const query = graphql`
+	query {
+		allContentfulClub {
+			nodes {
+				slug
+				name
+				tent
+			}
+		}
+		allContentfulScheduledEvent(sort: { order: ASC, fields: [time] }) {
+			nodes {
+				id: contentful_id
+				title
+				time
+				endTime
+				description {
+					description
+				}
+				category
+				tent
+			}
+		}
+	}
+`
 
 export default MapPage

@@ -17,11 +17,12 @@ const LinkButton = ({
 	lightFont = false, // light font weight
 	disabled = false, // prevent click
 	alert = false,
+	className = '', // custom classes
 }) => {
 	const sharedProps = {
-		className: `${linkButtonStyle.container} ${buttonStyle.button} ${alert && buttonStyle.alert} ${
-			big ? null : linkButtonStyle.containerInline
-		}`,
+		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
+			alert ? buttonStyle.alert : ''
+		} ${big ? null : linkButtonStyle.containerInline} ${className}`,
 		style: {
 			animationDelay: index * 0.1 + 's',
 			background: acrylic ? 'var(--light-blur)' : opaque ? 'var(--light)' : null,

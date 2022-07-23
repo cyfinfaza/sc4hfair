@@ -110,11 +110,6 @@ const ClubsPage = ({
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
 		allContentfulClub {
 			nodes {
 				slug
@@ -131,6 +126,7 @@ export const query = graphql`
 					meetingWhen
 				}
 				listingWebsite
+				tent
 			}
 		}
 	}

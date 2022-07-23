@@ -62,18 +62,8 @@ const SchedulePage = ({
 							)
 							.map((event, i) => {
 								console.log(event)
-								console.log(new Date(event.time).getTime() > Date.now())
-								return (
-									<EventBox
-										key={event.title}
-										title={event.title}
-										time={event.time}
-										endTime={event.endTime}
-										content={event.description.description}
-										imgURL={event.coverImage && event.coverImage.url}
-										index={i}
-									/>
-								)
+								// console.log(new Date(event.time).getTime() > Date.now())
+								return <EventBox key={event.id} event={event} index={i} />
 							})
 					: null}
 			</div>
@@ -83,13 +73,9 @@ const SchedulePage = ({
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
 		allContentfulScheduledEvent {
 			nodes {
+				id: contentful_id
 				title
 				time
 				endTime
@@ -100,6 +86,7 @@ export const query = graphql`
 					url
 				}
 				category
+				tent
 			}
 		}
 	}

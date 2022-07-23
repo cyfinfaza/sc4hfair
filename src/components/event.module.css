@@ -12,7 +12,11 @@
 	background-size: cover;
 }
 
-.container > div > * {
+.container.targeted {
+	transform: scale(1.05);
+}
+
+.container > div * {
 	margin: 0;
 }
 
@@ -31,19 +35,32 @@
 	margin-top: 16px;
 }
 
-.left,
-.right {
+.top, .right {
 	display: flex;
 	flex-direction: column;
 }
 
-.left {
+.top {
 	text-align: left;
 }
 
-.right {
-	margin-top: 64px;
+.bottom {
+	margin-top: 2em;
+	display: flex;
+}
+
+.buttonPanel {
+	text-align: left;
+}
+
+.buttonPanel > * {
+	margin-right: 8px !important;
+	margin-bottom: 8px !important;
+}
+
+.timeData {
 	text-align: right;
+	margin-left: auto !important;
 }
 
 @keyframes zoomin {
