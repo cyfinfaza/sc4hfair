@@ -152,7 +152,9 @@ const MapPage = ({
 	)
 
 	var filteredEventData = eventData.filter(
-		event => event.tent === selectedFeature?.properties.slug && new Date(event.time) > Date.now()
+		event =>
+			event.tent === selectedFeature?.properties.slug &&
+			Date.now() < new Date(event.endTime).getTime()
 	)
 	var filteredClubData = clubData.filter(club => club.tent === selectedFeature?.properties.slug)
 

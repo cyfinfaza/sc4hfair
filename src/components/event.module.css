@@ -13,7 +13,12 @@
 }
 
 .container.targeted {
-	transform: scale(1.05);
+	border-bottom: 8px solid var(--accent);
+	background: var(--light-2);
+}
+
+.container.past {
+	background: var(--light-blur);
 }
 
 .container > div * {

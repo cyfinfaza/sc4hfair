@@ -2,6 +2,12 @@
 /* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 
+html {
+	--nav-height: 64px;
+	scroll-padding-top: calc(var(--nav-height) + 8px);
+	scroll-behavior: smooth;
+}
+
 body {
 	--accent: #009959;
 	--text: #111;
@@ -15,14 +21,13 @@ body {
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
+	--light-2: #f3f3f3;
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #fdfdfd00;
 	--button-shadow: 0 0 8px -3px #0008;
 	--image-dimmer-opacity: 0.6;
-	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)),
-			rgba(255, 255, 255, var(--image-dimmer-opacity)));
-	--nav-height: 64px;
+	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)), rgba(255, 255, 255, var(--image-dimmer-opacity)));
 	--backdrop-blur: blur(12px);
 	--theme-transition: 0.5s ease;
 }
@@ -36,14 +41,14 @@ body.theme-dark {
 	--text-translucent: #eee2;
 	--text-translucent-2: #eeea;
 	--light: #181818;
+	--light-2: #252525;
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
 	/* --navbar-text: #fafafa; */
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px -2px #000;
-	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)),
-			rgba(0, 0, 0, var(--image-dimmer-opacity)));
+	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)), rgba(0, 0, 0, var(--image-dimmer-opacity)));
 }
 
 /* * {
@@ -52,12 +57,8 @@ body.theme-dark {
 
 @supports (backdrop-filter: var(--backdrop-blur)) {
 	body {
-		--navbar: linear-gradient(var(--status-bar) 0%,
-				#009959aa 64px,
-				#00995988 128px) !important;
-		--navbar-grey: linear-gradient(var(--status-bar) 0%,
-				#888888aa 64px,
-				#88888888 128px) !important;
+		--navbar: linear-gradient(var(--status-bar) 0%, #009959aa 64px, #00995988 128px) !important;
+		--navbar-grey: linear-gradient(var(--status-bar) 0%, #888888aa 64px, #88888888 128px) !important;
 		--light-blur: #fdfdfd33;
 	}
 
@@ -68,8 +69,7 @@ body.theme-dark {
 
 a {
 	color: var(--text);
-	transition: color var(--theme-transition),
-		background-color var(--theme-transition);
+	transition: color var(--theme-transition), background-color var(--theme-transition);
 }
 
 body {
@@ -79,8 +79,7 @@ body {
 	overflow-x: hidden;
 	background-color: var(--bg);
 	color: var(--text);
-	transition: background-color var(--theme-transition),
-		color var(--theme-transition);
+	transition: background-color var(--theme-transition), color var(--theme-transition);
 	/* transition: background-color 500ms ease; */
 }
 
@@ -88,10 +87,7 @@ body {
 	background-color: var(--selection);
 }
 
-body,
-input,
-button,
-select {
+body, input, button, select {
 	font-family: 'DM Sans', sans-serif;
 	word-wrap: break-word;
 }
@@ -125,9 +121,7 @@ div {
 	align-items: center;
 }
 
-select,
-button,
-input {
+select, button, input {
 	color: inherit;
 	transition: color var(--theme-transition);
 	background-color: var(--light);
@@ -138,8 +132,7 @@ input {
 	outline: none;
 }
 
-button,
-input {
+button, input {
 	font-size: 1em;
 	padding: 0.3em;
 }
@@ -158,11 +151,11 @@ code {
 	justify-content: center;
 }
 
-.horizPanel>* {
+.horizPanel > * {
 	margin-bottom: 8px !important;
 }
 
-.horizPanel>*+* {
+.horizPanel > * + * {
 	margin-left: 8px !important;
 }
 

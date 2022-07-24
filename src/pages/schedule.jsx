@@ -58,11 +58,10 @@ const SchedulePage = ({
 							.filter(
 								element =>
 									(selectedCategory === 'All' || selectedCategory === element.category) &&
-									(new Date(element.time).getTime() > Date.now() || showingPast)
+									(Date.now() < new Date(element.endTime).getTime() || showingPast)
 							)
 							.map((event, i) => {
 								console.log(event)
-								// console.log(new Date(event.time).getTime() > Date.now())
 								return <EventBox key={event.id} event={event} index={i} />
 							})
 					: null}
@@ -73,7 +72,7 @@ const SchedulePage = ({
 
 export const query = graphql`
 	query {
-		allContentfulScheduledEvent {
+		allContentfulScheduledEvent(sort: { order: ASC, fields: [time] }) {
 			nodes {
 				id: contentful_id
 				title

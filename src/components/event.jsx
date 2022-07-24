@@ -9,14 +9,16 @@ const EventBox = ({ event, index = 0 }) => {
 	const isBrowser = typeof window !== 'undefined'
 	const targeted = isBrowser && window.location?.hash === '#' + event.id
 	// only make it larger once, otherwise keep it normal
-	useEffect(() => {
-		if (targeted)
-			window.history?.replaceState('', null, window.location.pathname + window.location.search)
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+	// useEffect(() => {
+	// 	if (targeted)
+	// 		window.history?.replaceState('', null, window.location.pathname + window.location.search)
+	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div
-			className={`${style.container} ${targeted ? style.targeted : ''}`}
+			className={`${style.container} ${targeted ? style.targeted : ''} ${
+				new Date(event.endTime).getTime() < Date.now() ? style.past : ''
+			}`}
 			id={event.id}
 			style={{
 				animationDelay: index * 0.1 + 's',
@@ -37,7 +39,11 @@ const EventBox = ({ event, index = 0 }) => {
 						<LinkButton
 							label="Share"
 							icon="share"
-							onClick={() => share(event.title, window.location + '#' + event.id)}
+							onClick={() => {
+								let loc = new URL(window.location.href)
+								loc.hash = event.id
+								share(event.title, loc.toString())
+							}}
 							lightFont
 						/>
 					)}
