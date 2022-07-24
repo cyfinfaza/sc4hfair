@@ -1,8 +1,9 @@
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
+import Fuse from 'fuse.js'
+import { throttle } from 'throttle-debounce'
 import * as style from './clubs.module.css'
-
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
 import CloudInterestManager from 'logic/CloudInterestManager'
@@ -17,7 +18,7 @@ const ClubsPage = ({
 	const [slugList, setSlugList] = useState([])
 	const im = useRef()
 	useEffect(function () {
-		let lastQuery = localStorage.getItem('clubs_search_query')
+		let lastQuery = sessionStorage.getItem('clubs_search_query')
 		if (lastQuery) setSearchQuery(lastQuery)
 		async function startCIM() {
 			im.current = new CloudInterestManager(setSession, setSlugList)
@@ -25,9 +26,26 @@ const ClubsPage = ({
 		}
 		startCIM()
 	}, [])
+
+	const fuse = new Fuse(clubData, {
+		keys: [
+			{ name: 'name', weight: 3 },
+			{ name: 'description.description', weight: 1.5 },
+			'grades',
+			'meetingLocation.meetingLocation',
+			'meetingWhen.meetingWhen',
+		],
+		ignoreLocation: true,
+	})
+	const [searchResults, setSearchResults] = useState([])
+	const updateSearch = throttle(1000, () => {
+		setSearchResults(searchQuery ? fuse.search(searchQuery) : clubData)
+	})
 	useEffect(() => {
-		localStorage.setItem('clubs_search_query', searchQuery)
-	}, [searchQuery])
+		sessionStorage.setItem('clubs_search_query', searchQuery)
+		updateSearch(searchQuery)
+	}, [searchQuery]) // eslint-disable-line react-hooks/exhaustive-deps
+
 	const ClubEntry = ({ club }) => (
 		<div className={style.clubEntry}>
 			<h2>{club.name}</h2>
@@ -80,29 +98,9 @@ const ClubsPage = ({
 				</button>
 			</div>
 			<div className="columnCentered">
-				{clubData.map(club => {
-					if (
-						searchQuery === '' ||
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
-				{clubData.map(club => {
-					if (
-						searchQuery !== '' &&
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
-						(club.description.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meetingWhen.meetingWhen.toLowerCase().indexOf(searchQuery.toLowerCase()) !==
-								-1 ||
-							club.meetingLocation.meetingLocation
-								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
+				{searchResults.map(result => (
+					<ClubEntry key={(result.item || result).slug} club={result.item || result} />
+				))}
 			</div>
 		</Layout>
 	)
@@ -114,18 +112,18 @@ export const query = graphql`
 			nodes {
 				slug
 				name
-				meetingLocation {
-					meetingLocation
-				}
-				clubWebsite
 				description {
 					description
 				}
 				grades
+				meetingLocation {
+					meetingLocation
+				}
 				meetingWhen {
 					meetingWhen
 				}
 				listingWebsite
+				clubWebsite
 				tent
 			}
 		}
