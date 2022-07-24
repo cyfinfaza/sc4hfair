@@ -8,25 +8,25 @@
 	border-radius: 8px;
 	width: 100%;
 	overflow: hidden;
-	> .tab {
-		all: unset;
-		flex: 1;
-		font-size: 0.9em;
-		font-weight: bold;
-		text-transform: uppercase;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 8px;
-		transition: 120ms ease;
-		border-bottom: 0px solid transparent;
-		color: var(--text-translucent-2);
-		&:hover {
-			cursor: pointer;
-		}
-	}
-	.tabSelected {
-		border-bottom: 4px solid var(--text);
-		color: var(--text);
-	}
+}
+
+.tab {
+	all: unset;
+	flex: 1;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+	transition: 120ms ease;
+	border-bottom: 4px solid transparent;
+	color: var(--text-translucent-2);
+	cursor: pointer;
+}
+
+.selected {
+	color: var(--text);
+	border-bottom-color: currentColor;
 }

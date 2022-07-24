@@ -3,7 +3,7 @@ import LinkButton from './linkbutton'
 import { share, canWebShare } from 'logic/webshare'
 import * as style from './event.module.css'
 import Moment from 'react-moment'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 const EventBox = ({ event, index = 0 }) => {
 	const isBrowser = typeof window !== 'undefined'
@@ -30,8 +30,8 @@ const EventBox = ({ event, index = 0 }) => {
 			}}
 		>
 			<div className={style.top}>
-				<h1 className={style.title}>{event.title}</h1>
-				<p className={style.desc}>{event.content}</p>
+				<h1>{event.title}</h1>
+				<p>{event.content}</p>
 			</div>
 			<div className={style.bottom}>
 				<div className={style.buttonPanel}>
@@ -52,7 +52,7 @@ const EventBox = ({ event, index = 0 }) => {
 					)}
 				</div>
 				<div className={style.timeData}>
-					<h2 className={style.time}>
+					<h2>
 						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
 					</h2>
 					<p>

@@ -23,7 +23,7 @@ export default function SponsorSpot() {
 	`).allContentfulSponsorSpot.nodes
 	useEffect(_ => {
 		setAdContent(ads[Math.floor(Math.random() * ads.length)])
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 	return (
 		adContent && (
 			<div className={componentStyle.container}>
@@ -36,7 +36,7 @@ export default function SponsorSpot() {
 					<p>{adContent.description.description}</p>
 					{adContent.link && (
 						<LinkButton
-							linksTo={adContent.link}
+							href={adContent.link}
 							label="Visit"
 							icon="open_in_new"
 							inline

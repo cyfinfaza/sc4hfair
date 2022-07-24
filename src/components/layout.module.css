@@ -7,13 +7,13 @@
 	justify-content: center;
 	scroll-margin-top: calc(var(--navbar-height) + 16px);
 }
-.content>div{
+.content > div {
 	width: 100%;
 	max-width: 800px;
 }
 .skipToContentButton {
 	position: fixed;
-	top: 0px;
+	top: 0;
 	width: 100%;
 	text-align: center;
 	z-index: 200;

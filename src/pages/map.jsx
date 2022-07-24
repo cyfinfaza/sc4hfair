@@ -117,7 +117,7 @@ const MapPage = ({
 			console.log(selectedFeature, feature)
 			setSelectedFeature(feature)
 		})
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(
 		_ => {

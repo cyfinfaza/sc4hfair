@@ -21,25 +21,6 @@
 	background: var(--light-blur);
 }
 
-.container > div * {
-	margin: 0;
-}
-
-.title {
-	font-size: 36px;
-	margin: 0;
-	word-wrap: break-word;
-	hyphens: auto;
-}
-
-.time {
-	font-size: 24px;
-}
-
-.desc {
-	margin-top: 16px;
-}
-
 .top, .right {
 	display: flex;
 	flex-direction: column;
@@ -47,6 +28,17 @@
 
 .top {
 	text-align: left;
+}
+
+.top h1 {
+	font-size: 36px;
+	margin: 0;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+
+.top p {
+	margin-top: 16px;
 }
 
 .bottom {
@@ -59,13 +51,20 @@
 }
 
 .buttonPanel > * {
-	margin-right: 8px !important;
-	margin-bottom: 8px !important;
+	margin: 0 8px 8px 0 !important;
 }
 
 .timeData {
 	text-align: right;
 	margin-left: auto !important;
+}
+
+.timeData h2 {
+	font-size: 24px;
+}
+
+.container > div * {
+	margin: 0;
 }
 
 @keyframes zoomin {

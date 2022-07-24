@@ -9,7 +9,8 @@ const Tabs = ({ tabs }) => {
 			<div className={style.container}>
 				{tabs.map(({ name: tab }, i) => (
 					<button
-						className={`${style.tab} ${selectedTab === i ? style.tabSelected : null}`}
+						key={i}
+						className={`${style.tab} ${selectedTab === i ? style.selected : null}`}
 						onClick={_ => setSelectedTab(i)}
 					>
 						{tab}
