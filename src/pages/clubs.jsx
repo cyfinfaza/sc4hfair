@@ -1,12 +1,12 @@
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
-import Fuse from 'fuse.js'
 import { throttle } from 'throttle-debounce'
 import * as style from './clubs.module.css'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
 import CloudInterestManager from 'logic/CloudInterestManager'
+import SearchWorker from '../logic/search.worker.js'
 
 const ClubsPage = ({
 	data: {
@@ -27,19 +27,27 @@ const ClubsPage = ({
 		startCIM()
 	}, [])
 
-	const fuse = new Fuse(clubData, {
-		keys: [
-			{ name: 'name', weight: 3 },
-			{ name: 'description.description', weight: 1.5 },
-			'grades',
-			'meetingLocation.meetingLocation',
-			'meetingWhen.meetingWhen',
-		],
-		ignoreLocation: true,
-	})
 	const [searchResults, setSearchResults] = useState([])
-	const updateSearch = throttle(1000, () => {
-		setSearchResults(searchQuery ? fuse.search(searchQuery) : clubData)
+	const workerRef = useRef(null)
+	const updateSearch = throttle(1000, async () => {
+		if (!workerRef.current) workerRef.current = new SearchWorker()
+
+		setSearchResults(
+			searchQuery
+				? await workerRef.current.search(
+						clubData,
+						[
+							{ name: 'name', weight: 3 },
+							{ name: 'description.description', weight: 1.5 },
+							// 'grades',
+							// 'meetingLocation.meetingLocation',
+							// 'meetingWhen.meetingWhen',
+						],
+						searchQuery
+				  )
+				: clubData
+		)
+		console.log(searchResults)
 	})
 	useEffect(() => {
 		sessionStorage.setItem('clubs_search_query', searchQuery)

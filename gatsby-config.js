@@ -77,5 +77,6 @@ module.exports = {
 		},
 		`gatsby-source-local-git`,
 		`gatsby-plugin-root-import`,
+		`gatsby-plugin-workerize-loader`,
 	],
 }
