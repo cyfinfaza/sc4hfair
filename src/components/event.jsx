@@ -5,6 +5,30 @@ import * as style from './event.module.scss'
 import Moment from 'react-moment'
 // import { useEffect } from 'react'
 
+const timeLabels = {
+	past: {
+		label: 'Past',
+		style: {
+			background: 'var(--grey)',
+			color: 'var(--grey-text)',
+		},
+	},
+	future: {
+		label: 'Scheduled',
+		style: {
+			background: 'var(--yellow)',
+			color: 'var(--yellow-text)',
+		},
+	},
+	now: {
+		label: 'Now',
+		style: {
+			background: 'var(--green)',
+			color: 'var(--green-text)',
+		},
+	},
+}
+
 const EventBox = ({ event, index = 0 }) => {
 	const isBrowser = typeof window !== 'undefined'
 	const targeted = isBrowser && window.location?.hash === '#' + event.id
@@ -13,7 +37,17 @@ const EventBox = ({ event, index = 0 }) => {
 	// 	if (targeted)
 	// 		window.history?.replaceState('', null, window.location.pathname + window.location.search)
 	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
+	var timeLabel
+	console.log(event.time)
+	if (new Date(event.endTime) < new Date()) {
+		timeLabel = timeLabels.past
+	} else {
+		if (new Date(event.time) > new Date()) {
+			timeLabel = timeLabels.future
+		} else {
+			timeLabel = timeLabels.now
+		}
+	}
 	return (
 		<div
 			className={`${style.container} ${targeted ? style.targeted : ''} ${
@@ -30,7 +64,7 @@ const EventBox = ({ event, index = 0 }) => {
 			}}
 		>
 			<div className={style.top}>
-				<h1>{event.title}</h1>
+				<h2>{event.title}</h2>
 				<p>{event.description.description}</p>
 			</div>
 			<div className={style.bottom}>
@@ -52,9 +86,12 @@ const EventBox = ({ event, index = 0 }) => {
 					)}
 				</div>
 				<div className={style.timeData}>
-					<h2>
+					<h3>
+						<div className={style.eventTimeLabel} style={timeLabel.style}>
+							{timeLabel.label}
+						</div>
 						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
-					</h2>
+					</h3>
 					<p>
 						<Moment
 							interval={0} // these are static dates

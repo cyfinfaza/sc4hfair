@@ -17,10 +17,6 @@
 	/* background: var(--light-2); */
 }
 
-.container.past {
-	background: var(--light-blur);
-}
-
 .top,
 .right {
 	display: flex;
@@ -33,8 +29,7 @@
 	text-align: left;
 }
 
-.top h1 {
-	font-size: 36px;
+.top h2 {
 	margin: 0;
 	word-wrap: break-word;
 	hyphens: auto;
@@ -66,12 +61,25 @@
 	margin-left: auto !important;
 }
 
-.timeData h2 {
-	font-size: 24px;
+.timeData h3 {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .container > div * {
 	margin: 0;
+}
+
+.container .eventTimeLabel {
+	all: unset;
+	font-weight: bold;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	padding: 2px 4px;
+	margin-right: 6px;
+	border-radius: 4px;
+	background: red;
 }
 
 @keyframes zoomin {

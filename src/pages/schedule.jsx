@@ -12,6 +12,7 @@ const SchedulePage = ({
 		allContentfulScheduledEvent: { nodes: pageContent },
 	},
 }) => {
+	const isBrowser = typeof window !== 'undefined'
 	const [selectedCategory, setSelectedCategory] = useState('All')
 	const [showingPast, setShowingPast] = useState(false)
 	const [searchQuery, setSearchQuery] = useState('')
@@ -65,8 +66,9 @@ const SchedulePage = ({
 					? exactSearch(
 							pageContent.filter(
 								element =>
-									(selectedCategory === 'All' || selectedCategory === element.category) &&
-									(Date.now() < new Date(element.endTime).getTime() || showingPast)
+									((selectedCategory === 'All' || selectedCategory === element.category) &&
+										(Date.now() < new Date(element.endTime).getTime() || showingPast)) ||
+									(isBrowser && window.location?.hash === '#' + element.id)
 							),
 							'title',
 							['description.description'],
