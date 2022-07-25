@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 
 import Header from './header'
 import * as layoutStyle from './layout.module.css'
+import Modal from './modal'
+import { getPlatform } from '../logic/getPlatform'
 
 const Layout = ({
 	children,
@@ -37,6 +39,7 @@ const Layout = ({
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
 	const isBrowser = typeof window !== 'undefined'
+	const platform = getPlatform()
 
 	return (
 		<>
@@ -96,6 +99,34 @@ const Layout = ({
 			>
 				<div style={{ maxWidth: fullWidth ? 'unset' : null, ...style }}>{children}</div>
 			</div>
+			<Modal
+				show={
+					isBrowser &&
+					localStorage.getItem('splashed') !== '1' &&
+					window.matchMedia('(display-mode: browser)').matches // if they already installed the pwa don't annoy them
+				}
+				onClose={() => {
+					localStorage.setItem('splashed', '1')
+				}}
+			>
+				<p>Welcome to the {metadata.site.siteMetadata.title}!</p>
+				<p>For the best experience, please add this as an app{platform === 'other' ? '.' : ':'}</p>
+				{platform === 'android' && (
+					<>
+						<p>You should see a prompt asking you to install.</p>
+						<p>
+							If not, tap <i className="material-icons">more_vert</i> and then tap "Add to Home
+							screen".
+						</p>
+					</>
+				)}
+				{platform === 'ios-other' && <p>You must use Safari to install 😔</p>}
+				{platform === 'ios' && (
+					<p>
+						Tap <i className="material-icons">ios_share</i> and then tap "Add to Home Screen".
+					</p>
+				)}
+			</Modal>
 		</>
 	)
 }
