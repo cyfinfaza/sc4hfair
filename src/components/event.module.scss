@@ -10,6 +10,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	background-size: cover;
+	scroll-margin-top: calc(var(--nav-height) + 16px);
 }
 
 .container.targeted {

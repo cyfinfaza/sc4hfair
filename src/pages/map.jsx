@@ -197,10 +197,10 @@ const MapPage = ({
 				ref={mapContainer}
 			/>
 
-			<div className={`${pageStyle.tentInfo} ${!selectedFeature && pageStyle.hidden}`}>
+			<div className={`${pageStyle.tentInfo} ${!selectedFeature ? pageStyle.hidden : ''}`}>
 				<div>
 					<h2 className={pageStyle.tentInfoHeading}>
-						{selectedFeature?.properties.name}
+						{selectedFeature?.properties.name || '-'}
 						<LinkButton
 							label="Close"
 							icon="close"

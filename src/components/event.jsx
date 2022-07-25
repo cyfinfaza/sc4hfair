@@ -50,9 +50,7 @@ const EventBox = ({ event, index = 0 }) => {
 	}
 	return (
 		<div
-			className={`${style.container} ${targeted ? style.targeted : ''} ${
-				new Date(event.endTime).getTime() < Date.now() ? style.past : ''
-			}`}
+			className={`${style.container} ${targeted ? style.targeted : ''}`}
 			id={event.id}
 			style={{
 				animationDelay: index * 0.1 + 's',
