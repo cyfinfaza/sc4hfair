@@ -23,7 +23,7 @@ export default function ThemePicker({ navbar = false }) {
 		_ => {
 			if (isBrowser) setTheme(theme)
 		},
-		[theme]
+		[theme] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 	var nextThemeID
 	var currentThemeIndex

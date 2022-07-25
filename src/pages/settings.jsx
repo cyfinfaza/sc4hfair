@@ -126,7 +126,12 @@ export default function SettingsPage({ data }) {
 				<LinkButton label="Privacy Policy" linksTo="/privacy-policy" icon="policy" />
 			</p>
 			<div style={{ opacity: 0.5 }}>
-				<code onClick={_ => setShowingAdditionalBuildInfo(true)}>
+				<code
+					role="button"
+					tabIndex={0}
+					onClick={() => setShowingAdditionalBuildInfo(true)}
+					onKeyDown={() => setShowingAdditionalBuildInfo(true)}
+				>
 					{process.env.GATSBY_VERCEL_GIT_COMMIT_REF || data.gitBranch.name}/{data.gitBranch.commit}
 				</code>
 				{showingAdditionalBuildInfo && (

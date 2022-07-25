@@ -1,3 +1,5 @@
+/* eslint-disable no-eval */
+
 export function exactSearch(objList, priorityKey, secondaryKeys, query) {
 	query = query.toLowerCase()
 	if (query) {
