@@ -5,6 +5,7 @@ import * as style from './schedule.module.css'
 import EventBox from 'components/event'
 import ToggleButton from 'components/toggleButton'
 import Layout from 'components/layout'
+import { exactSearch } from 'logic/search'
 
 const SchedulePage = ({
 	data: {
@@ -13,6 +14,7 @@ const SchedulePage = ({
 }) => {
 	const [selectedCategory, setSelectedCategory] = useState('All')
 	const [showingPast, setShowingPast] = useState(false)
+	const [searchQuery, setSearchQuery] = useState('')
 	const categoryList = pageContent.reduce(
 		(last, current) => {
 			if (last.indexOf(current.category) < 0) {
@@ -43,12 +45,12 @@ const SchedulePage = ({
 						</option>
 					))}
 				</select>
-				{/* <input
+				<input
 					type="text"
 					placeholder="Search"
-					// value={searchQuery}
-					// onChange={event => setSearchQuery(event.target.value)}
-				/> */}
+					value={searchQuery}
+					onChange={event => setSearchQuery(event.target.value)}
+				/>
 				<ToggleButton
 					on={showingPast}
 					onClick={() => {
@@ -60,16 +62,19 @@ const SchedulePage = ({
 			</div>
 			<div className="columnCentered">
 				{pageContent
-					? pageContent
-							.filter(
+					? exactSearch(
+							pageContent.filter(
 								element =>
 									(selectedCategory === 'All' || selectedCategory === element.category) &&
 									(Date.now() < new Date(element.endTime).getTime() || showingPast)
-							)
-							.map((event, i) => {
-								console.log(event)
-								return <EventBox key={event.id} event={event} index={i} />
-							})
+							),
+							'title',
+							['description.description'],
+							searchQuery
+					  ).map((event, i) => {
+							console.log(event)
+							return <EventBox key={event.id} event={event} index={i} />
+					  })
 					: null}
 			</div>
 		</Layout>

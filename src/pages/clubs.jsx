@@ -6,6 +6,7 @@ import * as style from './clubs.module.css'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
 import CloudInterestManager from 'logic/CloudInterestManager'
+import { exactSearch } from 'logic/search'
 
 const ClubsPage = ({
 	data: {
@@ -88,21 +89,19 @@ const ClubsPage = ({
 						return <ClubEntry key={club.slug} club={club} />
 					} else return null
 				})}
-				{clubData.map(club => {
-					if (
-						searchQuery !== '' &&
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
-						(club.description.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meetingWhen.meetingWhen.toLowerCase().indexOf(searchQuery.toLowerCase()) !==
-								-1 ||
-							club.meetingLocation.meetingLocation
-								.toLowerCase()
-								.indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
+				{exactSearch(
+					clubData,
+					'name',
+					[
+						'description.description',
+						'meetingWhen.meetingWhen',
+						'meetingLocation.meetingLocation',
+						'grades',
+					],
+					searchQuery
+				).map(club => (
+					<ClubEntry key={club.slug} club={club} />
+				))}
 			</div>
 		</Layout>
 	)
