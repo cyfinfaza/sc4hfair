@@ -18,14 +18,13 @@
 	height: unset;
 	padding: 8px;
 	width: auto;
-	flex: 0;
 	margin: 0;
 	--linkbutton-icon-size: 24px;
 	/* margin-inline-end: 8px; */
 	/* margin-block-end: 8px; */
 }
 
-.containerInline > * + * {
+.containerInline>*+* {
 	margin-left: 4px !important;
 }
 
@@ -67,7 +66,7 @@ a.container {
 	/* transform: translateY(0.5px); */
 }
 
-.containerInline .iconElementContainer > * {
+.containerInline .iconElementContainer>* {
 	fill: var(--text);
 	width: var(--linkbutton-icon-size);
 	height: var(--linkbutton-icon-size);

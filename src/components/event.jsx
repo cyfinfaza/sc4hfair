@@ -1,7 +1,7 @@
 // import ReactMarkdown from 'react-markdown'
 import LinkButton from './linkbutton'
 import { share, canWebShare } from 'logic/webshare'
-import * as style from './event.module.css'
+import * as style from './event.module.scss'
 import Moment from 'react-moment'
 // import { useEffect } from 'react'
 
@@ -31,10 +31,13 @@ const EventBox = ({ event, index = 0 }) => {
 		>
 			<div className={style.top}>
 				<h1>{event.title}</h1>
-				<p>{event.content}</p>
+				<p>{event.description.description}</p>
 			</div>
 			<div className={style.bottom}>
 				<div className={style.buttonPanel}>
+					{event.tent && (
+						<LinkButton label={event.tent} icon="place" linksTo={`/map?locate=${event.tent}`} />
+					)}
 					{isBrowser && canWebShare() && (
 						<LinkButton
 							label="Share"
@@ -46,9 +49,6 @@ const EventBox = ({ event, index = 0 }) => {
 							}}
 							lightFont
 						/>
-					)}
-					{event.tent && (
-						<LinkButton label="Map" icon="place" linksTo={`/map?locate=${event.tent}`} lightFont />
 					)}
 				</div>
 				<div className={style.timeData}>

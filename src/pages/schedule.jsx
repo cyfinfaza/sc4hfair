@@ -43,6 +43,12 @@ const SchedulePage = ({
 						</option>
 					))}
 				</select>
+				{/* <input
+					type="text"
+					placeholder="Search"
+					// value={searchQuery}
+					// onChange={event => setSearchQuery(event.target.value)}
+				/> */}
 				<ToggleButton
 					on={showingPast}
 					onClick={() => {
