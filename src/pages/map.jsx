@@ -255,7 +255,7 @@ const MapPage = ({
 // filter: { endTime: { gt: ${new Date().toISOString()} } }
 export const query = graphql`
 	query {
-		allContentfulClub {
+		allContentfulClub(sort: { fields: name, order: ASC }) {
 			nodes {
 				slug
 				name

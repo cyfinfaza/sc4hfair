@@ -18,7 +18,7 @@ const SchedulePage = ({
 	const [searchQuery, setSearchQuery] = useState('')
 	const categoryList = pageContent.reduce(
 		(last, current) => {
-			if (last.indexOf(current.category) < 0) {
+			if (last.indexOf(current.category) < 0 && current.category) {
 				return [...last, current.category]
 			}
 			return last
@@ -35,7 +35,6 @@ const SchedulePage = ({
 				{/* eslint-disable-next-line jsx-a11y/no-onchange */}
 				<select
 					onChange={e => {
-						console.log('that hook')
 						setSelectedCategory(e.target.value)
 					}}
 					name="Category"
@@ -74,7 +73,7 @@ const SchedulePage = ({
 							['description.description'],
 							searchQuery
 					  ).map((event, i) => {
-							console.log(event)
+							// console.log(event)
 							return <EventBox key={event.id} event={event} index={i} />
 					  })
 					: null}
