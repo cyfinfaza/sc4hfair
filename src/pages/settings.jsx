@@ -118,6 +118,14 @@ export default function SettingsPage({ data }) {
 					<SignInButtons im={im.current} redirect="/settings" />
 				</>
 			)}
+			<h1>Clear Data</h1>
+			<p>
+				<LinkButton
+					label="Reset Scavenger Hunt"
+					onClick={_ => localStorage.removeItem('sh_code')}
+					icon="restart_alt"
+				/>
+			</p>
 			<h1>About</h1>
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4-H Computer Club</a>.

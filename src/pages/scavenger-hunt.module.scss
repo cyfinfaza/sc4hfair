@@ -13,10 +13,22 @@
 	gap: 16px;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 16px;
 	* {
 		margin: 0;
 	}
-	margin-bottom: 16px;
+	&.disabled {
+		// background-color: var(--grey);
+		// color: var(--grey-text);
+		filter: contrast(0.7);
+		min-height: 78px;
+		box-sizing: border-box;
+	}
+	&.winner {
+		background: var(--yellow);
+		color: var(--yellow-text);
+		font-weight: bold;
+	}
 	.clueIndexLabel {
 		font-size: 2em;
 		font-weight: bold;
@@ -33,10 +45,6 @@
 		border-radius: 50%;
 		background-color: var(--green);
 		color: var(--green-text);
-	}
-	&.disabled {
-		background-color: var(--grey);
-		color: var(--grey-text);
 	}
 }
 
