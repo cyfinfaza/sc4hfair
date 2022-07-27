@@ -1,1 +1,1 @@
-## Somerset County 4H Fair App
+## Somerset County 4-H Fair App

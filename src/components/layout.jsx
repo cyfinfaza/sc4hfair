@@ -5,7 +5,6 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
@@ -21,6 +20,7 @@ const Layout = ({
 	noHeaderPadding = false,
 	fixedHeightContent = false,
 	fullWidth = false,
+	style = {},
 }) => {
 	const metadata = useStaticQuery(
 		graphql`
@@ -36,6 +36,7 @@ const Layout = ({
 		`
 	)
 	const metaDescription = description || metadata.site.siteMetadata.description
+	const isBrowser = typeof window !== 'undefined'
 
 	return (
 		<>
@@ -75,19 +76,25 @@ const Layout = ({
 						content: metaDescription,
 					},
 				]}
-			/>
+			>
+				{isBrowser && <body style={fixedHeightContent ? 'overflow: hidden' : null} />}
+			</Helmet>
+			<a href="#content" className={layoutStyle.skipToContentButton}>
+				Skip to content
+			</a>
 			<Header offsetContent={!noHeaderPadding && !fixedHeightContent} />
 			<div
 				className={layoutStyle.content}
+				id="content"
 				style={{
 					padding: noPadding ? '0' : null,
-					paddingTop:
-						fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
+					paddingTop: fixedHeightContent && !noHeaderPadding ? 'var(--nav-height)' : '0',
 					height: fixedHeightContent ? '100vh' : null,
 					boxSizing: 'border-box',
+					overflow: fixedHeightContent ? 'hidden' : null,
 				}}
 			>
-				<div style={{ maxWidth: fullWidth ? 'unset' : null }}>{children}</div>
+				<div style={{ maxWidth: fullWidth ? 'unset' : null, ...style }}>{children}</div>
 			</div>
 		</>
 	)

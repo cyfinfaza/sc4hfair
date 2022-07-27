@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { ThemeContext } from 'gatsby-plugin-theme-switcher'
+import { useState, useEffect } from 'react'
 import * as themePickerStyle from './themepicker.module.css'
 import * as buttonStyle from './button.module.css'
+import { getTheme, setTheme } from 'logic/theming'
 
 const myThemes = [
 	{
@@ -17,16 +17,20 @@ const myThemes = [
 ]
 
 export default function ThemePicker({ navbar = false }) {
-	const { theme, switchTheme } = useContext(ThemeContext)
+	const isBrowser = typeof window !== 'undefined'
+	const [theme, switchTheme] = useState(isBrowser ? getTheme() : 'theme-light')
+	useEffect(
+		_ => {
+			if (isBrowser) setTheme(theme)
+		},
+		[theme] // eslint-disable-line react-hooks/exhaustive-deps
+	)
 	var nextThemeID
 	var currentThemeIndex
 	const currentTheme =
 		myThemes.filter((item, index) => {
 			if (item.id === theme) {
-				nextThemeID =
-					myThemes.length - 1 === index
-						? myThemes[0].id
-						: myThemes[index + 1].id
+				nextThemeID = myThemes.length - 1 === index ? myThemes[0].id : myThemes[index + 1].id
 				currentThemeIndex = index
 				return true
 			}

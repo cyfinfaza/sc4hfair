@@ -1,66 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono&display=swap');
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
+
+html {
+	--nav-height: 64px;
+	scroll-padding-top: calc(var(--nav-height) + 8px);
+	scroll-behavior: smooth;
+}
 
 body {
 	--accent: #009959;
 	--text: #111;
+	--text-translucent: #1112;
+	--text-translucent-2: #111a;
 	--bg: #ededed;
 	--status-bar: #009959ff;
-	--navbar: #009959ff;
-	--navbar: linear-gradient(
-		var(--status-bar) 0%,
-		#4eb489
-	);
+	--selection: #00995988;
+	--navbar: linear-gradient(var(--status-bar) 0%, #4eb489);
+	--navbar-grey: linear-gradient(var(--status-bar) 0%, #b8b8b8);
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
+	--light-2: #f3f3f3;
+	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #fdfdfd00;
+	--red: #ff0000;
+	--red-text: white;
+	--yellow: #FC0;
+	--yellow-text: black;
+	--green: #2D5;
+	--green-text: #111;
+	--grey: #ccc;
+	--grey-text: #333;
 	--button-shadow: 0 0 8px -3px #0008;
 	--image-dimmer-opacity: 0.6;
-	--image-dimmer: linear-gradient(
-		rgba(255, 255, 255, var(--image-dimmer-opacity)),
-		rgba(255, 255, 255, var(--image-dimmer-opacity))
-	);
-	--nav-height: 64px;
+	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)), rgba(255, 255, 255, var(--image-dimmer-opacity)));
 	--backdrop-blur: blur(12px);
 	--theme-transition: 0.5s ease;
 }
 
 body.theme-dark {
+	color-scheme: dark;
 	--bg: #080808;
-	--navbar: linear-gradient(
-		var(--status-bar) 0%,
-		#00643a
-	);
+	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
+	--navbar-grey: linear-gradient(var(--status-bar) 0%, #5c5c5c);
 	--text: #eee;
+	--text-translucent: #eee2;
+	--text-translucent-2: #eeea;
 	--light: #181818;
+	--light-2: #252525;
+	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
+	--grey: #333;
+	--grey-text: #ccc;
 	/* --navbar-text: #fafafa; */
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px -2px #000;
-	--image-dimmer: linear-gradient(
-		rgba(0, 0, 0, var(--image-dimmer-opacity)),
-		rgba(0, 0, 0, var(--image-dimmer-opacity))
-	);
+	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)), rgba(0, 0, 0, var(--image-dimmer-opacity)));
 }
 
-/* *{
+/* * {
 	transition: color var(--theme-transition);
 } */
 
-@supports (backdrop-filter: var(--backdrop-blur)){
+@supports (backdrop-filter: var(--backdrop-blur)) {
 	body {
-		--navbar: linear-gradient(
-			var(--status-bar) 0%,
-			#009959aa 64px,
-			#00995988 128px
-		) !important;
+		--navbar: linear-gradient(var(--status-bar) 0%, #009959aa 64px, #00995988 128px) !important;
+		--navbar-grey: linear-gradient(var(--status-bar) 0%, #888888aa 64px, #88888888 128px) !important;
 		--light-blur: #fdfdfd33;
 	}
-	
+
 	body.theme-dark {
 		--light-blur: #2226;
 	}
@@ -82,19 +92,20 @@ body {
 	/* transition: background-color 500ms ease; */
 }
 
-::selection{
-	background-color: var(--status-bar);
+::selection {
+	background-color: var(--selection);
 }
 
-body, input, button, select{
+body,
+input,
+button,
+select {
 	font-family: 'DM Sans', sans-serif;
 	word-wrap: break-word;
-	/* font-family: 'Inter', sans-serif; */
-	/* font-feature-settings: 'ss01'; */
-	/* letter-spacing: -0.5px; */
 }
-/* :not(i *, code)  */
-*{
+
+/* :not(i *, code) */
+* {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	/* transition: color 1s;
 	transition: background-color 1s; */
@@ -103,7 +114,8 @@ body, input, button, select{
 	fill: black;
 	transition: color 1s fill 1s; */
 }
-*:focus{
+
+*:focus {
 	outline: none;
 }
 
@@ -140,6 +152,10 @@ input {
 	padding: 0.3em;
 }
 
+code {
+	font-family: 'DM Mono', monospace;
+}
+
 .horizPanel {
 	/* display: grid;
 	gap: 8px;
@@ -150,15 +166,16 @@ input {
 	justify-content: center;
 }
 
-.horizPanel > * {
+.horizPanel>* {
 	margin-bottom: 8px !important;
 }
 
-.horizPanel > * + * {
+.horizPanel>*+* {
 	margin-left: 8px !important;
 }
 
-.mapboxgl-popup-content{
-	font-family: 'DM Sans';
-	color: black;
+.horizPanel2 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }

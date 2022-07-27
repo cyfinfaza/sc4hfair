@@ -1,0 +1,94 @@
+.mapContainer {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.controlsContainer {
+	position: absolute;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px;
+	margin-top: var(--nav-height);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	/* pointer-events: none; */
+
+	> * {
+		margin-bottom: 8px;
+		z-index: 10;
+	}
+}
+
+.tentInfo {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	// padding: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+	z-index: 11;
+	transition: 360ms cubic-bezier(0.82, 0.03, 0.09, 1);
+	padding: 8px;
+
+	&.hidden {
+		transform: translateY(calc(100% + 128px));
+		// opacity: 0;
+		pointer-events: none;
+	}
+
+	> * {
+		background-color: var(--light-blur);
+		backdrop-filter: var(--backdrop-blur);
+		// background: var(--light);
+		border-radius: 8px;
+		width: 100%;
+		max-width: 500px;
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		height: 300px;
+		max-height: 100%;
+		box-sizing: border-box;
+		overflow: auto;
+		> * {
+			margin: 0;
+		}
+	}
+}
+
+.tentInfoHeading {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	align-items: center;
+	width: 100%;
+}
+
+// @media screen and (max-width: 700px) {
+// 	.tentInfo {
+// 		padding: 0px;
+// 		> * {
+// 			max-width: 100%;
+// 			border-radius: 0;
+// 		}
+// 	}
+// }
+
+.mapContainer.easterEgg canvas {
+	background-color: red;
+	animation: hueRotate 3s infinite;
+}
+
+@keyframes hueRotate {
+	0% {
+		filter: hue-rotate(0deg);
+	}
+	100% {
+		filter: hue-rotate(360deg);
+	}
+}

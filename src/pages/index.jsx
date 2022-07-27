@@ -1,24 +1,25 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
 
-import Post from '../components/post'
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
+import Post from 'components/post'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
 
 const contentfulQuery = `
 {
-  postCollection {
-    items {
-      title
-      contentText
-    }
-  }
+	postCollection(order:sys_firstPublishedAt_DESC) {
+		items {
+			title
+			contentText
+			sys {
+				publishedAt
+			}
+		}
+	}
 }
 `
-
 const IndexPage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	useEffect(() => {
@@ -48,23 +49,11 @@ const IndexPage = ({ data }) => {
 	return (
 		<Layout>
 			<div style={{ textAlign: 'center' }}>
-				<h1>Welcome to the Somerset County 4H Fair.</h1>
+				<h1>Welcome to the Somerset County 4-H Fair.</h1>
 				<div className="horizPanel">
-					<LinkButton
-						label="Schedule"
-						icon="event_note"
-						linksTo="/schedule"
-						inline
-						opaque
-					/>
-					<LinkButton label="Map" icon="map" linksTo="/map" inline opaque />
-					<LinkButton
-						label="More"
-						icon="add"
-						onClick={() => window.setMenuOpen(true)}
-						inline
-						opaque
-					/>
+					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
+					<LinkButton label="Map" icon="map" linksTo="/map" />
+					<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
 				</div>
 				<h2>Latest Updates</h2>
 			</div>
@@ -72,14 +61,7 @@ const IndexPage = ({ data }) => {
 				{pageContent
 					? pageContent.items.map((post, i) => {
 							console.log(post)
-							return (
-								<Post
-									key={post.title}
-									title={post.title}
-									content={post.contentText}
-									index={i}
-								/>
-							)
+							return <Post key={post.title} data={post} index={i} />
 					  })
 					: null}
 			</div>

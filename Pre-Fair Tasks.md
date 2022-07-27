@@ -1,4 +1,0 @@
-- Scrape up-to-date club data from the 4-H website and store in static/ClubData.json
-- Acquire an up-to-date map of the fair, and implement it in Mapbox Studio
-- Using club and map info, update location of clubs at the fair in static/ClubData.json
-- Put schedule in Contentful

@@ -1,13 +1,21 @@
 const os = require('os')
 
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({
+	path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
 	siteMetadata: {
-		title: `Somerset County 4H Fair`,
+		title: `Somerset County 4-H Fair`,
 		shortTitle: `SC 4H Fair`,
-		description: `The Somerset County 4H Fair App`,
-		author: `Somerset County 4H`,
+		description: `The Somerset County 4-H Fair App`,
+		author: `Somerset County 4-H`,
 		buildLocation: os.hostname(),
 	},
+	trailingSlash: 'never',
+	jsxRuntime: 'automatic',
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-image`,
@@ -18,12 +26,18 @@ module.exports = {
 				path: `${__dirname}/src/images`,
 			},
 		},
-		`gatsby-transformer-sharp`,
-		`gatsby-plugin-sharp`,
+		{
+			resolve: `gatsby-source-contentful`,
+			options: {
+				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
+				accessToken:
+					process.env.CONTENTFUL_ACCESS_TOKEN || 'TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk',
+			},
+		},
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `Somerset County 4H Fair`,
+				name: `Somerset County 4-H Fair`,
 				short_name: `SC 4H Fair`,
 				start_url: `/`,
 				background_color: `#EDEDED`,
@@ -36,7 +50,6 @@ module.exports = {
 				legacy: true, // this will add apple-touch-icon links to <head>
 			},
 		},
-		`gatsby-plugin-gatsby-cloud`,
 		`gatsby-plugin-sass`,
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
@@ -46,7 +59,7 @@ module.exports = {
 		// 		appendScript: require.resolve(`./src/logic/sw_append.js`),
 		// 	},
 		// },
-		`gatsby-plugin-remove-serviceworker`,
+		// `gatsby-plugin-remove-serviceworker`,
 		{
 			resolve: 'gatsby-plugin-react-svg',
 			options: {
@@ -56,20 +69,13 @@ module.exports = {
 			},
 		},
 		{
-			resolve: 'gatsby-plugin-theme-switcher',
-			options: {
-				defaultDarkTheme: 'theme-dark',
-				defaultLightTheme: 'theme-light',
-			},
-		},
-		{
 			resolve: `gatsby-plugin-google-gtag`,
 			options: {
 				// You can add multiple tracking ids and a pageview event will be fired for all of them.
 				trackingIds: ['G-QYEGYTKG7B'],
 			},
 		},
-		`gatsby-plugin-react-helmet`,
 		`gatsby-source-local-git`,
+		`gatsby-plugin-root-import`,
 	],
 }

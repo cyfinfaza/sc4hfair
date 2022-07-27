@@ -1,11 +1,12 @@
-.signInButtonsContainer{
+.signInButtonsContainer {
 	display: flex;
 	flex-direction: column;
-	align-items:center;
+	align-items: center;
+	margin: 1rem 0;
 }
-.signInButtonsContainer>*{
+.signInButtonsContainer > * {
 	display: inline-flex;
 }
-.signInButtonsContainer>*+*{
+.signInButtonsContainer > * + * {
 	margin-top: 8px;
 }

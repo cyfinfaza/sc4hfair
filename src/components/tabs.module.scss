@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	align-items: stretch;
+	justify-content: stretch;
+	box-sizing: border-box;
+	// border: 1px solid var(--text-translucent);
+	background: var(--text-translucent);
+	border-radius: 8px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.tab {
+	all: unset;
+	flex: 1;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+	transition: 120ms ease;
+	border-bottom: 4px solid transparent;
+	color: var(--text-translucent-2);
+	cursor: pointer;
+}
+
+.selected {
+	color: var(--text);
+	border-bottom-color: currentColor;
+}

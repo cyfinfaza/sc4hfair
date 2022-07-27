@@ -23,6 +23,11 @@
 	font-size: 1.25em;
 }
 
+.date {
+	opacity: 0.75;
+	font-size: smaller;
+}
+
 @keyframes zoomin {
 	0% {
 		transform: scale(0.88);

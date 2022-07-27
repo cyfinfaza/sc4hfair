@@ -1,0 +1,91 @@
+.container {
+	width: 100%;
+	border-radius: 8px;
+	background-color: var(--light);
+	padding: 12px;
+	margin-bottom: 16px;
+	box-sizing: border-box;
+	animation: zoomin 0.5s backwards ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-size: cover;
+	scroll-margin-top: calc(var(--nav-height) + 16px);
+}
+
+.container.targeted {
+	border: 2px solid var(--accent);
+	/* background: var(--light-2); */
+}
+
+.top, .right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+}
+
+.top {
+	text-align: left;
+}
+
+.top h2 {
+	margin: 0;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+
+.top p {
+	margin-bottom: 4px;
+}
+
+.bottom {
+	margin-top: 2em;
+	display: flex;
+	// flex-direction: column;
+	flex-wrap: wrap-reverse;
+	align-items: flex-end;
+	justify-content: flex-end;
+	gap: 4px;
+}
+
+.buttonPanel {
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+	> * {
+		margin: 0;
+	}
+}
+
+.timeData {
+	text-align: right;
+	margin-left: auto !important;
+}
+
+.timeData h3 {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.container > div * {
+	margin: 0;
+}
+
+.container .eventTimeLabel {
+	all: unset;
+	font-weight: bold;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	padding: 2px 4px;
+	margin-right: 6px;
+	border-radius: 4px;
+}
+
+@keyframes zoomin {
+	0% {
+		transform: scale(0.88);
+		opacity: 0;
+	}
+}

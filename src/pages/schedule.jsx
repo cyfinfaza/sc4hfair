@@ -1,65 +1,30 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as style from './schedule.module.css'
 
-import EventBox from '../components/event'
-import ToggleButton from '../components/toggleButton'
-import Layout from '../components/layout'
+import EventBox from 'components/event'
+import ToggleButton from 'components/toggleButton'
+import Layout from 'components/layout'
+import { exactSearch } from 'logic/search'
 
-const contentfulQuery = `
-{
-  scheduledEventCollection (order: time_ASC) {
-    items {
-			title
-			time
-			endTime
-			description
-			coverImage {
-				url
-			}
-			category
-    }
-  }
-}
-`
-
-const SchedulePage = ({ data }) => {
-	const [pageContent, setPageContent] = useState(null)
+const SchedulePage = ({
+	data: {
+		allContentfulScheduledEvent: { nodes: pageContent },
+	},
+}) => {
+	const isBrowser = typeof window !== 'undefined'
 	const [selectedCategory, setSelectedCategory] = useState('All')
-	const [categoryList, setCategoryList] = useState(['All'])
 	const [showingPast, setShowingPast] = useState(false)
-	useEffect(() => {
-		window
-			.fetch(`https://graphql.contentful.com/content/v1/spaces/e34g9w63217k/`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					// Authenticate the request
-					Authorization: `Bearer ${atob(
-						'VFJsQ28xQmxUbXB3eUtJT0hKMDhYMmxZQWFOTmxjZUY0MTVLTW1La01Gaw=='
-					)}`,
-				},
-				// send the GraphQL query
-				body: JSON.stringify({ query: contentfulQuery }),
-			})
-			.then(response => response.json())
-			.then(({ data, errors }) => {
-				if (errors) {
-					console.error(errors)
-				}
-
-				// rerender the entire component with new data
-				setPageContent(data.scheduledEventCollection)
-				var newCategories = []
-				data.scheduledEventCollection.items.forEach(item => {
-					if (newCategories.indexOf(item.category) < 0) {
-						newCategories.push(item.category)
-					}
-				})
-				setCategoryList(categoryList => [...categoryList, ...newCategories])
-			})
-	}, [])
+	const [searchQuery, setSearchQuery] = useState('')
+	const categoryList = pageContent.reduce(
+		(last, current) => {
+			if (last.indexOf(current.category) < 0 && current.category) {
+				return [...last, current.category]
+			}
+			return last
+		},
+		['All']
+	)
 	return (
 		<Layout title="Schedule">
 			<div style={{ textAlign: 'center' }}>
@@ -70,7 +35,6 @@ const SchedulePage = ({ data }) => {
 				{/* eslint-disable-next-line jsx-a11y/no-onchange */}
 				<select
 					onChange={e => {
-						console.log('that hook')
 						setSelectedCategory(e.target.value)
 					}}
 					name="Category"
@@ -81,6 +45,12 @@ const SchedulePage = ({ data }) => {
 						</option>
 					))}
 				</select>
+				<input
+					type="text"
+					placeholder="Search"
+					value={searchQuery}
+					onChange={event => setSearchQuery(event.target.value)}
+				/>
 				<ToggleButton
 					on={showingPast}
 					onClick={() => {
@@ -92,28 +62,20 @@ const SchedulePage = ({ data }) => {
 			</div>
 			<div className="columnCentered">
 				{pageContent
-					? pageContent.items
-							.filter(
+					? exactSearch(
+							pageContent.filter(
 								element =>
-									(selectedCategory === 'All' ||
-										selectedCategory === element.category) &&
-									(new Date(element.time).getTime() > Date.now() || showingPast)
-							)
-							.map((event, i) => {
-								console.log(event)
-								console.log(new Date(event.time).getTime() > Date.now())
-								return (
-									<EventBox
-										key={event.title}
-										title={event.title}
-										time={event.time}
-										endTime={event.endTime}
-										content={event.description}
-										imgURL={event.coverImage && event.coverImage.url}
-										index={i}
-									/>
-								)
-							})
+									((selectedCategory === 'All' || selectedCategory === element.category) &&
+										(Date.now() < new Date(element.endTime).getTime() || showingPast)) ||
+									(isBrowser && window.location?.hash === '#' + element.id)
+							),
+							'title',
+							['description.description'],
+							searchQuery
+					  ).map((event, i) => {
+							// console.log(event)
+							return <EventBox key={event.id} event={event} index={i} />
+					  })
 					: null}
 			</div>
 		</Layout>
@@ -122,9 +84,17 @@ const SchedulePage = ({ data }) => {
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
+		allContentfulScheduledEvent(sort: { order: ASC, fields: [time] }) {
+			nodes {
+				id: contentful_id
 				title
+				time
+				endTime
+				description {
+					description
+				}
+				category
+				tent
 			}
 		}
 	}

@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	width: 100%;
+	// height: 100px;
+	gap: 12px;
+	background-color: var(--spsp-bg);
+	padding: 12px;
+	border-radius: 16px;
+	box-sizing: border-box;
+}
+
+.adImage {
+	height: 100px;
+	width: 100px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.adText {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	// padding: 8px;
+	> * {
+		margin: 0;
+	}
+	> h2 {
+		font-size: 1.2rem;
+		color: var(--text);
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: -2px 0;
+	}
+}
+
+.disclosure {
+	font-size: 0.8rem;
+	border-radius: 4px;
+	padding: 3px 6px;
+	background-color: var(--navbar-accent);
+	text-transform: uppercase;
+}

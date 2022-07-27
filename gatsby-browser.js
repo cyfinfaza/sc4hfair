@@ -5,6 +5,8 @@
  */
 
 import './src/styles/global.css'
+import './src/styles/material-icons.css'
+import { setTheme } from './src/logic/theming'
 
 if (window.addEventListener) {
 	var kkeys = [],
@@ -17,7 +19,7 @@ if (window.addEventListener) {
 
 			if (kkeys.toString().indexOf(konami) >= 0) {
 				alert(
-					'Wow, you found this! You probably looked at the code so..... consider joining the 4H Computers Club!'
+					'Wow, you found this! You probably looked at the code so..... consider joining the 4-H Computer Club!'
 				)
 				kkeys = []
 			}
@@ -42,3 +44,10 @@ fetch(`${process.env.GASTBY_PVT_URL || '/api/pvt'}`, {
 		}
 	})
 )
+
+if (
+	typeof localStorage.getItem('theme') == 'string' &&
+	localStorage.getItem('theme').startsWith('"')
+) {
+	setTheme(JSON.parse(localStorage.getItem('theme')))
+}
