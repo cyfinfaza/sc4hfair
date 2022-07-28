@@ -73,22 +73,11 @@ const ClubsPage = ({
 					value={searchQuery}
 					onChange={event => setSearchQuery(event.target.value)}
 				/>
-				<button
-					style={{ display: searchQuery === '' ? 'none' : null }}
-					onClick={() => setSearchQuery('')}
-				>
+				<button style={{ display: searchQuery ? null : 'none' }} onClick={() => setSearchQuery('')}>
 					Clear
 				</button>
 			</div>
 			<div className="columnCentered">
-				{clubData.map(club => {
-					if (
-						searchQuery === '' ||
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
 				{exactSearch(
 					clubData,
 					'name',
@@ -109,7 +98,7 @@ const ClubsPage = ({
 
 export const query = graphql`
 	query {
-		allContentfulClub {
+		allContentfulClub(sort: { fields: name, order: ASC }) {
 			nodes {
 				slug
 				name

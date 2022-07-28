@@ -93,12 +93,7 @@ const InterestsPage = ({
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
-		allContentfulClub {
+		allContentfulClub(sort: { fields: name, order: ASC }) {
 			nodes {
 				slug
 				description {

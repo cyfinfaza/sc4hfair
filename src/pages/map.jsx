@@ -197,10 +197,10 @@ const MapPage = ({
 				ref={mapContainer}
 			/>
 
-			<div className={`${pageStyle.tentInfo} ${!selectedFeature && pageStyle.hidden}`}>
+			<div className={`${pageStyle.tentInfo} ${!selectedFeature ? pageStyle.hidden : ''}`}>
 				<div>
 					<h2 className={pageStyle.tentInfoHeading}>
-						{selectedFeature?.properties.name}
+						{selectedFeature?.properties.name || '-'}
 						<LinkButton
 							label="Close"
 							icon="close"
@@ -255,7 +255,7 @@ const MapPage = ({
 // filter: { endTime: { gt: ${new Date().toISOString()} } }
 export const query = graphql`
 	query {
-		allContentfulClub {
+		allContentfulClub(sort: { fields: name, order: ASC }) {
 			nodes {
 				slug
 				name

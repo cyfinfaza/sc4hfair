@@ -24,6 +24,7 @@ body {
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #fdfdfd00;
+	--light-translucent: #fff8;
 	--red: #ff0000;
 	--red-text: white;
 	--yellow: #FC0;
@@ -52,6 +53,7 @@ body.theme-dark {
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
+	--light-translucent: #18181888;
 	--grey: #333;
 	--grey-text: #ccc;
 	/* --navbar-text: #fafafa; */

@@ -38,7 +38,7 @@ const EventBox = ({ event, index = 0 }) => {
 	// 		window.history?.replaceState('', null, window.location.pathname + window.location.search)
 	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
 	var timeLabel
-	console.log(event.time)
+	// console.log(event.time)
 	if (new Date(event.endTime) < new Date()) {
 		timeLabel = timeLabels.past
 	} else {
@@ -50,9 +50,7 @@ const EventBox = ({ event, index = 0 }) => {
 	}
 	return (
 		<div
-			className={`${style.container} ${targeted ? style.targeted : ''} ${
-				new Date(event.endTime).getTime() < Date.now() ? style.past : ''
-			}`}
+			className={`${style.container} ${targeted ? style.targeted : ''}`}
 			id={event.id}
 			style={{
 				animationDelay: index * 0.1 + 's',
