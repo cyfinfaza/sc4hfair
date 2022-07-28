@@ -9,28 +9,29 @@
 	position: relative;
 	box-sizing: border-box;
 }
-.clubEntry > * {
+
+.clubEntry>* {
 	margin: 0;
 }
 
-.clubEntry > h2 {
+.clubEntry>h2 {
 	text-transform: uppercase;
 }
 
-.clubEntry > p {
+.clubEntry>p {
 	/* height: 64px; */
 	width: calc(100% - var(--entry-padding) * 2);
 	position: absolute;
 }
 
-.clubEntry > p:before {
+.clubEntry>p:before {
 	content: '';
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
-	background: linear-gradient(var(--light-transparent) 20px, var(--light) 98px);
+	background: linear-gradient(transparent 20px, var(--light) 98px);
 	/* TODO make this also have a nice transition */
 	transition: background var(--theme-transition);
 }
@@ -54,9 +55,11 @@
 	gap: 8px;
 	flex-wrap: wrap;
 }
-.filterOptions > * {
+
+.filterOptions>* {
 	margin-block: 0;
 }
+
 .filterOptions input {
 	width: 250px;
 	text-indent: 4px;

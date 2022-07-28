@@ -96,6 +96,13 @@ const Header = ({ offsetContent = true }) => {
 							big
 							opaque={false}
 						/>
+						<LinkButton
+							label="Scavenger Hunt"
+							icon="travel_explore"
+							linksTo="/scavenger-hunt"
+							big
+							opaque={false}
+						/>
 					</div>
 					<div className={headerStyle.menuBottom}>
 						<ThemePicker navbar />
