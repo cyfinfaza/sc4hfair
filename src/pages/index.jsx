@@ -3,9 +3,14 @@ import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
 
+import * as pageStyle from './index.module.scss'
+
 import Post from 'components/post'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
+import InstallInstructions from 'components/installInstructions'
+
+import { getPlatform, isStandalone } from '../logic/getPlatform'
 
 const contentfulQuery = `
 {
@@ -20,6 +25,7 @@ const contentfulQuery = `
 	}
 }
 `
+
 const IndexPage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	useEffect(() => {
@@ -48,17 +54,47 @@ const IndexPage = ({ data }) => {
 				setPageContent(data.postCollection)
 			})
 	}, [])
+
+	const isBrowser = typeof window !== 'undefined'
+	const platform = isBrowser && getPlatform()
+	console.log(platform)
+	const [showAppInstall, setShowAppInstall] = useState(
+		isBrowser && localStorage.getItem('install_splash') !== '1' && !isStandalone() // if they already installed the pwa don't annoy them
+	)
+	useEffect(() => {
+		if (showAppInstall === false) localStorage.setItem('install_splash', '1')
+	}, [showAppInstall])
+
 	return (
 		<Layout>
-			<div style={{ textAlign: 'center' }}>
-				<h1>Welcome to the Somerset County 4-H Fair.</h1>
-				<div className="horizPanel">
-					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
-					<LinkButton label="Map" icon="map" linksTo="/map" />
-					<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
+			<h1 className="center">Welcome to the Somerset County 4-H Fair.</h1>
+
+			{showAppInstall && (
+				<div className={`${pageStyle.welcomeModal}`}>
+					<p>
+						<strong>Finish installing the fair app by adding it to your home screen:</strong>
+					</p>
+					<InstallInstructions />
+					<p>
+						<strong>You can find these instructions later in settings.</strong>
+						<LinkButton
+							label="Dismiss"
+							icon="close"
+							onClick={() => setShowAppInstall(false)}
+							acrylic
+							style={{ whiteSpace: 'nowrap' }}
+						/>
+					</p>
 				</div>
-				<h2>Latest Updates</h2>
+			)}
+
+			<div className="horizPanel">
+				<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
+				<LinkButton label="Map" icon="map" linksTo="/map" />
+				<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
 			</div>
+
+			<h2 className="center">Latest Updates</h2>
 			<div className="columnCentered">
 				{pageContent
 					? pageContent.items.map((post, i) => {

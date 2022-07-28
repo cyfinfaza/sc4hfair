@@ -1,12 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { graphql } from 'gatsby'
+import { navigate } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
+
+import * as pageStyle from './settings.module.css'
 
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
 import SignInButtons from 'components/signInButtons'
+import InstallInstructions from 'components/installInstructions'
 
 import CloudInterestManager from 'logic/CloudInterestManager'
+import { isStandalone } from 'logic/getPlatform'
 
 // since this is a controlled input, it needs to be outside of the layout to not break when the components refresh
 function handleInput(event, form, setForm) {
@@ -39,6 +44,7 @@ function isInfoFormDisabled(a, b) {
 }
 
 export default function SettingsPage({ data }) {
+	const isBrowser = typeof window !== 'undefined'
 	const [ready, setReady] = useState(false)
 	const [session, setSession] = useState(null)
 	const im = useRef()
@@ -118,18 +124,38 @@ export default function SettingsPage({ data }) {
 					<SignInButtons im={im.current} redirect="/settings" />
 				</>
 			)}
+			<h1>Install as App</h1>
+			{isBrowser && isStandalone() ? (
+				<p>This site is already installed as an app.</p>
+			) : (
+				<>
+					<p>How to install:</p>
+					<InstallInstructions />
+				</>
+			)}
 			<h1>Clear Data</h1>
-			<p>
+			<p className={pageStyle.horizontalButtonPanel}>
 				<LinkButton
-					label="Reset Scavenger Hunt"
-					onClick={_ => localStorage.removeItem('sh_code')}
+					label="Reset Welcome Modal"
+					onClick={_ => {
+						localStorage.removeItem('install_splash')
+						navigate('/')
+					}}
 					icon="restart_alt"
 				/>
+				<LinkButton
+					label="Reset Scavenger Hunt"
+					onClick={_ => {
+						localStorage.removeItem('sh_code')
+						navigate('/scavenger-hunt')
+					}}
+					icon="restart_alt"
+				/>{' '}
 			</p>
 			<h1>About</h1>
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4-H Computer Club</a>.
-			<p>
+			<p className={pageStyle.horizontalButtonPanel}>
 				<LinkButton label="Send feedback" linksTo="/feedback" icon="message" />{' '}
 				<LinkButton label="Privacy Policy" linksTo="/privacy-policy" icon="policy" />
 			</p>

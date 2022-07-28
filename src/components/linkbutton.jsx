@@ -18,6 +18,7 @@ const LinkButton = ({
 	disabled = false, // prevent click
 	alert = false,
 	className = '', // custom classes
+	style = {}, // custom styles
 }) => {
 	const sharedProps = {
 		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
@@ -27,6 +28,7 @@ const LinkButton = ({
 			animationDelay: index * 0.1 + 's',
 			background: acrylic ? 'var(--light-blur)' : opaque ? 'var(--light)' : null,
 			backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
+			...style,
 		},
 		disabled: disabled,
 	}
