@@ -150,7 +150,18 @@ export default function SettingsPage({ data }) {
 						navigate('/scavenger-hunt')
 					}}
 					icon="restart_alt"
-				/>{' '}
+				/>
+				<LinkButton
+					label="Unregister Service Worker"
+					onClick={_ => {
+						navigator.serviceWorker.getRegistrations().then(function (registrations) {
+							for (let registration of registrations) {
+								registration.unregister()
+							}
+						})
+					}}
+					icon="restart_alt"
+				/>
 			</p>
 			<h1>About</h1>
 			This app was created by the{' '}

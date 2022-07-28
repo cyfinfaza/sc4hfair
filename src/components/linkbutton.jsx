@@ -23,11 +23,12 @@ const LinkButton = ({
 	const sharedProps = {
 		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
 			alert ? buttonStyle.alert : ''
-		} ${big ? null : linkButtonStyle.containerInline} ${className}`,
+		} ${big ? null : linkButtonStyle.containerInline} ${
+			acrylic ? buttonStyle.acrylic : null
+		} ${className}`,
 		style: {
 			animationDelay: index * 0.1 + 's',
 			background: acrylic ? 'var(--light-blur)' : opaque ? 'var(--light)' : null,
-			backdropFilter: acrylic ? 'var(--backdrop-blur)' : null,
 			...style,
 		},
 		disabled: disabled,
@@ -37,11 +38,13 @@ const LinkButton = ({
 			{iconElement ? (
 				<div className={linkButtonStyle.iconElementContainer}>{iconElement}</div>
 			) : (
-				<i className="material-icons" style={iconStyle}>
+				<span className={'material-icons ' + linkButtonStyle.icon} style={iconStyle}>
 					{icon}
-				</i>
+				</span>
 			)}
-			<span style={{ fontWeight: lightFont ? 'unset' : null }}>{label}</span>
+			<span style={{ fontWeight: lightFont ? 'unset' : null }} className={linkButtonStyle.label}>
+				{label}
+			</span>
 		</>
 	)
 	if (linksTo && !disabled) {

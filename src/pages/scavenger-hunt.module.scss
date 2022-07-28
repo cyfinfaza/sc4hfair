@@ -50,9 +50,9 @@
 
 .scanner {
 	width: 100%;
-	aspect-ratio: 1;
-	max-height: 60vh;
 	position: fixed;
+	display: flex;
+	justify-content: center;
 	bottom: 0;
 	left: 0;
 	padding: 8px;
@@ -66,7 +66,10 @@
 
 	& > div {
 		width: 100%;
+		max-width: 800px;
 		height: 100%;
+		aspect-ratio: 1;
+		max-height: 60vh;
 		background-color: var(--light);
 		border-radius: 8px;
 		overflow: hidden;
@@ -77,6 +80,7 @@
 			position: absolute;
 			height: 100%;
 			width: 100%;
+			border-radius: 6px;
 		}
 		video {
 			object-fit: cover;

@@ -24,6 +24,10 @@
 	animation: flashBorder 1s alternate infinite;
 }
 
+.button.acrylic {
+	backdrop-filter: var(--backdrop-blur);
+}
+
 .fancyButtonContainer {
 	display: inline-flex;
 	align-items: center;
@@ -32,7 +36,7 @@
 	background-color: var(--light);
 }
 
-.fancyButtonContainer > i {
+.fancyButtonContainer>i {
 	margin-right: 4px;
 	animation: spinney 650ms ease;
 }

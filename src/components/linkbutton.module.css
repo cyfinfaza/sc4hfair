@@ -33,7 +33,7 @@ a.container {
 	color: unset;
 }
 
-.container i {
+.container .icon {
 	font-size: 50px;
 	width: 50px;
 	height: 50px;
@@ -42,13 +42,13 @@ a.container {
 	/* flex: 1; */
 }
 
-.containerInline i {
+.containerInline .icon {
 	width: var(--linkbutton-icon-size);
 	height: var(--linkbutton-icon-size);
 	font-size: var(--linkbutton-icon-size);
 }
 
-.container span {
+.container .label {
 	margin: 0;
 	font-size: 18px;
 	font-weight: bold;
@@ -60,7 +60,7 @@ a.container {
 	display: flex;
 }
 
-.containerInline span {
+.containerInline .label {
 	padding: 0;
 	font-size: 17px;
 	/* transform: translateY(0.5px); */
