@@ -3,13 +3,14 @@ import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
 
+import * as pageStyle from './index.module.scss'
+
 import Post from 'components/post'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
+import InstallInstructions from 'components/installInstructions'
 
-import { getPlatform } from '../logic/getPlatform'
-
-import * as postStyle from 'components/post.module.css'
+import { getPlatform, isStandalone } from '../logic/getPlatform'
 
 const contentfulQuery = `
 {
@@ -53,13 +54,10 @@ const IndexPage = ({ data }) => {
 	}, [])
 
 	const isBrowser = typeof window !== 'undefined'
-	const platform = getPlatform()
+	const platform = isBrowser && getPlatform()
+	console.log(platform)
 	const [showAppInstall, setShowAppInstall] = useState(
-		isBrowser &&
-			localStorage.getItem('install_splash') !== '1' &&
-			!window.matchMedia(
-				'(display-mode: fullscreen) or (display-mode: standalone) or (display-mode: minimal-ui)'
-			).matches // if they already installed the pwa don't annoy them
+		isBrowser && localStorage.getItem('install_splash') !== '1' && !isStandalone() // if they already installed the pwa don't annoy them
 	)
 	useEffect(() => {
 		if (showAppInstall === false) localStorage.setItem('install_splash', '1')
@@ -70,45 +68,21 @@ const IndexPage = ({ data }) => {
 			<h1 className="center">Welcome to the Somerset County 4-H Fair.</h1>
 
 			{showAppInstall && (
-				<div
-					className={`${postStyle.container} ${postStyle.noTitle}`}
-					style={{
-						marginTop: '20px',
-						background: 'none',
-						border: '2px solid var(--text-translucent)',
-					}}
-				>
+				<div className={`${pageStyle.welcomeModal}`}>
 					<p>
+						<strong>Finish installing the fair app by adding it to your home screen:</strong>
+					</p>
+					<InstallInstructions />
+					<p>
+						<strong>You can find these instructions later in settings.</strong>
 						<LinkButton
-							label="Close"
+							label="Dismiss"
 							icon="close"
 							onClick={() => setShowAppInstall(false)}
 							acrylic
-							style={{ float: 'right' }}
+							style={{ whiteSpace: 'nowrap' }}
 						/>
-						For the best experience, please add this as an app{platform === 'other' ? '.' : ':'}
 					</p>
-					{platform === 'android' && (
-						<>
-							<p>You should see a prompt asking you to install.</p>
-							<p>
-								If not, tap <i className="material-icons">more_vert</i> and then tap "Add to Home
-								screen".
-							</p>
-							<p>You will then be able to launch the app from your home screen.</p>
-						</>
-					)}
-					{platform === 'ios-other' && <p>You must use Safari to install 😔</p>}
-					{platform === 'ios' && (
-						<>
-							<p>
-								Tap <i className="material-icons">ios_share</i> and then tap "Add to Home Screen".
-							</p>
-							<p>If you don't see it, ensure you're using an up to date version of Safari.</p>
-							<p>You will then be able to launch the app from your home screen.</p>
-						</>
-					)}
-					<span style={{ clear: 'both' }} />
 				</div>
 			)}
 
