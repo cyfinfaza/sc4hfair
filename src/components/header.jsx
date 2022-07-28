@@ -34,14 +34,7 @@ const Header = ({ offsetContent = true }) => {
 		},
 		[isOnline]
 	)
-	// const metadata = useStaticQuery(graphql`
-	// 	query {
-	// 		gitBranch(current: { eq: true }) {
-	// 			commit
-	// 			name
-	// 		}
-	// 	}
-	// `)
+
 	return (
 		<div className={headerStyle.invisible} style={offsetContent ? {} : { height: 0 }}>
 			<div
@@ -66,18 +59,18 @@ const Header = ({ offsetContent = true }) => {
 							onClick={toggleMenu}
 						>
 							<div className={headerStyle.menuIconContainer}>
-								<i
+								<span
 									className="material-icons"
 									style={!menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 								>
 									menu
-								</i>
-								<i
+								</span>
+								<span
 									className="material-icons"
 									style={menuOpen ? {} : { transform: 'scale(0.6)', opacity: 0 }}
 								>
 									close
-								</i>
+								</span>
 							</div>
 							<span className={headerStyle.menuButtonLabel}>Menu</span>
 						</button>
@@ -133,9 +126,6 @@ const Header = ({ offsetContent = true }) => {
 					<div className={headerStyle.sponsorArea}>
 						<SponsorSpot />
 					</div>
-					{/* <code className={headerStyle.quickBuildInfo}>
-						{metadata.gitBranch.name}/{metadata.gitBranch.commit}
-					</code> */}
 				</div>
 			</div>
 		</div>

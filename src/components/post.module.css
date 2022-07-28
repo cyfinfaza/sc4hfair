@@ -17,14 +17,6 @@
 	margin-bottom: 0;
 }
 
-.container.noTitle > *:first-child {
-	margin-top: 0;
-}
-
-.container i {
-	vertical-align: text-bottom;
-}
-
 .title {
 	margin: 0;
 	text-align: center;
