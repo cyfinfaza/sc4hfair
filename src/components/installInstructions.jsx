@@ -12,8 +12,8 @@ export default function InstallInstructions() {
 							screen (usually at the bottom)
 						</li>
 						<li>
-							If you don't see it, tap <i className="material-icons">more_vert</i> (menu), then tap
-							"Add to Home Screen" or "Install".
+							If you don't see it, tap <span className="material-icons">more_vert</span> (menu),
+							then tap "Add to Home Screen" or "Install".
 						</li>
 					</ol>
 				</>

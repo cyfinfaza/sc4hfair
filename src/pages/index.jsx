@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
@@ -76,7 +76,9 @@ const IndexPage = ({ data }) => {
 					</p>
 					<InstallInstructions />
 					<p>
-						<strong>You can find these instructions later in settings.</strong>
+						<strong>
+							You can find these instructions later in <Link to="/settings">settings</Link>.
+						</strong>
 						<LinkButton
 							label="Dismiss"
 							icon="close"

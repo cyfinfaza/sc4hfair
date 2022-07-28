@@ -39,14 +39,7 @@ const Header = ({ offsetContent = true }) => {
 		},
 		[isOnline]
 	)
-	// const metadata = useStaticQuery(graphql`
-	// 	query {
-	// 		gitBranch(current: { eq: true }) {
-	// 			commit
-	// 			name
-	// 		}
-	// 	}
-	// `)
+
 	return (
 		<>
 			<Helmet meta={[{ name: 'theme-color' }]} />
@@ -147,9 +140,6 @@ const Header = ({ offsetContent = true }) => {
 						<div className={headerStyle.sponsorArea}>
 							<SponsorSpot />
 						</div>
-						{/* <code className={headerStyle.quickBuildInfo}>
-						{metadata.gitBranch.name}/{metadata.gitBranch.commit}
-					</code> */}
 					</div>
 				</div>
 			</div>

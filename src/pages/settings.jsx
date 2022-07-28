@@ -124,41 +124,22 @@ export default function SettingsPage({ data }) {
 					<SignInButtons im={im.current} redirect="/settings" />
 				</>
 			)}
-			<h1>Install as App</h1>
+			<h1>Install as app</h1>
 			{isBrowser && isStandalone() ? (
 				<p>This site is already installed as an app.</p>
 			) : (
 				<>
-					<p>How to install:</p>
+					<p>This site is not installed as an app, to do so:</p>
 					<InstallInstructions />
 				</>
 			)}
-			<h1>Clear Data</h1>
+			<h1>Clear data</h1>
 			<p className={pageStyle.horizontalButtonPanel}>
-				<LinkButton
-					label="Reset Welcome Modal"
-					onClick={_ => {
-						localStorage.removeItem('install_splash')
-						navigate('/')
-					}}
-					icon="restart_alt"
-				/>
 				<LinkButton
 					label="Reset Scavenger Hunt"
 					onClick={_ => {
 						localStorage.removeItem('sh_code')
 						navigate('/scavenger-hunt')
-					}}
-					icon="restart_alt"
-				/>
-				<LinkButton
-					label="Unregister Service Worker"
-					onClick={_ => {
-						navigator.serviceWorker.getRegistrations().then(function (registrations) {
-							for (let registration of registrations) {
-								registration.unregister()
-							}
-						})
 					}}
 					icon="restart_alt"
 				/>
@@ -185,6 +166,26 @@ export default function SettingsPage({ data }) {
 						<code>{data.siteBuildMetadata.buildTime}</code>
 						<br />
 						<code>{process.env.BUILD_LOCATION_NAME || data.site.siteMetadata.buildLocation}</code>
+						<p className={pageStyle.horizontalButtonPanel}>
+							<LinkButton
+								label="Unregister service worker"
+								onClick={_ => {
+									navigator.serviceWorker.getRegistrations().then(function (registrations) {
+										for (let registration of registrations) {
+											registration.unregister()
+										}
+									})
+								}}
+								icon="restart_alt"
+							/>
+							<LinkButton
+								label="Remove localStorage item"
+								onClick={_ => {
+									localStorage.removeItem(prompt('Key:'))
+								}}
+								icon="restart_alt"
+							/>
+						</p>
 					</>
 				)}
 			</div>

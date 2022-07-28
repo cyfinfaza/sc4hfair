@@ -179,3 +179,7 @@ code {
 .center {
 	text-align: center;
 }
+
+.material-icons {
+	vertical-align: text-bottom;
+}
