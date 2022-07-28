@@ -1,15 +1,16 @@
-import React from 'react'
-import Layout from '../components/layout'
+import Layout from 'components/layout'
 import mapboxgl from '!mapbox-gl'
 import polylabel from 'polylabel'
 import { useRef, useEffect, useState } from 'react'
 import * as pageStyle from './map.module.scss'
-import LinkButton from '../components/linkbutton'
+import LinkButton from 'components/linkbutton'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './map.addon.css'
-import { getTheme, onThemeChange } from '../logic/theming'
+import { getTheme, onThemeChange } from 'logic/theming'
+import Tabs from 'components/tabs'
+import { Link, graphql } from 'gatsby'
+import Moment from 'react-moment'
 
-// const clubData = require('../../static/clubData.json')
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
 	dark: require('../../static/mapbox-color-themes/theme-dark.json'),
@@ -25,7 +26,12 @@ mapboxgl.accessToken =
 
 let previouslySelectedFeature = null
 
-const MapPage = () => {
+const MapPage = ({
+	data: {
+		allContentfulClub: { nodes: clubData },
+		allContentfulScheduledEvent: { nodes: eventData },
+	},
+}) => {
 	const mapContainer = useRef(null)
 	const map = useRef(null)
 	const geolocate = useRef(null)
@@ -111,7 +117,7 @@ const MapPage = () => {
 			console.log(selectedFeature, feature)
 			setSelectedFeature(feature)
 		})
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(
 		_ => {
@@ -144,6 +150,13 @@ const MapPage = () => {
 		},
 		[selectedFeature]
 	)
+
+	var filteredEventData = eventData.filter(
+		event =>
+			event.tent === selectedFeature?.properties.slug &&
+			Date.now() < new Date(event.endTime).getTime()
+	)
+	var filteredClubData = clubData.filter(club => club.tent === selectedFeature?.properties.slug)
 
 	const [clickCounter, setClickCounter] = useState(0)
 	return (
@@ -184,10 +197,10 @@ const MapPage = () => {
 				ref={mapContainer}
 			/>
 
-			<div className={`${pageStyle.tentInfo} ${!selectedFeature && pageStyle.hidden}`}>
+			<div className={`${pageStyle.tentInfo} ${!selectedFeature ? pageStyle.hidden : ''}`}>
 				<div>
-					<h1>
-						Tent info{' '}
+					<h2 className={pageStyle.tentInfoHeading}>
+						{selectedFeature?.properties.name || '-'}
 						<LinkButton
 							label="Close"
 							icon="close"
@@ -196,12 +209,73 @@ const MapPage = () => {
 							}}
 							acrylic
 						/>
-					</h1>
-					{selectedFeature?.properties.name}
+					</h2>
+					<p>Info about {selectedFeature?.properties.name} tent goes here</p>
+					<Tabs
+						tabs={[
+							{
+								name: 'events',
+								content: filteredEventData.length ? (
+									<ul>
+										{filteredEventData.map(event => (
+											<li key={event.title}>
+												<Link to={'/schedule#' + event.id}>{event.title}</Link>{' '}
+												<small>
+													(<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />)
+												</small>
+											</li>
+										))}
+									</ul>
+								) : (
+									<p>No events found</p>
+								),
+							},
+							{
+								name: 'clubs',
+								content: filteredClubData.length ? (
+									<ul>
+										{filteredClubData.map(club => (
+											<li key={club.slug}>
+												<Link to={'/' + club.slug}>{club.name}</Link>
+											</li>
+										))}
+									</ul>
+								) : (
+									<p>No clubs found</p>
+								),
+							},
+						]}
+					/>
 				</div>
 			</div>
 		</Layout>
 	)
 }
+
+// filter: { endTime: { gt: ${new Date().toISOString()} } }
+export const query = graphql`
+	query {
+		allContentfulClub(sort: { fields: name, order: ASC }) {
+			nodes {
+				slug
+				name
+				tent
+			}
+		}
+		allContentfulScheduledEvent(sort: { order: ASC, fields: [time] }) {
+			nodes {
+				id: contentful_id
+				title
+				time
+				endTime
+				description {
+					description
+				}
+				category
+				tent
+			}
+		}
+	}
+`
 
 export default MapPage

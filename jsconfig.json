@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"*": ["types/*", "*"]
+		},
+		"jsx": "preserve" // https://gatsbyjs.com/plugins/gatsby-plugin-resolve-src/#vscode-configuration
+	}
+}

@@ -1,5 +1,11 @@
 const os = require('os')
 
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({
+	path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
 	siteMetadata: {
 		title: `Somerset County 4-H Fair`,
@@ -8,6 +14,8 @@ module.exports = {
 		author: `Somerset County 4-H`,
 		buildLocation: os.hostname(),
 	},
+	trailingSlash: 'never',
+	jsxRuntime: 'automatic',
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-image`,
@@ -16,6 +24,14 @@ module.exports = {
 			options: {
 				name: `images`,
 				path: `${__dirname}/src/images`,
+			},
+		},
+		{
+			resolve: `gatsby-source-contentful`,
+			options: {
+				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
+				accessToken:
+					process.env.CONTENTFUL_ACCESS_TOKEN || 'TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk',
 			},
 		},
 		{
@@ -68,7 +84,7 @@ module.exports = {
 				trackingIds: ['G-QYEGYTKG7B'],
 			},
 		},
-		`gatsby-plugin-react-helmet`,
 		`gatsby-source-local-git`,
+		`gatsby-plugin-root-import`,
 	],
 }

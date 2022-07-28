@@ -1,10 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono&display=swap');
 /* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+
+html {
+	--nav-height: 64px;
+	scroll-padding-top: calc(var(--nav-height) + 8px);
+	scroll-behavior: smooth;
+}
 
 body {
 	--accent: #009959;
 	--text: #111;
+	--text-translucent: #1112;
+	--text-translucent-2: #111a;
 	--bg: #ededed;
 	--status-bar: #009959ff;
 	--selection: #00995988;
@@ -13,14 +20,22 @@ body {
 	/* --navbar-text: #050505; */
 	--navbar-accent: #fff3;
 	--light: #fff;
+	--light-2: #f3f3f3;
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #fdfdfd00;
+	--light-translucent: #fff8;
+	--red: #ff0000;
+	--red-text: white;
+	--yellow: #FC0;
+	--yellow-text: black;
+	--green: #2D5;
+	--green-text: #111;
+	--grey: #ccc;
+	--grey-text: #333;
 	--button-shadow: 0 0 8px -3px #0008;
 	--image-dimmer-opacity: 0.6;
-	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)),
-			rgba(255, 255, 255, var(--image-dimmer-opacity)));
-	--nav-height: 64px;
+	--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)), rgba(255, 255, 255, var(--image-dimmer-opacity)));
 	--backdrop-blur: blur(12px);
 	--theme-transition: 0.5s ease;
 }
@@ -31,15 +46,20 @@ body.theme-dark {
 	--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
 	--navbar-grey: linear-gradient(var(--status-bar) 0%, #5c5c5c);
 	--text: #eee;
+	--text-translucent: #eee2;
+	--text-translucent-2: #eeea;
 	--light: #181818;
+	--light-2: #252525;
 	--light-stackable: #ffffff18;
 	--light-blur: var(--light);
 	--light-transparent: #2220;
+	--light-translucent: #18181888;
+	--grey: #333;
+	--grey-text: #ccc;
 	/* --navbar-text: #fafafa; */
 	--navbar-accent: #0003;
 	--button-shadow: 0 0 8px -2px #000;
-	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)),
-			rgba(0, 0, 0, var(--image-dimmer-opacity)));
+	--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)), rgba(0, 0, 0, var(--image-dimmer-opacity)));
 }
 
 /* * {
@@ -48,12 +68,8 @@ body.theme-dark {
 
 @supports (backdrop-filter: var(--backdrop-blur)) {
 	body {
-		--navbar: linear-gradient(var(--status-bar) 0%,
-				#009959aa 64px,
-				#00995988 128px) !important;
-		--navbar-grey: linear-gradient(var(--status-bar) 0%,
-				#888888aa 64px,
-				#88888888 128px) !important;
+		--navbar: linear-gradient(var(--status-bar) 0%, #009959aa 64px, #00995988 128px) !important;
+		--navbar-grey: linear-gradient(var(--status-bar) 0%, #888888aa 64px, #88888888 128px) !important;
 		--light-blur: #fdfdfd33;
 	}
 
@@ -64,8 +80,7 @@ body.theme-dark {
 
 a {
 	color: var(--text);
-	transition: color var(--theme-transition),
-		background-color var(--theme-transition);
+	transition: color var(--theme-transition), background-color var(--theme-transition);
 }
 
 body {
@@ -75,8 +90,7 @@ body {
 	overflow-x: hidden;
 	background-color: var(--bg);
 	color: var(--text);
-	transition: background-color var(--theme-transition),
-		color var(--theme-transition);
+	transition: background-color var(--theme-transition), color var(--theme-transition);
 	/* transition: background-color 500ms ease; */
 }
 

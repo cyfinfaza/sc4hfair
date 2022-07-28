@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as themePickerStyle from './themepicker.module.css'
 import * as buttonStyle from './button.module.css'
-import { getTheme, setTheme } from '../logic/theming'
+import { getTheme, setTheme } from 'logic/theming'
 
 const myThemes = [
 	{
@@ -23,17 +23,14 @@ export default function ThemePicker({ navbar = false }) {
 		_ => {
 			if (isBrowser) setTheme(theme)
 		},
-		[theme]
+		[theme] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 	var nextThemeID
 	var currentThemeIndex
 	const currentTheme =
 		myThemes.filter((item, index) => {
 			if (item.id === theme) {
-				nextThemeID =
-					myThemes.length - 1 === index
-						? myThemes[0].id
-						: myThemes[index + 1].id
+				nextThemeID = myThemes.length - 1 === index ? myThemes[0].id : myThemes[index + 1].id
 				currentThemeIndex = index
 				return true
 			}

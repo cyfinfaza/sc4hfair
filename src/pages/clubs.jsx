@@ -1,15 +1,18 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
 import * as style from './clubs.module.css'
 
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
-import CloudInterestManager from '../logic/CloudInterestManager'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
+import CloudInterestManager from 'logic/CloudInterestManager'
+import { exactSearch } from 'logic/search'
 
-const clubData = require('../../static/clubData.json')
-
-const ClubsPage = ({ data }) => {
+const ClubsPage = ({
+	data: {
+		allContentfulClub: { nodes: clubData },
+	},
+}) => {
 	const [searchQuery, setSearchQuery] = useState('')
 	const [session, setSession] = useState(null) // eslint-disable-line no-unused-vars
 	const [slugList, setSlugList] = useState([])
@@ -29,7 +32,13 @@ const ClubsPage = ({ data }) => {
 	const ClubEntry = ({ club }) => (
 		<div className={style.clubEntry}>
 			<h2>{club.name}</h2>
-			<p>{club.description}</p>
+			{/* we only want to allow inline things */}
+			<ReactMarkdown
+				allowedElements={['a', 'br', 'p', 'span', 'b', 'strong', 'i', 'em', 'tt', 'code']}
+			>
+				{club.description.description.substring(0, 400) +
+					(club.description.description.length > 400 ? '…' : '')}
+			</ReactMarkdown>
 			<div className={style.actionButtonsPanel}>
 				{club.tent && (
 					<LinkButton label="Map" icon="place" linksTo={`/map?locate=${club.tent}`} lightFont />
@@ -64,34 +73,24 @@ const ClubsPage = ({ data }) => {
 					value={searchQuery}
 					onChange={event => setSearchQuery(event.target.value)}
 				/>
-				<button
-					style={{ display: searchQuery === '' ? 'none' : null }}
-					onClick={() => setSearchQuery('')}
-				>
+				<button style={{ display: searchQuery ? null : 'none' }} onClick={() => setSearchQuery('')}>
 					Clear
 				</button>
 			</div>
 			<div className="columnCentered">
-				{clubData.map(club => {
-					if (
-						searchQuery === '' ||
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
-				{clubData.map(club => {
-					if (
-						searchQuery !== '' &&
-						club.name.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1 &&
-						(club.description.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_when.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.meeting_where.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-							club.grades.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
-					) {
-						return <ClubEntry key={club.slug} club={club} />
-					} else return null
-				})}
+				{exactSearch(
+					clubData,
+					'name',
+					[
+						'description.description',
+						'meetingWhen.meetingWhen',
+						'meetingLocation.meetingLocation',
+						'grades',
+					],
+					searchQuery
+				).map(club => (
+					<ClubEntry key={club.slug} club={club} />
+				))}
 			</div>
 		</Layout>
 	)
@@ -99,9 +98,23 @@ const ClubsPage = ({ data }) => {
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
-				title
+		allContentfulClub(sort: { fields: name, order: ASC }) {
+			nodes {
+				slug
+				name
+				meetingLocation {
+					meetingLocation
+				}
+				clubWebsite
+				description {
+					description
+				}
+				grades
+				meetingWhen {
+					meetingWhen
+				}
+				listingWebsite
+				tent
 			}
 		}
 	}

@@ -1,31 +1,28 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 import { useEffect, useState, useRef } from 'react'
 
 import * as clubsStyle from './clubs.module.css'
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
-import CloudInterestManager from '../logic/CloudInterestManager'
-import SignInButtons from '../components/signInButtons'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
+import CloudInterestManager from 'logic/CloudInterestManager'
+import SignInButtons from 'components/signInButtons'
 
-const clubData = require('../../static/clubData.json')
-
-const InterestsPage = ({ data }) => {
+const InterestsPage = ({
+	data: {
+		allContentfulClub: { nodes: clubData },
+	},
+}) => {
 	const ClubEntry = ({ club }) => (
 		<div className={clubsStyle.clubEntry}>
 			<h2>{club.name}</h2>
-			<p>{club.description}</p>
+			<p>{club.description.description}</p>
 			<div className={clubsStyle.actionButtonsPanel}>
 				<LinkButton
 					label="Remove"
 					icon="remove"
 					onClick={() => im.current.removeInterest(club.slug)}
 				/>
-				<LinkButton
-					label="View"
-					icon="open_in_new"
-					linksTo={`/club/${club.slug}`}
-				/>
+				<LinkButton label="View" icon="open_in_new" linksTo={`/club/${club.slug}`} />
 			</div>
 		</div>
 	)
@@ -69,23 +66,13 @@ const InterestsPage = ({ data }) => {
 						))}
 				</p>
 				{reqLoginMessage && (
-					<p style={{ color: 'red' }}>
-						Sign in to add this item to your interest list.
-					</p>
+					<p style={{ color: 'red' }}>Sign in to add this item to your interest list.</p>
 				)}
 				<p className="horizPanel" style={{ whiteSpace: 'nowrap' }}>
 					{session ? (
 						<>
-							<LinkButton
-								label="Add Clubs to List"
-								icon="open_in_new"
-								linksTo="/clubs"
-							/>
-							<LinkButton
-								label="Sign out"
-								icon="logout"
-								onClick={() => im.current.logout()}
-							/>
+							<LinkButton label="Add Clubs to List" icon="open_in_new" linksTo="/clubs" />
+							<LinkButton label="Sign out" icon="logout" onClick={() => im.current.logout()} />
 						</>
 					) : (
 						<SignInButtons im={im.current} />
@@ -106,9 +93,13 @@ const InterestsPage = ({ data }) => {
 
 export const query = graphql`
 	query {
-		site {
-			siteMetadata {
-				title
+		allContentfulClub(sort: { fields: name, order: ASC }) {
+			nodes {
+				slug
+				description {
+					description
+				}
+				name
 			}
 		}
 	}

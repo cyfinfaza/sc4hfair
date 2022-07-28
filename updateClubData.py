@@ -2,7 +2,7 @@
 
 Fetches the list of clubs and their details from the 4-H website
 
-python3 updateClubData.py ./static/clubData.json
+python3 updateClubData.py ./clubData.json
 
 """
 

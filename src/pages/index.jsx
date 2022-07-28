@@ -1,12 +1,11 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect, useState } from 'react'
 // import ReactMarkdown from 'react-markdown'
 
-import Post from '../components/post'
-import Layout from '../components/layout'
-import LinkButton from '../components/linkbutton'
+import Post from 'components/post'
+import Layout from 'components/layout'
+import LinkButton from 'components/linkbutton'
 
 const contentfulQuery = `
 {

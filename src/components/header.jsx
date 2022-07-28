@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import * as headerStyle from './header.module.scss'
-import Logo from '../assets/logo.inline.svg'
-import FourH from '../assets/fourh.inline.svg'
-import { useState } from 'react'
+import Logo from 'assets/logo.inline.svg'
+import FourH from 'assets/fourh.inline.svg'
 import ThemePicker from './themepicker'
 import LinkButton from './linkbutton'
 import SponsorSpot from './sponsorSpot'
@@ -94,6 +93,13 @@ const Header = ({ offsetContent = true }) => {
 							label="Interest List"
 							icon="list_alt"
 							linksTo="/interests"
+							big
+							opaque={false}
+						/>
+						<LinkButton
+							label="Scavenger Hunt"
+							icon="travel_explore"
+							linksTo="/scavenger-hunt"
 							big
 							opaque={false}
 						/>
