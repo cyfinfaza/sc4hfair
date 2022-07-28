@@ -40,10 +40,10 @@ module.exports = {
 				name: `Somerset County 4-H Fair`,
 				short_name: `SC 4H Fair`,
 				start_url: `/`,
-				background_color: `#EDEDED`,
+				background_color: `#009959`,
 				theme_color: `#009959`,
 				display: `standalone`,
-				icon: `src/images/favicon.svg`, // This path is relative to the root of the site.
+				icon: `src/images/app-icon.svg`, // This path is relative to the root of the site.
 				icon_options: {
 					purpose: `any maskable`,
 				},
