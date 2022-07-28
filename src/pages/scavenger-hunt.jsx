@@ -89,7 +89,7 @@ export default function ScavengerHuntPage() {
 	}, [])
 
 	useEffect(() => {
-		console.log(scannerMessage)
+		// console.log(scannerMessage)
 
 		if (compatible) {
 			if (scanning)
@@ -178,26 +178,18 @@ export default function ScavengerHuntPage() {
 		<Layout title="Scavenger Hunt">
 			<div style={{ textAlign: 'center' }}>
 				<h1>Scavenger Hunt</h1>
-				{compatible ? (
-					<>
-						<p>
-							Welcome to the 4-H Fair Scavenger Hunt! Each clue will lead you to a QR Code, and when
-							you scan it, it will unlock the next clue. The last clue will lead you to your prize!
-							Go to <Link to="/settings">settings</Link> to reset the scavenger hunt.
-						</p>
-						{/* <div className={pageStyle.clue}>{clues[currentCode] === true ? 'You won!' : clue}</div>
+				<p>
+					Welcome to the 4-H Fair Scavenger Hunt! Each clue will lead you to a QR Code, and when you
+					scan it, it will unlock the next clue. The last clue will lead you to your prize! Go to{' '}
+					<Link to="/settings">settings</Link> to reset the scavenger hunt.
+				</p>
+				{/* <div className={pageStyle.clue}>{clues[currentCode] === true ? 'You won!' : clue}</div>
 					<div className={pageStyle.status}>{status}</div> */}
-						{clues.map((clue, index) => (
-							<Clue key={clue.code} index={index} />
-						))}
-					</>
-				) : (
-					<p>
-						The scavenger hunt requires a camera. Check that you have given the app permission to
-						use your camera.
-					</p>
-				)}
+				{clues.map((clue, index) => (
+					<Clue key={clue.code} index={index} />
+				))}
 			</div>
+			{/* this div needs to always be rendered so the qr library doesn't die */}
 			<div className={`${pageStyle.scanner} ${!scanning || !compatible ? pageStyle.hidden : ''}`}>
 				<div>
 					<video ref={videoElement} /> {/* eslint-disable-line jsx-a11y/media-has-caption */}
@@ -212,6 +204,28 @@ export default function ScavengerHuntPage() {
 						/>
 						<p className={pageStyle.scannerMessage}>{scannerMessage}</p>
 					</div>
+				</div>
+			</div>
+			{/* copy of scanner box for uncompatible devices */}
+			<div
+				className={`${pageStyle.scanner} ${pageStyle.fallback} ${
+					!scanning || compatible ? pageStyle.hidden : ''
+				}`}
+			>
+				<div className={pageStyle.scannerOverlay}>
+					<LinkButton
+						label="Close"
+						icon="close"
+						onClick={() => {
+							setScanning(false)
+						}}
+						acrylic
+					/>
+					<p className={pageStyle.scannerMessage}>
+						{scannerMessage
+							? scannerMessage
+							: 'The scavenger hunt requires a QR scanner. Check that your browser is allowing the app access to use the built-in one or use an external scanner.'}
+					</p>
 				</div>
 			</div>
 		</Layout>

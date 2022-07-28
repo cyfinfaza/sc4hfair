@@ -64,7 +64,7 @@
 		pointer-events: none;
 	}
 
-	> div {
+	& > div {
 		width: 100%;
 		height: 100%;
 		background-color: var(--light);
@@ -81,21 +81,39 @@
 		video {
 			object-fit: cover;
 		}
-		.scannerOverlay {
-			background: linear-gradient(to top, var(--light-translucent) 0%, 100px, rgba(0, 0, 0, 0));
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			padding: 16px;
-			align-items: flex-end;
-			box-sizing: border-box;
-			.scannerMessage {
-				font-size: 1em;
-				font-weight: bold;
-				width: 100%;
-				margin: 0;
-				text-align: center;
-			}
+	}
+}
+.scannerOverlay {
+	background: linear-gradient(to top, var(--light-translucent) 0%, 100px, rgba(0, 0, 0, 0));
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 16px;
+	align-items: flex-end;
+	box-sizing: border-box;
+	.scannerMessage {
+		font-size: 1em;
+		font-weight: bold;
+		width: 100%;
+		margin: 0;
+		text-align: center;
+	}
+}
+
+.scanner.fallback {
+	aspect-ratio: unset;
+
+	> div {
+		height: unset;
+
+		> * {
+			position: unset;
+			height: unset;
+			width: unset;
+		}
+		> p {
+			width: 100%;
+			font-weight: unset;
 		}
 	}
 }
