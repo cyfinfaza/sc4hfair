@@ -14,9 +14,10 @@ const Header = ({ offsetContent = true }) => {
 		setMenuOpen(!menuOpen)
 	}
 	const isBrowser = typeof window !== 'undefined'
-	const [isOnline, setIsOnline] = useState((isBrowser && window?.navigator.onLine) || true)
+	const [isOnline, setIsOnline] = useState(true)
 	useEffect(() => {
 		window.setMenuOpen = setMenuOpen
+		setIsOnline(navigator.onLine)
 		window.addEventListener('offline', _ => {
 			setIsOnline(false)
 		})
