@@ -96,10 +96,7 @@ body {
 	background-color: var(--selection);
 }
 
-body,
-input,
-button,
-select {
+body, input, button, select {
 	font-family: 'DM Sans', sans-serif;
 	word-wrap: break-word;
 }
@@ -133,9 +130,7 @@ div {
 	align-items: center;
 }
 
-select,
-button,
-input {
+select, button, input {
 	color: inherit;
 	transition: color var(--theme-transition);
 	background-color: var(--light);
@@ -146,8 +141,7 @@ input {
 	outline: none;
 }
 
-button,
-input {
+button, input {
 	font-size: 1em;
 	padding: 0.3em;
 }
@@ -166,11 +160,11 @@ code {
 	justify-content: center;
 }
 
-.horizPanel>* {
+.horizPanel > * {
 	margin-bottom: 8px !important;
 }
 
-.horizPanel>*+* {
+.horizPanel > * + * {
 	margin-left: 8px !important;
 }
 
@@ -178,4 +172,8 @@ code {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+}
+
+.center {
+	text-align: center;
 }

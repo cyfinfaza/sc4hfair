@@ -7,6 +7,10 @@ import Post from 'components/post'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
 
+import { getPlatform } from '../logic/getPlatform'
+
+import * as postStyle from 'components/post.module.css'
+
 const contentfulQuery = `
 {
 	postCollection(order:sys_firstPublishedAt_DESC) {
@@ -20,6 +24,7 @@ const contentfulQuery = `
 	}
 }
 `
+
 const IndexPage = ({ data }) => {
 	const [pageContent, setPageContent] = useState(null)
 	useEffect(() => {
@@ -46,17 +51,74 @@ const IndexPage = ({ data }) => {
 				setPageContent(data.postCollection)
 			})
 	}, [])
+
+	const isBrowser = typeof window !== 'undefined'
+	const platform = getPlatform()
+	const [showAppInstall, setShowAppInstall] = useState(
+		isBrowser &&
+			localStorage.getItem('install_splash') !== '1' &&
+			!window.matchMedia(
+				'(display-mode: fullscreen) or (display-mode: standalone) or (display-mode: minimal-ui)'
+			).matches // if they already installed the pwa don't annoy them
+	)
+	useEffect(() => {
+		if (showAppInstall === false) localStorage.setItem('install_splash', '1')
+	}, [showAppInstall])
+
 	return (
 		<Layout>
-			<div style={{ textAlign: 'center' }}>
-				<h1>Welcome to the Somerset County 4-H Fair.</h1>
-				<div className="horizPanel">
-					<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
-					<LinkButton label="Map" icon="map" linksTo="/map" />
-					<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
+			<h1 className="center">Welcome to the Somerset County 4-H Fair.</h1>
+
+			{showAppInstall && (
+				<div
+					className={`${postStyle.container} ${postStyle.noTitle}`}
+					style={{
+						marginTop: '20px',
+						background: 'none',
+						border: '2px solid var(--text-translucent)',
+					}}
+				>
+					<p>
+						<LinkButton
+							label="Close"
+							icon="close"
+							onClick={() => setShowAppInstall(false)}
+							acrylic
+							style={{ float: 'right' }}
+						/>
+						For the best experience, please add this as an app{platform === 'other' ? '.' : ':'}
+					</p>
+					{platform === 'android' && (
+						<>
+							<p>You should see a prompt asking you to install.</p>
+							<p>
+								If not, tap <i className="material-icons">more_vert</i> and then tap "Add to Home
+								screen".
+							</p>
+							<p>You will then be able to launch the app from your home screen.</p>
+						</>
+					)}
+					{platform === 'ios-other' && <p>You must use Safari to install 😔</p>}
+					{platform === 'ios' && (
+						<>
+							<p>
+								Tap <i className="material-icons">ios_share</i> and then tap "Add to Home Screen".
+							</p>
+							<p>If you don't see it, ensure you're using an up to date version of Safari.</p>
+							<p>You will then be able to launch the app from your home screen.</p>
+						</>
+					)}
+					<span style={{ clear: 'both' }} />
 				</div>
-				<h2>Latest Updates</h2>
+			)}
+
+			<div className="horizPanel">
+				<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" />
+				<LinkButton label="Map" icon="map" linksTo="/map" />
+				<LinkButton label="More" icon="add" onClick={() => window.setMenuOpen(true)} />
 			</div>
+
+			<h2 className="center">Latest Updates</h2>
 			<div className="columnCentered">
 				{pageContent
 					? pageContent.items.map((post, i) => {
