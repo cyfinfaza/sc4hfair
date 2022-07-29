@@ -11,7 +11,7 @@
 	display: flex;
 	align-items: center;
 
-	animation: fade var(--theme-transition);
+	animation: fade 250ms ease;
 }
 
 .content {
@@ -23,12 +23,17 @@
 	box-shadow: var(--button-shadow);
 	padding: 12px;
 	box-sizing: border-box;
-	font-size: 18px;
+	font-size: 17px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.content > * {
+	margin: 4px 0;
+	width: 100%;
 }
 
 .close {
@@ -38,22 +43,11 @@
 	opacity: 0.3;
 }
 
-.content p {
-	margin: 4px 0;
-}
-
-.content i {
-	vertical-align: text-bottom;
-}
-
 @keyframes fade {
-	0% {
+	from {
 		opacity: 0;
 	}
-	25% {
-		opacity: 0;
-	}
-	100% {
+	to {
 		opacity: 1;
 	}
 }

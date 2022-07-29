@@ -3,12 +3,11 @@ import { graphql } from 'gatsby'
 import { navigate } from 'gatsby'
 // import { StaticImage } from 'gatsby-plugin-image'
 
-import * as pageStyle from './settings.module.css'
-
+import InstallInstructions from 'components/installInstructions'
 import Layout from 'components/layout'
 import LinkButton from 'components/linkbutton'
+import Modal from 'components/modal'
 import SignInButtons from 'components/signInButtons'
-import InstallInstructions from 'components/installInstructions'
 
 import CloudInterestManager from 'logic/CloudInterestManager'
 import { isStandalone } from 'logic/getPlatform'
@@ -51,6 +50,7 @@ export default function SettingsPage({ data }) {
 	const [form, setForm] = useState({}) // current form user input
 	const [cloudForm, setCloudForm] = useState({}) // supabase form data
 	const [showingAdditionalBuildInfo, setShowingAdditionalBuildInfo] = useState(false)
+	const [confirmReset, setConfirmReset] = useState('')
 
 	useEffect(function () {
 		function setFormSession(s) {
@@ -118,11 +118,13 @@ export default function SettingsPage({ data }) {
 						alert={!isInfoFormDisabled(form, cloudForm)}
 					/>
 				</>
-			) : (
+			) : ready ? (
 				<>
 					You are not signed in.
 					<SignInButtons im={im.current} redirect="/settings" />
 				</>
+			) : (
+				<>Loading...</>
 			)}
 			<h1>Install as app</h1>
 			{isBrowser && isStandalone() ? (
@@ -134,20 +136,39 @@ export default function SettingsPage({ data }) {
 				</>
 			)}
 			<h1>Clear data</h1>
-			<p className={pageStyle.horizontalButtonPanel}>
+			<p className="horizPanel2">
 				<LinkButton
 					label="Reset Scavenger Hunt"
-					onClick={_ => {
-						localStorage.removeItem('sh_code')
-						navigate('/scavenger-hunt')
-					}}
+					onClick={() => setConfirmReset('sh')}
 					icon="restart_alt"
 				/>
 			</p>
+			<Modal
+				show={!!confirmReset}
+				confirmation={true}
+				onClose={() => setConfirmReset('')}
+				onConfirm={() => {
+					switch (confirmReset) {
+						case 'sh':
+							localStorage.removeItem('sh_code')
+							navigate('/scavenger-hunt')
+							break
+						default:
+							setConfirmReset('')
+					}
+				}}
+			>
+				<p>
+					Are you sure you want to reset{' '}
+					{confirmReset === 'sh' ? 'your scavenger hunt progress' : 'this'}? You will not be able to
+					restore it.
+				</p>
+				{confirmReset === 'sh' && <p>Note that you may only claim one prize per person.</p>}
+			</Modal>
 			<h1>About</h1>
 			This app was created by the{' '}
 			<a href="https://4hcomputers.club">Somerset County 4-H Computer Club</a>.
-			<p className={pageStyle.horizontalButtonPanel}>
+			<p className="horizPanel2">
 				<LinkButton label="Send feedback" linksTo="/feedback" icon="message" />{' '}
 				<LinkButton label="Privacy Policy" linksTo="/privacy-policy" icon="policy" />
 			</p>
@@ -166,7 +187,7 @@ export default function SettingsPage({ data }) {
 						<code>{data.siteBuildMetadata.buildTime}</code>
 						<br />
 						<code>{process.env.BUILD_LOCATION_NAME || data.site.siteMetadata.buildLocation}</code>
-						<p className={pageStyle.horizontalButtonPanel}>
+						<div className="horizPanel2">
 							<LinkButton
 								label="Unregister service worker"
 								onClick={_ => {
@@ -185,28 +206,27 @@ export default function SettingsPage({ data }) {
 								}}
 								icon="restart_alt"
 							/>
-						</p>
+						</div>
+						{/* <div className="horizPanel2">
+							<LinkButton
+								label="Request notification"
+								icon="notifications"
+								onClick={requestNoti}
+							/>
+							<LinkButton
+								label="Subscribe"
+								icon="subscriptions"
+								onClick={subscribeUser}
+							/>
+							<LinkButton
+								label="Test notification"
+								icon="notifications_active"
+								onClick={testNotification}
+							/>
+						</div> */}
 					</>
 				)}
 			</div>
-			{/* <div className="horizPanel" style={{ marginTop: '16px' }}>
-				<ThemePicker />
-				<LinkButton
-					label="Request notification"
-					icon="notifications"
-					onClick={requestNoti}
-				/>
-				<LinkButton
-					label="Subscribe"
-					icon="subscriptions"
-					onClick={subscribeUser}
-				/>
-				<LinkButton
-					label="Test notification"
-					icon="notifications_active"
-					onClick={testNotification}
-				/>
-			</div> */}
 		</Layout>
 	)
 }

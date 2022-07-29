@@ -86,7 +86,7 @@ export default function ScavengerHuntPage() {
 				setCompatible(false)
 			}
 		})()
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		// console.log(scannerMessage)

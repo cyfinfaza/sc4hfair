@@ -14,7 +14,7 @@ const Header = ({ offsetContent = true }) => {
 	function toggleMenu() {
 		setMenuOpen(!menuOpen)
 	}
-	const isBrowser = typeof window !== 'undefined'
+	// const isBrowser = typeof window !== 'undefined'
 	const [isOnline, setIsOnline] = useState(true)
 	useEffect(() => {
 		window.setMenuOpen = setMenuOpen

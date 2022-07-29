@@ -54,6 +54,7 @@ body.theme-dark {
 	--light-blur: var(--light);
 	--light-transparent: #2220;
 	--light-translucent: #18181888;
+	--red: #B00020;
 	--grey: #333;
 	--grey-text: #ccc;
 	/* --navbar-text: #fafafa; */
@@ -153,13 +154,15 @@ code {
 }
 
 .horizPanel {
-	/* display: grid;
-	gap: 8px;
-	justify-content: center;
-	grid-auto-flow: column; */
 	display: flex;
+	gap: 8px;
 	flex-wrap: wrap;
 	justify-content: center;
+
+	/* alternate version for bad browsers (cough safari)
+	display: grid;
+	justify-content: center;
+	grid-auto-flow: column;
 }
 
 .horizPanel > * {
@@ -168,6 +171,7 @@ code {
 
 .horizPanel > * + * {
 	margin-left: 8px !important;
+} */
 }
 
 .horizPanel2 {
