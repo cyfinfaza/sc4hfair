@@ -4,7 +4,22 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+const fs = require('fs')
+
+// populate offline page template with built resources
+const offlineFile = 'public/offline.html'
+exports.onPostBuild = async () => {
+	if (!fs.existsSync(offlineFile)) return console.error(`${offlineFile} not found`)
+
+	const stylesFile = fs.readdirSync('public').find(i => i.match(/^styles\..*?\.css$/))
+	const appLogo = fs.readFileSync('src/assets/logo.inline.svg', 'utf8')
+
+	const offlinePage = fs.readFileSync(offlineFile, 'utf8')
+	fs.writeFileSync(
+		offlineFile,
+		offlinePage.replace('{styles.css}', stylesFile).replace('{appLogo}', appLogo)
+	)
+}
 
 // https://github.com/gatsbyjs/gatsby/discussions/30169
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig, loaders, plugins }) => {

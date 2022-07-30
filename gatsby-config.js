@@ -59,6 +59,7 @@ module.exports = {
 				appendScript: require.resolve(`./src/logic/sw_append.js`),
 				// precachePages: ['**/*'],
 				workboxConfig: {
+					globPatterns: ['**/offline.html'],
 					// runtimeCaching: [
 					// 	{
 					// 		urlPattern: /^https:\/\/graphql.contentful.com/,
