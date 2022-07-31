@@ -40,7 +40,9 @@ export default function SponsorSpot() {
 							label="Visit"
 							icon="open_in_new"
 							inline
-							opaque={false}
+							style={{
+								background: 'var(--navbar-accent)',
+							}}
 						/>
 					)}
 				</div>

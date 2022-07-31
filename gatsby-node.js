@@ -12,12 +12,23 @@ exports.onPostBuild = async () => {
 	if (!fs.existsSync(offlineFile)) return console.error(`${offlineFile} not found`)
 
 	const stylesFile = fs.readdirSync('public').find(i => i.match(/^styles\..*?\.css$/))
-	const appLogo = fs.readFileSync('src/assets/logo.inline.svg', 'utf8')
+	const styles = fs.readFileSync(`public/${stylesFile}`, 'utf8')
+	let buttonClasses = [
+		styles.match(/\.button-module--button--.{5}/),
+		styles.match(/\.linkbutton-module--container--.{5}/),
+	]
+		.map(c => c[0].substring(1))
+		.join(' ')
+
+	const appLogo = fs.readFileSync('src/images/favicon.svg', 'utf8')
 
 	const offlinePage = fs.readFileSync(offlineFile, 'utf8')
 	fs.writeFileSync(
 		offlineFile,
-		offlinePage.replace('{styles.css}', stylesFile).replace('{appLogo}', appLogo)
+		offlinePage
+			.replace('{styles.css}', stylesFile)
+			.replace('{appLogo}', appLogo)
+			.replaceAll('{buttonClasses}', buttonClasses)
 	)
 }
 

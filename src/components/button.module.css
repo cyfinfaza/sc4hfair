@@ -26,6 +26,7 @@
 
 .button.acrylic {
 	backdrop-filter: var(--backdrop-blur);
+	background-color: var(--light-blur);
 }
 
 .fancyButtonContainer {
@@ -36,7 +37,7 @@
 	background-color: var(--light);
 }
 
-.fancyButtonContainer>i {
+.fancyButtonContainer > i {
 	margin-right: 4px;
 	animation: spinney 650ms ease;
 }

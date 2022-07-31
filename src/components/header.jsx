@@ -85,30 +85,22 @@ const Header = ({ offsetContent = true }) => {
 					</div>
 					<div className={headerStyle.menuArea}>
 						<div className={headerStyle.menuGrid}>
-							<LinkButton label="Latest" icon="home" linksTo="/" big opaque={false} />
-							<LinkButton label="Map" icon="map" linksTo="/map" big opaque={false} />
-							<LinkButton
-								label="Schedule"
-								icon="event_note"
-								linksTo="/schedule"
-								big
-								opaque={false}
-							/>
-							<LinkButton label="Clubs" icon="groups" linksTo="/clubs" big opaque={false} />
+							<LinkButton label="Latest" icon="home" linksTo="/" header />
+							<LinkButton label="Map" icon="map" linksTo="/map" header />
+							<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" header />
+							<LinkButton label="Clubs" icon="groups" linksTo="/clubs" header />
 							<LinkButton
 								label="Interest List"
 								icon="list_alt"
 								linksTo="/interests"
-								big
-								opaque={false}
+								header
 								disabled={!isOnline}
 							/>
 							<LinkButton
 								label="Scavenger Hunt"
 								icon="travel_explore"
 								linksTo="/scavenger-hunt"
-								big
-								opaque={false}
+								header
 							/>
 						</div>
 						<div className={headerStyle.menuBottom}>
@@ -117,7 +109,7 @@ const Header = ({ offsetContent = true }) => {
 								label="Settings"
 								icon="settings"
 								linksTo="/settings"
-								opaque={false}
+								className={headerStyle.button}
 								lightFont
 							/>
 							<LinkButton
@@ -126,14 +118,13 @@ const Header = ({ offsetContent = true }) => {
 									<FourH
 										style={{
 											height: '100%',
-											// fill: 'var(--navbar-text)',
-											fill: 'var(--text)',
+											fill: 'currentColor',
 											transition: 'fill var(--theme-transition)',
 										}}
 									/>
 								}
 								href="https://4histops.org"
-								opaque={false}
+								className={headerStyle.button}
 								lightFont
 							/>
 						</div>
