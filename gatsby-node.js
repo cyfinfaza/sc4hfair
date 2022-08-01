@@ -28,7 +28,7 @@ exports.onPostBuild = async () => {
 		offlinePage
 			.replace('{styles.css}', stylesFile)
 			.replace('{appLogo}', appLogo)
-			.replaceAll('{buttonClasses}', buttonClasses)
+			.replace(/{buttonClasses}/g, buttonClasses)
 	)
 }
 
