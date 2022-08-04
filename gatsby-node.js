@@ -5,6 +5,17 @@
  */
 
 const fs = require('fs')
+const path = require('path')
+
+// manually override favicons that gatsby-plugin-manifest generates
+exports.onPostBootstrap = async() => {
+	try {
+		fs.copyFileSync(path.join('src', 'images', 'favicon.svg'), path.join('public', 'favicon.svg'))
+		fs.copyFileSync(path.join('static', 'favicon-32x32.png'), path.join('public', 'favicon-32x32.png'))
+	} catch (e) {
+		console.error('Failed to override favicon', e)
+	}
+}
 
 // populate offline page template with built resources
 const offlineFile = 'public/offline.html'

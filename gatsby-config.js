@@ -47,7 +47,7 @@ module.exports = {
 				icon_options: {
 					purpose: `any maskable`,
 				},
-				legacy: true, // this will add apple-touch-icon links to <head>
+				legacy: false, // only used below our minimum supported safari version
 			},
 		},
 		`gatsby-plugin-sass`,
