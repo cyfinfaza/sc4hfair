@@ -8,10 +8,13 @@ const fs = require('fs')
 const path = require('path')
 
 // manually override favicons that gatsby-plugin-manifest generates
-exports.onPostBootstrap = async() => {
+exports.onPostBootstrap = async () => {
 	try {
 		fs.copyFileSync(path.join('src', 'images', 'favicon.svg'), path.join('public', 'favicon.svg'))
-		fs.copyFileSync(path.join('static', 'favicon-32x32.png'), path.join('public', 'favicon-32x32.png'))
+		fs.copyFileSync(
+			path.join('static', 'favicon-32x32.png'),
+			path.join('public', 'favicon-32x32.png')
+		)
 	} catch (e) {
 		console.error('Failed to override favicon', e)
 	}
@@ -22,25 +25,10 @@ const offlineFile = 'public/offline.html'
 exports.onPostBuild = async () => {
 	if (!fs.existsSync(offlineFile)) return console.error(`${offlineFile} not found`)
 
-	const stylesFile = fs.readdirSync('public').find(i => i.match(/^styles\..*?\.css$/))
-	const styles = fs.readFileSync(`public/${stylesFile}`, 'utf8')
-	let buttonClasses = [
-		styles.match(/\.button-module--button--.{5}/),
-		styles.match(/\.linkbutton-module--container--.{5}/),
-	]
-		.map(c => c[0].substring(1))
-		.join(' ')
-
 	const appLogo = fs.readFileSync('src/images/favicon.svg', 'utf8')
 
 	const offlinePage = fs.readFileSync(offlineFile, 'utf8')
-	fs.writeFileSync(
-		offlineFile,
-		offlinePage
-			.replace('{styles.css}', stylesFile)
-			.replace('{appLogo}', appLogo)
-			.replace(/{buttonClasses}/g, buttonClasses)
-	)
+	fs.writeFileSync(offlineFile, offlinePage.replace('{appLogo}', appLogo))
 }
 
 // https://github.com/gatsbyjs/gatsby/discussions/30169
