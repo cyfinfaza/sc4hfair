@@ -44,7 +44,7 @@ const Header = ({ offsetContent = true }) => {
 		<LinkButton
 			header={props.header ?? true}
 			className={props.header === false ? headerStyle.button : null}
-			lightFont={!props.header}
+			lightFont={!(props.header ?? true)}
 			opaque={false}
 			onClick={_ => {
 				if (typeof window === 'undefined') return
@@ -133,6 +133,12 @@ const Header = ({ offsetContent = true }) => {
 						<div className={headerStyle.sponsorArea}>
 							<SponsorSpot />
 						</div>
+						<Button
+							label="See all sponsors"
+							icon="monetization_on"
+							linksTo="/sponsors"
+							header={false}
+						/>
 					</div>
 				</div>
 			</div>

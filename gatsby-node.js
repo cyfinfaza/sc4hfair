@@ -63,3 +63,16 @@ exports.onCreateWebpackConfig = ({ stage, actions, getConfig, loaders, plugins }
 	}
 	actions.replaceWebpackConfig(config)
 }
+
+exports.createSchemaCustomization = ({ actions }) => {
+	const { createTypes } = actions
+	const typeDefs = `
+	  type ContentfulSponsorSpot implements Node {
+		description: ContentfulSponsorSpotDescription
+	  }
+	  type ContentfulSponsorSpotDescription {
+		description: String
+	  }
+	`
+	createTypes(typeDefs)
+}

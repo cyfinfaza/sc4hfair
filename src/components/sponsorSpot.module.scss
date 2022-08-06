@@ -9,6 +9,11 @@
 	box-sizing: border-box;
 }
 
+.container.listMode {
+	background-color: var(--light);
+	margin-bottom: 12px;
+}
+
 .adImage {
 	height: 100px;
 	width: 100px;
