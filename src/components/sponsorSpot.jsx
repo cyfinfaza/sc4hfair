@@ -17,12 +17,20 @@ export default function SponsorSpot() {
 						description
 					}
 					link
+					tier
 				}
 			}
 		}
 	`).allContentfulSponsorSpot.nodes
 	useEffect(_ => {
-		setAdContent(ads[Math.floor(Math.random() * ads.length)])
+		let chosenTier = Math.random()
+		if (chosenTier < 0.45) chosenTier = 'gold' // 45% chance
+		else if (chosenTier < 0.8) chosenTier = 'silver' // 35% chance
+		else chosenTier = 'bronze' // 20% chance
+
+		let filteredAds = ads.filter(ad => ad.tier === chosenTier)
+
+		setAdContent(filteredAds[Math.floor(Math.random() * filteredAds.length)])
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 	// window.setAdIndex = i => setAdContent(ads[i])
 	return (
@@ -31,7 +39,12 @@ export default function SponsorSpot() {
 				<img src={adContent.image.url} alt="" className={componentStyle.adImage} />
 				<div className={componentStyle.adText}>
 					<h2>
-						<span className={componentStyle.disclosure}>Fair Sponsor</span>
+						<span className={componentStyle.disclosure}>
+							{adContent.tier
+								? adContent.tier.charAt(0).toUpperCase() + adContent.tier.slice(1) + ' '
+								: ''}
+							Fair Sponsor
+						</span>
 						{adContent.heading}
 					</h2>
 					{adContent.description && <p>{adContent.description.description}</p>}
