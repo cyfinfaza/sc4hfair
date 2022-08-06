@@ -68,7 +68,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 			className={`${style.container} ${targeted ? style.targeted : ''}`}
 			id={event.id}
 			style={{
-				animationDelay: index * 0.1 + 's',
+				animationDelay: Math.min(index, 15) * 0.05 + 's',
 				// backgroundImage: event.coverImage?.url
 				// 	? `var(--image-dimmer), url(${event.coverImage.url})`
 				// 	: null,
