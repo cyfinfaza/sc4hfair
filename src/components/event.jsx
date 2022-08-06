@@ -68,8 +68,28 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 				{event.description && <p>{event.description.description}</p>}
 			</div>
 			<div className={style.bottom}>
+				<div className={style.timeData}>
+					<h3>
+						<div className={style.eventTimeLabel} style={timeLabel.style}>
+							{timeLabel.label}
+						</div>
+						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
+					</h3>
+					{event.endTime && (
+						<p>
+							<Moment
+								interval={0} // these are static dates
+								duration={event.time}
+								date={event.endTime}
+								trim="both"
+								format="y [years]  M [months] d [days] h [hours] m [minutes]"
+							/>
+							{' long'}
+						</p>
+					)}
+				</div>
 				<div className={style.buttonPanel}>
-					{event.tent && (
+					{event.tent && event.tent !== '---' && (
 						<LinkButton
 							label={tentSlugs[event.tent] || event.tent}
 							disabled={!tentSlugs[event.tent]}
@@ -95,26 +115,6 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 						accent={starred}
 						onClick={_ => toggleStarredEvent(event.id)}
 					/>
-				</div>
-				<div className={style.timeData}>
-					<h3>
-						<div className={style.eventTimeLabel} style={timeLabel.style}>
-							{timeLabel.label}
-						</div>
-						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
-					</h3>
-					{event.endTime && (
-						<p>
-							<Moment
-								interval={0} // these are static dates
-								duration={event.time}
-								date={event.endTime}
-								trim="both"
-								format="y [years]  M [months] d [days] h [hours] m [minutes]"
-							/>
-							{' long'}
-						</p>
-					)}
 				</div>
 			</div>
 		</div>
