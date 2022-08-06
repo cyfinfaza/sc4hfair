@@ -6,6 +6,7 @@ import EventBox from 'components/event'
 import ToggleButton from 'components/toggleButton'
 import Layout from 'components/layout'
 import { exactSearch } from 'logic/search'
+import tentSlugs from '../../static/tentSlugs.json'
 
 function addHoursToDate(date, hours) {
 	return new Date(date.getTime() + hours * 60 * 60 * 1000)
@@ -26,7 +27,7 @@ const SchedulePage = ({
 	},
 }) => {
 	const isBrowser = typeof window !== 'undefined'
-	const [selectedCategory, setSelectedCategory] = useState('All')
+	const [selectedTent, setSelectedTent] = useState('All')
 	const [showingPast, setShowingPast] = useState(false)
 	const [searchQuery, setSearchQuery] = useState('')
 	const [starredEvents, setStarredEvents] = useState([])
@@ -55,10 +56,10 @@ const SchedulePage = ({
 		}
 	}
 
-	const categoryList = pageContent.reduce(
+	const eventTentsList = pageContent.reduce(
 		(last, current) => {
-			if (last.indexOf(current.category) < 0 && current.category) {
-				return [...last, current.category]
+			if (last.indexOf(current.tent) < 0 && current.tent && current.tent !== '---') {
+				return [...last, current.tent]
 			}
 			return last
 		},
@@ -74,13 +75,13 @@ const SchedulePage = ({
 				{/* eslint-disable-next-line jsx-a11y/no-onchange */}
 				<select
 					onChange={e => {
-						setSelectedCategory(e.target.value)
+						setSelectedTent(e.target.value)
 					}}
-					name="Category"
+					name="Tent"
 				>
-					{categoryList.map(category => (
-						<option value={category} key={category}>
-							{category}
+					{eventTentsList.map(tent => (
+						<option value={tent} key={tent}>
+							{tentSlugs[tent] || tent}
 						</option>
 					))}
 				</select>
@@ -109,14 +110,22 @@ const SchedulePage = ({
 			</div>
 			<div className="columnCentered">
 				{exactSearch(
-					pageContent.filter(
-						element =>
-							((selectedCategory === 'All' || selectedCategory === element.category) &&
-								(eventIsFuture(element) || showingPast)) ||
-							(isBrowser && window.location?.hash === '#' + element.id)
-					),
+					pageContent
+						.filter(
+							element =>
+								((selectedTent === 'All' || selectedTent === element.tent) &&
+									(eventIsFuture(element) || showingPast)) ||
+								(isBrowser && window.location?.hash === '#' + element.id)
+						)
+						.map(element => {
+							return {
+								...element,
+								tentName: tentSlugs[element.tent] || element.tent,
+								description: { description: element.description?.description || '' },
+							}
+						}),
 					'title',
-					['description.description'],
+					['description.description', 'tentName'],
 					searchQuery
 				)
 					.filter(element => !showingOnlyStarredEvents || starredEvents.includes(element.id))
