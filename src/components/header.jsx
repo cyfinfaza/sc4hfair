@@ -40,6 +40,21 @@ const Header = ({ offsetContent = true }) => {
 		[isOnline]
 	)
 
+	const Button = props => (
+		<LinkButton
+			header={props.header ?? true}
+			className={props.header === false ? headerStyle.button : null}
+			lightFont={!props.header}
+			opaque={false}
+			onClick={_ => {
+				if (typeof window === 'undefined') return
+				// close the menu if we're already on the page
+				if (window.location.pathname === props.linksTo) setMenuOpen(false)
+			}}
+			{...props}
+		/>
+	)
+
 	return (
 		<>
 			<Helmet meta={[{ name: 'theme-color' }]} />
@@ -85,34 +100,22 @@ const Header = ({ offsetContent = true }) => {
 					</div>
 					<div className={headerStyle.menuArea}>
 						<div className={headerStyle.menuGrid}>
-							<LinkButton label="Latest" icon="home" linksTo="/" header />
-							<LinkButton label="Map" icon="map" linksTo="/map" header />
-							<LinkButton label="Schedule" icon="event_note" linksTo="/schedule" header />
-							<LinkButton label="Clubs" icon="groups" linksTo="/clubs" header />
-							<LinkButton
+							<Button label="Latest" icon="home" linksTo="/" />
+							<Button label="Map" icon="map" linksTo="/map" />
+							<Button label="Schedule" icon="event_note" linksTo="/schedule" />
+							<Button label="Clubs" icon="groups" linksTo="/clubs" />
+							<Button
 								label="Interest List"
 								icon="list_alt"
 								linksTo="/interests"
-								header
 								disabled={!isOnline}
 							/>
-							<LinkButton
-								label="Scavenger Hunt"
-								icon="travel_explore"
-								linksTo="/scavenger-hunt"
-								header
-							/>
+							<Button label="Scavenger Hunt" icon="travel_explore" linksTo="/scavenger-hunt" />
 						</div>
 						<div className={headerStyle.menuBottom}>
 							<ThemePicker navbar />
-							<LinkButton
-								label="Settings"
-								icon="settings"
-								linksTo="/settings"
-								className={headerStyle.button}
-								lightFont
-							/>
-							<LinkButton
+							<Button label="Settings" icon="settings" linksTo="/settings" header={false} />
+							<Button
 								label="About 4-H"
 								icon={
 									<FourH
@@ -124,8 +127,7 @@ const Header = ({ offsetContent = true }) => {
 									/>
 								}
 								href="https://4histops.org"
-								className={headerStyle.button}
-								lightFont
+								header={false}
 							/>
 						</div>
 						<div className={headerStyle.sponsorArea}>
