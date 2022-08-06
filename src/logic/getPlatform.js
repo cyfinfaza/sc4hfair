@@ -17,7 +17,11 @@ export function getPlatform() {
 }
 
 export function isStandalone() {
-	return window.matchMedia(
-		'(display-mode: fullscreen) or (display-mode: standalone) or (display-mode: minimal-ui)'
-	).matches
+	return (
+		typeof window !== 'undefined' &&
+		(window.navigator.standalone ||
+			['standalone', 'fullscreen', 'minimal-ui'].some(
+				mode => window.matchMedia(`(display-mode: ${mode})`).matches
+			))
+	)
 }
