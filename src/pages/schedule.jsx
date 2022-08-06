@@ -7,6 +7,19 @@ import ToggleButton from 'components/toggleButton'
 import Layout from 'components/layout'
 import { exactSearch } from 'logic/search'
 
+function addHoursToDate(date, hours) {
+	return new Date(date.getTime() + hours * 60 * 60 * 1000)
+}
+
+const DEFAULT_EVENT_DURATION_HOURS = 2
+
+export const eventIsFuture = event =>
+	Date.now() <
+	(event.endTime
+		? new Date(event.endTime)
+		: addHoursToDate(new Date(event.time), DEFAULT_EVENT_DURATION_HOURS)
+	).getTime()
+
 const SchedulePage = ({
 	data: {
 		allContentfulScheduledEvent: { nodes: pageContent },
@@ -99,7 +112,7 @@ const SchedulePage = ({
 					pageContent.filter(
 						element =>
 							((selectedCategory === 'All' || selectedCategory === element.category) &&
-								(Date.now() < new Date(element.endTime).getTime() || showingPast)) ||
+								(eventIsFuture(element) || showingPast)) ||
 							(isBrowser && window.location?.hash === '#' + element.id)
 					),
 					'title',

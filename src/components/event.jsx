@@ -4,6 +4,7 @@ import { share, canWebShare } from 'logic/webshare'
 import * as style from './event.module.scss'
 import Moment from 'react-moment'
 import tentSlugs from '../../static/tentSlugs.json'
+import { eventIsFuture } from 'pages/schedule'
 // import { useEffect } from 'react'
 
 const timeLabels = {
@@ -40,7 +41,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
 	var timeLabel
 	// console.log(event.time)
-	if (new Date(event.endTime) < new Date()) {
+	if (!eventIsFuture(event)) {
 		timeLabel = timeLabels.past
 	} else {
 		if (new Date(event.time) > new Date()) {
@@ -64,7 +65,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 		>
 			<div className={style.top}>
 				<h2>{event.title}</h2>
-				<p>{event.description.description}</p>
+				{event.description && <p>{event.description.description}</p>}
 			</div>
 			<div className={style.bottom}>
 				<div className={style.buttonPanel}>
@@ -102,16 +103,18 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 						</div>
 						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
 					</h3>
-					<p>
-						<Moment
-							interval={0} // these are static dates
-							duration={event.time}
-							date={event.endTime}
-							trim="both"
-							format="y [years]  M [months] d [days] h [hours] m [minutes]"
-						/>
-						{' long'}
-					</p>
+					{event.endTime && (
+						<p>
+							<Moment
+								interval={0} // these are static dates
+								duration={event.time}
+								date={event.endTime}
+								trim="both"
+								format="y [years]  M [months] d [days] h [hours] m [minutes]"
+							/>
+							{' long'}
+						</p>
+					)}
 				</div>
 			</div>
 		</div>
