@@ -103,7 +103,7 @@ const MapPage = ({
 			positionOptions: {
 				enableHighAccuracy: true,
 			},
-			trackUserLocation: true,
+			trackUserLocation: false,
 		})
 		map.current.addControl(geolocate.current)
 
