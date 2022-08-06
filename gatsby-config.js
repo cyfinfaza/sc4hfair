@@ -40,6 +40,12 @@ module.exports = {
 				name: `Somerset County 4-H Fair`,
 				short_name: `SC 4H Fair`,
 				start_url: `/`,
+				related_applications: [
+					{
+						platform: `webapp`,
+						url: `https://sc4hfair.app/manifest.json`,
+					},
+				],
 				background_color: `#009959`,
 				theme_color: `#009959`,
 				display: `standalone`,

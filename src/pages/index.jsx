@@ -59,11 +59,14 @@ const IndexPage = ({ data }) => {
 	const platform = isBrowser && getPlatform()
 	console.log(platform)
 	const [showAppInstall, setShowAppInstall] = useState(
-		isBrowser && localStorage.getItem('install_splash') !== '1' && !isStandalone() // if they already installed the pwa don't annoy them
+		isBrowser && localStorage.getItem('install_splash') !== '1'
 	)
 	useEffect(() => {
 		if (showAppInstall === false) localStorage.setItem('install_splash', '1')
 	}, [showAppInstall])
+	useEffect(() => {
+		if (isStandalone()) setShowAppInstall(false)
+	})
 
 	return (
 		<Layout>
