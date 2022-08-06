@@ -52,7 +52,7 @@ const LinkButton = ({
 	)
 	if (linksTo && !disabled) {
 		return (
-			<Link to={linksTo} {...sharedProps}>
+			<Link to={linksTo} onClick={onClick} {...sharedProps}>
 				{sharedContent}
 			</Link>
 		)
