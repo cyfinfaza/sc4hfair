@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as style from './schedule.module.css'
 
 import EventBox from 'components/event'
@@ -16,6 +16,32 @@ const SchedulePage = ({
 	const [selectedCategory, setSelectedCategory] = useState('All')
 	const [showingPast, setShowingPast] = useState(false)
 	const [searchQuery, setSearchQuery] = useState('')
+	const [starredEvents, setStarredEvents] = useState([])
+	const [showingOnlyStarredEvents, setShowingOnlyStarredEvents] = useState(false)
+
+	useEffect(_ => {
+		if (isBrowser) {
+			setStarredEvents(JSON.parse(localStorage.getItem('starredEvents') || '[]'))
+		}
+	}, [])
+
+	useEffect(
+		_ => {
+			if (isBrowser) {
+				localStorage.setItem('starredEvents', JSON.stringify(starredEvents))
+			}
+		},
+		[starredEvents]
+	)
+
+	function toggleStarredEvent(id) {
+		if (starredEvents.includes(id)) {
+			setStarredEvents(starredEvents.filter(event => event !== id))
+		} else {
+			setStarredEvents([...starredEvents, id])
+		}
+	}
+
 	const categoryList = pageContent.reduce(
 		(last, current) => {
 			if (last.indexOf(current.category) < 0 && current.category) {
@@ -59,24 +85,40 @@ const SchedulePage = ({
 				>
 					Show Past Events
 				</ToggleButton>
+				<ToggleButton
+					on={showingOnlyStarredEvents}
+					onClick={() => {
+						setShowingOnlyStarredEvents(!showingOnlyStarredEvents)
+					}}
+				>
+					Show Only Starred Events
+				</ToggleButton>
 			</div>
 			<div className="columnCentered">
-				{pageContent
-					? exactSearch(
-							pageContent.filter(
-								element =>
-									((selectedCategory === 'All' || selectedCategory === element.category) &&
-										(Date.now() < new Date(element.endTime).getTime() || showingPast)) ||
-									(isBrowser && window.location?.hash === '#' + element.id)
-							),
-							'title',
-							['description.description'],
-							searchQuery
-					  ).map((event, i) => {
-							// console.log(event)
-							return <EventBox key={event.id} event={event} index={i} />
-					  })
-					: null}
+				{exactSearch(
+					pageContent.filter(
+						element =>
+							((selectedCategory === 'All' || selectedCategory === element.category) &&
+								(Date.now() < new Date(element.endTime).getTime() || showingPast)) ||
+							(isBrowser && window.location?.hash === '#' + element.id)
+					),
+					'title',
+					['description.description'],
+					searchQuery
+				)
+					.filter(element => !showingOnlyStarredEvents || starredEvents.includes(element.id))
+					.map((event, i) => {
+						// console.log(event)
+						return (
+							<EventBox
+								key={event.id}
+								starred={starredEvents.includes(event.id)}
+								toggleStarredEvent={toggleStarredEvent}
+								event={event}
+								index={i}
+							/>
+						)
+					})}
 			</div>
 		</Layout>
 	)

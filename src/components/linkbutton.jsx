@@ -16,6 +16,7 @@ const LinkButton = ({
 	lightFont = false, // light font weight
 	disabled = false, // prevent click
 	alert = false,
+	accent = false,
 	className = '', // custom classes
 	style = {}, // custom styles
 }) => {
@@ -26,6 +27,7 @@ const LinkButton = ({
 			alert && buttonStyle.alert,
 			header && linkButtonStyle.header,
 			acrylic && buttonStyle.acrylic,
+			accent && buttonStyle.accent,
 			className,
 		]
 			.filter(Boolean)
@@ -45,9 +47,11 @@ const LinkButton = ({
 					{icon}
 				</span>
 			)}
-			<span style={{ fontWeight: lightFont ? 'unset' : null }} className={linkButtonStyle.label}>
-				{label}
-			</span>
+			{label && (
+				<span style={{ fontWeight: lightFont ? 'unset' : null }} className={linkButtonStyle.label}>
+					{label}
+				</span>
+			)}
 		</>
 	)
 	if (linksTo && !disabled) {

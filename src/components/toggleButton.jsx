@@ -5,7 +5,10 @@ const ToggleButton = ({ on = false, children, onClick }) => {
 	return (
 		<button
 			className={style.theButton}
-			style={{ backgroundColor: on ? 'var(--accent)' : null }}
+			style={{
+				backgroundColor: on ? 'var(--green)' : null,
+				color: on ? 'var(--green-text)' : null,
+			}}
 			onClick={onClick}
 		>
 			{children}

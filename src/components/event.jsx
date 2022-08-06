@@ -30,7 +30,7 @@ const timeLabels = {
 	},
 }
 
-const EventBox = ({ event, index = 0 }) => {
+const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 	const isBrowser = typeof window !== 'undefined'
 	const targeted = isBrowser && window.location?.hash === '#' + event.id
 	// only make it larger once, otherwise keep it normal
@@ -78,7 +78,7 @@ const EventBox = ({ event, index = 0 }) => {
 					)}
 					{isBrowser && canWebShare() && (
 						<LinkButton
-							label="Share"
+							// label="Share"
 							icon="share"
 							onClick={() => {
 								let loc = new URL(window.location.href)
@@ -88,6 +88,12 @@ const EventBox = ({ event, index = 0 }) => {
 							lightFont
 						/>
 					)}
+					<LinkButton
+						// label={starred ? 'Starred' : 'Star'}
+						icon="star"
+						accent={starred}
+						onClick={_ => toggleStarredEvent(event.id)}
+					/>
 				</div>
 				<div className={style.timeData}>
 					<h3>
