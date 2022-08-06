@@ -13,7 +13,10 @@
 	height: 100px;
 	width: 100px;
 	border-radius: 8px;
-	object-fit: cover;
+	object-fit: contain;
+	background-color: white;
+	padding: 4px;
+	box-sizing: border-box;
 }
 
 .adText {

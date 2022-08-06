@@ -24,6 +24,7 @@ export default function SponsorSpot() {
 	useEffect(_ => {
 		setAdContent(ads[Math.floor(Math.random() * ads.length)])
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+	// window.setAdIndex = i => setAdContent(ads[i])
 	return (
 		adContent && (
 			<div className={componentStyle.container}>
@@ -33,7 +34,7 @@ export default function SponsorSpot() {
 						<span className={componentStyle.disclosure}>Fair Sponsor</span>
 						{adContent.heading}
 					</h2>
-					<p>{adContent.description.description}</p>
+					{adContent.description && <p>{adContent.description.description}</p>}
 					{adContent.link && (
 						<LinkButton
 							href={adContent.link}
