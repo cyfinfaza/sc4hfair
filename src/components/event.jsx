@@ -3,6 +3,7 @@ import LinkButton from './linkbutton'
 import { share, canWebShare } from 'logic/webshare'
 import * as style from './event.module.scss'
 import Moment from 'react-moment'
+import tentSlugs from '../../static/tentSlugs.json'
 // import { useEffect } from 'react'
 
 const timeLabels = {
@@ -68,7 +69,12 @@ const EventBox = ({ event, index = 0 }) => {
 			<div className={style.bottom}>
 				<div className={style.buttonPanel}>
 					{event.tent && (
-						<LinkButton label={event.tent} icon="place" linksTo={`/map?locate=${event.tent}`} />
+						<LinkButton
+							label={tentSlugs[event.tent] || event.tent}
+							disabled={!tentSlugs[event.tent]}
+							icon="place"
+							linksTo={`/map?locate=${event.tent}`}
+						/>
 					)}
 					{isBrowser && canWebShare() && (
 						<LinkButton
