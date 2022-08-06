@@ -1,0 +1,300 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Offline | Somerset County 4-H Fair</title>
+	<style>
+		/* COPIED FROM `global.css` */
+		@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono&display=swap');
+		/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
+
+		html {
+			--nav-height: 64px;
+			scroll-padding-top: calc(var(--nav-height) + 8px);
+			scroll-behavior: smooth;
+		}
+
+		body {
+			--accent: #009959;
+			--text: #111;
+			--text-translucent: #1112;
+			--text-translucent-2: #111a;
+			--bg: #ededed;
+			--status-bar: #009959ff;
+			--selection: #00995988;
+			--navbar: linear-gradient(var(--status-bar) 0%, #4eb489);
+			--navbar-grey: linear-gradient(var(--status-bar) 0%, #b8b8b8);
+			/* --navbar-text: #050505; */
+			--navbar-accent: #fff3;
+			--light: #fff;
+			--light-2: #f3f3f3;
+			--light-stackable: #ffffff18;
+			--light-blur: var(--light);
+			--light-transparent: #fdfdfd00;
+			--light-translucent: #fff8;
+			--red: #ff0000;
+			--red-text: white;
+			--yellow: #FC0;
+			--yellow-text: black;
+			--green: #2D5;
+			--green-text: #111;
+			--grey: #ccc;
+			--grey-text: #333;
+			--button-shadow: 0 0 8px -3px #0008;
+			--image-dimmer-opacity: 0.6;
+			--image-dimmer: linear-gradient(rgba(255, 255, 255, var(--image-dimmer-opacity)), rgba(255, 255, 255, var(--image-dimmer-opacity)));
+			--backdrop-blur: blur(12px);
+			--theme-transition: 0.5s ease;
+		}
+
+		body.theme-dark {
+			color-scheme: dark;
+			--bg: #080808;
+			--navbar: linear-gradient(var(--status-bar) 0%, #00643a);
+			--navbar-grey: linear-gradient(var(--status-bar) 0%, #5c5c5c);
+			--text: #eee;
+			--text-translucent: #eee2;
+			--text-translucent-2: #eeea;
+			--light: #181818;
+			--light-2: #252525;
+			--light-stackable: #ffffff18;
+			--light-blur: var(--light);
+			--light-transparent: #2220;
+			--light-translucent: #18181888;
+			--red: #B00020;
+			--grey: #333;
+			--grey-text: #ccc;
+			/* --navbar-text: #fafafa; */
+			--navbar-accent: #0003;
+			--button-shadow: 0 0 8px -2px #000;
+			--image-dimmer: linear-gradient(rgba(0, 0, 0, var(--image-dimmer-opacity)), rgba(0, 0, 0, var(--image-dimmer-opacity)));
+		}
+
+		/* * {
+	transition: color var(--theme-transition);
+} */
+
+		@supports (backdrop-filter: var(--backdrop-blur)) {
+			body {
+				--navbar: linear-gradient(var(--status-bar) 0%, #009959aa 64px, #00995988 128px) !important;
+				--navbar-grey: linear-gradient(var(--status-bar) 0%, #888888aa 64px, #88888888 128px) !important;
+				--light-blur: #fdfdfd33;
+			}
+
+			body.theme-dark {
+				--light-blur: #2226;
+			}
+		}
+
+		a {
+			color: var(--text);
+			transition: color var(--theme-transition), background-color var(--theme-transition);
+		}
+
+		body {
+			margin: 0;
+			height: 100vh;
+			width: 100vw;
+			overflow-x: hidden;
+			background-color: var(--bg);
+			color: var(--text);
+			transition: background-color var(--theme-transition), color var(--theme-transition);
+			/* transition: background-color 500ms ease; */
+		}
+
+		::selection {
+			background-color: var(--selection);
+		}
+
+		body,
+		input,
+		button,
+		select {
+			font-family: 'DM Sans', sans-serif;
+			word-wrap: break-word;
+		}
+
+		/* :not(i *, code) */
+		* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			/* transition: color 1s;
+	transition: background-color 1s; */
+			/* transition-delay: 0; */
+			/* color: black;
+	fill: black;
+	transition: color 1s fill 1s; */
+		}
+
+		*:focus {
+			outline: none;
+		}
+
+		div {
+			transition: background-color var(--theme-transition);
+		}
+
+		/* i {
+	transition: color 1s;
+} */
+
+		.columnCentered {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		select,
+		button,
+		input {
+			color: inherit;
+			transition: color var(--theme-transition);
+			background-color: var(--light);
+			border: none;
+			font-size: 1.1em;
+			padding: 0.2em;
+			border-radius: 8px;
+			outline: none;
+		}
+
+		button,
+		input {
+			font-size: 1em;
+			padding: 0.3em;
+		}
+
+		code {
+			font-family: 'DM Mono', monospace;
+		}
+
+		.horizPanel {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.horizPanel2 {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		.material-icons {
+			vertical-align: text-bottom;
+		}
+
+		/* END COPIED FROM `global.css` */
+		/* COPIED FROM `button.module.css` */
+		.button {
+			cursor: pointer;
+			user-select: none;
+			box-shadow: var(--button-shadow);
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			transition: filter 120ms ease, transform 120ms ease, background-color var(--theme-transition), box-shadow var(--theme-transition), border-width 120ms;
+			border: none;
+			/* margin: 5px 0; */
+		}
+
+		.button:not([disabled]):active {
+			filter: contrast(0.6);
+			transform: translate(0, 1px);
+		}
+
+		.button[disabled] {
+			filter: contrast(0.7) brightness(0.7);
+			cursor: not-allowed;
+			box-shadow: none;
+		}
+
+		.button.alert {
+			border-left: 8px solid #FD0;
+			animation: flashBorder 1s alternate infinite;
+		}
+
+		.button.acrylic {
+			backdrop-filter: var(--backdrop-blur);
+			background-color: var(--light-blur);
+		}
+
+		/* END COPIED FROM `button.module.css` */
+		/* COPIED FROM `linkbutton.module.css` (replace '.container' with '.button') */
+		.button {
+			background-color: var(--light);
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 8px;
+			width: auto;
+			margin: 0;
+			border-radius: 8px;
+			--linkbutton-icon-size: 24px;
+			/* margin-inline-end: 8px; */
+			/* margin-block-end: 8px; */
+			user-select: none;
+		}
+
+		/* END COPIED FROM `linkbutton.module.css` */
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 16px;
+			min-height: 100vh;
+			text-align: center;
+		}
+
+		* {
+			margin: 0;
+		}
+
+		svg {
+			max-width: 100px;
+			fill: currentColor;
+		}
+
+		.button {
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	{appLogo}
+
+	<div>
+		<h1>Offline</h1>
+		<p>This page is not available offline. Please try again when you have a connection.</p>
+	</div>
+
+	<div class="horizPanel">
+		<button class="button" onclick="window.location.reload()">
+			Try again
+		</button>
+		<button class="button" onclick="window.location.href = '/'">
+			Go home
+		</button>
+	</div>
+
+	<script>
+		// from src/logic/theming.js
+		document.body.classList.add(
+			localStorage.getItem('theme') ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches
+				? 'theme-light'
+				: 'theme-dark')
+		)
+
+		window.addEventListener('online', () => window.location.reload())
+	</script>
+</body>
+
+</html>

@@ -30,8 +30,8 @@ export default function ClubPage({ data: { contentfulClub: thisClub } }) {
 					marginTop: '16px',
 				}}
 			>
-				<LinkButton label="See all clubs" icon="groups" linksTo="/clubs" inline opaque />
-				<LinkButton label="View interest list" icon="list" linksTo="/interests" inline opaque />
+				<LinkButton label="See all clubs" icon="groups" linksTo="/clubs" inline />
+				<LinkButton label="View interest list" icon="list" linksTo="/interests" inline />
 			</div>
 			<h1 style={{ textTransform: 'uppercase' }}>{thisClub.name}</h1>
 			<div className={pageStyle.optionsButtonsPanel}>

@@ -11,9 +11,8 @@ const LinkButton = ({
 	iconElement = null, // svg icon
 	iconStyle = {},
 	index = 0, // used for animating in after a delay
-	big = false, // not inline
-	opaque = true, // set to false for no background
-	acrylic = false, // overrides opaque
+	header = false, // big and translucent for the navbar
+	acrylic = false,
 	lightFont = false, // light font weight
 	disabled = false, // prevent click
 	alert = false,
@@ -21,17 +20,21 @@ const LinkButton = ({
 	style = {}, // custom styles
 }) => {
 	const sharedProps = {
-		className: `${linkButtonStyle.container} ${buttonStyle.button} ${
-			alert ? buttonStyle.alert : ''
-		} ${big ? null : linkButtonStyle.containerInline} ${
-			acrylic ? buttonStyle.acrylic : null
-		} ${className}`,
+		className: [
+			linkButtonStyle.container,
+			buttonStyle.button,
+			alert && buttonStyle.alert,
+			header && linkButtonStyle.header,
+			acrylic && buttonStyle.acrylic,
+			className,
+		]
+			.filter(Boolean)
+			.join(' '),
 		style: {
-			animationDelay: index * 0.1 + 's',
-			background: acrylic ? 'var(--light-blur)' : opaque ? 'var(--light)' : null,
+			animationDelay: index ? index * 0.1 + 's' : null,
 			...style,
 		},
-		disabled: disabled,
+		disabled,
 	}
 	const sharedContent = (
 		<>

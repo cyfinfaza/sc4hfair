@@ -108,3 +108,15 @@ workbox.routing.registerRoute(
 	}),
 	'GET'
 )
+
+// This will be called when all other handlers throw errors
+// https://developer.chrome.com/docs/workbox/managing-fallback-responses/#comprehensive-fallbacks
+workbox.routing.setCatchHandler(async ({ event }) => {
+	switch (event.request.destination) {
+		case 'document':
+			return await caches.match(workbox.precaching.getCacheKeyForURL('/offline.html'))
+
+		default:
+			return Response.error()
+	}
+})

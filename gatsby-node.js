@@ -4,7 +4,32 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+const fs = require('fs')
+const path = require('path')
+
+// manually override favicons that gatsby-plugin-manifest generates
+exports.onPostBootstrap = async () => {
+	try {
+		fs.copyFileSync(path.join('src', 'images', 'favicon.svg'), path.join('public', 'favicon.svg'))
+		fs.copyFileSync(
+			path.join('static', 'favicon-32x32.png'),
+			path.join('public', 'favicon-32x32.png')
+		)
+	} catch (e) {
+		console.error('Failed to override favicon', e)
+	}
+}
+
+// populate offline page template with built resources
+const offlineFile = 'public/offline.html'
+exports.onPostBuild = async () => {
+	if (!fs.existsSync(offlineFile)) return console.error(`${offlineFile} not found`)
+
+	const appLogo = fs.readFileSync('src/images/favicon.svg', 'utf8')
+
+	const offlinePage = fs.readFileSync(offlineFile, 'utf8')
+	fs.writeFileSync(offlineFile, offlinePage.replace('{appLogo}', appLogo))
+}
 
 // https://github.com/gatsbyjs/gatsby/discussions/30169
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig, loaders, plugins }) => {
