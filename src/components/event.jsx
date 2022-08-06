@@ -3,9 +3,22 @@ import LinkButton from './linkbutton'
 import { share, canWebShare } from 'logic/webshare'
 import * as style from './event.module.scss'
 import Moment from 'react-moment'
+import momentCalendarStrings from 'logic/momentCalendarStrings'
 import tentSlugs from '../../static/tentSlugs.json'
-import { eventIsFuture } from 'pages/schedule'
 // import { useEffect } from 'react'
+
+function addHoursToDate(date, hours) {
+	return new Date(date.getTime() + hours * 60 * 60 * 1000)
+}
+
+const DEFAULT_EVENT_DURATION_HOURS = 2
+
+export const eventIsFuture = event =>
+	Date.now() <
+	(event.endTime
+		? new Date(event.endTime)
+		: addHoursToDate(new Date(event.time), DEFAULT_EVENT_DURATION_HOURS)
+	).getTime()
 
 const timeLabels = {
 	past: {
@@ -73,7 +86,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 						<div className={style.eventTimeLabel} style={timeLabel.style}>
 							{timeLabel.label}
 						</div>
-						<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />
+						<Moment interval={0} date={event.time} calendar={momentCalendarStrings} />
 					</h3>
 					{event.endTime && (
 						<p>

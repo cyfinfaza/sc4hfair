@@ -10,6 +10,7 @@ import { getTheme, onThemeChange } from 'logic/theming'
 import Tabs from 'components/tabs'
 import { Link, graphql } from 'gatsby'
 import Moment from 'react-moment'
+import momentCalendarStrings from 'logic/momentCalendarStrings'
 
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
@@ -210,7 +211,7 @@ const MapPage = ({
 							acrylic
 						/>
 					</h2>
-					<p>Info about {selectedFeature?.properties.name} tent goes here</p>
+					{/* <p>Info about {selectedFeature?.properties.name} tent goes here</p> */}
 					<Tabs
 						tabs={[
 							{
@@ -221,7 +222,9 @@ const MapPage = ({
 											<li key={event.title}>
 												<Link to={'/schedule#' + event.id}>{event.title}</Link>{' '}
 												<small>
-													(<Moment interval={0} date={event.time} format="MMMM D [at] h:mmA" />)
+													(
+													<Moment interval={0} date={event.time} calendar={momentCalendarStrings} />
+													)
 												</small>
 											</li>
 										))}
@@ -267,11 +270,6 @@ export const query = graphql`
 				id: contentful_id
 				title
 				time
-				endTime
-				description {
-					description
-				}
-				category
 				tent
 			}
 		}

@@ -2,24 +2,11 @@ import { graphql } from 'gatsby'
 import { useEffect, useState } from 'react'
 import * as style from './schedule.module.css'
 
-import EventBox from 'components/event'
+import EventBox, { eventIsFuture } from 'components/event'
 import ToggleButton from 'components/toggleButton'
 import Layout from 'components/layout'
 import { exactSearch } from 'logic/search'
 import tentSlugs from '../../static/tentSlugs.json'
-
-function addHoursToDate(date, hours) {
-	return new Date(date.getTime() + hours * 60 * 60 * 1000)
-}
-
-const DEFAULT_EVENT_DURATION_HOURS = 2
-
-export const eventIsFuture = event =>
-	Date.now() <
-	(event.endTime
-		? new Date(event.endTime)
-		: addHoursToDate(new Date(event.time), DEFAULT_EVENT_DURATION_HOURS)
-	).getTime()
 
 const SchedulePage = ({
 	data: {
@@ -37,7 +24,7 @@ const SchedulePage = ({
 		if (isBrowser) {
 			setStarredEvents(JSON.parse(localStorage.getItem('starredEvents') || '[]'))
 		}
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(
 		_ => {
@@ -45,7 +32,7 @@ const SchedulePage = ({
 				localStorage.setItem('starredEvents', JSON.stringify(starredEvents))
 			}
 		},
-		[starredEvents]
+		[starredEvents] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	function toggleStarredEvent(id) {
@@ -153,11 +140,10 @@ export const query = graphql`
 				id: contentful_id
 				title
 				time
-				endTime
-				description {
-					description
-				}
-				category
+				# endTime
+				# description {
+				# 	description
+				# }
 				tent
 			}
 		}
