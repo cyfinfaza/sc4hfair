@@ -54,7 +54,7 @@ const MapPage = ({
 		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
-			style: 'mapbox://styles/cyfinfaza/ckpc2xa2e14mx18qxuqwb4icf',
+			style: 'mapbox://styles/cyfinfaza/cl6idgfjs004x16p9y241804x',
 			center: [lng, lat],
 			zoom: zoom,
 			attributionControl: false,
