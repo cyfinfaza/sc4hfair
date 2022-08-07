@@ -19,8 +19,8 @@ const mapboxColorThemes = {
 
 // the source/layer that contains our features
 const source = 'composite',
-	sourceLayer = 'Fair_Tileset_Test_1',
-	sourceLayerId = 'fair-tileset-test-1'
+	sourceLayer = 'Fair_Tents_2022',
+	sourceLayerId = 'Tents Flat'
 
 mapboxgl.accessToken =
 	'pk.eyJ1IjoiY3lmaW5mYXphIiwiYSI6ImNrYXBwN2N4ZTEyd3gycHF0bHhzZXIwcWEifQ.8Dx5dx27ity49fAGyZNzPQ'
