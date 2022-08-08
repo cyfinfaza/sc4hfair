@@ -32,6 +32,7 @@ module.exports = {
 				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
 				accessToken:
 					process.env.CONTENTFUL_ACCESS_TOKEN || 'TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk',
+				downloadLocal: true,
 			},
 		},
 		{
