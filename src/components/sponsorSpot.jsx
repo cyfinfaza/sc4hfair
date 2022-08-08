@@ -13,7 +13,9 @@ export default function SponsorSpot({ sponsorId, listMode }) {
 				nodes {
 					heading
 					image {
-						url
+						localFile {
+							publicURL
+						}
 					}
 					description {
 						description
@@ -44,7 +46,7 @@ export default function SponsorSpot({ sponsorId, listMode }) {
 	return (
 		adContent && (
 			<div className={`${componentStyle.container} ${listMode ? componentStyle.listMode : ''}`}>
-				<img src={adContent.image.url} alt="" className={componentStyle.adImage} />
+				<img src={adContent.image.localFile.publicURL} alt="" className={componentStyle.adImage} />
 				<div className={componentStyle.adText}>
 					<h2>
 						{!listMode && (
