@@ -59,7 +59,7 @@ if (process.env.NODE_ENV !== 'development') {
 	} else {
 		navigator.serviceWorker
 			.register('sw.js', {
-				scope: './',
+				scope: '/',
 			})
 			.then(function (reg) {
 				console.log('Service worker registered')
