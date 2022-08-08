@@ -1,14 +1,18 @@
 const CACHE_NAME = 'offline-cache-v1'
-const PRECACHE = ['/', '/offline']
+const PRECACHE = ['/', '/offline.html']
 
 self.addEventListener('install', function (event) {
 	self.skipWaiting()
 	console.log('Service worker installing')
 	event.waitUntil(
 		(async _ => {
-			const cache = await caches.open(CACHE_NAME)
-			await cache.addAll(PRECACHE)
-			console.log('PRECACHE COMPLETE')
+			try {
+				const cache = await caches.open(CACHE_NAME)
+				await cache.addAll(PRECACHE)
+				console.log('PRECACHE COMPLETE')
+			} catch (e) {
+				console.log('PRECACHE FAILED: ', e)
+			}
 		})()
 	)
 })
@@ -42,7 +46,7 @@ function staleWhileEtagRevalidate(event) {
 					resp = await fetch(event.request)
 				} catch (e) {
 					console.log('FETCH ERROR: ', e)
-					return cache.match('/offline')
+					return cache.match('/offline.html')
 				}
 				event.waitUntil(cache.put(event.request, resp.clone()))
 				return resp
@@ -65,7 +69,7 @@ function networkFirst(event) {
 				if (cachedResponse) {
 					return cachedResponse
 				} else {
-					return cache.match('/offline')
+					return cache.match('/offline.html')
 				}
 			}
 			event.waitUntil(cache.put(event.request, resp.clone()))
