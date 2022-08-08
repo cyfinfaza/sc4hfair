@@ -11,6 +11,7 @@ import Tabs from 'components/tabs'
 import { Link, graphql } from 'gatsby'
 import Moment from 'react-moment'
 import momentCalendarStrings from 'logic/momentCalendarStrings'
+import { eventIsFuture } from '../components/event'
 
 const mapboxColorThemes = {
 	light: require('../../static/mapbox-color-themes/theme-light.json'),
@@ -120,6 +121,9 @@ const MapPage = ({
 		})
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+	const [filteredEventData, setFilteredEventData] = useState([])
+	const [filteredClubData, setFilteredClubData] = useState([])
+
 	useEffect(
 		_ => {
 			previouslySelectedFeature &&
@@ -133,6 +137,8 @@ const MapPage = ({
 						click: false,
 					}
 				)
+			console.log(selectedFeature)
+			console.log(eventData)
 			if (selectedFeature) {
 				map.current.setFeatureState(
 					{
@@ -145,19 +151,19 @@ const MapPage = ({
 					}
 				)
 				previouslySelectedFeature = selectedFeature
+				console.log('setting filteredeventdata')
+				setFilteredEventData(
+					eventData.filter(
+						event => event.tent === selectedFeature?.properties.slug && eventIsFuture(event)
+					)
+				)
+				setFilteredClubData(clubData.filter(club => club.tent === selectedFeature?.properties.slug))
 			} else {
 				previouslySelectedFeature = null
 			}
 		},
 		[selectedFeature]
 	)
-
-	var filteredEventData = eventData.filter(
-		event =>
-			event.tent === selectedFeature?.properties.slug &&
-			Date.now() < new Date(event.endTime).getTime()
-	)
-	var filteredClubData = clubData.filter(club => club.tent === selectedFeature?.properties.slug)
 
 	const [clickCounter, setClickCounter] = useState(0)
 	return (
@@ -198,10 +204,14 @@ const MapPage = ({
 				ref={mapContainer}
 			/>
 
-			<div className={`${pageStyle.tentInfo} ${!selectedFeature ? pageStyle.hidden : ''}`}>
+			<div
+				className={`${pageStyle.tentInfo} ${!selectedFeature ? pageStyle.hidden : ''} ${
+					filteredEventData.length === 0 && filteredClubData.length === 0 && pageStyle.short
+				}`}
+			>
 				<div>
 					<h2 className={pageStyle.tentInfoHeading}>
-						{selectedFeature?.properties.name || '-'}
+						{selectedFeature?.properties.name || selectedFeature?.properties.slug || '-'}
 						<LinkButton
 							label="Close"
 							icon="close"
@@ -216,10 +226,11 @@ const MapPage = ({
 						tabs={[
 							{
 								name: 'events',
+								enabled: filteredEventData.length > 0,
 								content: filteredEventData.length ? (
 									<ul>
 										{filteredEventData.map(event => (
-											<li key={event.title}>
+											<li key={event.id}>
 												<Link to={'/schedule#' + event.id}>{event.title}</Link>{' '}
 												<small>
 													(
@@ -235,11 +246,12 @@ const MapPage = ({
 							},
 							{
 								name: 'clubs',
+								enabled: filteredClubData.length > 0,
 								content: filteredClubData.length ? (
 									<ul>
 										{filteredClubData.map(club => (
 											<li key={club.slug}>
-												<Link to={'/' + club.slug}>{club.name}</Link>
+												<Link to={'/club/' + club.slug}>{club.name}</Link>
 											</li>
 										))}
 									</ul>

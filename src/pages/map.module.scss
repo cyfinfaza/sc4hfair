@@ -40,6 +40,10 @@
 		pointer-events: none;
 	}
 
+	&.short > * {
+		height: auto;
+	}
+
 	> * {
 		background-color: var(--light-blur);
 		backdrop-filter: var(--backdrop-blur);

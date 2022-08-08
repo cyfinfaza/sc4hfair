@@ -5,9 +5,10 @@
 	box-sizing: border-box;
 	// border: 1px solid var(--text-translucent);
 	background: var(--text-translucent);
-	border-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 	width: 100%;
-	overflow: hidden;
+	// overflow: hidden;
 }
 
 .tab {
