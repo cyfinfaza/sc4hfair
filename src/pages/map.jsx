@@ -172,7 +172,7 @@ const MapPage = ({
 				previouslySelectedFeature = null
 			}
 		},
-		[selectedFeature]
+		[selectedFeature] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const [clickCounter, setClickCounter] = useState(0)

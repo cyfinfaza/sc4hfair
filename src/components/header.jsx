@@ -115,9 +115,9 @@ const Header = ({ offsetContent = true }) => {
 						<div className={headerStyle.menuBottom}>
 							<ThemePicker navbar />
 							<Button label="Settings" icon="settings" linksTo="/settings" header={false} />
-							<Button label="App Feedback" linksTo="/feedback" icon="message" header={false} />
+							<Button label="App feedback" linksTo="/feedback" icon="message" header={false} />
 							<Button
-								label="Fair Sponsors"
+								label="Fair sponsors"
 								icon="monetization_on"
 								linksTo="/sponsors"
 								header={false}

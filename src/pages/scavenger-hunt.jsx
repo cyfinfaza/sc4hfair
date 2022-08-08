@@ -11,19 +11,42 @@ import { Link } from 'gatsby'
 
 const clues = [
 	{
-		code: 'abcd1234',
-		clue: 'This is the initial clue',
+		code: '2ykpybp9',
+		clue: 'Be PREPared to see shows on the stage, do crafts, and play games in this tent',
+		hint: 'The clubs in this tent are aimed at grades K-3.',
 	},
 	{
-		code: 'abcd1235',
-		clue: 'This is the second clue',
+		code: '42lxyxg5',
+		clue: 'Where would you look for the state animal?',
+		hint: 'You wear a saddle when riding it.',
 	},
 	{
-		code: 'abcd1236',
-		clue: 'Where might you go to get some tech help during the fair?',
+		code: '3h2zun63',
+		clue: 'Come & get a combination platter of music & munchies!',
 	},
 	{
-		clue: "You've finished the scavenger hunt! Go to the info tent to claim your prize!",
+		code: '272xszh4',
+		clue: 'Baa! Ram! Ewe! Baa! Ram! Ewe! Looking for wool, then you know what to do!',
+		hint: 'Look towards the front post of this tent.',
+	},
+	{
+		code: 'gbw3900j',
+		clue: "How's this for a twist? What is the process of turning fiber like wool into yarn?",
+	},
+	{
+		code: 'yxw7ymrc',
+		clue: "Where is the talking hands' stage?",
+		hint: 'This stage has small shows with small actors. Well, cloth-covered hands.',
+	},
+	{
+		code: 'pyc1nxwm',
+		clue: 'This tent shows more than 1 species of animal, which are typically prey animals. They also sent four exhibitors to the Round Robin competition.',
+		hint: 'These animals are the opposite of big.',
+	},
+	{
+		code: 'dqw4w9wg',
+		clue: 'Which club wrote this app?',
+		hint: "It's written in the app settings.",
 	},
 ]
 
@@ -42,6 +65,11 @@ export default function ScavengerHuntPage() {
 		if (atIndex > 0) localStorage.setItem('sh_code', clues[atIndex - 1].code)
 	}, [atIndex])
 
+	const [hintsUsed, setHintsUsed] = useState([])
+	useEffect(() => {
+		if (hintsUsed.length) localStorage.setItem('sh_hints', JSON.stringify(hintsUsed))
+	}, [hintsUsed])
+
 	const videoElement = useRef(null)
 	const qrScanner = useRef(null)
 	const [compatible, setCompatible] = useState(false)
@@ -52,6 +80,9 @@ export default function ScavengerHuntPage() {
 			let tmp = getOffsetIndexFromCode(localStorage.getItem('sh_code'))
 			setAtIndex(tmp)
 			atIndexVar = tmp // i hate react
+
+			let hints = JSON.parse(localStorage.getItem('sh_hints'))
+			if (hints && hints.length > 0) setHintsUsed(hints)
 
 			checkCode(new URLSearchParams(window.location.search).get('code'), true) // Code from a scanned URL bringing them here
 			window.history.replaceState(null, null, window.location.pathname)
@@ -123,6 +154,7 @@ export default function ScavengerHuntPage() {
 			setAtIndex(index + 1)
 			setScanning(false)
 		}
+		if (!clues[atIndexVar]) return
 		console.table({
 			code,
 			index: index,
@@ -133,7 +165,7 @@ export default function ScavengerHuntPage() {
 	}
 
 	function Clue({ index }) {
-		let winner = index === clues.length - 1
+		let winner = index === clues.length
 		return (
 			<div
 				className={`${pageStyle.clueCard} ${index > atIndex ? pageStyle.disabled : ''} ${
@@ -158,17 +190,46 @@ export default function ScavengerHuntPage() {
 				</h2>
 				{index <= atIndex ? (
 					<div className={pageStyle.clue}>
-						<p>{clues[index].clue}</p>
-						{index < atIndex ? (
-							<span className={`material-icons ${pageStyle.checkIcon}`}>check</span>
+						{winner ? (
+							<p>
+								You've finished the scavenger hunt{' '}
+								{hintsUsed.length
+									? `with ${hintsUsed.length === 1 ? 'only 1 hint' : `${hintsUsed.length} hints`}`
+									: 'without any hints'}
+								! Now that you're at the 4-H Computers booth, you can claim your prize!
+							</p>
 						) : (
-							clues[index].code && (
-								<LinkButton label="Scan" onClick={_ => setScanning(true)} icon="qr_code_scanner" />
-							)
+							<>
+								<p>{clues[index].clue}</p>
+								{clues[index].hint && hintsUsed.includes(clues[index].code) && (
+									<p>
+										<strong>Hint:</strong> {clues[index].hint}
+									</p>
+								)}
+								{index < atIndex ? (
+									<span className={`material-icons ${pageStyle.checkIcon}`}>check</span>
+								) : (
+									clues[index].code && (
+										<div className="horizPanel">
+											{clues[index].hint && !hintsUsed.includes(clues[index].code) && (
+												<LinkButton
+													label="Hint"
+													onClick={_ => setHintsUsed([...hintsUsed, clues[index].code])}
+													icon="emoji_objects"
+												/>
+											)}
+											<LinkButton
+												label="Scan"
+												onClick={_ => setScanning(true)}
+												icon="qr_code_scanner"
+											/>
+										</div>
+									)
+								)}
+							</>
 						)}
 					</div>
 				) : (
-					// material icons lock span
 					<span className="material-icons">lock</span>
 				)}
 			</div>
@@ -180,14 +241,19 @@ export default function ScavengerHuntPage() {
 				<h1>Scavenger Hunt</h1>
 				<p>
 					Welcome to the 4-H Fair Scavenger Hunt! Each clue will lead you to a QR Code, and when you
-					scan it, it will unlock the next clue. The last clue will lead you to your prize! Go to{' '}
-					<Link to="/settings">settings</Link> to reset the scavenger hunt.
+					scan it, it will unlock the next clue. The last clue will lead you to your prize!
 				</p>
-				{/* <div className={pageStyle.clue}>{clues[currentCode] === true ? 'You won!' : clue}</div>
-					<div className={pageStyle.status}>{status}</div> */}
+				<p>
+					If you're stuck on a clue, try looking at the <Link to="/map">fair map</Link>, talking to
+					other 4-Hers, or searching for information online. You can get a hint on each clue, but if
+					you choose to you won't get a perfect score. Go to <Link to="/settings">settings</Link> to
+					reset the scavenger hunt, though only one prize may be claimed per person.
+				</p>
+				<p>Hints used: {hintsUsed.length}</p>
 				{clues.map((clue, index) => (
 					<Clue key={clue.code} index={index} />
 				))}
+				<Clue index={clues.length} /> {/* winner */}
 			</div>
 			{/* this div needs to always be rendered so the qr library doesn't die */}
 			<div className={`${pageStyle.scanner} ${!scanning || !compatible ? pageStyle.hidden : ''}`}>

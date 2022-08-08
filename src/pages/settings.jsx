@@ -151,6 +151,7 @@ export default function SettingsPage({ data }) {
 					switch (confirmReset) {
 						case 'sh':
 							localStorage.removeItem('sh_code')
+							localStorage.removeItem('sh_hints')
 							navigate('/scavenger-hunt')
 							break
 						default:

@@ -66,7 +66,7 @@ const IndexPage = ({ data }) => {
 	}, [showAppInstall])
 	useEffect(() => {
 		if (isStandalone()) setShowAppInstall(false)
-	})
+	}, [])
 
 	return (
 		<Layout>
