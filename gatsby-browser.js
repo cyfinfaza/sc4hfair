@@ -51,3 +51,18 @@ if (
 ) {
 	setTheme(JSON.parse(localStorage.getItem('theme')))
 }
+
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV !== 'development') {
+	if (navigator.serviceWorker.controller) {
+		console.log('Active service worker found')
+	} else {
+		navigator.serviceWorker
+			.register('sw.js', {
+				scope: '/',
+			})
+			.then(function (reg) {
+				console.log('Service worker registered')
+			})
+	}
+}
