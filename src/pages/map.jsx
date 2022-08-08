@@ -43,6 +43,7 @@ const MapPage = ({
 	const [zoom, setZoom] = useState(16)
 	/* eslint-enable no-unused-vars */
 	const [selectedFeature, setSelectedFeature] = useState(null)
+	const [trackUserLocationActive, setTrackUserLocationActive] = useState(false)
 
 	function changeTheme(theme) {
 		const themeData = mapboxColorThemes[{ 'theme-light': 'light', 'theme-dark': 'dark' }[theme]]
@@ -106,7 +107,16 @@ const MapPage = ({
 				enableHighAccuracy: true,
 			},
 			trackUserLocation: true,
+			showUserHeading: true,
 		})
+
+		geolocate.current.on('trackuserlocationstart', () => {
+			setTrackUserLocationActive(true)
+		})
+		geolocate.current.on('trackuserlocationend', () => {
+			setTrackUserLocationActive(false)
+		})
+
 		map.current.addControl(geolocate.current)
 
 		const scale = new mapboxgl.ScaleControl({
@@ -190,8 +200,8 @@ const MapPage = ({
 					acrylic
 				/>
 				<LinkButton
-					label="Locate me"
-					icon="my_location"
+					label={trackUserLocationActive ? 'Stop locating me' : 'Locate me'}
+					icon={trackUserLocationActive ? 'location_disabled' : 'my_location'}
 					onClick={() => {
 						geolocate.current.trigger()
 					}}
