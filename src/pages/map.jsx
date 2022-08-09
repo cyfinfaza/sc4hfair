@@ -52,6 +52,7 @@ const MapPage = ({
 		})
 	}
 
+	const [isMapLoaded, setIsMapLoaded] = useState(false)
 	useEffect(() => {
 		if (map.current) return // Initialize map only once
 		map.current = new mapboxgl.Map({
@@ -63,6 +64,7 @@ const MapPage = ({
 		})
 
 		map.current.on('load', _ => {
+			setIsMapLoaded(true)
 			changeTheme(getTheme())
 			onThemeChange.subscribe(next => {
 				changeTheme(next)
@@ -136,6 +138,7 @@ const MapPage = ({
 
 	useEffect(
 		_ => {
+			if (!isMapLoaded) return
 			previouslySelectedFeature &&
 				map.current.setFeatureState(
 					{
@@ -172,7 +175,7 @@ const MapPage = ({
 				previouslySelectedFeature = null
 			}
 		},
-		[selectedFeature] // eslint-disable-line react-hooks/exhaustive-deps
+		[selectedFeature, isMapLoaded] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const [clickCounter, setClickCounter] = useState(0)
