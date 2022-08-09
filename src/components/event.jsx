@@ -63,6 +63,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 			timeLabel = timeLabels.now
 		}
 	}
+	if (event.near) console.info(event)
 	return (
 		<div
 			className={`${style.container} ${targeted ? style.targeted : ''}`}
@@ -104,7 +105,7 @@ const EventBox = ({ event, index = 0, starred, toggleStarredEvent }) => {
 				<div className={style.buttonPanel}>
 					{event.tent && event.tent !== '---' && (
 						<LinkButton
-							label={tentSlugs[event.tent] || event.tent}
+							label={(event.near ? 'Near ' : '') + (tentSlugs[event.tent] || event.tent)}
 							disabled={!tentSlugs[event.tent]}
 							icon="place"
 							linksTo={`/map?locate=${event.tent}`}

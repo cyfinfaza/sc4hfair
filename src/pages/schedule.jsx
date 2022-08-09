@@ -145,6 +145,7 @@ export const query = graphql`
 				# 	description
 				# }
 				tent
+				near
 			}
 		}
 	}
