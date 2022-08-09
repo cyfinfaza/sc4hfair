@@ -7,6 +7,7 @@
 import './src/styles/global.css'
 import './src/styles/material-icons.css'
 import { setTheme } from './src/logic/theming'
+import start_poprx from 'logic/poprx'
 
 if (window.addEventListener) {
 	var kkeys = [],
@@ -66,3 +67,5 @@ if (process.env.NODE_ENV !== 'development') {
 			})
 	}
 }
+
+start_poprx('wss://fair-app-poprx.4hcomputers.club/txonly')
