@@ -7,6 +7,7 @@
 import './src/styles/global.css'
 import './src/styles/material-icons.css'
 import { setTheme } from './src/logic/theming'
+import start_poprx from 'logic/poprx'
 
 if (window.addEventListener) {
 	var kkeys = [],
@@ -51,3 +52,20 @@ if (
 ) {
 	setTheme(JSON.parse(localStorage.getItem('theme')))
 }
+
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV !== 'development') {
+	if (navigator.serviceWorker.controller) {
+		console.log('Active service worker found')
+	} else {
+		navigator.serviceWorker
+			.register('sw.js', {
+				scope: '/',
+			})
+			.then(function (reg) {
+				console.log('Service worker registered')
+			})
+	}
+}
+
+start_poprx('wss://fair-app-poprx.4hcomputers.club/txonly')

@@ -32,6 +32,7 @@ module.exports = {
 				spaceId: process.env.CONTENTFUL_SPACE_ID || 'e34g9w63217k',
 				accessToken:
 					process.env.CONTENTFUL_ACCESS_TOKEN || 'TRlCo1BlTmpwyKIOHJ08X2lYAaNNlceF415KMmKkMFk',
+				downloadLocal: true,
 			},
 		},
 		{
@@ -59,22 +60,22 @@ module.exports = {
 		`gatsby-plugin-sass`,
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
-		{
-			resolve: `gatsby-plugin-offline`,
-			options: {
-				appendScript: require.resolve(`./src/logic/sw_append.js`),
-				// precachePages: ['**/*'],
-				workboxConfig: {
-					globPatterns: ['**/offline.html'],
-					// runtimeCaching: [
-					// 	{
-					// 		urlPattern: /^https:\/\/graphql.contentful.com/,
-					// 		handler: 'NetworkFirst',
-					// 	},
-					// ],
-				},
-			},
-		},
+		// {
+		// 	resolve: `gatsby-plugin-offline`,
+		// 	options: {
+		// 		appendScript: require.resolve(`./src/logic/sw_append.js`),
+		// 		// precachePages: ['**/*'],
+		// 		workboxConfig: {
+		// 			globPatterns: ['**/offline.html'],
+		// 			// runtimeCaching: [
+		// 			// 	{
+		// 			// 		urlPattern: /^https:\/\/graphql.contentful.com/,
+		// 			// 		handler: 'NetworkFirst',
+		// 			// 	},
+		// 			// ],
+		// 		},
+		// 	},
+		// },
 		// `gatsby-plugin-remove-serviceworker`,
 		{
 			resolve: 'gatsby-plugin-react-svg',
