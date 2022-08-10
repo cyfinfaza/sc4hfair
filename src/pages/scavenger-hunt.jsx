@@ -11,27 +11,24 @@ import { Link } from 'gatsby'
 
 const clues = [
 	{
+		code: 'oqb11ykt',
+		clue: 'On this object that everyone crosses, a ribbon was cut to open the fair.',
+		hint: "It's at the enterance of the fair.",
+	},
+	{
+		code: 'dqw4w9wg',
+		clue: 'Which club wrote this app?',
+		hint: "It's written in the app settings.",
+	},
+	{
 		code: '2ykpybp9',
 		clue: 'Be PREPared to see shows on the stage, do crafts, and play games in this tent',
 		hint: 'The clubs in this tent are aimed at grades K-3.',
 	},
 	{
-		code: '42lxyxg5',
-		clue: 'Where would you look for the state animal?',
-		hint: 'You wear a saddle when riding it.',
-	},
-	{
 		code: '3h2zun63',
 		clue: 'Come & get a combination platter of music & munchies!',
-	},
-	{
-		code: '272xszh4',
-		clue: 'Baa! Ram! Ewe! Baa! Ram! Ewe! Looking for wool, then you know what to do!',
-		hint: 'Look towards the front post of this tent.',
-	},
-	{
-		code: 'gbw3900j',
-		clue: "How's this for a twist? What is the process of turning fiber like wool into yarn?",
+		hint: 'This 4-H run food tent plays music while you enjoy your treats.',
 	},
 	{
 		code: 'yxw7ymrc',
@@ -39,14 +36,54 @@ const clues = [
 		hint: 'This stage has small shows with small actors. Well, cloth-covered hands.',
 	},
 	{
+		code: '272xszh4',
+		clue: 'Baa! Ram! Ewe! Baa! Ram! Ewe! Looking for wool, then you know what to do!',
+		hint: 'This fluffy animal is usually found on a farm. Look towards the front post of the tent.',
+	},
+	{
+		code: 'gbw3900j',
+		clue: "How's this for a twist? What is the process of turning fiber like wool into yarn? (inside tent)",
+		hint: 'Look for a poster that tells you this info.',
+	},
+	{
 		code: 'pyc1nxwm',
 		clue: 'This tent shows more than 1 species of animal, which are typically prey animals. They also sent four exhibitors to the Round Robin competition.',
 		hint: 'These animals are the opposite of big.',
 	},
 	{
-		code: 'dqw4w9wg',
-		clue: 'Which club wrote this app?',
-		hint: "It's written in the app settings.",
+		code: 'uu20nylk',
+		clue: 'Look for a Poster with "A goats heart will beat about ___ times a minute"',
+		hint: 'This animal has horns and will headbutt things.',
+	},
+	{
+		code: '5m608wco',
+		clue: 'Where to find the "Magic of Milk" selfie station?',
+		hint: 'Milk comes from...',
+	},
+	{
+		code: 'xd5eoion',
+		clue: 'Wags, whiskers, woof!',
+		hint: 'This animal is commonly a pet or emotional suppport animal, known as "man\'s best friend"',
+	},
+	{
+		code: '42lxyxg5',
+		clue: 'Where would you look for the state animal?',
+		hint: 'You wear a saddle when riding it.',
+	},
+	{
+		code: 'c5oeadad',
+		clue: 'Which tent has a peep show?',
+		hint: 'This animal can be found on a farm laying eggs.',
+	},
+	{
+		code: '1192ynzt',
+		clue: 'Where is the spin art activity run by electronics and motors?',
+		hint: 'Electronics and motors are also used to build...',
+	},
+	{
+		code: '4uont46y',
+		clue: 'Look here to find scales, fins, and tails.',
+		hint: 'This tent has fish and reptiles!',
 	},
 ]
 
@@ -196,7 +233,7 @@ export default function ScavengerHuntPage() {
 								{hintsUsed.length
 									? `with ${hintsUsed.length === 1 ? 'only 1 hint' : `${hintsUsed.length} hints`}`
 									: 'without any hints'}
-								! Now that you're at the 4-H Computers booth, you can claim your prize!
+								! Go back to the 4-H Computers booth to claim your prize!
 							</p>
 						) : (
 							<>
