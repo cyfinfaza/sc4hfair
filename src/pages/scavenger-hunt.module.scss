@@ -89,12 +89,18 @@
 }
 .scannerOverlay {
 	background: linear-gradient(to top, var(--light-translucent) 0%, 100px, rgba(0, 0, 0, 0));
+	box-shadow: 0 0 0 16vw rgba(0, 0, 0, 0.3) inset;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 16px;
 	align-items: flex-end;
 	box-sizing: border-box;
+	.scannerButtons {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+	}
 	.scannerMessage {
 		font-size: 1em;
 		font-weight: bold;

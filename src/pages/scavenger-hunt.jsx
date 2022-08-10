@@ -169,8 +169,13 @@ export default function ScavengerHuntPage() {
 				setScannerMessage('')
 				qrScanner.current.stop()
 			}
+
+			if (!scannerMessage)
+				setScannerMessage(
+					"Try changing the angle to remove any glare. If the code won't scan, click the top left button to manually enter the code."
+				)
 		}
-	}, [scanning, compatible])
+	}, [scanning, compatible]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	function checkCode(code, fromUrl = false) {
 		let index = getIndexFromCode(code)
@@ -182,7 +187,7 @@ export default function ScavengerHuntPage() {
 			setScannerMessage('Invalid code. Make sure you are scanning scavenger hunt codes.\xa0🙃')
 		} else if (index < atIndexVar) {
 			if (fromUrl) setScanning(true)
-			setScannerMessage("You've already scanned that code\xa0😡")
+			setScannerMessage("You've already scanned that code")
 		} else if (index > atIndexVar) {
 			if (fromUrl && atIndexVar > 0) setScanning(true)
 			setScannerMessage("This isn't the right code. Keep looking!\xa0😁")
@@ -297,14 +302,27 @@ export default function ScavengerHuntPage() {
 				<div>
 					<video ref={videoElement} /> {/* eslint-disable-line jsx-a11y/media-has-caption */}
 					<div className={pageStyle.scannerOverlay}>
-						<LinkButton
-							label="Close"
-							icon="close"
-							onClick={() => {
-								setScanning(false)
-							}}
-							acrylic
-						/>
+						<div className={pageStyle.scannerButtons}>
+							<LinkButton
+								label="Enter manually"
+								icon="keyboard"
+								onClick={_ => {
+									let input = prompt(
+										'Enter the 8 digit code found in the bottom left corner of the sheet.'
+									)
+									if (input) checkCode(input)
+								}}
+								acrylic
+							/>
+							<LinkButton
+								label="Close"
+								icon="close"
+								onClick={() => {
+									setScanning(false)
+								}}
+								acrylic
+							/>
+						</div>
 						<p className={pageStyle.scannerMessage}>{scannerMessage}</p>
 					</div>
 				</div>

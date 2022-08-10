@@ -107,6 +107,7 @@ export const query = graphql`
 				meetingWhen
 			}
 			listingWebsite
+			tent
 		}
 	}
 `
