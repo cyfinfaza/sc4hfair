@@ -18,6 +18,15 @@ export default function InstallInstructions() {
 					</ol>
 				</>
 			)}
+			{platform === 'android-other' && (
+				<p>
+					First open this site (
+					{typeof window !== undefined && (
+						<a href={window.location.origin}>{window.location.origin}</a>
+					)}
+					) in Chrome or another web browser app.
+				</p>
+			)}
 			{platform === 'ios-other' && (
 				<p>
 					First open this site (
@@ -33,7 +42,10 @@ export default function InstallInstructions() {
 						<li>
 							Tap <span className="material-icons">ios_share</span> (share button)
 						</li>
-						<li>Choose "Add to Home Screen"</li>
+						<li>
+							Scroll down until you see "Add to Home Screen{' '}
+							<span className="material-icons">add_box</span>" and click it
+						</li>
 						<li>Tap "Add" in the upper right corner</li>
 					</ol>
 				</>

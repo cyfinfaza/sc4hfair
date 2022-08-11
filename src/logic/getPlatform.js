@@ -3,10 +3,14 @@ export function getPlatform() {
 
 	var userAgent = navigator.userAgent || navigator.vendor
 
-	if (/android/i.test(userAgent)) return 'android'
+	if (/android/i.test(userAgent)) {
+		if (/wv|FBAV/.test(userAgent)) return 'android-other'
 
-	if (/iPad|iPhone|iPod/.test(userAgent) || navigator.vendor === 'Apple Computer, Inc.') {
-		if (/CriOS|FxiOS|EdgiOS/.test(userAgent)) return 'ios-other'
+		return 'android'
+	}
+
+	if (/iPad|iPhone|iPod|iOS/.test(userAgent) || navigator.vendor === 'Apple Computer, Inc.') {
+		if (/CriOS|FxiOS|EdgiOS|FBIOS/.test(userAgent)) return 'ios-other'
 
 		return 'ios'
 	}
