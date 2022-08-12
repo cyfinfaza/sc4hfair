@@ -207,6 +207,17 @@ export default function SettingsPage({ data }) {
 								}}
 								icon="restart_alt"
 							/>
+							<LinkButton
+								label="Clear caches"
+								onClick={_ => {
+									caches.keys().then(function (keys) {
+										for (let key of keys) {
+											caches.delete(key)
+										}
+									})
+								}}
+								icon="restart_alt"
+							/>
 						</div>
 						{/* <div className="horizPanel2">
 							<LinkButton
