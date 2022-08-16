@@ -24,6 +24,10 @@ export default function Feedback() {
 			setErrorText('You must input a comment.')
 			return
 		}
+		if (!name) {
+			setErrorText('You must input a name so the app committee can identify you.')
+			return
+		}
 		console.log([name, email, comment])
 		let formData = new FormData()
 		formData.append('entry.1901667750', name)
