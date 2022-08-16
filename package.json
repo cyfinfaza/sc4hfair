@@ -2,7 +2,7 @@
 	"name": "sc4hfair",
 	"private": true,
 	"description": "The Somerset County 4-H Fair App",
-	"version": "0.1.0",
+	"version": "1",
 	"author": "Cy Westbrook <cyfinfaza@gmail.com>",
 	"contributors": [
 		"Calum Dingwall (https://github.com/caburum)"
